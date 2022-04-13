@@ -32,6 +32,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>WindowSplitLocation class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
@@ -39,6 +41,14 @@ public class WindowSplitLocation extends AbstractWindowLocation {
   private Direction direction;
   private float dividerLocation;
 
+  /**
+   * <p>Constructor for WindowSplitLocation.</p>
+   *
+   * @param splitWith a {@link net.infonode.docking.DockingWindow} object.
+   * @param parentLocation a {@link net.infonode.docking.location.WindowLocation} object.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param dividerLocation a float.
+   */
   public WindowSplitLocation(DockingWindow splitWith,
                              WindowLocation parentLocation,
                              Direction direction,
@@ -53,11 +63,13 @@ public class WindowSplitLocation extends AbstractWindowLocation {
     this.dividerLocation = dividerLocation;
   }
 
+  /** {@inheritDoc} */
   public boolean set(DockingWindow parent, DockingWindow child) {
     parent.split(child, direction, dividerLocation);
     return true;
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(LocationDecoder.SPLIT);
     direction.write(out);
@@ -65,6 +77,14 @@ public class WindowSplitLocation extends AbstractWindowLocation {
     super.write(out);
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @return a {@link net.infonode.docking.location.WindowSplitLocation} object.
+   * @throws java.io.IOException if any.
+   */
   public static WindowSplitLocation decode(ObjectInputStream in, RootWindow rootWindow) throws IOException {
     WindowSplitLocation location = new WindowSplitLocation(Direction.decode(in), in.readFloat());
     location.read(in, rootWindow);

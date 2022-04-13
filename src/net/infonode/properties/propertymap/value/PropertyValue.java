@@ -30,27 +30,82 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>PropertyValue interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  */
 public interface PropertyValue {
+  /**
+   * <p>get.</p>
+   *
+   * @param map a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @return a {@link java.lang.Object} object.
+   */
   Object get(PropertyMapImpl map);
 
+  /**
+   * <p>getWithDefault.</p>
+   *
+   * @param object a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @return a {@link java.lang.Object} object.
+   */
   Object getWithDefault(PropertyMapImpl object);
 
+  /**
+   * <p>getSubValue.</p>
+   *
+   * @param object a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   PropertyValue getSubValue(PropertyMapImpl object);
 
+  /**
+   * <p>unset.</p>
+   */
   void unset();
 
+  /**
+   * <p>getParent.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   PropertyValue getParent();
 
+  /**
+   * <p>dump.</p>
+   *
+   * @param printer a {@link net.infonode.util.Printer} object.
+   */
   void dump(Printer printer);
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @throws java.io.IOException if any.
+   */
   void write(ObjectOutputStream out) throws IOException;
 
+  /**
+   * <p>updateListener.</p>
+   *
+   * @param enable a boolean.
+   */
   void updateListener(boolean enable);
 
+  /**
+   * <p>isSerializable.</p>
+   *
+   * @return a boolean.
+   */
   boolean isSerializable();
 
+  /**
+   * <p>copyTo.</p>
+   *
+   * @param propertyMap a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   PropertyValue copyTo(PropertyMapImpl propertyMap);
 }

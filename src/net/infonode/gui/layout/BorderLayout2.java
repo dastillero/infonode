@@ -26,12 +26,17 @@ package net.infonode.gui.layout;
 import java.awt.*;
 
 /**
+ * <p>BorderLayout2 class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
 public class BorderLayout2 implements LayoutManager2 {
   private Component[][] components;
 
+  /**
+   * <p>Constructor for BorderLayout2.</p>
+   */
   public BorderLayout2() {
     components = new Component[3][];
 
@@ -40,9 +45,11 @@ public class BorderLayout2 implements LayoutManager2 {
     }
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(String name, Component comp) {
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(Component comp, Object constraints) {
     if (constraints instanceof Point) {
       Point p = (Point) constraints;
@@ -52,17 +59,21 @@ public class BorderLayout2 implements LayoutManager2 {
       throw new RuntimeException("BorderLayout2 constraint must be a Point!");
   }
 
+  /** {@inheritDoc} */
   public float getLayoutAlignmentX(Container target) {
     return target.getAlignmentX();
   }
 
+  /** {@inheritDoc} */
   public float getLayoutAlignmentY(Container target) {
     return target.getAlignmentY();
   }
 
+  /** {@inheritDoc} */
   public void invalidateLayout(Container target) {
   }
 
+  /** {@inheritDoc} */
   public Dimension maximumLayoutSize(Container target) {
     int width = 0;
     int height = 0;
@@ -188,6 +199,7 @@ public class BorderLayout2 implements LayoutManager2 {
     component.setBounds(r);
   }
 
+  /** {@inheritDoc} */
   public void layoutContainer(Container parent) {
     //System.out.println("Laying out container: " + components[2][0].isVisible());
     Insets insets = parent.getInsets();
@@ -217,6 +229,7 @@ public class BorderLayout2 implements LayoutManager2 {
     //System.out.println("Layout complete: " + components[2][0].isVisible());
   }
 
+  /** {@inheritDoc} */
   public Dimension minimumLayoutSize(Container parent) {
     int width = 0;
     int height = 0;
@@ -229,6 +242,7 @@ public class BorderLayout2 implements LayoutManager2 {
     return new Dimension(width, height);
   }
 
+  /** {@inheritDoc} */
   public Dimension preferredLayoutSize(Container parent) {
     int width = 0;
     int height = 0;
@@ -241,6 +255,7 @@ public class BorderLayout2 implements LayoutManager2 {
     return new Dimension(width, height);
   }
 
+  /** {@inheritDoc} */
   public void removeLayoutComponent(Component comp) {
     for (int col = 0; col < 3; col++) {
       for (int row = 0; row < 3; row++) {

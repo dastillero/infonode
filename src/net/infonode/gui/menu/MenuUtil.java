@@ -29,6 +29,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>MenuUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
@@ -36,6 +38,11 @@ public class MenuUtil {
   private MenuUtil() {
   }
 
+  /**
+   * <p>optimizeSeparators.</p>
+   *
+   * @param menu a {@link javax.swing.JPopupMenu} object.
+   */
   public static void optimizeSeparators(JPopupMenu menu) {
     boolean lastSeparator = true;
 
@@ -58,6 +65,11 @@ public class MenuUtil {
       menu.remove(menu.getComponentCount() - 1);
   }
 
+  /**
+   * <p>align.</p>
+   *
+   * @param menu a {@link javax.swing.MenuElement} object.
+   */
   public static void align(MenuElement menu) {
     MenuElement[] children = menu.getSubElements();
     final int maxWidth = IconUtil.getMaxIconWidth(children);

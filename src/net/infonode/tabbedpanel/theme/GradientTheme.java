@@ -190,10 +190,20 @@ public class GradientTheme extends TabbedPanelTitledTabTheme {
                                       HIGHLIGHTED_TAB_GRADIENT_BORDER));
   }
 
+  /**
+   * <p>Getter for the field <code>titledTabProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties} object.
+   */
   public TitledTabProperties getTitledTabProperties() {
     return titledTabProperties;
   }
 
+  /**
+   * <p>Getter for the field <code>tabbedPanelProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.tabbedpanel.TabbedPanelProperties} object.
+   */
   public TabbedPanelProperties getTabbedPanelProperties() {
     return tabbedPanelProperties;
   }

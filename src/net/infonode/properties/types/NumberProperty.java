@@ -96,6 +96,7 @@ public class NumberProperty extends ValueHandlerProperty {
     return value == null ? Math.max(0, minValue) : ((Number) getValue(valueContainer)).longValue();
   }
 
+  /** {@inheritDoc} */
   public boolean canBeAssiged(Object value) {
     if (!super.canBeAssiged(value))
       return false;

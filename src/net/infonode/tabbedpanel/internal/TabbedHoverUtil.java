@@ -32,10 +32,20 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
+ * <p>TabbedHoverUtil class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class TabbedHoverUtil {
 
+  /**
+   * <p>isDeepestHoverableTabbedPanel.</p>
+   *
+   * @param enterables a {@link java.util.ArrayList} object.
+   * @param tp a {@link net.infonode.tabbedpanel.TabbedPanel} object.
+   * @return a boolean.
+   */
   public static boolean isDeepestHoverableTabbedPanel(ArrayList enterables, TabbedPanel tp) {
     Component c = (Component) enterables.get(0);
     while (c != null) {
@@ -70,6 +80,12 @@ public class TabbedHoverUtil {
     return true;
   }
 
+  /**
+   * <p>hasVisibleTabbedPanelChild.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   public static boolean hasVisibleTabbedPanelChild(Component c) {
     if (c instanceof TabbedPanel && ((TabbedPanel) c).getProperties().getHoverPolicy() != TabbedPanelHoverPolicy.ALWAYS_AND_EXCLUDE)
       return true;
@@ -85,6 +101,15 @@ public class TabbedHoverUtil {
     return false;
   }
 
+  /**
+   * <p>acceptTabbedPanelHover.</p>
+   *
+   * @param policy a {@link net.infonode.tabbedpanel.TabbedPanelHoverPolicy} object.
+   * @param enterables a {@link java.util.ArrayList} object.
+   * @param tp a {@link net.infonode.tabbedpanel.TabbedPanel} object.
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   public static boolean acceptTabbedPanelHover(TabbedPanelHoverPolicy policy,
                                                ArrayList enterables,
                                                TabbedPanel tp,

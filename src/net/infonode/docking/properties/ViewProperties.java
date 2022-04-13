@@ -125,6 +125,7 @@ public class ViewProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(ViewProperties)} instead.
    */
+  @Deprecated
   public ViewProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;

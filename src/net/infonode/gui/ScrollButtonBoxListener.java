@@ -23,8 +23,20 @@
 // $Id: ScrollButtonBoxListener.java,v 1.2 2004/06/17 13:01:11 johan Exp $
 package net.infonode.gui;
 
+/**
+ * <p>ScrollButtonBoxListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface ScrollButtonBoxListener {
+  /**
+   * <p>scrollButton1.</p>
+   */
   void scrollButton1();
 
+  /**
+   * <p>scrollButton2.</p>
+   */
   void scrollButton2();
 }

@@ -80,7 +80,7 @@ public class DeveloperUtil {
   /**
    * <p>
    * Creates a JFrame with a text area that shows the layout of the given window as pseudo-like Java code,
-   * i.e. the layout retrieved by {@link DeveloperUtil#getWindowLayoutAsString(DockingWindow)}. The frame
+   * i.e. the layout retrieved by {@link net.infonode.docking.util.DeveloperUtil#getWindowLayoutAsString(DockingWindow)}. The frame
    * also has a button that when clicked gets the current layout from the window.
    * </p>
    *

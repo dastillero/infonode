@@ -33,18 +33,59 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
+ * <p>ViewReader interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
 public interface ViewReader {
+  /**
+   * <p>readViewItem.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @return a {@link net.infonode.docking.model.ViewItem} object.
+   * @throws java.io.IOException if any.
+   */
   ViewItem readViewItem(ObjectInputStream in, ReadContext context) throws IOException;
 
+  /**
+   * <p>readView.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @return a {@link net.infonode.docking.View} object.
+   * @throws java.io.IOException if any.
+   */
   View readView(ObjectInputStream in, ReadContext context) throws IOException;
 
+  /**
+   * <p>createTabWindow.</p>
+   *
+   * @param childWindows an array of {@link net.infonode.docking.DockingWindow} objects.
+   * @param windowItem a {@link net.infonode.docking.model.TabWindowItem} object.
+   * @return a {@link net.infonode.docking.TabWindow} object.
+   */
   TabWindow createTabWindow(DockingWindow[] childWindows, TabWindowItem windowItem);
 
+  /**
+   * <p>createSplitWindow.</p>
+   *
+   * @param leftWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param rightWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param windowItem a {@link net.infonode.docking.model.SplitWindowItem} object.
+   * @return a {@link net.infonode.docking.SplitWindow} object.
+   */
   SplitWindow createSplitWindow(DockingWindow leftWindow, DockingWindow rightWindow, SplitWindowItem windowItem);
 
+  /**
+   * <p>readWindowItem.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   * @throws java.io.IOException if any.
+   */
   WindowItem readWindowItem(ObjectInputStream in, ReadContext context) throws IOException;
 
 }

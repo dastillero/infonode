@@ -29,7 +29,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>TextIconListCellRenderer class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class TextIconListCellRenderer extends DefaultListCellRenderer {
   private ListCellRenderer renderer;
@@ -37,10 +40,20 @@ public class TextIconListCellRenderer extends DefaultListCellRenderer {
   private int width;
   private int gap = -1;
 
+  /**
+   * <p>Constructor for TextIconListCellRenderer.</p>
+   *
+   * @param renderer a {@link javax.swing.ListCellRenderer} object.
+   */
   public TextIconListCellRenderer(ListCellRenderer renderer) {
     this.renderer = renderer;
   }
 
+  /**
+   * <p>calculateMaximumIconWidth.</p>
+   *
+   * @param list an array of {@link java.lang.Object} objects.
+   */
   public void calculateMaximumIconWidth(Object[] list) {
     width = IconUtil.getMaxIconWidth(list);
     emptyIcon = width == 0 ? null : new Icon() {
@@ -57,10 +70,16 @@ public class TextIconListCellRenderer extends DefaultListCellRenderer {
     };
   }
 
+  /**
+   * <p>Setter for the field <code>renderer</code>.</p>
+   *
+   * @param renderer a {@link javax.swing.ListCellRenderer} object.
+   */
   public void setRenderer(ListCellRenderer renderer) {
     this.renderer = renderer;
   }
 
+  /** {@inheritDoc} */
   public Component getListCellRendererComponent(JList list,
                                                 Object value,
                                                 int index,

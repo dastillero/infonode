@@ -214,6 +214,11 @@ public class GradientDockingTheme extends DockingWindowsTheme {
         .setBackgroundColor(null);
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     String str = (opaqueTabArea ? "" : "Transparent Tab Area, ") +
                  (shadowEnabled ? "" : "No Shadow, ") +
@@ -222,6 +227,11 @@ public class GradientDockingTheme extends DockingWindowsTheme {
     return "Gradient Theme" + (str.length() > 0 ? " - " + str.substring(0, str.length() - 2) : "");
   }
 
+  /**
+   * <p>getRootWindowProperties.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.RootWindowProperties} object.
+   */
   public RootWindowProperties getRootWindowProperties() {
     return rootProperties;
   }

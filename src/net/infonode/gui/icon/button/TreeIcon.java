@@ -30,11 +30,15 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>TreeIcon class.</p>
+ *
  * @author Jesper Nordenberg
  * @version $Revision: 1.6 $ $Date: 2005/12/04 13:46:03 $
  */
 public class TreeIcon implements Icon {
+  /** Constant <code>PLUS=1</code> */
   public static final int PLUS = 1;
+  /** Constant <code>MINUS=2</code> */
   public static final int MINUS = 2;
 
   private int type;
@@ -44,6 +48,16 @@ public class TreeIcon implements Icon {
   private Color bgColor;
   private boolean border = true;
 
+  /**
+   * <p>Constructor for TreeIcon.</p>
+   *
+   * @param type a int.
+   * @param width a int.
+   * @param height a int.
+   * @param border a boolean.
+   * @param color a {@link java.awt.Color} object.
+   * @param bgColor a {@link java.awt.Color} object.
+   */
   public TreeIcon(int type, int width, int height, boolean border, Color color, Color bgColor) {
     this.type = type;
     this.width = width;
@@ -53,10 +67,18 @@ public class TreeIcon implements Icon {
     this.bgColor = bgColor;
   }
 
+  /**
+   * <p>Constructor for TreeIcon.</p>
+   *
+   * @param type a int.
+   * @param width a int.
+   * @param height a int.
+   */
   public TreeIcon(int type, int width, int height) {
     this(type, width, height, true, Color.BLACK, null);
   }
 
+  /** {@inheritDoc} */
   public void paintIcon(Component c, Graphics g, int x, int y) {
     if (bgColor != null) {
       g.setColor(bgColor);
@@ -75,10 +97,20 @@ public class TreeIcon implements Icon {
       GraphicsUtil.drawOptimizedLine(g, x + width / 2, y + 3, x + width / 2, y + height - 3);
   }
 
+  /**
+   * <p>getIconWidth.</p>
+   *
+   * @return a int.
+   */
   public int getIconWidth() {
     return width;
   }
 
+  /**
+   * <p>getIconHeight.</p>
+   *
+   * @return a int.
+   */
   public int getIconHeight() {
     return height;
   }

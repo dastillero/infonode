@@ -92,6 +92,9 @@ public class LookAndFeelDockingTheme extends DockingWindowsTheme {
 
   private boolean disposed = false;
 
+  /**
+   * <p>Constructor for LookAndFeelDockingTheme.</p>
+   */
   public LookAndFeelDockingTheme() {
     if (themeCounter == 0) {
       tpTheme = new LookAndFeelTheme();

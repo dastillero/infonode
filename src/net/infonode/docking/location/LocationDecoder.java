@@ -29,18 +29,32 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
+ * <p>LocationDecoder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 public class LocationDecoder {
+  /** Constant <code>NULL=0</code> */
   public static final int NULL = 0;
+  /** Constant <code>ROOT=1</code> */
   public static final int ROOT = 1;
+  /** Constant <code>SPLIT=2</code> */
   public static final int SPLIT = 2;
+  /** Constant <code>TAB=3</code> */
   public static final int TAB = 3;
 
   private LocationDecoder() {
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @return a {@link net.infonode.docking.location.WindowLocation} object.
+   * @throws java.io.IOException if any.
+   */
   public static WindowLocation decode(ObjectInputStream in, RootWindow rootWindow) throws IOException {
     int type = in.readInt();
 

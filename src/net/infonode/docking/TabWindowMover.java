@@ -42,6 +42,7 @@ class TabWindowMover extends TabAdapter {
     this.tabbedPanel = tabbedPanel;
   }
 
+  /** {@inheritDoc} */
   public void tabDragged(TabDragEvent event) {
     if (dragger == null) {
       DockingWindow w = ((WindowTab) event.getTab()).getWindow();
@@ -59,6 +60,7 @@ class TabWindowMover extends TabAdapter {
     dragger.dragWindow(event.getMouseEvent());
   }
 
+  /** {@inheritDoc} */
   public void tabDropped(TabDragEvent event) {
     if (dragger != null) {
       dragger.dropWindow(event.getMouseEvent());
@@ -66,6 +68,7 @@ class TabWindowMover extends TabAdapter {
     }
   }
 
+  /** {@inheritDoc} */
   public void tabDragAborted(TabEvent event) {
     if (dragger != null) {
       dragger.abortDrag();

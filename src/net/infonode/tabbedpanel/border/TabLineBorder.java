@@ -37,16 +37,18 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
- * TabLineBorder draws a 1 pixel wide line around a {@link Tab}. If tab spacing in the
+ * TabLineBorder draws a 1 pixel wide line around a {@link net.infonode.tabbedpanel.Tab}. If tab spacing in the
  * tabbed panel is 0 then the border will only draw a single line between two adjacent tabs.
  *
  * @author $Author: johan $
  * @version $Revision: 1.27 $
  * @see Tab
  * @see TabbedPanel
- * @deprecated As of ITP 1.2.0 use {@link TabAreaLineBorder} instead with
+ * @see TabbedPanel
+ * @deprecated As of ITP 1.2.0 use {@link net.infonode.tabbedpanel.border.TabAreaLineBorder} instead with
  *             {@link net.infonode.tabbedpanel.TabbedPanelProperties#TAB_SPACING} set to -1.
  */
+@Deprecated
 public class TabLineBorder implements Border, Serializable {
   private static final long serialVersionUID = 1;
 
@@ -65,6 +67,7 @@ public class TabLineBorder implements Border, Serializable {
     LineBorder() {
     }
 
+    @Override
     public void paintBorder(Component component, Graphics g, int x, int y, int width, int height) {
       Color c = color.getColor(component);
       Tab tab = TabbedUtils.getParentTab(component);
@@ -324,14 +327,21 @@ public class TabLineBorder implements Border, Serializable {
       border = new CompoundBorder(border, innerBorder);
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     border.paintBorder(c, g, x, y, width, height);
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return border.getBorderInsets(c);
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }

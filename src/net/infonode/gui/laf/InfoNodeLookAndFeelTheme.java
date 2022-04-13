@@ -54,20 +54,30 @@ public class InfoNodeLookAndFeelTheme {
   private static final float PRIMARY_SATURATION = 0.6f;
   private static final float PRIMARY_BRIGHTNESS = 0.67f;
 
+  /** Constant <code>DEFAULT_CONTROL_COLOR</code> */
   public static final Color DEFAULT_CONTROL_COLOR = Color.getHSBColor(Colors.SAND_HUE, 0.058f, 0.89f);
+  /** Constant <code>DEFAULT_PRIMARY_CONTROL_COLOR</code> */
   public static final Color DEFAULT_PRIMARY_CONTROL_COLOR = Color.getHSBColor(PRIMARY_HUE, PRIMARY_SATURATION, 1f);
+  /** Constant <code>DEFAULT_BACKGROUND_COLOR</code> */
   public static final Color DEFAULT_BACKGROUND_COLOR = new Color(250, 250, 247);
+  /** Constant <code>DEFAULT_TEXT_COLOR</code> */
   public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
+  /** Constant <code>DEFAULT_SELECTED_BACKGROUND_COLOR</code> */
   public static final Color DEFAULT_SELECTED_BACKGROUND_COLOR = Color.getHSBColor(PRIMARY_HUE,
                                                                                   PRIMARY_SATURATION + 0.1f,
                                                                                   PRIMARY_BRIGHTNESS);
+  /** Constant <code>DEFAULT_SELECTED_TEXT_COLOR</code> */
   public static final Color DEFAULT_SELECTED_TEXT_COLOR = Color.WHITE;
+  /** Constant <code>DEFAULT_TOOLTIP_BACKGROUND_COLOR</code> */
   public static final Color DEFAULT_TOOLTIP_BACKGROUND_COLOR = new Color(255, 255, 180);
+  /** Constant <code>DEFAULT_TOOLTIP_FOREGROUND_COLOR</code> */
   public static final Color DEFAULT_TOOLTIP_FOREGROUND_COLOR = Color.BLACK;
+  /** Constant <code>DEFAULT_DESKTOP_COLOR</code> */
   public static final Color DEFAULT_DESKTOP_COLOR = Color.getHSBColor(PRIMARY_HUE - 0.02f,
                                                                       PRIMARY_SATURATION,
                                                                       PRIMARY_BRIGHTNESS);
 
+  /** Constant <code>DEFAULT_FONT_SIZE=11</code> */
   public static final int DEFAULT_FONT_SIZE = 11;
 
   private static final String[] FONT_NAMES = {/*"Tahoma", */"Dialog"};

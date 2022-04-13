@@ -23,14 +23,45 @@
 // $Id: DraggableComponentListener.java,v 1.2 2004/06/17 13:01:11 johan Exp $
 package net.infonode.gui.draggable;
 
+/**
+ * <p>DraggableComponentListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface DraggableComponentListener {
+  /**
+   * <p>changed.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public void changed(DraggableComponentEvent event);
 
+  /**
+   * <p>selected.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public void selected(DraggableComponentEvent event);
 
+  /**
+   * <p>dragged.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public void dragged(DraggableComponentEvent event);
 
+  /**
+   * <p>dropped.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public void dropped(DraggableComponentEvent event);
 
+  /**
+   * <p>dragAborted.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public void dragAborted(DraggableComponentEvent event);
 }

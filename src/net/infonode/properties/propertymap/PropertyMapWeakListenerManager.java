@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 /**
- * Handles weak {@link PropertyMap} listeners which are garbage collected and removed from the {@link PropertyMap}
+ * Handles weak {@link net.infonode.properties.propertymap.PropertyMap} listeners which are garbage collected and removed from the {@link net.infonode.properties.propertymap.PropertyMap}
  * object on which it listens when there are no strong or soft references to the listeners.
  *
  * @author $Author: jesper $
@@ -216,9 +216,9 @@ public class PropertyMapWeakListenerManager {
   }
 
   /**
-   * Adds a weak listener to a {@link PropertyMap}.
+   * Adds a weak listener to a {@link net.infonode.properties.propertymap.PropertyMap}.
    *
-   * @param map      the {@link PropertyMap}
+   * @param map      the {@link net.infonode.properties.propertymap.PropertyMap}
    * @param listener the listener
    */
   public static void addWeakListener(PropertyMap map, PropertyMapListener listener) {
@@ -227,9 +227,9 @@ public class PropertyMapWeakListenerManager {
   }
 
   /**
-   * Adds a weak property change listener to a {@link PropertyMap}.
+   * Adds a weak property change listener to a {@link net.infonode.properties.propertymap.PropertyMap}.
    *
-   * @param map      the {@link PropertyMap}
+   * @param map      the {@link net.infonode.properties.propertymap.PropertyMap}
    * @param property the property to listen to changes on
    * @param listener the listener
    */
@@ -241,9 +241,9 @@ public class PropertyMapWeakListenerManager {
   }
 
   /**
-   * Adds a weak tree listener to a {@link PropertyMap}.
+   * Adds a weak tree listener to a {@link net.infonode.properties.propertymap.PropertyMap}.
    *
-   * @param map      the {@link PropertyMap}
+   * @param map      the {@link net.infonode.properties.propertymap.PropertyMap}
    * @param listener the listener
    */
   public static void addWeakTreeListener(PropertyMap map, PropertyMapTreeListener listener) {

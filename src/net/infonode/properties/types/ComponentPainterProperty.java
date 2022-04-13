@@ -29,12 +29,20 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.properties.util.ValueHandlerProperty;
 
 /**
- * A property of type {@link ComponentPainter}.
+ * A property of type {@link net.infonode.gui.componentpainter.ComponentPainter}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class ComponentPainterProperty extends ValueHandlerProperty {
+  /**
+   * <p>Constructor for ComponentPainterProperty.</p>
+   *
+   * @param group a {@link net.infonode.properties.base.PropertyGroup} object.
+   * @param name a {@link java.lang.String} object.
+   * @param description a {@link java.lang.String} object.
+   * @param valueStorage a {@link net.infonode.properties.util.PropertyValueHandler} object.
+   */
   public ComponentPainterProperty(PropertyGroup group,
                                   String name,
                                   String description,
@@ -43,20 +51,20 @@ public class ComponentPainterProperty extends ValueHandlerProperty {
   }
 
   /**
-   * Returns the {@link ComponentPainter} value of this property in a value container.
+   * Returns the {@link net.infonode.gui.componentpainter.ComponentPainter} value of this property in a value container.
    *
    * @param valueContainer the value container
-   * @return the {@link ComponentPainter} value of this property
+   * @return the {@link net.infonode.gui.componentpainter.ComponentPainter} value of this property
    */
   public ComponentPainter get(Object valueContainer) {
     return (ComponentPainter) getValue(valueContainer);
   }
 
   /**
-   * Sets the {@link ComponentPainter} value of this property in a value container.
+   * Sets the {@link net.infonode.gui.componentpainter.ComponentPainter} value of this property in a value container.
    *
    * @param valueContainer   the value container
-   * @param componentPainter the {@link ComponentPainter} value
+   * @param componentPainter the {@link net.infonode.gui.componentpainter.ComponentPainter} value
    */
   public void set(Object valueContainer, ComponentPainter componentPainter) {
     setValue(valueContainer, componentPainter);

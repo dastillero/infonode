@@ -27,28 +27,59 @@ import net.infonode.gui.ComponentUtil;
 
 import java.awt.*;
 
+/**
+ * <p>StackableLayout class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class StackableLayout implements LayoutManager2 {
   private Container container;
   private Component component;
   private boolean autoShowFirstComponent = true;
   private boolean useSelectedComponentSize;
 
+  /**
+   * <p>Constructor for StackableLayout.</p>
+   *
+   * @param container a {@link java.awt.Container} object.
+   */
   public StackableLayout(Container container) {
     this.container = container;
   }
 
+  /**
+   * <p>usesSelectedComponentSize.</p>
+   *
+   * @return a boolean.
+   */
   public boolean usesSelectedComponentSize() {
     return useSelectedComponentSize;
   }
 
+  /**
+   * <p>isAutoShowFirstComponent.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isAutoShowFirstComponent() {
     return autoShowFirstComponent;
   }
 
+  /**
+   * <p>Setter for the field <code>autoShowFirstComponent</code>.</p>
+   *
+   * @param autoShowFirstComponent a boolean.
+   */
   public void setAutoShowFirstComponent(boolean autoShowFirstComponent) {
     this.autoShowFirstComponent = autoShowFirstComponent;
   }
 
+  /**
+   * <p>Setter for the field <code>useSelectedComponentSize</code>.</p>
+   *
+   * @param useSelectedComponentSize a boolean.
+   */
   public void setUseSelectedComponentSize(boolean useSelectedComponentSize) {
     if (this.useSelectedComponentSize != useSelectedComponentSize) {
       this.useSelectedComponentSize = useSelectedComponentSize;
@@ -60,21 +91,26 @@ public class StackableLayout implements LayoutManager2 {
     }
   }
 
+  /** {@inheritDoc} */
   public Dimension maximumLayoutSize(Container target) {
     return LayoutUtil.add(LayoutUtil.getMinMaximumSize(target.getComponents()), target.getInsets());
   }
 
+  /** {@inheritDoc} */
   public void invalidateLayout(Container target) {
   }
 
+  /** {@inheritDoc} */
   public float getLayoutAlignmentY(Container target) {
     return 0;
   }
 
+  /** {@inheritDoc} */
   public float getLayoutAlignmentX(Container target) {
     return 0;
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(Component comp, Object constraints) {
     comp.setVisible(autoShowFirstComponent && comp.getParent().getComponentCount() == 1);
 
@@ -83,10 +119,12 @@ public class StackableLayout implements LayoutManager2 {
     }
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(String name, Component comp) {
     addLayoutComponent(comp, null);
   }
 
+  /** {@inheritDoc} */
   public void removeLayoutComponent(Component comp) {
     if (comp == component)
       component = null;
@@ -94,16 +132,19 @@ public class StackableLayout implements LayoutManager2 {
     comp.setVisible(true);
   }
 
+  /** {@inheritDoc} */
   public Dimension preferredLayoutSize(Container parent) {
     return LayoutUtil.add(useSelectedComponentSize ?
                           component == null ? new Dimension(0, 0) : component.getPreferredSize() :
                           LayoutUtil.getMaxPreferredSize(parent.getComponents()), parent.getInsets());
   }
 
+  /** {@inheritDoc} */
   public Dimension minimumLayoutSize(Container parent) {
     return LayoutUtil.add(LayoutUtil.getMaxMinimumSize(parent.getComponents()), parent.getInsets());
   }
 
+  /** {@inheritDoc} */
   public void layoutContainer(Container parent) {
     Component[] c = parent.getComponents();
     Insets parentInsets = parent.getInsets();
@@ -114,10 +155,20 @@ public class StackableLayout implements LayoutManager2 {
     }
   }
 
+  /**
+   * <p>getVisibleComponent.</p>
+   *
+   * @return a {@link java.awt.Component} object.
+   */
   public Component getVisibleComponent() {
     return component;
   }
 
+  /**
+   * <p>showComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public void showComponent(Component c) {
     final Component oldComponent = component;
 

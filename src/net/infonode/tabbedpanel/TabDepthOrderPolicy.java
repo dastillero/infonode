@@ -31,10 +31,10 @@ package net.infonode.tabbedpanel;
  * @version $Revision: 1.4 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  * @since ITP 1.2.0
  */
 public enum TabDepthOrderPolicy {
-
   /**
    * Descending depth order policy. This means that the first tab will be the
    * top most and the last tab will be the bottom most. Note that if a tab is
@@ -47,5 +47,5 @@ public enum TabDepthOrderPolicy {
    * bottom most and the last tab will be the top most. Note that if a tab is
    * highlighted, it will always be on top of the other tabs.
    */
-  ASCENDING
+  ASCENDING;
 }

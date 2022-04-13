@@ -23,7 +23,18 @@
 //$Id: ImageException.java,v 1.3 2004/11/05 17:53:08 johan Exp $
 package net.infonode.util;
 
+/**
+ * <p>ImageException class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ImageException extends Exception {
+  /**
+   * <p>Constructor for ImageException.</p>
+   *
+   * @param msg a {@link java.lang.String} object.
+   */
   public ImageException(String msg) {
     super(msg);
   }

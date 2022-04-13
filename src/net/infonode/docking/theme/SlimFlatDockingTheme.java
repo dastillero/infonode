@@ -46,14 +46,27 @@ import java.awt.*;
 public final class SlimFlatDockingTheme extends DockingWindowsTheme {
   private RootWindowProperties rootWindowProperties;
 
+  /**
+   * <p>Constructor for SlimFlatDockingTheme.</p>
+   */
   public SlimFlatDockingTheme() {
     rootWindowProperties = createRootWindowProperties();
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Slim Flat Theme";
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindowProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.RootWindowProperties} object.
+   */
   public RootWindowProperties getRootWindowProperties() {
     return rootWindowProperties;
   }
@@ -143,6 +156,7 @@ public final class SlimFlatDockingTheme extends DockingWindowsTheme {
    * @return the root window properties object
    * @deprecated the window bar properties are now included in the root window properties
    */
+  @Deprecated
   public static final WindowBarProperties createWindowBarProperties() {
     return new WindowBarProperties();
   }

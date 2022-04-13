@@ -29,7 +29,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.properties.util.ValueHandlerProperty;
 
 /**
- * A property of type {@link HoverListener}.
+ * A property of type {@link net.infonode.gui.hover.HoverListener}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $

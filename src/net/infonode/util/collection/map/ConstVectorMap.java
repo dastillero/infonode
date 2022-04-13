@@ -28,6 +28,12 @@ import net.infonode.util.collection.map.base.ConstMapIterator;
 
 import java.util.ArrayList;
 
+/**
+ * <p>ConstVectorMap class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ConstVectorMap implements ConstMap {
   private class ConstIterator implements ConstMapIterator {
     private int index = 1;
@@ -89,22 +95,45 @@ public class ConstVectorMap implements ConstMap {
     return null;
   }
 
+  /**
+   * <p>addMap.</p>
+   *
+   * @param map a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   */
   public void addMap(ConstMap map) {
     addMap(maps.size(), map);
   }
 
+  /**
+   * <p>addMap.</p>
+   *
+   * @param index a int.
+   * @param map a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   */
   public void addMap(int index, final ConstMap map) {
     maps.add(index, map);
   }
 
+  /**
+   * <p>getMapCount.</p>
+   *
+   * @return a int.
+   */
   public int getMapCount() {
     return maps.size();
   }
 
+  /**
+   * <p>removeMap.</p>
+   *
+   * @param index a int.
+   * @return a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   */
   public ConstMap removeMap(int index) {
     return (ConstMap) maps.remove(index);
   }
 
+  /** {@inheritDoc} */
   public Object get(Object key) {
     for (int i = 0; i < maps.size(); i++) {
       Object v = getMap(i).get(key);
@@ -116,6 +145,7 @@ public class ConstVectorMap implements ConstMap {
     return null;
   }
 
+  /** {@inheritDoc} */
   public boolean containsKey(Object key) {
     for (int i = 0; i < maps.size(); i++) {
       if (getMap(i).containsKey(key))
@@ -125,6 +155,7 @@ public class ConstVectorMap implements ConstMap {
     return false;
   }
 
+  /** {@inheritDoc} */
   public boolean containsValue(Object value) {
     for (int i = 0; i < maps.size(); i++) {
       if (getMap(i).containsValue(value))
@@ -134,6 +165,11 @@ public class ConstVectorMap implements ConstMap {
     return false;
   }
 
+  /**
+   * <p>isEmpty.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEmpty() {
     for (int i = 0; i < maps.size(); i++) {
       if (!getMap(i).isEmpty())
@@ -143,14 +179,31 @@ public class ConstVectorMap implements ConstMap {
     return true;
   }
 
+  /**
+   * <p>getMap.</p>
+   *
+   * @param index a int.
+   * @return a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   */
   public ConstMap getMap(int index) {
     return (ConstMap) maps.get(index);
   }
 
+  /**
+   * <p>getMapIndex.</p>
+   *
+   * @param map a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   * @return a int.
+   */
   public int getMapIndex(ConstMap map) {
     return maps.indexOf(map);
   }
 
+  /**
+   * <p>constIterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.ConstMapIterator} object.
+   */
   public ConstMapIterator constIterator() {
     return new ConstIterator();
   }

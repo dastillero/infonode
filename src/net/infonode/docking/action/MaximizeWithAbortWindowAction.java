@@ -34,8 +34,8 @@ import javax.swing.*;
 import java.io.ObjectStreamException;
 
 /**
- * Maximizes a {@link TabWindow}. Finds the parent {@link TabWindow} if the window this action is performed on is not
- * a {@link TabWindow}. The action calls {@link net.infonode.docking.DockingWindow#maximizeWithAbort()}.
+ * Maximizes a {@link net.infonode.docking.TabWindow}. Finds the parent {@link net.infonode.docking.TabWindow} if the window this action is performed on is not
+ * a {@link net.infonode.docking.TabWindow}. The action calls {@link net.infonode.docking.DockingWindow#maximizeWithAbort()}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.2 $
@@ -54,14 +54,25 @@ public final class MaximizeWithAbortWindowAction extends DockingWindowAction {
   private MaximizeWithAbortWindowAction() {
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Maximize";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     if (!window.isMaximizable())
       return false;
@@ -70,6 +81,7 @@ public final class MaximizeWithAbortWindowAction extends DockingWindowAction {
     return tabWindow != null && !tabWindow.isMaximized() && tabWindow.isMaximizable();
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     try {
       TabWindow tabWindow = DockingUtil.getTabWindowFor(window);
@@ -82,6 +94,12 @@ public final class MaximizeWithAbortWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

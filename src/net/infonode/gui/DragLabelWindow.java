@@ -28,7 +28,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>DragLabelWindow class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class DragLabelWindow extends Dialog {
   private JLabel label = new JLabel() {
@@ -37,11 +40,21 @@ public class DragLabelWindow extends Dialog {
     }
   };
 
+  /**
+   * <p>Constructor for DragLabelWindow.</p>
+   *
+   * @param d a {@link java.awt.Dialog} object.
+   */
   public DragLabelWindow(Dialog d) {
     super(d);
     init();
   }
 
+  /**
+   * <p>Constructor for DragLabelWindow.</p>
+   *
+   * @param f a {@link java.awt.Frame} object.
+   */
   public DragLabelWindow(Frame f) {
     super(f);
     init();
@@ -54,14 +67,21 @@ public class DragLabelWindow extends Dialog {
     label.setOpaque(true);
   }
 
+  /**
+   * <p>Getter for the field <code>label</code>.</p>
+   *
+   * @return a {@link javax.swing.JLabel} object.
+   */
   public JLabel getLabel() {
     return label;
   }
 
+  /** {@inheritDoc} */
   public void setCursor(Cursor c) {
     label.setCursor(c);
   }
 
+  /** {@inheritDoc} */
   public void setVisible(boolean visible) {
     if (visible != isVisible()) {
       if (visible) {

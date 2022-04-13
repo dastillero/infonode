@@ -30,6 +30,7 @@ package net.infonode.tabbedpanel;
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  * @see TabbedPanel
+ * @see TabbedPanel
  * @see Tab
  */
 public class TabRemovedEvent extends TabEvent {

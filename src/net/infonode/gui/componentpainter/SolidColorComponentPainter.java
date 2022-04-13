@@ -55,6 +55,7 @@ public class SolidColorComponentPainter extends AbstractComponentPainter {
     this.colorProvider = colorProvider;
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component,
                     Graphics g,
                     int x,
@@ -68,10 +69,12 @@ public class SolidColorComponentPainter extends AbstractComponentPainter {
     g.fillRect(x, y, width, height);
   }
 
+  /** {@inheritDoc} */
   public boolean isOpaque(Component component) {
     return colorProvider.getColor(component).getAlpha() == 255;
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return colorProvider.getColor(component);
   }

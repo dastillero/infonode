@@ -26,7 +26,7 @@ package net.infonode.docking.title;
 import net.infonode.docking.DockingWindow;
 
 /**
- * Returns a text title for a {@link DockingWindow}.
+ * Returns a text title for a {@link net.infonode.docking.DockingWindow}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -34,7 +34,7 @@ import net.infonode.docking.DockingWindow;
  */
 public interface DockingWindowTitleProvider {
   /**
-   * Returns a text title for a {@link DockingWindow}.
+   * Returns a text title for a {@link net.infonode.docking.DockingWindow}.
    *
    * @param window the docking window
    * @return the text title

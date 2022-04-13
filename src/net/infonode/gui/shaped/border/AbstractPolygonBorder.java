@@ -36,7 +36,10 @@ import net.infonode.gui.shaped.panel.ShapedPanel;
 import java.awt.*;
 
 /**
+ * <p>Abstract AbstractPolygonBorder class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
   private static final long serialVersionUID = 1;
@@ -47,14 +50,33 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
   private ColorProvider middleColor;
   private ColorProvider shadowColor;
 
+  /**
+   * <p>Constructor for AbstractPolygonBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   protected AbstractPolygonBorder(ColorProvider lineColor) {
     this(lineColor, FixedColorProvider.WHITE);
   }
 
+  /**
+   * <p>Constructor for AbstractPolygonBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   protected AbstractPolygonBorder(ColorProvider lineColor, ColorProvider highlightColor) {
     this(lineColor, highlightColor, BackgroundPainterColorProvider.INSTANCE, null);
   }
 
+  /**
+   * <p>Constructor for AbstractPolygonBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param middleColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param shadowColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   protected AbstractPolygonBorder(ColorProvider lineColor,
                                   ColorProvider highlightColor,
                                   ColorProvider middleColor,
@@ -65,6 +87,7 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     this.shadowColor = shadowColor;
   }
 
+  /** {@inheritDoc} */
   public Shape getShape(Component c, int x, int y, int width, int height) {
     int w = ShapedUtil.getWidth(c, width, height);
     int h = ShapedUtil.getHeight(c, width, height);
@@ -77,10 +100,16 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     return polygon;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     Shape clip = g.getClip();
     g.clipRect(x, y, width, height);
@@ -107,24 +136,54 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     }
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     Insets insets = getShapedBorderInsets(c);
     insets = ShapedUtil.transformInsets(c, insets);
     return highlightColor != null ? InsetsUtil.add(getShapedBorderHighlightInsets(c), insets) : insets;
   }
 
+  /**
+   * <p>getShapedBorderInsets.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   protected Insets getShapedBorderInsets(Component c) {
     return new Insets(0, 0, 0, 0);
   }
 
+  /**
+   * <p>getShapedBorderHighlightInsets.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   protected Insets getShapedBorderHighlightInsets(Component c) {
     return HIGHLIGHT_INSETS;
   }
 
+  /**
+   * <p>createPolygon.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param width a int.
+   * @param height a int.
+   * @return a {@link java.awt.Polygon} object.
+   */
   protected Polygon createPolygon(Component c, int width, int height) {
     return new Polygon();
   }
 
+  /**
+   * <p>paintPolygon.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param g a {@link java.awt.Graphics2D} object.
+   * @param polygon a {@link java.awt.Polygon} object.
+   * @param width a int.
+   * @param height a int.
+   */
   protected void paintPolygon(Component c, Graphics2D g, Polygon polygon, int width, int height) {
     int i = 0;
 
@@ -141,6 +200,15 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     }
   }
 
+  /**
+   * <p>paintHighlight.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param g a {@link java.awt.Graphics2D} object.
+   * @param polygon a {@link java.awt.Polygon} object.
+   * @param width a int.
+   * @param height a int.
+   */
   protected void paintHighlight(Component c, Graphics2D g, Polygon polygon, int width, int height) {
     Color c1 = highlightColor == null ? null : highlightColor.getColor(c);
     Color c2 = middleColor.getColor(c);
@@ -164,6 +232,13 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     }
   }
 
+  /**
+   * <p>lineIsDrawn.</p>
+   *
+   * @param index a int.
+   * @param polygon a {@link java.awt.Polygon} object.
+   * @return a boolean.
+   */
   protected boolean lineIsDrawn(int index, Polygon polygon) {
     return true;
   }
@@ -186,10 +261,23 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     return c.getHeight() - i.top - i.bottom;
   }
 */
+  /**
+   * <p>isHighlightable.</p>
+   *
+   * @param deltaX a int.
+   * @param deltaY a int.
+   * @return a boolean.
+   */
   protected boolean isHighlightable(int deltaX, int deltaY) {
     return deltaX > deltaY;
   }
 
+  /**
+   * <p>isPointsClockwise.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   protected boolean isPointsClockwise(Component c) {
     if (c instanceof ShapedPanel)
       return !(((ShapedPanel) c).isHorizontalFlip() ^ ((ShapedPanel) c).isVerticalFlip());
@@ -197,14 +285,35 @@ abstract public class AbstractPolygonBorder extends AbstractShapedBorder {
     return true;
   }
 
+  /**
+   * <p>getHighlightOffsetX.</p>
+   *
+   * @param deltaX a int.
+   * @param deltaY a int.
+   * @return a int.
+   */
   protected int getHighlightOffsetX(int deltaX, int deltaY) {
     return deltaY - deltaX > 0 ? (deltaX + deltaY > 0 ? -1 : 0) : (deltaX + deltaY > 0 ? 0 : 1); //-deltaY > deltaX ? 1 : 0;
   }
 
+  /**
+   * <p>getHighlightOffsetY.</p>
+   *
+   * @param deltaX a int.
+   * @param deltaY a int.
+   * @return a int.
+   */
   protected int getHighlightOffsetY(int deltaX, int deltaY) {
     return deltaY - deltaX > 0 ? (deltaX + deltaY > 0 ? 0 : -1) : (deltaX + deltaY > 0 ? 1 : 0); //-deltaY > deltaX ? 1 : 0;
   }
 
+  /**
+   * <p>setPoint.</p>
+   *
+   * @param polygon a {@link java.awt.Polygon} object.
+   * @param x a int.
+   * @param y a int.
+   */
   protected void setPoint(Polygon polygon, int x, int y) {
     polygon.xpoints[polygon.npoints] = x;
     polygon.ypoints[polygon.npoints] = y;

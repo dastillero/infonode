@@ -34,6 +34,8 @@ import net.infonode.gui.colorprovider.FixedColorProvider;
 import net.infonode.util.Direction;
 
 /**
+ * <p>RectangleComponentPainter class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
@@ -44,28 +46,62 @@ public class RectangleComponentPainter extends AbstractComponentPainter {
   private final ColorProvider xorColor;
   private final Insets insets;
 
+  /**
+   * <p>Constructor for RectangleComponentPainter.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param lineWidth a int.
+   */
   public RectangleComponentPainter(Color color, int lineWidth) {
     this(new FixedColorProvider(color), lineWidth);
   }
 
+  /**
+   * <p>Constructor for RectangleComponentPainter.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param xorColor a {@link java.awt.Color} object.
+   * @param lineWidth a int.
+   */
   public RectangleComponentPainter(Color color, Color xorColor, int lineWidth) {
     this(new FixedColorProvider(color), new FixedColorProvider(xorColor), lineWidth);
   }
 
+  /**
+   * <p>Constructor for RectangleComponentPainter.</p>
+   *
+   * @param color a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param lineWidth a int.
+   */
   public RectangleComponentPainter(ColorProvider color, int lineWidth) {
     this(color, null, lineWidth);
   }
 
+  /**
+   * <p>Constructor for RectangleComponentPainter.</p>
+   *
+   * @param color a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param xorColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param lineWidth a int.
+   */
   public RectangleComponentPainter(ColorProvider color, ColorProvider xorColor, int lineWidth) {
     this(color, xorColor, new Insets(lineWidth, lineWidth, lineWidth, lineWidth));
   }
 
+  /**
+   * <p>Constructor for RectangleComponentPainter.</p>
+   *
+   * @param color a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param xorColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param insets a {@link java.awt.Insets} object.
+   */
   public RectangleComponentPainter(ColorProvider color, ColorProvider xorColor, Insets insets) {
     this.color = color;
     this.xorColor = xorColor;
     this.insets = (Insets) insets.clone();
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component,
                     Graphics g,
                     int x,
@@ -99,10 +135,12 @@ public class RectangleComponentPainter extends AbstractComponentPainter {
       g.setPaintMode();
   }
 
+  /** {@inheritDoc} */
   public boolean isOpaque(Component component) {
     return false;
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return color.getColor(component);
   }

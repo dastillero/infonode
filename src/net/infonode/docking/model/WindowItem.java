@@ -38,14 +38,29 @@ import net.infonode.properties.propertymap.PropertyMapUtil;
 import net.infonode.util.Direction;
 
 /**
+ * <p>Abstract WindowItem class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.20 $
  */
 abstract public class WindowItem {
+  /** Constant <code>emptyProperties</code> */
   public static final DockingWindowProperties emptyProperties = new DockingWindowProperties();
 
+  /**
+   * <p>createWindow.</p>
+   *
+   * @param viewReader a {@link net.infonode.docking.model.ViewReader} object.
+   * @param childWindows a {@link java.util.ArrayList} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   abstract protected DockingWindow createWindow(ViewReader viewReader, ArrayList childWindows);
 
+  /**
+   * <p>copy.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   abstract public WindowItem copy();
 
   private WindowItem parent;
@@ -55,10 +70,18 @@ abstract public class WindowItem {
   private DockingWindowProperties parentProperties = emptyProperties;
   private Direction lastMinimizedDirection;
 
+  /**
+   * <p>Constructor for WindowItem.</p>
+   */
   protected WindowItem() {
     dockingWindowProperties = new DockingWindowProperties(emptyProperties);
   }
 
+  /**
+   * <p>Constructor for WindowItem.</p>
+   *
+   * @param windowItem a {@link net.infonode.docking.model.WindowItem} object.
+   */
   protected WindowItem(WindowItem windowItem) {
     dockingWindowProperties =
       new DockingWindowProperties(windowItem.getDockingWindowProperties().getMap().copy(true, true));
@@ -67,15 +90,31 @@ abstract public class WindowItem {
     lastMinimizedDirection = windowItem.getLastMinimizedDirection();
   }
 
+  /**
+   * <p>isRestoreWindow.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRestoreWindow() {
     return parent != null && parent.isRestoreWindow();
   }
 
+  /**
+   * <p>addWindow.</p>
+   *
+   * @param item a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public void addWindow(WindowItem item) {
     if (item.parent != this)
       addWindow(item, windows.size());
   }
 
+  /**
+   * <p>addWindow.</p>
+   *
+   * @param item a {@link net.infonode.docking.model.WindowItem} object.
+   * @param index a int.
+   */
   public void addWindow(WindowItem item, int index) {
     index = index == -1 ? windows.size() : index;
 
@@ -93,11 +132,21 @@ abstract public class WindowItem {
     }
   }
 
+  /**
+   * <p>removeWindow.</p>
+   *
+   * @param item a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public void removeWindow(WindowItem item) {
     if (windows.remove(item))
       item.parent = null;
   }
 
+  /**
+   * <p>removeWindowRefs.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   public void removeWindowRefs(DockingWindow window) {
     if (connectedWindow.get() == window)
       connectedWindow = new WeakReference(null);
@@ -106,6 +155,11 @@ abstract public class WindowItem {
       getWindow(i).removeWindowRefs(window);
   }
 
+  /**
+   * <p>replaceWith.</p>
+   *
+   * @param item a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public void replaceWith(WindowItem item) {
     if (item == this || parent == null)
       return;
@@ -116,6 +170,12 @@ abstract public class WindowItem {
     parent = null;
   }
 
+  /**
+   * <p>getWindowIndex.</p>
+   *
+   * @param item a {@link net.infonode.docking.model.WindowItem} object.
+   * @return a int.
+   */
   public int getWindowIndex(WindowItem item) {
     return windows.indexOf(item);
   }
@@ -130,30 +190,66 @@ abstract public class WindowItem {
     this.parent = parent;
   }
 
+  /**
+   * <p>getWindowCount.</p>
+   *
+   * @return a int.
+   */
   public final int getWindowCount() {
     return windows.size();
   }
 
+  /**
+   * <p>getWindow.</p>
+   *
+   * @param index a int.
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public final WindowItem getWindow(int index) {
     return (WindowItem) windows.get(index);
   }
 
+  /**
+   * <p>Getter for the field <code>parent</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public WindowItem getParent() {
     return parent;
   }
 
+  /**
+   * <p>Setter for the field <code>connectedWindow</code>.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   public void setConnectedWindow(DockingWindow window) {
     connectedWindow = new WeakReference(window);
   }
 
+  /**
+   * <p>Getter for the field <code>connectedWindow</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   public DockingWindow getConnectedWindow() {
     return (DockingWindow) connectedWindow.get();
   }
 
+  /**
+   * <p>getRootItem.</p>
+   *
+   * @return a {@link net.infonode.docking.model.RootWindowItem} object.
+   */
   public RootWindowItem getRootItem() {
     return parent == null ? null : parent.getRootItem();
   }
 
+  /**
+   * <p>getVisibleDockingWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   public DockingWindow getVisibleDockingWindow() {
     DockingWindow window = getConnectedWindow();
 
@@ -171,6 +267,11 @@ abstract public class WindowItem {
     return null;
   }
 
+  /**
+   * <p>getInsideDockingWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   public DockingWindow getInsideDockingWindow() {
     if (getParent() == null)
       return null;
@@ -183,11 +284,19 @@ abstract public class WindowItem {
     return getParent().getInsideDockingWindow();
   }
 
+  /**
+   * <p>removeAll.</p>
+   */
   public void removeAll() {
     while (getWindowCount() > 0)
       removeWindow(getWindow(0));
   }
 
+  /**
+   * <p>cleanUp.</p>
+   *
+   * @return a boolean.
+   */
   public boolean cleanUp() {
     for (int i = getWindowCount() - 1; i >= 0; i--) {
       if (getWindow(i).cleanUp())
@@ -197,6 +306,11 @@ abstract public class WindowItem {
     return getWindowCount() == 0 && getConnectedWindow() == null;
   }
 
+  /**
+   * <p>getFirstChildWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   public DockingWindow getFirstChildWindow() {
     for (int i = 0; i < getWindowCount(); i++) {
       DockingWindow window = getWindow(i).getFirstWindow();
@@ -208,11 +322,22 @@ abstract public class WindowItem {
     return null;
   }
 
+  /**
+   * <p>getFirstWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   public DockingWindow getFirstWindow() {
     DockingWindow window = getConnectedWindow();
     return window != null ? window : getFirstChildWindow();
   }
 
+  /**
+   * <p>getChildWindowContaining.</p>
+   *
+   * @param windowItem a {@link net.infonode.docking.model.WindowItem} object.
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public WindowItem getChildWindowContaining(WindowItem windowItem) {
     while (windowItem.getParent() != this) {
       windowItem = windowItem.getParent();
@@ -224,14 +349,30 @@ abstract public class WindowItem {
     return windowItem;
   }
 
+  /**
+   * <p>hasAncestor.</p>
+   *
+   * @param ancestor a {@link net.infonode.docking.model.WindowItem} object.
+   * @return a boolean.
+   */
   public boolean hasAncestor(WindowItem ancestor) {
     return this == ancestor || (parent != null && parent.hasAncestor(ancestor));
   }
 
+  /**
+   * <p>getTopItem.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public WindowItem getTopItem() {
     return parent == null ? this : parent.getTopItem();
   }
 
+  /**
+   * <p>Getter for the field <code>dockingWindowProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.DockingWindowProperties} object.
+   */
   public DockingWindowProperties getDockingWindowProperties() {
     if (dockingWindowProperties == null) {
       dockingWindowProperties = new DockingWindowProperties(emptyProperties);
@@ -241,24 +382,51 @@ abstract public class WindowItem {
     return dockingWindowProperties;
   }
 
+  /**
+   * <p>getParentDockingWindowProperties.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.DockingWindowProperties} object.
+   */
   public DockingWindowProperties getParentDockingWindowProperties() {
     return parentProperties == null ? emptyProperties : parentProperties;
   }
 
+  /**
+   * <p>setParentDockingWindowProperties.</p>
+   *
+   * @param parentProperties a {@link net.infonode.docking.properties.DockingWindowProperties} object.
+   */
   public void setParentDockingWindowProperties(DockingWindowProperties parentProperties) {
     dockingWindowProperties.getMap().replaceSuperMap(this.parentProperties.getMap(),
         parentProperties.getMap());
     this.parentProperties = parentProperties;
   }
 
+  /**
+   * <p>Getter for the field <code>lastMinimizedDirection</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getLastMinimizedDirection() {
     return lastMinimizedDirection;
   }
 
+  /**
+   * <p>Setter for the field <code>lastMinimizedDirection</code>.</p>
+   *
+   * @param lastMinimizedDirection a {@link net.infonode.util.Direction} object.
+   */
   public void setLastMinimizedDirection(Direction lastMinimizedDirection) {
     this.lastMinimizedDirection = lastMinimizedDirection;
   }
 
+  /**
+   * <p>writeSettings.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @param context a {@link net.infonode.docking.internal.WriteContext} object.
+   * @throws java.io.IOException if any.
+   */
   public void writeSettings(ObjectOutputStream out, WriteContext context) throws IOException {
     out.writeInt(getLastMinimizedDirection() == null ? -1 : getLastMinimizedDirection().ordinal());
 
@@ -268,6 +436,13 @@ abstract public class WindowItem {
     }
   }
 
+  /**
+   * <p>readSettings.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @throws java.io.IOException if any.
+   */
   public void readSettings(ObjectInputStream in, ReadContext context) throws IOException {
     if (context.getVersion() > 1) {
       int dir = in.readInt();
@@ -286,6 +461,14 @@ abstract public class WindowItem {
     }
   }
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @param context a {@link net.infonode.docking.internal.WriteContext} object.
+   * @param viewWriter a {@link net.infonode.docking.model.ViewWriter} object.
+   * @throws java.io.IOException if any.
+   */
   public void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(getWindowCount());
 
@@ -298,6 +481,15 @@ abstract public class WindowItem {
     out.writeBoolean(window != null && !window.isMinimized() && !window.isUndocked() && window.getRootWindow() != null);
   }
 
+  /**
+   * <p>read.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @param viewReader a {@link net.infonode.docking.model.ViewReader} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   * @throws java.io.IOException if any.
+   */
   public DockingWindow read(ObjectInputStream in, ReadContext context, ViewReader viewReader) throws IOException {
     ArrayList childWindows = readChildWindows(in, context, viewReader);
     readSettings(in, context);
@@ -306,6 +498,15 @@ abstract public class WindowItem {
                                childWindows.size() > 0 ? (DockingWindow) childWindows.get(0) : null;
   }
 
+  /**
+   * <p>readChildWindows.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @param viewReader a {@link net.infonode.docking.model.ViewReader} object.
+   * @return a {@link java.util.ArrayList} object.
+   * @throws java.io.IOException if any.
+   */
   public ArrayList readChildWindows(ObjectInputStream in, ReadContext context, ViewReader viewReader) throws
   IOException {
     int count = in.readInt();
@@ -324,10 +525,21 @@ abstract public class WindowItem {
     return childWindows;
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return null;
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
+  @Override
   public String toString() {
     StringBuffer s = new StringBuffer();
     DockingWindow dw = getConnectedWindow();
@@ -339,6 +551,9 @@ abstract public class WindowItem {
     return s.toString();
   }
 
+  /**
+   * <p>clearWindows.</p>
+   */
   public void clearWindows() {
     removeAll();
   }

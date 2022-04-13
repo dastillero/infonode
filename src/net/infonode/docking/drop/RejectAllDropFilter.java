@@ -42,6 +42,7 @@ public class RejectAllDropFilter implements DropFilter {
   private RejectAllDropFilter() {
   }
 
+  /** {@inheritDoc} */
   public boolean acceptDrop(DropInfo dropInfo) {
     return false;
   }

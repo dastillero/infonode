@@ -40,7 +40,7 @@ public interface ViewSerializer {
    *
    * @param view the view to write
    * @param out  the stream on which to write the view
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   void writeView(View view, ObjectOutputStream out) throws IOException;
 
@@ -52,7 +52,7 @@ public interface ViewSerializer {
    *
    * @param in the stream from which to read the view state
    * @return the view, null if the view can't be resolved
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   View readView(ObjectInputStream in) throws IOException;
 

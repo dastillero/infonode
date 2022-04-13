@@ -26,16 +26,28 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>Abstract AbstractButtonInfo class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.2 $
  */
 abstract public class AbstractButtonInfo implements ButtonInfo {
   private PropertyMapProperty property;
 
+  /**
+   * <p>Constructor for AbstractButtonInfo.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   protected AbstractButtonInfo(PropertyMapProperty property) {
     this.property = property;
   }
 
+  /**
+   * <p>Getter for the field <code>property</code>.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public PropertyMapProperty getProperty() {
     return property;
   }

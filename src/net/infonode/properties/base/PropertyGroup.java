@@ -140,6 +140,11 @@ public class PropertyGroup {
     return (Property[]) properties.toArray(new Property[properties.size()]);
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return getName();
   }

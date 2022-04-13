@@ -24,6 +24,15 @@
 package net.infonode.util.collection.map.base;
 
 
+/**
+ * <p>MapIterator interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface MapIterator extends ConstMapIterator {
+  /**
+   * <p>remove.</p>
+   */
   void remove();
 }

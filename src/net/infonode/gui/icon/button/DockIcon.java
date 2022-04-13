@@ -28,27 +28,50 @@ import net.infonode.gui.GraphicsUtil;
 import java.awt.*;
 
 /**
+ * <p>DockIcon class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class DockIcon extends AbstractButtonIcon {
   private static final long serialVersionUID = 1;
 
+  /**
+   * <p>Constructor for DockIcon.</p>
+   */
   public DockIcon() {
     super();
   }
 
+  /**
+   * <p>Constructor for DockIcon.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   */
   public DockIcon(Color c) {
     super(c);
   }
 
+  /**
+   * <p>Constructor for DockIcon.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public DockIcon(Color c, int size) {
     super(c, size);
   }
 
+  /**
+   * <p>Constructor for DockIcon.</p>
+   *
+   * @param size a int.
+   */
   public DockIcon(int size) {
     super(size);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, final Graphics g, final int x1, final int y1, final int x2, final int y2) {
     int xOffs = (x2 - x1) > 6 ? 1 : 0;
     int yOffs = xOffs;

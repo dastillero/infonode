@@ -41,7 +41,7 @@ public final class PropertyMapUtil {
    * Skips a property map in the stream.
    *
    * @param in the stream containing the property map
-   * @throws IOException if there is an error in the stream
+   * @throws java.io.IOException if there is an error in the stream
    */
   public static void skipMap(ObjectInputStream in) throws IOException {
     PropertyMapImpl.skip(in);

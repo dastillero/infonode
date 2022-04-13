@@ -24,7 +24,7 @@
 package net.infonode.properties.propertymap;
 
 /**
- * Contains factory methods for {@link PropertyMap}.
+ * Contains factory methods for {@link net.infonode.properties.propertymap.PropertyMap}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
@@ -44,8 +44,8 @@ public class PropertyMapFactory {
   }
 
   /**
-   * Creates a property map with the same property group as <tt>inheritFrom</tt>.
-   * <tt>inheritFrom</tt> is added as a super map to the created property map.
+   * Creates a property map with the same property group as <code>inheritFrom</code>.
+   * <code>inheritFrom</code> is added as a super map to the created property map.
    *
    * @param inheritFrom the super map
    * @return a new property map

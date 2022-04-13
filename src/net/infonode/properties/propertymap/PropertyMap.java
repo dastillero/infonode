@@ -27,20 +27,20 @@ import net.infonode.properties.base.Property;
 import net.infonode.properties.base.exception.InvalidPropertyException;
 import net.infonode.properties.base.exception.InvalidPropertyTypeException;
 import net.infonode.properties.util.PropertyChangeListener;
-import net.infonode.util.Readable;
-import net.infonode.util.Writable;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import net.infonode.util.Readable;
+import net.infonode.util.Writable;
 
 /**
- * A property map contains values for some or all properties in a {@link PropertyMapGroup}. A property map
+ * A property map contains values for some or all properties in a {@link net.infonode.properties.propertymap.PropertyMapGroup}. A property map
  * can have any number of super maps from which property values are inherited. Super maps that are searched for
  * values in the reverse order they were added to the property map. Property values are always set in the property
  * map specified.
  * <p>
- * Properties of type {@link PropertyMapProperty} in the {@link PropertyMapGroup} will automatically be assigned
+ * Properties of type {@link net.infonode.properties.propertymap.PropertyMapProperty} in the {@link net.infonode.properties.propertymap.PropertyMapGroup} will automatically be assigned
  * new PropertyMap's as values. These PropertyMap's are called child maps. These property values cannot be
  * modified.
  * <p>
@@ -48,7 +48,7 @@ import java.io.ObjectOutputStream;
  * PropertyMap or, if the property value is not overridden, one of it's super maps. A tree listener can also
  * be added that listens for value changes in the property map, it's super maps and it's child mapss.
  * <p>
- * Property maps are created using the factory methods in {@link PropertyMapFactory}.
+ * Property maps are created using the factory methods in {@link net.infonode.properties.propertymap.PropertyMapFactory}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.20 $
@@ -149,13 +149,12 @@ public interface PropertyMap extends Readable, Writable {
   /**
    * Creates a relative reference from one property value to another property value.
    * <p>
-   * When the value of the <tt>fromProperty</tt> is read, it will return the value of the <tt>toProperty</tt> in the
-   * <tt>toMap</tt>.
+   * When the value of the <code>fromProperty</code> is read, it will return the value of the <code>toProperty</code> in the
+   * <code>toMap</code>.
    * <p>
    * Sub maps of this property map will inherit this reference relative to themselves, ie the reference in the sub
    * map is converted to a reference relative to the sub map if possible, otherwise the reference is the same as
    * for the super map. Here is an example:
-   * <p>
    * <ul>
    * <li>Property map A contains value 5 for property X.</li>
    * <li>A relative reference is created in map A from property Y to property X. Getting the property value for Y in
@@ -174,7 +173,7 @@ public interface PropertyMap extends Readable, Writable {
    * @param toMap        the property map that holds the property value that is referenced
    * @param toProperty   the property which value is referenced
    * @return the old value that the fromProperty had in this property map
-   * @throws InvalidPropertyTypeException
+   * @throws net.infonode.properties.base.exception.InvalidPropertyTypeException if any.
    */
   Object createRelativeRef(Property fromProperty, PropertyMap toMap, Property toProperty) throws InvalidPropertyTypeException;
 
@@ -183,7 +182,7 @@ public interface PropertyMap extends Readable, Writable {
    *
    * @param property the property
    * @return the value removed
-   * @throws InvalidPropertyException if values for this property can't be stored in this property map
+   * @throws net.infonode.properties.base.exception.InvalidPropertyException if values for this property can't be stored in this property map
    */
   Object removeValue(Property property) throws InvalidPropertyException;
 
@@ -204,7 +203,7 @@ public interface PropertyMap extends Readable, Writable {
 
   /**
    * Returns true if all the values in this property map is equal to the values in the given map.
-   * The property values are compared using {@link Object#equals}.
+   * The property values are compared using {@link java.lang.Object#equals}.
    *
    * @param propertyMap the map to compare values with
    * @param recursive   true if child maps should be recursively checked
@@ -218,11 +217,13 @@ public interface PropertyMap extends Readable, Writable {
    *
    * @param out       the stream on which to serialize this map
    * @param recursive true if child maps should be recursively serialized
-   * @throws IOException if there is an error in the stream
+   * @throws java.io.IOException if there is an error in the stream
    */
   void write(ObjectOutputStream out, boolean recursive) throws IOException;
 
   /**
+   * {@inheritDoc}
+   *
    * <p>
    * Serializes the serializable values of this property map. Values not implementing the {@link java.io.Serializable}
    * interface will not be written to the stream. The properties are identified using their names.
@@ -230,23 +231,21 @@ public interface PropertyMap extends Readable, Writable {
    * <p>
    * This method recursively writes all child maps.
    * </p>
-   *
-   * @param out the stream
-   * @throws IOException if there is a stream error
    */
+  @Override
   void write(ObjectOutputStream out) throws IOException;
 
   /**
+   * {@inheritDoc}
+   *
    * Reads property values from a stream and sets them in this map.
    * Will overwrite existing values, but not remove values not found in the stream.
    * The properties are identified using their names.
    * If no property is found for a property name read from the stream the value is skipped and no error is reported.
    * If a value for a property in the stream is a reference to a another property value that cannot be resolved,
    * the property is not modified.
-   *
-   * @param in the stream from which to read property values
-   * @throws IOException if there is an error in the stream
    */
+  @Override
   void read(ObjectInputStream in) throws IOException;
 
   /**

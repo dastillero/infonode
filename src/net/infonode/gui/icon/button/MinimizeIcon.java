@@ -28,28 +28,50 @@ import net.infonode.gui.GraphicsUtil;
 import java.awt.*;
 
 /**
+ * <p>MinimizeIcon class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  */
 public class MinimizeIcon extends AbstractButtonIcon {
   private static final long serialVersionUID = 6993801965272908275L;
 
+  /**
+   * <p>Constructor for MinimizeIcon.</p>
+   */
   public MinimizeIcon() {
     super();
   }
 
+  /**
+   * <p>Constructor for MinimizeIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   */
   public MinimizeIcon(Color color) {
     super(color);
   }
 
+  /**
+   * <p>Constructor for MinimizeIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public MinimizeIcon(Color color, int size) {
     super(color, size);
   }
 
+  /**
+   * <p>Constructor for MinimizeIcon.</p>
+   *
+   * @param size a int.
+   */
   public MinimizeIcon(int size) {
     super(size);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2) {
     GraphicsUtil.drawOptimizedLine(g, x1, y2 - 1, x2, y2 - 1);
     GraphicsUtil.drawOptimizedLine(g, x1, y2, x2, y2);

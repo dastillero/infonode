@@ -23,8 +23,20 @@
 // $Id: TitleBarUIListener.java,v 1.2 2005/12/04 13:35:12 jesper Exp $
 package net.infonode.docking.theme.internal.laftheme;
 
+/**
+ * <p>TitleBarUIListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface TitleBarUIListener {
+  /**
+   * <p>updating.</p>
+   */
   void updating();
 
+  /**
+   * <p>updated.</p>
+   */
   void updated();
 }

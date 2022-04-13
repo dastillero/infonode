@@ -26,6 +26,8 @@ package net.infonode.gui.shaped.border;
 import java.awt.*;
 
 /**
+ * <p>AbstractShapedBorderWrapper class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
@@ -34,22 +36,35 @@ public class AbstractShapedBorderWrapper extends AbstractShapedBorder {
 
   private ShapedBorder border;
 
+  /**
+   * <p>Constructor for AbstractShapedBorderWrapper.</p>
+   *
+   * @param border a {@link net.infonode.gui.shaped.border.ShapedBorder} object.
+   */
   protected AbstractShapedBorderWrapper(ShapedBorder border) {
     this.border = border;
   }
 
+  /** {@inheritDoc} */
   public Shape getShape(Component c, int x, int y, int width, int height) {
     return border.getShape(c, x, y, width, height);
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return border.getBorderInsets(c);
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     border.paintBorder(c, g, x, y, width, height);
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return border.isBorderOpaque();
   }

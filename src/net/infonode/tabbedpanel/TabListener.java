@@ -33,6 +33,7 @@ package net.infonode.tabbedpanel;
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  * @see TabbedPanel
+ * @see TabbedPanel
  * @see Tab
  */
 public interface TabListener {

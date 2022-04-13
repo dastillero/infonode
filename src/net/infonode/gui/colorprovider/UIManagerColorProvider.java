@@ -28,7 +28,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 
 /**
- * A {@link ColorProvider} which returns a property color from the {@link UIManager}.
+ * A {@link net.infonode.gui.colorprovider.ColorProvider} which returns a property color from the {@link javax.swing.UIManager}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.11 $
@@ -83,7 +83,7 @@ public class UIManagerColorProvider extends AbstractColorProvider {
   /**
    * Constructor.
    *
-   * @param propertyName the name of the property which value will be retrieved from the {@link UIManager}.
+   * @param propertyName the name of the property which value will be retrieved from the {@link javax.swing.UIManager}.
    */
   public UIManagerColorProvider(String propertyName) {
     this.propertyName = propertyName;
@@ -92,7 +92,7 @@ public class UIManagerColorProvider extends AbstractColorProvider {
   /**
    * Constructor.
    *
-   * @param propertyName the name of the property which value will be retrieved from the {@link UIManager}.
+   * @param propertyName the name of the property which value will be retrieved from the {@link javax.swing.UIManager}.
    * @param defaultColor the color to be used if the specified color doesn't exist in the UIManager
    */
   public UIManagerColorProvider(String propertyName, Color defaultColor) {
@@ -100,6 +100,11 @@ public class UIManagerColorProvider extends AbstractColorProvider {
     this.defaultColor = defaultColor;
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getColor() {
     Color color = UIManager.getColor(propertyName);
 

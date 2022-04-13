@@ -30,6 +30,8 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
+ * <p>PopupMenuBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
@@ -41,15 +43,27 @@ public class PopupMenuBorder implements Border, Serializable {
   private Color highlightColor;
   private Color shadowColor;
 
+  /**
+   * <p>Constructor for PopupMenuBorder.</p>
+   *
+   * @param highlightColor a {@link java.awt.Color} object.
+   * @param shadowColor a {@link java.awt.Color} object.
+   */
   public PopupMenuBorder(Color highlightColor, Color shadowColor) {
     this.highlightColor = highlightColor;
     this.shadowColor = shadowColor;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     g.setColor(shadowColor);
     g.drawRect(x, y, width - 1, height - 1);
@@ -60,6 +74,7 @@ public class PopupMenuBorder implements Border, Serializable {
     GraphicsUtil.drawOptimizedLine(g, x + 1, y + height - 2, x + 1, y + height - 2);
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return INSETS;
   }

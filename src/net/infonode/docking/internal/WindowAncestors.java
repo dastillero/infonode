@@ -26,6 +26,8 @@ package net.infonode.docking.internal;
 import net.infonode.docking.DockingWindow;
 
 /**
+ * <p>WindowAncestors class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.2 $
  */
@@ -34,20 +36,42 @@ public class WindowAncestors {
   private boolean minimized;
   private boolean undocked;
 
+  /**
+   * <p>Constructor for WindowAncestors.</p>
+   *
+   * @param ancestors an array of {@link net.infonode.docking.DockingWindow} objects.
+   * @param minimized a boolean.
+   * @param undocked a boolean.
+   */
   public WindowAncestors(DockingWindow[] ancestors, boolean minimized, boolean undocked) {
     this.ancestors = ancestors;
     this.minimized = minimized;
     this.undocked = undocked;
   }
 
+  /**
+   * <p>Getter for the field <code>ancestors</code>.</p>
+   *
+   * @return an array of {@link net.infonode.docking.DockingWindow} objects.
+   */
   public DockingWindow[] getAncestors() {
     return ancestors;
   }
 
+  /**
+   * <p>isMinimized.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMinimized() {
     return minimized;
   }
 
+  /**
+   * <p>isUndocked.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isUndocked() {
     return undocked;
   }

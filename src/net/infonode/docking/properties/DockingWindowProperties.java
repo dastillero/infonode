@@ -209,6 +209,7 @@ public class DockingWindowProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(DockingWindowProperties)} instead.
    */
+  @Deprecated
   public DockingWindowProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;
@@ -452,6 +453,7 @@ public class DockingWindowProperties extends PropertyMapContainer {
    *
    * @param titleProvider the title provider for the window
    * @since IDW 1.3.0
+   * @return a {@link net.infonode.docking.properties.DockingWindowProperties} object.
    */
   public DockingWindowProperties setTitleProvider(DockingWindowTitleProvider titleProvider) {
     TITLE_PROVIDER.set(getMap(), titleProvider);

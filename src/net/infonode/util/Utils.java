@@ -23,14 +23,33 @@
 // $Id: Utils.java,v 1.4 2005/01/26 12:50:31 jesper Exp $
 package net.infonode.util;
 
+/**
+ * <p>Utils class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class Utils {
   private Utils() {
   }
 
+  /**
+   * <p>unsigned.</p>
+   *
+   * @param b a byte.
+   * @return a short.
+   */
   public static final short unsigned(byte b) {
     return (short) (b & 0xff);
   }
 
+  /**
+   * <p>equals.</p>
+   *
+   * @param o1 a {@link java.lang.Object} object.
+   * @param o2 a {@link java.lang.Object} object.
+   * @return a boolean.
+   */
   public static final boolean equals(Object o1, Object o2) {
     return o1 == o2 || (o1 != null && o2 != null && o1.equals(o2));
   }

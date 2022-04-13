@@ -30,44 +30,85 @@ import net.infonode.properties.propertymap.PropertyMap;
 import java.util.ArrayList;
 
 /**
+ * <p>RootWindowItem class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
 public class RootWindowItem extends WindowItem {
   private RootWindowProperties rootWindowProperties = RootWindowProperties.createDefault();
 
+  /**
+   * <p>Constructor for RootWindowItem.</p>
+   */
   public RootWindowItem() {
   }
 
+  /**
+   * <p>Constructor for RootWindowItem.</p>
+   *
+   * @param windowItem a {@link net.infonode.docking.model.RootWindowItem} object.
+   */
   public RootWindowItem(RootWindowItem windowItem) {
     super(windowItem);
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new RootWindowProperties().getMap();
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return rootWindowProperties.getMap();
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindowProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.RootWindowProperties} object.
+   */
   public RootWindowProperties getRootWindowProperties() {
     return rootWindowProperties;
   }
 
+  /**
+   * <p>isRestoreWindow.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRestoreWindow() {
     return true;
   }
 
+  /** {@inheritDoc} */
   protected DockingWindow createWindow(ViewReader viewReader, ArrayList childWindows) {
     return childWindows.size() == 0 ? null :
            (DockingWindow) childWindows.get(0);
   }
 
+  /**
+   * <p>getRootItem.</p>
+   *
+   * @return a {@link net.infonode.docking.model.RootWindowItem} object.
+   */
   public RootWindowItem getRootItem() {
     return this;
   }
 
+  /**
+   * <p>copy.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public WindowItem copy() {
     return new RootWindowItem(this);
   }

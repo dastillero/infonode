@@ -28,6 +28,8 @@ import net.infonode.gui.colorprovider.ColorProvider;
 import java.awt.*;
 
 /**
+ * <p>PolygonBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
@@ -38,6 +40,14 @@ public class PolygonBorder extends AbstractPolygonBorder {
   private float[] widthFactors;
   private float[] heightFactors;
 
+  /**
+   * <p>Constructor for PolygonBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param coords an array of int.
+   * @param widthFactors an array of float.
+   * @param heightFactors an array of float.
+   */
   public PolygonBorder(ColorProvider lineColor, int[] coords, float[] widthFactors, float[] heightFactors) {
     super(lineColor);
     this.coords = coords;
@@ -45,6 +55,15 @@ public class PolygonBorder extends AbstractPolygonBorder {
     this.heightFactors = heightFactors;
   }
 
+  /**
+   * <p>Constructor for PolygonBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param coords an array of int.
+   * @param widthFactors an array of float.
+   * @param heightFactors an array of float.
+   */
   public PolygonBorder(ColorProvider lineColor,
                        ColorProvider highlightColor,
                        int[] coords,
@@ -56,6 +75,17 @@ public class PolygonBorder extends AbstractPolygonBorder {
     this.heightFactors = heightFactors;
   }
 
+  /**
+   * <p>Constructor for PolygonBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param middleColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param shadowColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param coords an array of int.
+   * @param widthFactors an array of float.
+   * @param heightFactors an array of float.
+   */
   public PolygonBorder(ColorProvider lineColor,
                        ColorProvider highlightColor,
                        ColorProvider middleColor,
@@ -69,6 +99,7 @@ public class PolygonBorder extends AbstractPolygonBorder {
     this.heightFactors = heightFactors;
   }
 
+  /** {@inheritDoc} */
   protected Polygon createPolygon(Component c, int width, int height) {
     int[] xc = new int[coords.length / 2];
     int[] yc = new int[coords.length / 2];

@@ -30,6 +30,12 @@ import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+/**
+ * <p>RotatableLabelUI class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class RotatableLabelUI extends BasicLabelUI {
   // Optimization
   private static Rectangle paintIconR = new Rectangle();
@@ -39,31 +45,64 @@ public class RotatableLabelUI extends BasicLabelUI {
   private Direction direction;
   private boolean mirror;
 
+  /**
+   * <p>Constructor for RotatableLabelUI.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public RotatableLabelUI(Direction direction) {
     this(direction, false);
   }
 
+  /**
+   * <p>Constructor for RotatableLabelUI.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param mirror a boolean.
+   */
   public RotatableLabelUI(Direction direction, boolean mirror) {
     this.direction = direction;
     this.mirror = mirror;
   }
 
+  /**
+   * <p>Getter for the field <code>direction</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getDirection() {
     return direction;
   }
 
+  /**
+   * <p>Setter for the field <code>direction</code>.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public void setDirection(Direction direction) {
     this.direction = direction;
   }
 
+  /**
+   * <p>isMirror.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMirror() {
     return mirror;
   }
 
+  /**
+   * <p>Setter for the field <code>mirror</code>.</p>
+   *
+   * @param mirror a boolean.
+   */
   public void setMirror(boolean mirror) {
     this.mirror = mirror;
   }
 
+  /** {@inheritDoc} */
+  @Override
   public void paint(Graphics g, JComponent c) {
     JLabel label = (JLabel) c;
     String text = label.getText();
@@ -72,7 +111,7 @@ public class RotatableLabelUI extends BasicLabelUI {
     if (icon == null && text == null)
       return;
 
-    FontMetrics fm = g.getFontMetrics();
+    FontMetrics fm = label.getFontMetrics(label.getFont());
     Insets insets = c.getInsets();
 
     paintViewR.x = insets.left;

@@ -32,7 +32,7 @@ import javax.swing.*;
 import java.io.ObjectStreamException;
 
 /**
- * Docks a window using the {@link DockingWindow#dockWithAbort()} method.
+ * Docks a window using the {@link net.infonode.docking.DockingWindow#dockWithAbort()} method.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
@@ -51,18 +51,30 @@ public class DockWithAbortWindowAction extends DockingWindowAction {
   private DockWithAbortWindowAction() {
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return DockWindowAction.INSTANCE.getName();
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return DockWindowAction.INSTANCE.isPerformable(window);
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     if (isPerformable(window)) {
       try {
@@ -74,6 +86,12 @@ public class DockWithAbortWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

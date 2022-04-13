@@ -30,28 +30,51 @@ import net.infonode.properties.propertymap.PropertyMap;
 import java.util.ArrayList;
 
 /**
+ * <p>FloatingWindowItem class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
 public class FloatingWindowItem extends WindowItem {
   private FloatingWindowProperties properties = new FloatingWindowProperties();
 
+  /** {@inheritDoc} */
   protected DockingWindow createWindow(ViewReader viewReader, ArrayList childWindows) {
     return null;
   }
 
+  /**
+   * <p>copy.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public WindowItem copy() {
     return null;
   }
 
+  /**
+   * <p>isRestoreWindow.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRestoreWindow() {
     return false;
   }
 
+  /**
+   * <p>getFloatingWindowProperties.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.FloatingWindowProperties} object.
+   */
   public FloatingWindowProperties getFloatingWindowProperties() {
     return properties;
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return properties.getMap();
   }

@@ -36,6 +36,8 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
+ * <p>HighlightBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.17 $
  */
@@ -47,18 +49,39 @@ public class HighlightBorder implements Border, Serializable {
   private boolean pressed;
   private ColorProvider colorProvider;
 
+  /**
+   * <p>Constructor for HighlightBorder.</p>
+   */
   public HighlightBorder() {
     this(false);
   }
 
+  /**
+   * <p>Constructor for HighlightBorder.</p>
+   *
+   * @param lowered a boolean.
+   */
   public HighlightBorder(boolean lowered) {
     this(lowered, null);
   }
 
+  /**
+   * <p>Constructor for HighlightBorder.</p>
+   *
+   * @param lowered a boolean.
+   * @param color a {@link java.awt.Color} object.
+   */
   public HighlightBorder(boolean lowered, Color color) {
     this(lowered, false, color);
   }
 
+  /**
+   * <p>Constructor for HighlightBorder.</p>
+   *
+   * @param lowered a boolean.
+   * @param pressed a boolean.
+   * @param color a {@link java.awt.Color} object.
+   */
   public HighlightBorder(boolean lowered, boolean pressed, Color color) {
     this(lowered, pressed, ColorProviderUtil.getColorProvider(color,
                                                               new ColorMultiplier(
@@ -66,20 +89,34 @@ public class HighlightBorder implements Border, Serializable {
                                                                   lowered ? 0.7 : 1.70)));
   }
 
+  /**
+   * <p>Constructor for HighlightBorder.</p>
+   *
+   * @param lowered a boolean.
+   * @param pressed a boolean.
+   * @param colorProvider a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   public HighlightBorder(boolean lowered, boolean pressed, ColorProvider colorProvider) {
     this.lowered = lowered;
     this.pressed = pressed;
     this.colorProvider = colorProvider;
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return pressed ? InsetsUtil.rotate(Direction.LEFT, INSETS) : INSETS;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     g.setColor(colorProvider.getColor(c));
 

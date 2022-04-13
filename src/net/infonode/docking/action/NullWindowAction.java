@@ -45,17 +45,30 @@ public class NullWindowAction extends DockingWindowAction {
   private NullWindowAction() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Null";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return true;
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

@@ -24,9 +24,17 @@
 package net.infonode.util.signal;
 
 /**
+ * <p>SignalListener interface.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.2 $
  */
 public interface SignalListener {
+  /**
+   * <p>signalEmitted.</p>
+   *
+   * @param signal a {@link net.infonode.util.signal.Signal} object.
+   * @param object a {@link java.lang.Object} object.
+   */
   void signalEmitted(Signal signal, Object object);
 }

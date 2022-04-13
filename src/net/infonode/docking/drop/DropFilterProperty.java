@@ -49,10 +49,10 @@ public class DropFilterProperty extends ValueHandlerProperty {
   }
 
   /**
-   * Gets the {@link DropFilter} value of this property in a value container.
+   * Gets the {@link net.infonode.docking.drop.DropFilter} value of this property in a value container.
    *
    * @param valueContainer the value container
-   * @return the {@link DropFilter} value
+   * @return the {@link net.infonode.docking.drop.DropFilter} value
    */
   public DropFilter get(Object valueContainer) {
     return (DropFilter) getValue(valueContainer);

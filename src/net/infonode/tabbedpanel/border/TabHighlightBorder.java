@@ -48,6 +48,9 @@ import java.io.Serializable;
  * @see Tab
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanel
+ * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  */
 public class TabHighlightBorder implements Border, Serializable {
   private static final long serialVersionUID = 1;
@@ -86,6 +89,7 @@ public class TabHighlightBorder implements Border, Serializable {
     this.openBorder = openBorder;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     TabbedPanel tabbedPanel = TabbedUtils.getParentTabbedPanel(c);
 
@@ -117,10 +121,16 @@ public class TabHighlightBorder implements Border, Serializable {
     }
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return new Insets(1, 1, 0, 0);
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }

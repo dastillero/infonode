@@ -24,9 +24,16 @@
 package net.infonode.gui;
 
 /**
+ * <p>SimpleSplitPaneListener interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.2 $
  */
 public interface SimpleSplitPaneListener {
+  /**
+   * <p>dividerLocationChanged.</p>
+   *
+   * @param simpleSplitPane a {@link net.infonode.gui.SimpleSplitPane} object.
+   */
   void dividerLocationChanged(SimpleSplitPane simpleSplitPane);
 }

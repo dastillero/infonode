@@ -25,7 +25,18 @@ package net.infonode.util.collection.notifymap;
 
 import net.infonode.util.collection.map.base.ConstMapIterator;
 
+/**
+ * <p>Abstract AbstractChangeNotifyMap class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 abstract public class AbstractChangeNotifyMap extends AbstractConstChangeNotifyMap implements ChangeNotifyMap {
+  /**
+   * <p>constIterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.ConstMapIterator} object.
+   */
   public ConstMapIterator constIterator() {
     return iterator();
   }

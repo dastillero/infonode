@@ -30,9 +30,9 @@ package net.infonode.tabbedpanel;
  * @version $Revision: 1.9 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  */
 public enum TabLayoutPolicy {
-
   /**
    * Scrolling layout policy. This means that the tabs are laid out in a line. The
    * line of tabs will be scrollable if not all tabs can fit into the visible part

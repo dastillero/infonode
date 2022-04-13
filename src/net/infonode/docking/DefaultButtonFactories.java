@@ -27,7 +27,7 @@ import net.infonode.gui.button.ButtonFactory;
 import net.infonode.gui.button.FlatButtonFactory;
 
 /**
- * Contains the default window button factories used in window tabs and {@link TabWindow}'s.
+ * Contains the default window button factories used in window tabs and {@link net.infonode.docking.TabWindow}'s.
  *
  * @author $Author: johan $
  * @version $Revision: 1.7 $

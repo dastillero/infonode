@@ -80,9 +80,11 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
   private boolean heavyweightSupport = false;
 
   private class SingleComponentLayout implements LayoutManager {
+    @Override
     public void addLayoutComponent(String name, Component comp) {
     }
 
+    @Override
     public void layoutContainer(Container parent) {
       Dimension size = LayoutUtil.getInteriorSize(parent);
       Insets insets = parent.getInsets();
@@ -131,20 +133,24 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
       }
     }
 
+    @Override
     public Dimension minimumLayoutSize(Container parent) {
       return LayoutUtil.add(mainPanel.getMinimumSize(), parent.getInsets());
     }
 
+    @Override
     public Dimension preferredLayoutSize(Container parent) {
       return LayoutUtil.add(mainPanel.getPreferredSize(), parent.getInsets());
     }
 
+    @Override
     public void removeLayoutComponent(Component comp) {
     }
 
   }
 
   private final ShapedPanel layeredPane = new ShapedPanel() {
+    @Override
     public boolean isOptimizedDrawingEnabled() {
       return false;
     }
@@ -168,6 +174,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
   private final ArrayList views = new ArrayList();
   private boolean cleanUpModel;
   private final Runnable modelCleanUpEvent = new Runnable() {
+    @Override
     public void run() {
       if (cleanUpModel) {
         cleanUpModel = false;
@@ -234,6 +241,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     FocusManager.getInstance();
 
     addTabMouseButtonListener(new MouseButtonListener() {
+      @Override
       public void mouseButtonEvent(MouseEvent event) {
         if (event.isConsumed())
           return;
@@ -456,7 +464,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
    *
    * <p>
    * <strong>Note 1:</strong> The created floating window is not visible per default. To make it visible, call
-   * {@link FloatingWindow}.getTopLevelAncestor().setVisible(true);
+   * {@link net.infonode.docking.FloatingWindow}.getTopLevelAncestor().setVisible(true);
    * </p>
    *
    * <p>
@@ -517,26 +525,40 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     return viewSerializer;
   }
 
+  /** {@inheritDoc} */
+  @Override
   public DockingWindow getChildWindow(int index) {
     return index < 4 ? windowBars[index] :
       window != null ? (index == 4 ? window : (DockingWindow) floatingWindows.get(index - 5)) :
         (DockingWindow) floatingWindows.get(index - 4);
   }
 
+  /**
+   * <p>getChildWindowCount.</p>
+   *
+   * @return a int.
+   */
+  @Override
   public int getChildWindowCount() {
     return 4 + (window == null ? 0 : 1) + floatingWindows.size();
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
+  @Override
   public Icon getIcon() {
     return null;
   }
 
   /**
-   * Writes the state of this root window and all child windows.
+   * {@inheritDoc}
    *
-   * @param out the stream on which to write the state
-   * @throws IOException if there is a stream error
+   * Writes the state of this root window and all child windows.
    */
+  @Override
   public void write(ObjectOutputStream out) throws IOException {
     write(out, true);
   }
@@ -546,7 +568,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
    *
    * @param out             the stream on which to write the state
    * @param writeProperties true if the property values for all docking windows should be written to the stream
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   public void write(ObjectOutputStream out, boolean writeProperties) throws IOException {
     cleanUpModel();
@@ -565,6 +587,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
 
     writeViews(v, out, context);
     ViewWriter viewWriter = new ViewWriter() {
+      @Override
       public void writeWindowItem(WindowItem windowItem, ObjectOutputStream out, WriteContext context) throws
       IOException {
         if (windowItem.getRootItem() == getWindowItem()) {
@@ -578,6 +601,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
         }
       }
 
+      @Override
       public void writeView(View view, ObjectOutputStream out, WriteContext context) throws IOException {
         for (int i = 0; i < v.size(); i++) {
           if (v.get(i) == view) {
@@ -633,11 +657,11 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
   }
 
   /**
-   * Reads a previously written window state. This will create child windows and read their state.
+   * {@inheritDoc}
    *
-   * @param in the stream from which to read the state
-   * @throws IOException if there is a stream error
+   * Reads a previously written window state. This will create child windows and read their state.
    */
+  @Override
   public void read(ObjectInputStream in) throws IOException {
     read(in, true);
   }
@@ -669,21 +693,23 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
 
     try {
       int viewCount = in.readInt();
-      final View[] views = new View[viewCount];
+      final View[] viewArray = new View[viewCount];
 
       for (int i = 0; i < viewCount; i++) {
-        views[i] = View.read(in, context);
+        viewArray[i] = View.read(in, context);
 
-        if (views[i] != null)
-          views[i].setRootWindow(this);
+        if (viewArray[i] != null)
+          viewArray[i].setRootWindow(this);
       }
 
       ViewReader viewReader = new ViewReader() {
+        @Override
         public ViewItem readViewItem(ObjectInputStream in, ReadContext context) throws IOException {
           View view = readView(in, context);
           return view == null ? new ViewItem() : (ViewItem) view.getWindowItem();
         }
 
+        @Override
         public WindowItem readWindowItem(ObjectInputStream in, ReadContext context) throws IOException {
           if (in.readBoolean()) {
             int index;
@@ -699,12 +725,14 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
             return null;
         }
 
+        @Override
         public TabWindow createTabWindow(DockingWindow[] childWindows, TabWindowItem windowItem) {
           TabWindow tabWindow = new TabWindow(childWindows, windowItem);
           tabWindow.updateSelectedTab();
           return tabWindow;
         }
 
+        @Override
         public SplitWindow createSplitWindow(DockingWindow leftWindow,
                                              DockingWindow rightWindow,
                                              SplitWindowItem windowItem) {
@@ -715,9 +743,10 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
               windowItem);
         }
 
+        @Override
         public View readView(ObjectInputStream in, ReadContext context) throws IOException {
           int id = in.readInt();
-          return id == -1 ? null : (View) views[id];
+          return id == -1 ? null : (View) viewArray[id];
         }
       };
       setWindow(getWindowItem().read(in, context, viewReader));
@@ -749,7 +778,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
    * @param readProperties true if the property values for all child windows should be read. This parameter can be set
    *                       to true or false regardless of if the property values was included when the state was
    *                       written, though obviously no property values are read if there aren't any in the stream.
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   public void read(ObjectInputStream in, boolean readProperties) throws IOException {
     FocusManager.getInstance().startIgnoreFocusChanges();
@@ -758,7 +787,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     try {
       setWindow(null);
 
-      while (floatingWindows.size() > 0) {
+      while (!floatingWindows.isEmpty()) {
         ((FloatingWindow) floatingWindows.get(0)).close();
       }
 
@@ -783,6 +812,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     finally {
       PropertyMapManager.getInstance().endBatch();
       SwingUtilities.invokeLater(new Runnable() {
+        @Override
         public void run() {
           FocusManager.getInstance().stopIgnoreFocusChanges();
         }
@@ -949,6 +979,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
                                                                                                                          directions[i] == Direction.DOWN ? 2 : 1));
 
       windowBars[i].addPropertyChangeListener("enabled", new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
           updateButtonVisibility();
         }
@@ -964,6 +995,8 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     return windowPanel;
   }
 
+  /** {@inheritDoc} */
+  @Override
   protected void showChildWindow(DockingWindow window) {
     if (maximizedWindow != null && window == this.window)
       setMaximizedWindow(null);
@@ -971,6 +1004,10 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     super.showChildWindow(window);
   }
 
+  /**
+   * <p>update.</p>
+   */
+  @Override
   protected void update() {
     RootWindowProperties properties = getRootWindowProperties();
     properties.getComponentProperties().applyTo(layeredPane);
@@ -1183,6 +1220,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
       dragRectangle.setVisible(false);
   }
 
+  /** {@inheritDoc} */
   protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow) {
     if (oldWindow == window) {
       if (window != null) {
@@ -1203,6 +1241,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     }
   }
 
+  /** {@inheritDoc} */
   protected void doRemoveWindow(DockingWindow window) {
     if (window == this.window) {
       windowPanel.remove(window);
@@ -1213,14 +1252,21 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     repaint();
   }
 
+  /**
+   * <p>getRootWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.RootWindow} object.
+   */
   public RootWindow getRootWindow() {
     return this;
   }
 
+  /** {@inheritDoc} */
   protected boolean acceptsSplitWith(DockingWindow window) {
     return false;
   }
 
+  /** {@inheritDoc} */
   protected DropAction doAcceptDrop(Point p, DockingWindow window) {
     if (maximizedWindow != null) {
       Point p2 = SwingUtilities.convertPoint(this, p, maximizedWindow);
@@ -1237,6 +1283,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     return super.doAcceptDrop(p, window);
   }
 
+  /** {@inheritDoc} */
   protected DropAction acceptInteriorDrop(Point p, DockingWindow window) {
     if (this.window != null)
       return null;
@@ -1251,10 +1298,20 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     return null;
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return getRootWindowProperties().getMap();
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new RootWindowProperties().getMap();
   }
@@ -1273,6 +1330,9 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
   void restoreWindowComponent(DockingWindow window) {
   }
 
+  /**
+   * <p>cleanUpModel.</p>
+   */
   protected void cleanUpModel() {
     if (!cleanUpModel) {
       cleanUpModel = true;
@@ -1280,10 +1340,18 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     }
   }
 
+  /**
+   * <p>isShowingInRootWindow.</p>
+   *
+   * @return a boolean.
+   */
   protected boolean isShowingInRootWindow() {
     return true;
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
   public void updateUI() {
     super.updateUI();
 
@@ -1299,6 +1367,7 @@ public class RootWindow extends DockingWindow implements Readable, Writable {
     }
   }
 
+  /** {@inheritDoc} */
   protected void paintComponent(final Graphics g) {
     //((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     super.paintComponent(g);

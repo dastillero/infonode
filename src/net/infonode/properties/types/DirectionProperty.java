@@ -28,7 +28,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.util.Direction;
 
 /**
- * A property of type {@link Direction}.
+ * A property of type {@link net.infonode.util.Direction}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
@@ -47,7 +47,7 @@ public class DirectionProperty extends EnumProperty {
   }
 
   /**
-   * Returns the {@link Direction} value of this property in a value container.
+   * Returns the {@link net.infonode.util.Direction} value of this property in a value container.
    *
    * @param valueContainer the value container
    * @return the boolean value of this property
@@ -57,10 +57,10 @@ public class DirectionProperty extends EnumProperty {
   }
 
   /**
-   * Sets the {@link Direction} value of this property in a value container.
+   * Sets the {@link net.infonode.util.Direction} value of this property in a value container.
    *
    * @param valueContainer the value container
-   * @param direction      the {@link Direction} value
+   * @param direction      the {@link net.infonode.util.Direction} value
    */
   public void set(Object valueContainer, Direction direction) {
     setValue(valueContainer, direction);

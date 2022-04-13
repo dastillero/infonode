@@ -35,7 +35,10 @@ import net.infonode.util.Alignment;
 import net.infonode.util.Direction;
 
 /**
+ * <p>ContentTitleBar class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class ContentTitleBar extends HoverableShapedPanel {
   private final ComponentPaintChecker repaintChecker;
@@ -61,10 +64,18 @@ public class ContentTitleBar extends HoverableShapedPanel {
     }
   };
 
+  /**
+   * <p>Constructor for ContentTitleBar.</p>
+   */
   public ContentTitleBar() {
     this(null);
   }
 
+  /**
+   * <p>Constructor for ContentTitleBar.</p>
+   *
+   * @param hoveredComponent a {@link java.awt.Component} object.
+   */
   public ContentTitleBar(Component hoveredComponent) {
     super(new GridBagLayout(), null, hoveredComponent);
     repaintChecker = new ComponentPaintChecker(this);
@@ -73,18 +84,38 @@ public class ContentTitleBar extends HoverableShapedPanel {
     updateLayout();
   }
 
+  /**
+   * <p>Getter for the field <code>label</code>.</p>
+   *
+   * @return a {@link javax.swing.JLabel} object.
+   */
   public JLabel getLabel() {
     return label;
   }
 
+  /**
+   * <p>getText.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getText() {
     return label.getText();
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return label.getIcon();
   }
 
+  /**
+   * <p>setIcon.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   */
   public void setIcon(Icon icon) {
     if (label.getIcon() != icon) {
       label.setIcon(icon);
@@ -93,10 +124,20 @@ public class ContentTitleBar extends HoverableShapedPanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>labelAlignment</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Alignment} object.
+   */
   public Alignment getLabelAlignment() {
     return labelAlignment;
   }
 
+  /**
+   * <p>Setter for the field <code>labelAlignment</code>.</p>
+   *
+   * @param labelAlignment a {@link net.infonode.util.Alignment} object.
+   */
   public void setLabelAlignment(Alignment labelAlignment) {
     if (this.labelAlignment != labelAlignment) {
       this.labelAlignment = labelAlignment;
@@ -104,6 +145,11 @@ public class ContentTitleBar extends HoverableShapedPanel {
     }
   }
 
+  /**
+   * <p>setLayoutDirection.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public void setLayoutDirection(Direction direction) {
     if (label.getDirection() != direction) {
       label.setDirection(direction);
@@ -111,10 +157,20 @@ public class ContentTitleBar extends HoverableShapedPanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>labelInsets</code>.</p>
+   *
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getLabelInsets() {
     return labelInsets;
   }
 
+  /**
+   * <p>Setter for the field <code>labelInsets</code>.</p>
+   *
+   * @param labelInsets a {@link java.awt.Insets} object.
+   */
   public void setLabelInsets(Insets labelInsets) {
     this.labelInsets = labelInsets;
 
@@ -125,10 +181,20 @@ public class ContentTitleBar extends HoverableShapedPanel {
     doUpdate();
   }
 
+  /**
+   * <p>isFlipTitleComponents.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isFlipTitleComponents() {
     return flipTitleComponents;
   }
 
+  /**
+   * <p>Setter for the field <code>flipTitleComponents</code>.</p>
+   *
+   * @param flipTitleComponents a boolean.
+   */
   public void setFlipTitleComponents(boolean flipTitleComponents) {
     if (this.flipTitleComponents != flipTitleComponents) {
       this.flipTitleComponents = flipTitleComponents;
@@ -136,15 +202,31 @@ public class ContentTitleBar extends HoverableShapedPanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>leftTitleComponents</code>.</p>
+   *
+   * @return an array of {@link javax.swing.JComponent} objects.
+   */
   public JComponent[] getLeftTitleComponents() {
     return leftTitleComponents;
   }
 
+  /**
+   * <p>Setter for the field <code>leftTitleComponents</code>.</p>
+   *
+   * @param leftTitleComponents an array of {@link javax.swing.JComponent} objects.
+   */
   public void setLeftTitleComponents(JComponent[] leftTitleComponents) {
     setLeftTitleComponents(leftTitleComponents,
         leftTitleComponents == null ? null : createEmptyInsets(leftTitleComponents.length));
   }
 
+  /**
+   * <p>Setter for the field <code>leftTitleComponents</code>.</p>
+   *
+   * @param leftTitleComponents an array of {@link javax.swing.JComponent} objects.
+   * @param leftTitleComponentsInsets an array of {@link java.awt.Insets} objects.
+   */
   public void setLeftTitleComponents(JComponent[] leftTitleComponents, Insets[] leftTitleComponentsInsets) {
     JComponent[] oldComponents = this.leftTitleComponents;
     this.leftTitleComponents = leftTitleComponents;
@@ -152,15 +234,31 @@ public class ContentTitleBar extends HoverableShapedPanel {
     updateTitleComponents(oldComponents, leftTitleComponents);
   }
 
+  /**
+   * <p>Getter for the field <code>rightTitleComponents</code>.</p>
+   *
+   * @return an array of {@link javax.swing.JComponent} objects.
+   */
   public JComponent[] getRightTitleComponents() {
     return rightTitleComponents;
   }
 
+  /**
+   * <p>Setter for the field <code>rightTitleComponents</code>.</p>
+   *
+   * @param rightTitleComponents an array of {@link javax.swing.JComponent} objects.
+   */
   public void setRightTitleComponents(JComponent[] rightTitleComponents) {
     setRightTitleComponents(rightTitleComponents,
         rightTitleComponents == null ? null : createEmptyInsets(rightTitleComponents.length));
   }
 
+  /**
+   * <p>Setter for the field <code>rightTitleComponents</code>.</p>
+   *
+   * @param rightTitleComponents an array of {@link javax.swing.JComponent} objects.
+   * @param rightTitleComponentsInsets an array of {@link java.awt.Insets} objects.
+   */
   public void setRightTitleComponents(JComponent[] rightTitleComponents, Insets[] rightTitleComponentsInsets) {
     JComponent[] oldComponents = this.rightTitleComponents;
     this.rightTitleComponents = rightTitleComponents;

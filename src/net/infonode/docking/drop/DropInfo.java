@@ -64,7 +64,7 @@ public class DropInfo {
   }
 
   /**
-   * Returns the window that is asked (via the {@link DropFilter} if a drop of
+   * Returns the window that is asked (via the {@link net.infonode.docking.drop.DropFilter} if a drop of
    * the dragged window is accepted.
    *
    * @return the window that is asked if a drop of the dragged window is accepted

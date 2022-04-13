@@ -23,6 +23,12 @@
 // $Id: Collection.java,v 1.2 2004/06/17 13:01:11 johan Exp $
 package net.infonode.util.collection;
 
+/**
+ * <p>Collection interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface Collection extends ConstCollection {
   /**
    * Removes all elements from this collection..

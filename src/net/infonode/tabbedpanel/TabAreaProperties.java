@@ -37,6 +37,7 @@ import net.infonode.properties.types.HoverListenerProperty;
  * @version $Revision: 1.28 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  */
 public class TabAreaProperties extends PropertyMapContainer {
   /**

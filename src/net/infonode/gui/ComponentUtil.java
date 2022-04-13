@@ -28,19 +28,38 @@ import net.infonode.gui.componentpainter.ComponentPainter;
 import net.infonode.util.Direction;
 
 import javax.swing.*;
-import java.applet.Applet;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * <p>ComponentUtil class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ComponentUtil {
   private ComponentUtil() {
   }
 
+  /**
+   * <p>getChildAt.</p>
+   *
+   * @param container a {@link java.awt.Container} object.
+   * @param p a {@link java.awt.Point} object.
+   * @return a {@link java.awt.Component} object.
+   */
   public static final Component getChildAt(Container container, Point p) {
     Component c = container.getComponentAt(p);
     return c == null || c.getParent() != container ? null : c;
   }
 
+  /**
+   * <p>getVisibleChildAt.</p>
+   *
+   * @param container a {@link java.awt.Container} object.
+   * @param p a {@link java.awt.Point} object.
+   * @return a {@link java.awt.Component} object.
+   */
   public static final Component getVisibleChildAt(Container container, Point p) {
     for (int i = 0; i < container.getComponentCount(); i++) {
       Component c = container.getComponent(i);
@@ -51,6 +70,14 @@ public class ComponentUtil {
     return null;
   }
 
+  /**
+   * <p>getChildAtLine.</p>
+   *
+   * @param container a {@link java.awt.Container} object.
+   * @param p a {@link java.awt.Point} object.
+   * @param horizontal a boolean.
+   * @return a {@link java.awt.Component} object.
+   */
   public static final Component getChildAtLine(Container container, Point p, boolean horizontal) {
     if (horizontal) {
       for (int i = 0; i < container.getComponentCount(); i++) {
@@ -70,6 +97,12 @@ public class ComponentUtil {
     return null;
   }
 
+  /**
+   * <p>getComponentTreePosition.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param pos a {@link java.util.ArrayList} object.
+   */
   public static void getComponentTreePosition(Component c, ArrayList pos) {
     if (c.getParent() == null) {
       return;
@@ -77,9 +110,16 @@ public class ComponentUtil {
 
     getComponentTreePosition(c.getParent(), pos);
 
-    pos.add(new Integer(c.getParent().getComponentCount() - ComponentUtil.getComponentIndex(c)));
+    pos.add(Integer.valueOf(c.getParent().getComponentCount() - ComponentUtil.getComponentIndex(c)));
   }
 
+  /**
+   * <p>findComponentUnderGlassPaneAt.</p>
+   *
+   * @param p a {@link java.awt.Point} object.
+   * @param top a {@link java.awt.Component} object.
+   * @return a {@link java.awt.Component} object.
+   */
   public static Component findComponentUnderGlassPaneAt(Point p, Component top) {
     Component c = null;
 
@@ -95,6 +135,12 @@ public class ComponentUtil {
     return c;
   }
 
+  /**
+   * <p>getComponentIndex.</p>
+   *
+   * @param component a {@link java.awt.Component} object.
+   * @return a int.
+   */
   public static final int getComponentIndex(Component component) {
     if (component != null && component.getParent() != null) {
       Container c = component.getParent();
@@ -107,12 +153,24 @@ public class ComponentUtil {
     return -1;
   }
 
+  /**
+   * <p>getBorderLayoutOrientation.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.lang.String} object.
+   */
   public static final String getBorderLayoutOrientation(Direction d) {
     return d == Direction.UP ?
            BorderLayout.NORTH :
            d == Direction.LEFT ? BorderLayout.WEST : d == Direction.DOWN ? BorderLayout.SOUTH : BorderLayout.EAST;
   }
 
+  /**
+   * <p>getBackgroundColor.</p>
+   *
+   * @param component a {@link java.awt.Component} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color getBackgroundColor(Component component) {
     if (component == null)
       return null;
@@ -131,6 +189,12 @@ public class ComponentUtil {
     return component.isOpaque() ? component.getBackground() : getBackgroundColor(component.getParent());
   }
 
+  /**
+   * <p>countComponents.</p>
+   *
+   * @param c a {@link java.awt.Container} object.
+   * @return a int.
+   */
   public static int countComponents(Container c) {
     int num = 1;
     for (int i = 0; i < c.getComponentCount(); i++) {
@@ -144,6 +208,12 @@ public class ComponentUtil {
     return num;
   }
 
+  /**
+   * <p>getVisibleChildrenCount.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a int.
+   */
   public static int getVisibleChildrenCount(Component c) {
     if (c == null || !(c instanceof Container))
       return 0;
@@ -158,23 +228,47 @@ public class ComponentUtil {
     return count;
   }
 
+  /**
+   * <p>getTopLevelAncestor.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a {@link java.awt.Component} object.
+   */
   public static Component getTopLevelAncestor(Component c) {
     while (c != null) {
-      if (c instanceof Window || c instanceof Applet)
+      if (c instanceof Window)
         break;
       c = c.getParent();
     }
     return c;
   }
 
+  /**
+   * <p>hasVisibleChildren.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   public static boolean hasVisibleChildren(Component c) {
     return getVisibleChildrenCount(c) > 0;
   }
 
+  /**
+   * <p>isOnlyVisibleComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   public static boolean isOnlyVisibleComponent(Component c) {
     return c != null && c.isVisible() && getVisibleChildrenCount(c.getParent()) == 1;
   }
 
+  /**
+   * <p>isOnlyVisibleComponents.</p>
+   *
+   * @param c an array of {@link java.awt.Component} objects.
+   * @return a boolean.
+   */
   public static boolean isOnlyVisibleComponents(Component[] c) {
     if (c != null && c.length > 0) {
       boolean visible = getVisibleChildrenCount(c[0].getParent()) == c.length;
@@ -186,6 +280,13 @@ public class ComponentUtil {
     return false;
   }
 
+  /**
+   * <p>findFirstComponentOfType.</p>
+   *
+   * @param comp a {@link java.awt.Component} object.
+   * @param c a {@link java.lang.Class} object.
+   * @return a {@link java.awt.Component} object.
+   */
   public static Component findFirstComponentOfType(Component comp, Class c) {
     if (c.isInstance(comp))
       return comp;
@@ -201,13 +302,19 @@ public class ComponentUtil {
     return null;
   }
 
+  /**
+   * <p>isFocusable.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   public static boolean isFocusable(Component c) {
     return c.isFocusable() && c.isDisplayable() && c.isVisible() && c.isEnabled();
   }
 
   /**
    * Requests focus unless the component already has focus. For some weird
-   * reason calling {@link Component#requestFocusInWindow()}when the
+   * reason calling {@link java.awt.Component#requestFocusInWindow()}when the
    * component is focus owner changes focus owner to another component!
    *
    * @param component the component to request focus for
@@ -228,7 +335,7 @@ public class ComponentUtil {
 
   /**
    * Requests focus for a component. If that's not possible it's
-   * {@link FocusTraversalPolicy}is checked. If that doesn't work all it's
+   * {@link java.awt.FocusTraversalPolicy}is checked. If that doesn't work all it's
    * children is recursively checked with this method.
    *
    * @param component the component to request focus for
@@ -299,6 +406,12 @@ public class ComponentUtil {
     return width;
   }
 
+  /**
+   * <p>setAllOpaque.</p>
+   *
+   * @param c a {@link java.awt.Container} object.
+   * @param opaque a boolean.
+   */
   public static void setAllOpaque(Container c, boolean opaque) {
     if (c instanceof JComponent) {
       ((JComponent) c).setOpaque(opaque);
@@ -310,10 +423,20 @@ public class ComponentUtil {
     }
   }
 
+  /**
+   * <p>validate.</p>
+   *
+   * @param c a {@link javax.swing.JComponent} object.
+   */
   public static void validate(JComponent c) {
     c.revalidate();
   }
 
+  /**
+   * <p>validate.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public static void validate(Component c) {
     if (c instanceof JComponent)
       ((JComponent) c).revalidate();

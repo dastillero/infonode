@@ -34,6 +34,7 @@ import java.awt.event.MouseEvent;
  * @author $Author: jesper $
  * @version $Revision: 1.13 $
  * @see TabbedPanel
+ * @see TabbedPanel
  * @see Tab
  */
 public class TabDragEvent extends TabEvent {
@@ -49,6 +50,7 @@ public class TabDragEvent extends TabEvent {
    *               dragged
    * @deprecated Use {@link #TabDragEvent(Object, java.awt.event.MouseEvent)} instead.
    */
+  @Deprecated
   public TabDragEvent(Object source, Tab tab, Point point) {
     this(source,
          new MouseEvent(tab, MouseEvent.MOUSE_DRAGGED, System.currentTimeMillis(), 0, point.x, point.y, 0, false));

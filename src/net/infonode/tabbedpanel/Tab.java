@@ -32,25 +32,26 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
- * <p>A Tab is a component that represents a tab in a {@link TabbedPanel}.</p>
+ * A Tab is a component that represents a tab in a {@link net.infonode.tabbedpanel.TabbedPanel}.
  *
  * <p>A tab can hold a content component. The content component will then be shown in
  * the content area of the TabbedPanel that the tab is a member of when the tab is
  * selected. If the tab doesn't have a content component, then the TabbedPanel will not
- * show any content in the content area, i.e. it will be empty.</p>
+ * show any content in the content area, i.e. it will be empty.
  *
  * <p>The tab is basically a JPanel with a BorderLayout. The layout manager can be
  * changed using setLayout. Components and borders can be added and removed from the
  * tab. The tab can also be subclassed to create other types of tabs, see
- * {@link TitledTab}. <strong>In most cases {@link TitledTab} is the preferred tab type
- * to use because TitledTab adds support for a text, icon, looks etc.</strong></p>
+ * {@link net.infonode.tabbedpanel.titledtab.TitledTab}. <strong>In most cases {@link net.infonode.tabbedpanel.titledtab.TitledTab} is the preferred tab type
+ * to use because TitledTab adds support for a text, icon, looks etc.</strong>
  *
  * <p>The tab component will be shown in the tab area of a TabbedPanel
  * after the tab has become a member of that TabbedPanel by either adding or inserting
- * it. A tab can only be a member of one TabbedPanel at the same time.</p>
+ * it. A tab can only be a member of one TabbedPanel at the same time.
  *
  * <p>A tab can have different states when it is a member of a TabbedPanel:
  * <ul>
@@ -66,7 +67,7 @@ import java.util.ArrayList;
  * dragged, moved etc.
  * <li>Disabled: This means that the tab cannot be selected, highlighted
  * dragged, moved etc.
- * </ul></p>
+ * </ul>
  *
  * @author $Author: jesper $
  * @version $Revision: 1.33 $
@@ -82,6 +83,7 @@ public class Tab extends JPanel {
   private DraggableComponent draggableComponent;
 
   private KeyListener focusableKeyListener = new KeyAdapter() {
+    @Override
     public void keyPressed(KeyEvent e) {
       if (tabbedPanel != null) {
         Direction tabOrientation = tabbedPanel.getProperties().getTabAreaOrientation();
@@ -248,12 +250,12 @@ public class Tab extends JPanel {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * <p>Enable or disable this tab.</p>
    *
    * <p>If the tab is disabled, then the tab will not signal any events
    * until it is enabled again.</p>
-   *
-   * @param enabled true for enabled, otherwise false
    */
   public void setEnabled(boolean enabled) {
     getDraggableComponent().setEnabled(enabled);
@@ -398,7 +400,7 @@ public class Tab extends JPanel {
   }
 
   /**
-   * <p>Gets the tab {@link Shape}.</p>
+   * <p>Gets the tab {@link java.awt.Shape}.</p>
    *
    * <p>
    * This returns the shape of the tab. This can be be used by for
@@ -406,7 +408,7 @@ public class Tab extends JPanel {
    * tab intersects the tabbed panel content area.
    * </p>
    *
-   * @return the tab {@link Shape}, null if the tab has the normal component rectangle shape
+   * @return the tab {@link java.awt.Shape}, null if the tab has the normal component rectangle shape
    * @since ITP 1.2.0
    */
   public Shape getShape() {
@@ -493,7 +495,10 @@ public class Tab extends JPanel {
 
   private void fireDroppedEvent(TabDragEvent event) {
     if (listeners != null) {
-      TabDragEvent e = new TabDragEvent(this, this, event.getPoint());
+      //TabDragEvent e = new TabDragEvent(this, this, event.getPoint());
+      TabDragEvent e = new TabDragEvent(this, 
+              new MouseEvent(this, MouseEvent.MOUSE_DRAGGED, System.currentTimeMillis(), 
+                      0, event.getPoint().x, event.getPoint().y, 0, false));
       Object[] l = listeners.toArray();
       for (int i = 0; i < l.length; i++)
         ((TabListener) l[i]).tabDropped(e);
@@ -536,11 +541,17 @@ public class Tab extends JPanel {
     }
   }
 
+  /**
+   * <p>addNotify.</p>
+   */
   public void addNotify() {
     if (!draggableComponent.isIgnoreAddNotify())
       super.addNotify();
   }
 
+  /**
+   * <p>removeNotify.</p>
+   */
   public void removeNotify() {
     if (!draggableComponent.isIgnoreAddNotify())
       super.removeNotify();

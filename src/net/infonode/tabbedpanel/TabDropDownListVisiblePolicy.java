@@ -31,10 +31,10 @@ package net.infonode.tabbedpanel;
  * @version $Revision: 1.11 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  * @since ITP 1.1.0
  */
 public enum TabDropDownListVisiblePolicy {
-
   /**
    * Never drop down list policy. This means that no drop down list will be shown
    * in the tabbed panel.
@@ -51,5 +51,5 @@ public enum TabDropDownListVisiblePolicy {
    * Tabs not visible list policy. This means that a drop down list will be shown when
    * there are tabs are not entirely visible, i.e. scrolled out.
    */
-  TABS_NOT_VISIBLE
+  TABS_NOT_VISIBLE;
 }

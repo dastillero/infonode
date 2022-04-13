@@ -24,9 +24,16 @@
 package net.infonode.util.collection;
 
 /**
+ * <p>Closure interface.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.2 $
  */
 public interface Closure {
+  /**
+   * <p>apply.</p>
+   *
+   * @param object a {@link java.lang.Object} object.
+   */
   void apply(Object object);
 }

@@ -39,9 +39,16 @@ import java.io.Serializable;
  *
  * @author $Author: jesper $
  * @author $Author: jesper $
+ * @author $Author: jesper $
+ * @author $Author: jesper $
  * @version $Revision: 1.19 $
  * @see Tab
  * @see TabbedPanel
+ * @see TabbedPanelProperties
+ * @see TabAreaProperties
+ * @see TabAreaComponentsProperties
+ * @see TabbedPanel
+ * @see TabbedPanelProperties
  * @see TabbedPanelProperties
  * @see TabAreaProperties
  * @see TabAreaComponentsProperties
@@ -125,10 +132,16 @@ public class TabAreaLineBorder implements Border, Serializable {
     this.flipLeftRight = flipLeftRight;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return true;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     Insets insets = getBorderInsets(c);
     g.setColor(color.getColor(c));
@@ -174,6 +187,7 @@ public class TabAreaLineBorder implements Border, Serializable {
            drawTop;
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     if (c instanceof JComponent && ((JComponent) c).getComponentCount() == 0)
       return new Insets(0, 0, 0, 0);

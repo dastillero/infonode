@@ -51,10 +51,16 @@ public class ColorMultiplier extends AbstractColorProvider {
     this.factor = factor;
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return ColorUtil.mult(colorProvider.getColor(component), factor);
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getColor() {
     return ColorUtil.mult(colorProvider.getColor(), factor);
   }

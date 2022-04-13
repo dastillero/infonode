@@ -35,8 +35,8 @@ public interface PropertyMapTreeListener {
   /**
    * Invoked when one or more property value has been modified in one or more property maps.
    *
-   * @param changes an unmodifiable {@link Map} containing {@link PropertyMap}'s as keys and
-   *                unmodifiable {@link Map}'s as values. The value Map's contains
+   * @param changes an unmodifiable {@link java.util.Map} containing {@link net.infonode.properties.propertymap.PropertyMap}'s as keys and
+   *                unmodifiable {@link java.util.Map}'s as values. The value Map's contains
    *                {@link net.infonode.properties.base.Property}'s as keys and
    *                {@link net.infonode.util.ValueChange}'s as values.
    */

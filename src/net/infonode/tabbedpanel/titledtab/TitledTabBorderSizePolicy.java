@@ -35,9 +35,9 @@ package net.infonode.tabbedpanel.titledtab;
  * @version $Revision: 1.8 $
  * @see TitledTab
  * @see TitledTabProperties
+ * @see TitledTabProperties
  */
 public enum TitledTabBorderSizePolicy {
-
   /**
    * Equal size policy. This means that if the different tab states have
    * borders with different insets titled tab will use the same insets for
@@ -53,5 +53,5 @@ public enum TitledTabBorderSizePolicy {
    * the different states have different insets, then the titled tab's insets
    * will be different depending on the state the tab is currently in.
    */
-  INDIVIDUAL_SIZE
+  INDIVIDUAL_SIZE;
 }

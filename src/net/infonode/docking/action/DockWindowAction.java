@@ -31,7 +31,7 @@ import javax.swing.*;
 import java.io.ObjectStreamException;
 
 /**
- * Docks a window using the {@link DockingWindow#dock()} method.
+ * Docks a window using the {@link net.infonode.docking.DockingWindow#dock()} method.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
@@ -50,24 +50,42 @@ public class DockWindowAction extends DockingWindowAction {
   private DockWindowAction() {
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Dock";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return window.isDockable() && window.isUndocked();
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     if (isPerformable(window)) {
       window.dock();
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

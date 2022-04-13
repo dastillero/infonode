@@ -33,7 +33,7 @@ import net.infonode.util.Direction;
 
 /**
  * Properties and property values for a shaped panel, which is a panel that can have a
- * {@link net.infonode.gui.shaped.border.ShapedBorder} and a {@link ComponentPainter}.
+ * {@link net.infonode.gui.shaped.border.ShapedBorder} and a {@link net.infonode.gui.componentpainter.ComponentPainter}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.11 $
@@ -176,6 +176,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
    *
    * @param opaque true for opaque, otherwise false
    * @since ITP 1.4.0
+   * @return a {@link net.infonode.properties.gui.util.ShapedPanelProperties} object.
    */
   public ShapedPanelProperties setOpaque(boolean opaque) {
     OPAQUE.set(getMap(), opaque);
@@ -195,7 +196,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
 
   /**
    * Set to true if the shaped panel should be flipped horizontally.
-   * Used by {@link ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
+   * Used by {@link net.infonode.gui.componentpainter.ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
    *
    * @param flip true if the shaped panel should be flipped vertically
    * @return this
@@ -208,7 +209,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
 
   /**
    * Returns true if the shaped panel is flipped horizontally.
-   * Used by {@link ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
+   * Used by {@link net.infonode.gui.componentpainter.ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
    *
    * @return true if the shaped panel is flipped horizontally
    */
@@ -218,7 +219,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
 
   /**
    * Set to true if the shaped panel should be flipped vertically.
-   * Used by {@link ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
+   * Used by {@link net.infonode.gui.componentpainter.ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
    *
    * @param flip true if the shaped panel should be flipped horizontally
    * @return this
@@ -231,7 +232,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
 
   /**
    * Returns true if the shaped panel is flipped vertically.
-   * Used by {@link ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
+   * Used by {@link net.infonode.gui.componentpainter.ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
    *
    * @return true if the shaped panel is flipped vertically
    */
@@ -282,7 +283,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
 
   /**
    * Sets the direction of the shaped panel.
-   * Used by {@link ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
+   * Used by {@link net.infonode.gui.componentpainter.ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
    *
    * @param direction the direction of the shaped panel
    * @return this
@@ -295,7 +296,7 @@ public class ShapedPanelProperties extends PropertyMapContainer {
 
   /**
    * Gets the direction of the shaped panel.
-   * Used by {@link ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
+   * Used by {@link net.infonode.gui.componentpainter.ComponentPainter}'s, {@link net.infonode.gui.shaped.border.ShapedBorder}'s etc.
    *
    * @return the direction of the shaped panel
    */

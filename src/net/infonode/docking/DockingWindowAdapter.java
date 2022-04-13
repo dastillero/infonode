@@ -24,61 +24,78 @@
 package net.infonode.docking;
 
 /**
- * Adapter class which implements the {@link DockingWindowListener} methods with empty bodies.
+ * Adapter class which implements the {@link net.infonode.docking.DockingWindowListener} methods with empty bodies.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.13 $
  * @since IDW 1.1.0
  */
 public class DockingWindowAdapter implements DockingWindowListener {
+  /** {@inheritDoc} */
   public void windowShown(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowHidden(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void viewFocusChanged(View previouslyFocusedView, View focusedView) {
   }
 
+  /** {@inheritDoc} */
   public void windowAdded(DockingWindow addedToWindow, DockingWindow addedWindow) {
   }
 
+  /** {@inheritDoc} */
   public void windowRemoved(DockingWindow removedFromWindow, DockingWindow removedWindow) {
   }
 
+  /** {@inheritDoc} */
   public void windowClosing(DockingWindow window) throws OperationAbortedException {
   }
 
+  /** {@inheritDoc} */
   public void windowClosed(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowUndocking(DockingWindow window) throws OperationAbortedException {
   }
 
+  /** {@inheritDoc} */
   public void windowUndocked(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowDocking(DockingWindow window) throws OperationAbortedException {
   }
 
+  /** {@inheritDoc} */
   public void windowDocked(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowMinimized(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowMaximized(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowRestored(DockingWindow window) {
   }
 
+  /** {@inheritDoc} */
   public void windowMaximizing(DockingWindow window) throws OperationAbortedException {
   }
 
+  /** {@inheritDoc} */
   public void windowMinimizing(DockingWindow window) throws OperationAbortedException {
   }
 
+  /** {@inheritDoc} */
   public void windowRestoring(DockingWindow window) throws OperationAbortedException {
   }
 

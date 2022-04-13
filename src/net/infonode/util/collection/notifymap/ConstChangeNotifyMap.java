@@ -26,6 +26,17 @@ package net.infonode.util.collection.notifymap;
 import net.infonode.util.collection.map.base.ConstMap;
 import net.infonode.util.signal.SignalHook;
 
+/**
+ * <p>ConstChangeNotifyMap interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface ConstChangeNotifyMap extends ConstMap {
+  /**
+   * <p>getChangeSignal.</p>
+   *
+   * @return a {@link net.infonode.util.signal.SignalHook} object.
+   */
   SignalHook getChangeSignal();
 }

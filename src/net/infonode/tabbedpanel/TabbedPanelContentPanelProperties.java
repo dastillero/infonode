@@ -31,13 +31,14 @@ import net.infonode.properties.types.HoverListenerProperty;
 
 /**
  * TabbedPanelContentPanelProperties holds all properties for a
- * {@link TabbedPanelContentPanel}. These properties affects the
+ * {@link net.infonode.tabbedpanel.TabbedPanelContentPanel}. These properties affects the
  * content area of a TabbedPanel. TabbedPanelProperties contains
  * TabbedPanelContentPanelProperties.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.27 $
  * @see TabbedPanel
+ * @see TabbedPanelProperties
  * @see TabbedPanelProperties
  */
 public class TabbedPanelContentPanelProperties extends PropertyMapContainer {

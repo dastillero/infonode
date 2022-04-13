@@ -30,11 +30,29 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>ViewWriter interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
 public interface ViewWriter {
+  /**
+   * <p>writeWindowItem.</p>
+   *
+   * @param windowItem a {@link net.infonode.docking.model.WindowItem} object.
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @param context a {@link net.infonode.docking.internal.WriteContext} object.
+   * @throws java.io.IOException if any.
+   */
   void writeWindowItem(WindowItem windowItem, ObjectOutputStream out, WriteContext context) throws IOException;
 
+  /**
+   * <p>writeView.</p>
+   *
+   * @param view a {@link net.infonode.docking.View} object.
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @param context a {@link net.infonode.docking.internal.WriteContext} object.
+   * @throws java.io.IOException if any.
+   */
   void writeView(View view, ObjectOutputStream out, WriteContext context) throws IOException;
 }

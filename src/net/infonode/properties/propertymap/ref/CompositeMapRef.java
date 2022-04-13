@@ -30,6 +30,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>CompositeMapRef class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
@@ -37,25 +39,45 @@ public class CompositeMapRef implements PropertyMapRef {
   private PropertyMapRef ref1;
   private PropertyMapRef ref2;
 
+  /**
+   * <p>Constructor for CompositeMapRef.</p>
+   *
+   * @param ref1 a {@link net.infonode.properties.propertymap.ref.PropertyMapRef} object.
+   * @param ref2 a {@link net.infonode.properties.propertymap.ref.PropertyMapRef} object.
+   */
   public CompositeMapRef(PropertyMapRef ref1, PropertyMapRef ref2) {
     this.ref1 = ref1;
     this.ref2 = ref2;
   }
 
+  /** {@inheritDoc} */
   public PropertyMapImpl getMap(PropertyMapImpl object) {
     return ref2.getMap(ref1.getMap(object));
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return ref1 + "." + ref2;
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(PropertyMapRefDecoder.COMPOSITE);
     ref1.write(out);
     ref2.write(out);
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @return a {@link net.infonode.properties.propertymap.ref.CompositeMapRef} object.
+   * @throws java.io.IOException if any.
+   */
   public static CompositeMapRef decode(ObjectInputStream in) throws IOException {
     return new CompositeMapRef(PropertyMapRefDecoder.decode(in), PropertyMapRefDecoder.decode(in));
   }

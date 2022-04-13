@@ -33,7 +33,6 @@ package net.infonode.tabbedpanel.titledtab;
  * @version $Revision: 1.6 $
  */
 public enum TitledTabSizePolicy {
-
   /**
    * Equal size policy. This menas that if the different tab states results in
    * different tab sizes, then titled tab will calculate the maximum size for the
@@ -45,5 +44,5 @@ public enum TitledTabSizePolicy {
    * Individual size policy. This means that if the different tab states have
    * different sizes then titled tab will have different size for the states.
    */
-  INDIVIDUAL_SIZE
+  INDIVIDUAL_SIZE;
 }

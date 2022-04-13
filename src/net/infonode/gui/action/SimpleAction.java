@@ -36,19 +36,35 @@ import java.awt.event.ActionEvent;
  * @since IDW 1.3.0
  */
 abstract public class SimpleAction implements IconProvider {
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   abstract public String getName();
 
+  /**
+   * <p>perform.</p>
+   */
   abstract public void perform();
 
+  /**
+   * <p>isEnabled.</p>
+   *
+   * @return a boolean.
+   */
   abstract public boolean isEnabled();
 
+  /**
+   * <p>Constructor for SimpleAction.</p>
+   */
   protected SimpleAction() {
   }
 
   /**
-   * Converts this action into a Swing {@link Action}.
+   * Converts this action into a Swing {@link javax.swing.Action}.
    *
-   * @return the Swing {@link Action}
+   * @return the Swing {@link javax.swing.Action}
    */
   public Action toSwingAction() {
     AbstractAction action = new AbstractAction(getName(), getIcon()) {

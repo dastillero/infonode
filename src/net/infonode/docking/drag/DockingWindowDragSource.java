@@ -31,7 +31,7 @@ import net.infonode.gui.draggable.DraggableComponentEvent;
 
 /**
  * Handles the drag and drop of a {@link net.infonode.docking.DockingWindow} triggered by mouse events on a
- * {@link JComponent}. {@link DockingWindowDragSource} handles drag abort with the right mouse button and
+ * {@link javax.swing.JComponent}. {@link net.infonode.docking.drag.DockingWindowDragSource} handles drag abort with the right mouse button and
  * the key set in the {@link net.infonode.docking.properties.RootWindowProperties#ABORT_DRAG_KEY} property of the
  * {@link net.infonode.docking.RootWindow} which is the drop target.
  *
@@ -49,7 +49,7 @@ public class DockingWindowDragSource {
    *
    * @param component       the component on which to listen to mouse events that affects the drag and drop of a
    *                        {@link net.infonode.docking.DockingWindow}
-   * @param draggerProvider provides the {@link DockingWindowDragger} when the drag operation begins, typically
+   * @param draggerProvider provides the {@link net.infonode.docking.drag.DockingWindowDragger} when the drag operation begins, typically
    *                        this provider gets the dragger by calling
    *                        {@link net.infonode.docking.DockingWindow#startDrag(net.infonode.docking.RootWindow)}
    *                        on the window which should be dragged

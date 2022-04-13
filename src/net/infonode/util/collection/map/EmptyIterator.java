@@ -25,26 +25,54 @@ package net.infonode.util.collection.map;
 
 import net.infonode.util.collection.map.base.MapIterator;
 
+/**
+ * <p>EmptyIterator class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class EmptyIterator implements MapIterator {
+  /** Constant <code>INSTANCE</code> */
   public static final EmptyIterator INSTANCE = new EmptyIterator();
 
   private EmptyIterator() {
   }
 
+  /**
+   * <p>remove.</p>
+   */
   public void remove() {
   }
 
+  /**
+   * <p>getKey.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   */
   public Object getKey() {
     return null;
   }
 
+  /**
+   * <p>getValue.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   */
   public Object getValue() {
     return null;
   }
 
+  /**
+   * <p>next.</p>
+   */
   public void next() {
   }
 
+  /**
+   * <p>atEntry.</p>
+   *
+   * @return a boolean.
+   */
   public boolean atEntry() {
     return false;
   }

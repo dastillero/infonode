@@ -36,6 +36,8 @@ package net.infonode.tabbedpanel;
  * @version $Revision: 1.5 $
  * @see TabListener
  * @see TabbedPanel
+ * @see TabListener
+ * @see TabbedPanel
  * @see Tab
  */
 public class TabStateChangedEvent extends TabEvent {

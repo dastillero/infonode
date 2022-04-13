@@ -46,13 +46,29 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 /**
- * TabbedPanelProperties holds all properties for a {@link TabbedPanel}. A
+ * TabbedPanelProperties holds all properties for a {@link net.infonode.tabbedpanel.TabbedPanel}. A
  * TabbedPanelProperties object contains separate property objects for the
  * content area, the tab area, the tab area components and the buttons of
  * the TabbedPanel.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.60 $
+ * @see TabbedPanel
+ * @see TabbedPanel
+ * @see #getContentPanelProperties
+ * @see #getTabAreaProperties
+ * @see #getTabAreaComponentsProperties
+ * @see #getButtonProperties
+ * @see TabbedPanel
+ * @see #getContentPanelProperties
+ * @see #getTabAreaProperties
+ * @see #getTabAreaComponentsProperties
+ * @see #getButtonProperties
+ * @see TabbedPanel
+ * @see #getContentPanelProperties
+ * @see #getTabAreaProperties
+ * @see #getTabAreaComponentsProperties
+ * @see #getButtonProperties
  * @see TabbedPanel
  * @see #getContentPanelProperties
  * @see #getTabAreaProperties
@@ -406,17 +422,21 @@ public class TabbedPanelProperties extends PropertyMapContainer {
 
   static {
     DynamicUIManager.getInstance().addListener(new DynamicUIManagerListener() {
+      @Override
       public void lookAndFeelChanged() {
         updateVisualProperties();
       }
 
+      @Override
       public void propertiesChanged() {
         updateVisualProperties();
       }
 
+      @Override
       public void propertiesChanging() {
       }
 
+      @Override
       public void lookAndFeelChanging() {
       }
     });
@@ -437,6 +457,7 @@ public class TabbedPanelProperties extends PropertyMapContainer {
 
   private static void updateVisualProperties() {
     PropertyMapManager.runBatch(new Runnable() {
+      @Override
       public void run() {
         DEFAULT_PROPERTIES.getContentPanelProperties().getComponentProperties().setBorder(
             new OpenContentBorder(TabbedUIDefaults.getDarkShadow(), TabbedUIDefaults.getHighlight()))
@@ -588,6 +609,8 @@ public class TabbedPanelProperties extends PropertyMapContainer {
    *
    * @param strength the strength between 0 and 1
    * @return this TabbedPanelProperties
+   * @see #setShadowColor
+   * @see #setShadowEnabled
    * @see #setShadowColor
    * @see #setShadowEnabled
    */
@@ -881,6 +904,8 @@ public class TabbedPanelProperties extends PropertyMapContainer {
    * </p>
    *
    * @return the shadow strength between 0 and 1
+   * @see #getShadowColor
+   * @see #getShadowEnabled
    * @see #getShadowColor
    * @see #getShadowEnabled
    */

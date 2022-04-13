@@ -39,6 +39,11 @@ public class Info {
   private Info() {
   }
 
+  /**
+   * <p>main.</p>
+   *
+   * @param args an array of {@link java.lang.String} objects.
+   */
   public static final void main(String[] args) {
     ReleaseInfoDialog.showDialog(
         new ReleaseInfo[]{TabbedPanelReleaseInfo.getReleaseInfo(), InfoNodeLookAndFeelReleaseInfo.getReleaseInfo()},

@@ -25,20 +25,50 @@ package net.infonode.gui.panel;
 
 import java.awt.*;
 
+/**
+ * <p>BaseContainerUtil class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class BaseContainerUtil {
 
+  /**
+   * <p>setForcedOpaque.</p>
+   *
+   * @param c a {@link net.infonode.gui.panel.BaseContainer} object.
+   * @param opaque a boolean.
+   */
   public static void setForcedOpaque(BaseContainer c, boolean opaque) {
     c.setForcedOpaque(opaque);
   }
 
+  /**
+   * <p>setOverridedBackground.</p>
+   *
+   * @param c a {@link net.infonode.gui.panel.BaseContainer} object.
+   * @param color a {@link java.awt.Color} object.
+   */
   public static void setOverridedBackground(BaseContainer c, Color color) {
     c.setOverridedBackground(color);
   }
 
+  /**
+   * <p>setOverridedForeground.</p>
+   *
+   * @param c a {@link net.infonode.gui.panel.BaseContainer} object.
+   * @param color a {@link java.awt.Color} object.
+   */
   public static void setOverridedForeground(BaseContainer c, Color color) {
     c.setOverridedForeround(color);
   }
 
+  /**
+   * <p>setOverridedFont.</p>
+   *
+   * @param c a {@link net.infonode.gui.panel.BaseContainer} object.
+   * @param font a {@link java.awt.Font} object.
+   */
   public static void setOverridedFont(BaseContainer c, Font font) {
     c.setOverrideFont(font);
   }

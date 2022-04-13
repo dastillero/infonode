@@ -33,7 +33,7 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 /**
- * A {@link MouseButtonListener} that performs a {@link DockingWindowAction}. The action is not performed
+ * A {@link net.infonode.gui.mouse.MouseButtonListener} that performs a {@link net.infonode.docking.action.DockingWindowAction}. The action is not performed
  * if the mouse button event has been consumed.
  *
  * @author $Author: jesper $
@@ -65,7 +65,7 @@ public class DockingWindowActionMouseButtonListener implements MouseButtonListen
    * when the action is performed.
    *
    * @param button when this mouse button is clicked the action is performed , must be
-   *               {@link MouseEvent#BUTTON1}, {@link MouseEvent#BUTTON2} or {@link MouseEvent#BUTTON3}
+   *               {@link java.awt.event.MouseEvent#BUTTON1}, {@link java.awt.event.MouseEvent#BUTTON2} or {@link java.awt.event.MouseEvent#BUTTON3}
    * @param action the action to perform
    */
   public DockingWindowActionMouseButtonListener(int button, DockingWindowAction action) {
@@ -77,10 +77,10 @@ public class DockingWindowActionMouseButtonListener implements MouseButtonListen
    * The event is not consumed when the action is performed.
    *
    * @param eventId the event type for which to perform the action, must be
-   *                {@link MouseEvent#MOUSE_PRESSED}, {@link MouseEvent#MOUSE_RELEASED} or
-   *                {@link MouseEvent#MOUSE_CLICKED}
+   *                {@link java.awt.event.MouseEvent#MOUSE_PRESSED}, {@link java.awt.event.MouseEvent#MOUSE_RELEASED} or
+   *                {@link java.awt.event.MouseEvent#MOUSE_CLICKED}
    * @param button  when this mouse button for which the action is performed , must be
-   *                {@link MouseEvent#BUTTON1}, {@link MouseEvent#BUTTON2} or {@link MouseEvent#BUTTON3}
+   *                {@link java.awt.event.MouseEvent#BUTTON1}, {@link java.awt.event.MouseEvent#BUTTON2} or {@link java.awt.event.MouseEvent#BUTTON3}
    * @param action  the action to perform
    */
   public DockingWindowActionMouseButtonListener(int eventId, int button, DockingWindowAction action) {
@@ -92,12 +92,12 @@ public class DockingWindowActionMouseButtonListener implements MouseButtonListen
    * an additional key mask.
    *
    * @param eventId      the event type for which to perform the action, must be
-   *                     {@link MouseEvent#MOUSE_PRESSED}, {@link MouseEvent#MOUSE_RELEASED} or
-   *                     {@link MouseEvent#MOUSE_CLICKED}
+   *                     {@link java.awt.event.MouseEvent#MOUSE_PRESSED}, {@link java.awt.event.MouseEvent#MOUSE_RELEASED} or
+   *                     {@link java.awt.event.MouseEvent#MOUSE_CLICKED}
    * @param button       when this mouse button for which the action is performed , must be
-   *                     {@link MouseEvent#BUTTON1}, {@link MouseEvent#BUTTON2} or {@link MouseEvent#BUTTON3}
+   *                     {@link java.awt.event.MouseEvent#BUTTON1}, {@link java.awt.event.MouseEvent#BUTTON2} or {@link java.awt.event.MouseEvent#BUTTON3}
    * @param keyMask      the keys that must be pressed for the action to be performed, must be
-   *                     0 or an or'ed combination of the key down masks found in {@link InputEvent}.
+   *                     0 or an or'ed combination of the key down masks found in {@link java.awt.event.InputEvent}.
    * @param action       the action to perform
    * @param consumeEvent if true the event is consumed when the action is performed
    */
@@ -113,6 +113,7 @@ public class DockingWindowActionMouseButtonListener implements MouseButtonListen
     this.consumeEvent = consumeEvent;
   }
 
+  /** {@inheritDoc} */
   public void mouseButtonEvent(MouseEvent event) {
     if (event.isConsumed())
       return;

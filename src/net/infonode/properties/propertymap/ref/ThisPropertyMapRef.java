@@ -29,23 +29,33 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>ThisPropertyMapRef class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 public class ThisPropertyMapRef implements PropertyMapRef {
+  /** Constant <code>INSTANCE</code> */
   public static final ThisPropertyMapRef INSTANCE = new ThisPropertyMapRef();
 
   private ThisPropertyMapRef() {
   }
 
+  /** {@inheritDoc} */
   public PropertyMapImpl getMap(PropertyMapImpl object) {
     return object;
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return "this";
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(PropertyMapRefDecoder.THIS);
   }

@@ -27,7 +27,7 @@ import net.infonode.properties.base.PropertyGroup;
 import net.infonode.properties.types.PropertyGroupProperty;
 
 /**
- * An immutable property which has {@link PropertyMap}'s as values.
+ * An immutable property which has {@link net.infonode.properties.propertymap.PropertyMap}'s as values.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -54,10 +54,16 @@ public class PropertyMapProperty extends PropertyGroupProperty {
     return (PropertyMapGroup) getPropertyGroup();
   }
 
+  /**
+   * <p>isMutable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMutable() {
     return false;
   }
 
+  /** {@inheritDoc} */
   public Object getValue(Object object) {
     return ((PropertyMapImpl) object).getChildMapImpl(this);
   }

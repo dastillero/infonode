@@ -26,7 +26,7 @@ package net.infonode.gui;
 import net.infonode.gui.componentpainter.ComponentPainter;
 
 /**
- * An object that paints its background using a {@link ComponentPainter}.
+ * An object that paints its background using a {@link net.infonode.gui.componentpainter.ComponentPainter}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -34,9 +34,9 @@ import net.infonode.gui.componentpainter.ComponentPainter;
  */
 public interface BackgroundPainter {
   /**
-   * Returns the {@link ComponentPainter} that is used to paint the background of this object.
+   * Returns the {@link net.infonode.gui.componentpainter.ComponentPainter} that is used to paint the background of this object.
    *
-   * @return the {@link ComponentPainter} that is used to paint the background of this object, null if there is none
+   * @return the {@link net.infonode.gui.componentpainter.ComponentPainter} that is used to paint the background of this object, null if there is none
    */
   ComponentPainter getComponentPainter();
 }

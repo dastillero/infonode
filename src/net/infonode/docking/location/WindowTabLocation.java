@@ -32,12 +32,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>WindowTabLocation class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 public class WindowTabLocation extends AbstractWindowLocation {
   private int index;
 
+  /**
+   * <p>Constructor for WindowTabLocation.</p>
+   *
+   * @param window a {@link net.infonode.docking.AbstractTabWindow} object.
+   * @param parentLocation a {@link net.infonode.docking.location.WindowLocation} object.
+   * @param index a int.
+   */
   public WindowTabLocation(AbstractTabWindow window, WindowLocation parentLocation, int index) {
     super(window, parentLocation);
     this.index = index;
@@ -47,17 +56,27 @@ public class WindowTabLocation extends AbstractWindowLocation {
     this.index = index;
   }
 
+  /** {@inheritDoc} */
   public boolean set(DockingWindow parent, DockingWindow child) {
     ((AbstractTabWindow) parent).addTab(child, index);
     return true;
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(LocationDecoder.TAB);
     out.writeInt(index);
     super.write(out);
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @return a {@link net.infonode.docking.location.WindowTabLocation} object.
+   * @throws java.io.IOException if any.
+   */
   public static WindowTabLocation decode(ObjectInputStream in, RootWindow rootWindow) throws IOException {
     WindowTabLocation location = new WindowTabLocation(in.readInt());
     location.read(in, rootWindow);

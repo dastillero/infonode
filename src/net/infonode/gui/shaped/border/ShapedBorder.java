@@ -27,7 +27,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 /**
- * A border that has a {@link Shape}.
+ * A border that has a {@link java.awt.Shape}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.9 $

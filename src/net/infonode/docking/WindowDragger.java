@@ -51,10 +51,20 @@ class WindowDragger implements DockingWindowDragger {
     rootWindow.internalStartDrag(dragWindow);
   }
 
+  /**
+   * <p>Getter for the field <code>dragWindow</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   public DockingWindow getDragWindow() {
     return dragWindow;
   }
 
+  /**
+   * <p>getDropTarget.</p>
+   *
+   * @return a {@link net.infonode.docking.RootWindow} object.
+   */
   public RootWindow getDropTarget() {
     return rootWindow;
   }
@@ -70,11 +80,15 @@ class WindowDragger implements DockingWindowDragger {
     rootWindow.stopDrag();
   }
 
+  /**
+   * <p>abortDrag.</p>
+   */
   public void abortDrag() {
     stopDrag();
     undoDrag(null);
   }
 
+  /** {@inheritDoc} */
   public void dropWindow(MouseEvent mouseEvent) {
     stopDrag();
 
@@ -92,6 +106,7 @@ class WindowDragger implements DockingWindowDragger {
     }
   }
 
+  /** {@inheritDoc} */
   public void dragWindow(MouseEvent mouseEvent) {
     JRootPane root = rootWindow.getCurrentDragRootPane();
     

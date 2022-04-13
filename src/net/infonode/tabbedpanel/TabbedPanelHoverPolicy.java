@@ -66,5 +66,5 @@ public enum TabbedPanelHoverPolicy {
    *
    * @since ITP 1.4.0
    */
-  ALWAYS_AND_EXCLUDE
+  ALWAYS_AND_EXCLUDE;
 }

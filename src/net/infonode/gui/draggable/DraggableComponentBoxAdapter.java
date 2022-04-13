@@ -23,25 +23,38 @@
 // $Id: DraggableComponentBoxAdapter.java,v 1.2 2004/06/17 13:01:11 johan Exp $
 package net.infonode.gui.draggable;
 
+/**
+ * <p>DraggableComponentBoxAdapter class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class DraggableComponentBoxAdapter implements DraggableComponentBoxListener {
+  /** {@inheritDoc} */
   public void componentDragged(DraggableComponentBoxEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void componentDropped(DraggableComponentBoxEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void componentDragAborted(DraggableComponentBoxEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void componentSelected(DraggableComponentBoxEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void componentRemoved(DraggableComponentBoxEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void componentAdded(DraggableComponentBoxEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void changed(DraggableComponentBoxEvent event) {
   }
 }

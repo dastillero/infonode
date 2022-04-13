@@ -30,6 +30,12 @@ import net.infonode.util.signal.Signal;
 import net.infonode.util.signal.SignalHook;
 import net.infonode.util.signal.SignalListener;
 
+/**
+ * <p>Abstract AbstractConstChangeNotifyMap class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 abstract public class AbstractConstChangeNotifyMap implements ConstChangeNotifyMap {
   private Signal changeSignal = new Signal() {
     protected void firstListenerAdded() {
@@ -51,34 +57,74 @@ abstract public class AbstractConstChangeNotifyMap implements ConstChangeNotifyM
     }
   };
 
+  /**
+   * <p>firstListenerAdded.</p>
+   */
   protected void firstListenerAdded() {
   }
 
+  /**
+   * <p>lastListenerRemoved.</p>
+   */
   protected void lastListenerRemoved() {
   }
 
+  /**
+   * <p>listenerRemoved.</p>
+   */
   protected void listenerRemoved() {
   }
 
+  /**
+   * <p>listenerAdded.</p>
+   */
   protected void listenerAdded() {
   }
 
+  /**
+   * <p>Getter for the field <code>changeSignal</code>.</p>
+   *
+   * @return a {@link net.infonode.util.signal.SignalHook} object.
+   */
   public SignalHook getChangeSignal() {
     return changeSignal.getHook();
   }
 
+  /**
+   * <p>getChangeSignalInternal.</p>
+   *
+   * @return a {@link net.infonode.util.signal.Signal} object.
+   */
   protected Signal getChangeSignalInternal() {
     return changeSignal;
   }
 
+  /**
+   * <p>fireEntryRemoved.</p>
+   *
+   * @param key a {@link java.lang.Object} object.
+   * @param value a {@link java.lang.Object} object.
+   */
   protected void fireEntryRemoved(Object key, Object value) {
     fireEntryChanged(key, value, null);
   }
 
+  /**
+   * <p>fireEntryChanged.</p>
+   *
+   * @param key a {@link java.lang.Object} object.
+   * @param oldValue a {@link java.lang.Object} object.
+   * @param newValue a {@link java.lang.Object} object.
+   */
   protected void fireEntryChanged(Object key, Object oldValue, Object newValue) {
     fireEntriesChanged(new SingleValueMap(key, new ValueChange(oldValue, newValue)));
   }
 
+  /**
+   * <p>fireEntriesChanged.</p>
+   *
+   * @param changes a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   */
   protected void fireEntriesChanged(ConstMap changes) {
     if (!changes.isEmpty())
       changeSignal.emit(changes);

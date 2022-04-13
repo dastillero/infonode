@@ -33,7 +33,7 @@ import java.awt.*;
  * </p>
  * <p>
  * Note: New methods might be added to this interface in the future. To ensure future compatibility inherit from
- * {@link AbstractComponentPainter} instead of directly implementing this interface.
+ * {@link net.infonode.gui.componentpainter.AbstractComponentPainter} instead of directly implementing this interface.
  * </p>
  *
  * @author $Author: jesper $

@@ -26,21 +26,41 @@ package net.infonode.gui.icon.button;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * <p>BorderIcon class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class BorderIcon implements Icon {
   private Icon icon;
   private Color color;
   private Insets insets;
 
+  /**
+   * <p>Constructor for BorderIcon.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param borderSize a int.
+   */
   public BorderIcon(Icon icon, int borderSize) {
     this(icon, null, new Insets(borderSize, borderSize, borderSize, borderSize));
   }
 
+  /**
+   * <p>Constructor for BorderIcon.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param color a {@link java.awt.Color} object.
+   * @param insets a {@link java.awt.Insets} object.
+   */
   public BorderIcon(Icon icon, Color color, Insets insets) {
     this.icon = icon;
     this.color = color;
     this.insets = insets;
   }
 
+  /** {@inheritDoc} */
   public void paintIcon(Component c, Graphics g, int x, int y) {
     if (color != null) {
       Color oldColor = g.getColor();
@@ -58,10 +78,20 @@ public class BorderIcon implements Icon {
     icon.paintIcon(c, g, x + insets.left, y + insets.top);
   }
 
+  /**
+   * <p>getIconWidth.</p>
+   *
+   * @return a int.
+   */
   public int getIconWidth() {
     return insets.left + insets.right + icon.getIconWidth();
   }
 
+  /**
+   * <p>getIconHeight.</p>
+   *
+   * @return a int.
+   */
   public int getIconHeight() {
     return insets.top + insets.bottom + icon.getIconHeight();
   }

@@ -25,32 +25,62 @@ package net.infonode.util;
 
 import java.io.PrintStream;
 
+/**
+ * <p>Printer class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class Printer {
   private PrintStream out;
   private String indent = "";
   private boolean newLine = true;
 
+  /**
+   * <p>Constructor for Printer.</p>
+   */
   public Printer() {
     this(System.out);
   }
 
+  /**
+   * <p>Constructor for Printer.</p>
+   *
+   * @param out a {@link java.io.PrintStream} object.
+   */
   public Printer(PrintStream out) {
     this.out = out;
   }
 
+  /**
+   * <p>beginSection.</p>
+   */
   public void beginSection() {
     indent += "  ";
   }
 
+  /**
+   * <p>beginSection.</p>
+   *
+   * @param title a {@link java.lang.String} object.
+   */
   public void beginSection(String title) {
     println(title);
     indent += "  ";
   }
 
+  /**
+   * <p>endSection.</p>
+   */
   public void endSection() {
     indent = indent.substring(2);
   }
 
+  /**
+   * <p>print.</p>
+   *
+   * @param str a {@link java.lang.String} object.
+   */
   public void print(String str) {
     if (newLine)
       out.print(indent);
@@ -59,6 +89,11 @@ public class Printer {
     newLine = false;
   }
 
+  /**
+   * <p>println.</p>
+   *
+   * @param str a {@link java.lang.String} object.
+   */
   public void println(String str) {
     if (newLine)
       out.print(indent);
@@ -67,6 +102,9 @@ public class Printer {
     newLine = true;
   }
 
+  /**
+   * <p>println.</p>
+   */
   public void println() {
     if (newLine)
       out.print(indent);

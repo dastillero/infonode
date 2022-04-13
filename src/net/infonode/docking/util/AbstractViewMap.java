@@ -46,8 +46,22 @@ abstract public class AbstractViewMap implements ViewFactoryManager, ViewSeriali
   private HashMap viewMap = new HashMap();
   private ArrayList views = new ArrayList(20);
 
+  /**
+   * <p>writeViewId.</p>
+   *
+   * @param id a {@link java.lang.Object} object.
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @throws java.io.IOException if any.
+   */
   abstract protected void writeViewId(Object id, ObjectOutputStream out) throws IOException;
 
+  /**
+   * <p>readViewId.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.IOException if any.
+   */
   abstract protected Object readViewId(ObjectInputStream in) throws IOException;
 
   /**
@@ -70,6 +84,11 @@ abstract public class AbstractViewMap implements ViewFactoryManager, ViewSeriali
     return (View) views.get(index);
   }
 
+  /**
+   * <p>getViewFactories.</p>
+   *
+   * @return an array of {@link net.infonode.docking.util.ViewFactory} objects.
+   */
   public ViewFactory[] getViewFactories() {
     ArrayList f = new ArrayList();
 
@@ -106,6 +125,7 @@ abstract public class AbstractViewMap implements ViewFactoryManager, ViewSeriali
     return views.contains(view);
   }
 
+  /** {@inheritDoc} */
   public void writeView(View view, ObjectOutputStream out) throws IOException {
     for (Iterator it = viewMap.entrySet().iterator(); it.hasNext();) {
       Map.Entry entry = (Map.Entry) it.next();
@@ -119,10 +139,18 @@ abstract public class AbstractViewMap implements ViewFactoryManager, ViewSeriali
     throw new IOException("Serialization of unknown view!");
   }
 
+  /** {@inheritDoc} */
+  @Override
   public View readView(ObjectInputStream in) throws IOException {
     return (View) viewMap.get(readViewId(in));
   }
 
+  /**
+   * <p>addView.</p>
+   *
+   * @param id a {@link java.lang.Object} object.
+   * @param view a {@link net.infonode.docking.View} object.
+   */
   protected void addView(Object id, View view) {
     Object oldView = viewMap.put(id, view);
 
@@ -132,6 +160,11 @@ abstract public class AbstractViewMap implements ViewFactoryManager, ViewSeriali
     views.add(view);
   }
 
+  /**
+   * <p>removeView.</p>
+   *
+   * @param id a {@link java.lang.Object} object.
+   */
   protected void removeView(Object id) {
     Object view = viewMap.remove(id);
 
@@ -139,6 +172,12 @@ abstract public class AbstractViewMap implements ViewFactoryManager, ViewSeriali
       views.remove(view);
   }
 
+  /**
+   * <p>getView.</p>
+   *
+   * @param id a {@link java.lang.Object} object.
+   * @return a {@link net.infonode.docking.View} object.
+   */
   protected View getView(Object id) {
     return (View) viewMap.get(id);
   }

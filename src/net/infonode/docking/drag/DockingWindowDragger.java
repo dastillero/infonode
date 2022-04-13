@@ -29,7 +29,7 @@ import net.infonode.docking.RootWindow;
 import java.awt.event.MouseEvent;
 
 /**
- * Handles the drag and drop of a {@link DockingWindow}. Note the the drag operation MUST be terminated using either
+ * Handles the drag and drop of a {@link net.infonode.docking.DockingWindow}. Note the the drag operation MUST be terminated using either
  * {@link #abortDrag()} or {@link #dropWindow(MouseEvent)}.
  *
  * @author $Author: jesper $
@@ -38,9 +38,9 @@ import java.awt.event.MouseEvent;
  */
 public interface DockingWindowDragger {
   /**
-   * Returns the {@link RootWindow} where the window can be dropped.
+   * Returns the {@link net.infonode.docking.RootWindow} where the window can be dropped.
    *
-   * @return the {@link RootWindow} where the window can be dropped
+   * @return the {@link net.infonode.docking.RootWindow} where the window can be dropped
    */
   RootWindow getDropTarget();
 
@@ -52,7 +52,7 @@ public interface DockingWindowDragger {
   DockingWindow getDragWindow();
 
   /**
-   * Drags the window to a new location. The location is relative to the {@link RootWindow} in where it should be
+   * Drags the window to a new location. The location is relative to the {@link net.infonode.docking.RootWindow} in where it should be
    * dropped, see {@link #getDropTarget()}.
    *
    * @param mouseEvent the mouse event that caused the drag

@@ -35,6 +35,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * <p>ReleaseInfoDialog class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ReleaseInfoDialog {
   private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z");
 
@@ -42,10 +48,22 @@ public class ReleaseInfoDialog {
     DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
   }
 
+  /**
+   * <p>showDialog.</p>
+   *
+   * @param info a {@link net.infonode.util.ReleaseInfo} object.
+   * @param text a {@link java.lang.String} object.
+   */
   public static void showDialog(ReleaseInfo info, String text) {
     showDialog(new ReleaseInfo[]{info}, text == null ? null : new String[]{text});
   }
 
+  /**
+   * <p>showDialog.</p>
+   *
+   * @param info an array of {@link net.infonode.util.ReleaseInfo} objects.
+   * @param text an array of {@link java.lang.String} objects.
+   */
   public static void showDialog(ReleaseInfo[] info, String[] text) {
     final JComponent message = constructMessage(info, text);
     JScrollPane scrollPane = new JScrollPane(message,

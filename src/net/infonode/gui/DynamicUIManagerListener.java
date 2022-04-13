@@ -23,12 +23,30 @@
 // $Id: DynamicUIManagerListener.java,v 1.7 2005/12/04 13:46:04 jesper Exp $
 package net.infonode.gui;
 
+/**
+ * <p>DynamicUIManagerListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface DynamicUIManagerListener {
+  /**
+   * <p>lookAndFeelChanging.</p>
+   */
   public void lookAndFeelChanging();
 
+  /**
+   * <p>lookAndFeelChanged.</p>
+   */
   public void lookAndFeelChanged();
 
+  /**
+   * <p>propertiesChanging.</p>
+   */
   public void propertiesChanging();
 
+  /**
+   * <p>propertiesChanged.</p>
+   */
   public void propertiesChanged();
 }

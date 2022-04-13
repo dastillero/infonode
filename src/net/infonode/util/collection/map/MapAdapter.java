@@ -29,6 +29,12 @@ import net.infonode.util.collection.map.base.MapIterator;
 
 import java.util.HashMap;
 
+/**
+ * <p>MapAdapter class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class MapAdapter implements Map {
   private static class Iterator implements MapIterator {
     private java.util.Iterator iterator;
@@ -62,13 +68,22 @@ public class MapAdapter implements Map {
 
   private HashMap map;
 
+  /**
+   * <p>Constructor for MapAdapter.</p>
+   */
   public MapAdapter() {
   }
 
+  /**
+   * <p>Constructor for MapAdapter.</p>
+   *
+   * @param map a {@link java.util.HashMap} object.
+   */
   public MapAdapter(HashMap map) {
     this.map = map;
   }
 
+  /** {@inheritDoc} */
   public Object put(Object key, Object value) {
     if (map == null)
       map = new HashMap(4);
@@ -76,39 +91,66 @@ public class MapAdapter implements Map {
     return map.put(key, value);
   }
 
+  /** {@inheritDoc} */
   public Object remove(Object key) {
     return map == null ? null : map.remove(key);
   }
 
+  /**
+   * <p>clear.</p>
+   */
   public void clear() {
     if (map != null)
       map.clear();
   }
 
+  /**
+   * <p>iterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.MapIterator} object.
+   */
   public MapIterator iterator() {
     return map == null ? (MapIterator) EmptyIterator.INSTANCE : (MapIterator) new Iterator(map.entrySet().iterator());
   }
 
+  /** {@inheritDoc} */
   public Object get(Object key) {
     return map == null ? null : map.get(key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsKey(Object key) {
     return map != null && map.containsKey(key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsValue(Object value) {
     return map != null && map.containsValue(value);
   }
 
+  /**
+   * <p>isEmpty.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEmpty() {
     return map == null || map.isEmpty();
   }
 
+  /**
+   * <p>constIterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.ConstMapIterator} object.
+   */
   public ConstMapIterator constIterator() {
     return iterator();
   }
 
+  /**
+   * <p>size.</p>
+   *
+   * @return a int.
+   */
   public int size() {
     return map == null ? 0 : map.size();
   }

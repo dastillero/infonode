@@ -29,14 +29,29 @@ import javax.swing.plaf.basic.BasicSplitPaneDivider;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
+ * <p>SlimSplitPaneUI class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
 public class SlimSplitPaneUI extends BasicSplitPaneUI {
+    
+  /**
+   * Creates the component UI.
+   * 
+   * @param c parent component.
+   * @return the UI created.
+   */
   public static ComponentUI createUI(JComponent c) {
     return new SlimSplitPaneUI();
   }
 
+  /**
+   * <p>createDefaultDivider.</p>
+   *
+   * @return a {@link javax.swing.plaf.basic.BasicSplitPaneDivider} object.
+   */
+  @Override
   public BasicSplitPaneDivider createDefaultDivider() {
     return new SlimSplitPaneDivider(this);
   }

@@ -33,10 +33,19 @@ import net.infonode.util.signal.SignalListener;
 
 import java.util.ArrayList;
 
+/**
+ * <p>ConstChangeNotifyVectorMap class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ConstChangeNotifyVectorMap extends AbstractConstChangeNotifyMap {
   private ConstVectorMap vectorMap = new ConstVectorMap();
   private ArrayList mapListeners;
 
+  /**
+   * <p>firstListenerAdded.</p>
+   */
   protected void firstListenerAdded() {
     mapListeners = new ArrayList(vectorMap.getMapCount() + 2);
 
@@ -45,6 +54,9 @@ public class ConstChangeNotifyVectorMap extends AbstractConstChangeNotifyMap {
     }
   }
 
+  /**
+   * <p>lastListenerRemoved.</p>
+   */
   protected void lastListenerRemoved() {
     for (int i = vectorMap.getMapCount() - 1; i >= 0; i--) {
       removeMapListener(i);
@@ -64,14 +76,31 @@ public class ConstChangeNotifyVectorMap extends AbstractConstChangeNotifyMap {
     return null;
   }
 
+  /**
+   * <p>getMapIndex.</p>
+   *
+   * @param map a {@link net.infonode.util.collection.map.base.ConstMap} object.
+   * @return a int.
+   */
   public int getMapIndex(ConstMap map) {
     return vectorMap.getMapIndex(map);
   }
 
+  /**
+   * <p>addMap.</p>
+   *
+   * @param map a {@link net.infonode.util.collection.notifymap.ConstChangeNotifyMap} object.
+   */
   public void addMap(ConstChangeNotifyMap map) {
     addMap(vectorMap.getMapCount(), map);
   }
 
+  /**
+   * <p>addMap.</p>
+   *
+   * @param index a int.
+   * @param map a {@link net.infonode.util.collection.notifymap.ConstChangeNotifyMap} object.
+   */
   public void addMap(int index, ConstChangeNotifyMap map) {
     vectorMap.addMap(index, map);
 
@@ -134,10 +163,20 @@ public class ConstChangeNotifyVectorMap extends AbstractConstChangeNotifyMap {
     mapListeners.remove(index);
   }
 
+  /**
+   * <p>getMapCount.</p>
+   *
+   * @return a int.
+   */
   public int getMapCount() {
     return vectorMap.getMapCount();
   }
 
+  /**
+   * <p>removeMap.</p>
+   *
+   * @param index a int.
+   */
   public void removeMap(int index) {
     if (getChangeSignalInternal().hasListeners())
       removeMapListener(index);
@@ -160,26 +199,45 @@ public class ConstChangeNotifyVectorMap extends AbstractConstChangeNotifyMap {
     }
   }
 
+  /** {@inheritDoc} */
   public Object get(Object key) {
     return vectorMap.get(key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsKey(Object key) {
     return vectorMap.containsKey(key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsValue(Object value) {
     return vectorMap.containsValue(value);
   }
 
+  /**
+   * <p>isEmpty.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEmpty() {
     return vectorMap.isEmpty();
   }
 
+  /**
+   * <p>getMap.</p>
+   *
+   * @param index a int.
+   * @return a {@link net.infonode.util.collection.notifymap.ConstChangeNotifyMap} object.
+   */
   public ConstChangeNotifyMap getMap(int index) {
     return (ConstChangeNotifyMap) vectorMap.getMap(index);
   }
 
+  /**
+   * <p>constIterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.ConstMapIterator} object.
+   */
   public ConstMapIterator constIterator() {
     return vectorMap.constIterator();
   }

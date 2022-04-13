@@ -30,18 +30,46 @@ package net.infonode.util;
  * @version $Revision: 1.2 $
  */
 public class AntUtils {
+  /**
+   * <p>createProductVersion.</p>
+   *
+   * @param major a int.
+   * @param minor a int.
+   * @param patch a int.
+   * @return a {@link net.infonode.util.ProductVersion} object.
+   */
   public static ProductVersion createProductVersion(int major, int minor, int patch) {
     return new ProductVersion(major, minor, patch);
   }
 
+  /**
+   * <p>createProductVersion.</p>
+   *
+   * @param major a {@link java.lang.String} object.
+   * @param minor a {@link java.lang.String} object.
+   * @param patch a {@link java.lang.String} object.
+   * @return a {@link net.infonode.util.ProductVersion} object.
+   */
   public static ProductVersion createProductVersion(String major, String minor, String patch) {
     return createProductVersion(0, 0, 0);
   }
 
+  /**
+   * <p>getBuildTime.</p>
+   *
+   * @param time a long.
+   * @return a long.
+   */
   public static long getBuildTime(long time) {
     return time;
   }
 
+  /**
+   * <p>getBuildTime.</p>
+   *
+   * @param time a {@link java.lang.String} object.
+   * @return a long.
+   */
   public static long getBuildTime(String time) {
     return getBuildTime(System.currentTimeMillis());
   }

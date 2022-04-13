@@ -31,12 +31,14 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ * <p>Signal class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
 public class Signal {
   private static class WeakListener extends WeakReference<SignalListener> implements SignalListener {
-    private SignalHookImpl hook;
+    private final SignalHookImpl hook;
 
     protected WeakListener(SignalListener listener, ReferenceQueue q, SignalHookImpl hook) {
       super(listener, q);
@@ -47,6 +49,7 @@ public class Signal {
       hook.removeWeak(this);
     }
 
+    @Override
     public void signalEmitted(Signal signal, Object object) {
       SignalListener l = get();
 
@@ -56,14 +59,17 @@ public class Signal {
   }
 
   private class SignalHookImpl implements SignalHook {
+    @Override
     public void add(SignalListener listener) {
       addListener(listener);
     }
 
+    @Override
     public void addWeak(SignalListener listener) {
       addListener(new WeakListener(listener, refQueue, this));
     }
 
+    @Override
     public boolean remove(SignalListener listener) {
       return removeListener(listener);
     }
@@ -77,6 +83,7 @@ public class Signal {
 
   static {
     Thread thread = new Thread(new Runnable() {
+      @Override
       public void run() {
         try {
           while (true) {
@@ -93,22 +100,41 @@ public class Signal {
 
   private boolean reverseNotifyOrder;
   private CopyOnWriteArrayList<SignalListener> listeners;
-  private SignalHookImpl signalHook = new SignalHookImpl();
+  private final SignalHookImpl signalHook = new SignalHookImpl();
 
+  /**
+   * <p>Constructor for Signal.</p>
+   */
   public Signal() {
     this(true);
   }
 
+  /**
+   * <p>Constructor for Signal.</p>
+   *
+   * @param reverseNotifyOrder a boolean.
+   */
   public Signal(boolean reverseNotifyOrder) {
     this.reverseNotifyOrder = reverseNotifyOrder;
   }
 
+  /**
+   * <p>firstListenerAdded.</p>
+   */
   protected void firstListenerAdded() {
   }
 
+  /**
+   * <p>lastListenerRemoved.</p>
+   */
   protected void lastListenerRemoved() {
   }
 
+  /**
+   * <p>addListener.</p>
+   *
+   * @param listener a {@link net.infonode.util.signal.SignalListener} object.
+   */
   public synchronized void addListener(SignalListener listener) {
     if (listeners == null)
       listeners = new CopyOnWriteArrayList<SignalListener>();
@@ -119,6 +145,12 @@ public class Signal {
       firstListenerAdded();
   }
 
+  /**
+   * <p>removeListener.</p>
+   *
+   * @param listener a {@link net.infonode.util.signal.SignalListener} object.
+   * @return a boolean.
+   */
   public synchronized boolean removeListener(SignalListener listener) {
     if (listeners != null) {
       for (int i = 0; i < listeners.size(); i++) {
@@ -134,6 +166,11 @@ public class Signal {
     return false;
   }
 
+  /**
+   * <p>removeWeakListener.</p>
+   *
+   * @param listener a {@link net.infonode.util.signal.Signal.WeakListener} object.
+   */
   protected synchronized void removeWeakListener(WeakListener listener) {
     if (listeners != null) {
       for (int i = 0; i < listeners.size(); i++) {
@@ -147,6 +184,11 @@ public class Signal {
     }
   }
 
+  /**
+   * <p>removeListener.</p>
+   *
+   * @param index a int.
+   */
   protected synchronized void removeListener(int index) {
     listeners.remove(index);
 
@@ -156,18 +198,38 @@ public class Signal {
     }
   }
 
+  /**
+   * <p>hasListeners.</p>
+   *
+   * @return a boolean.
+   */
   public synchronized boolean hasListeners() {
     return listeners != null && listeners.size() > 0;
   }
 
+  /**
+   * <p>iterator.</p>
+   *
+   * @return a {@link java.util.Iterator} object.
+   */
   public synchronized Iterator iterator() {
     return listeners == null ? Collections.emptyIterator() : listeners.iterator();
   }
 
+  /**
+   * <p>getHook.</p>
+   *
+   * @return a {@link net.infonode.util.signal.SignalHook} object.
+   */
   public SignalHook getHook() {
     return signalHook;
   }
 
+  /**
+   * <p>emit.</p>
+   *
+   * @param object a {@link java.lang.Object} object.
+   */
   public synchronized void emit(Object object) {
     Object[] e;
     int size;
@@ -190,6 +252,11 @@ public class Signal {
     }
   }
 
+  /**
+   * <p>removeListeners.</p>
+   *
+   * @param toRemove a {@link java.util.Collection} object.
+   */
   public void removeListeners(Collection toRemove) {
     listeners.removeAll(toRemove);
   }

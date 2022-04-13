@@ -33,7 +33,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
+ * <p>HoverableShapedPanel class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class HoverableShapedPanel extends ShapedPanel implements Hoverable {
   private HoverListener hoverListener;
@@ -42,14 +45,32 @@ public class HoverableShapedPanel extends ShapedPanel implements Hoverable {
 
   private boolean hovered = false;
 
+  /**
+   * <p>Constructor for HoverableShapedPanel.</p>
+   *
+   * @param listener a {@link net.infonode.gui.hover.HoverListener} object.
+   */
   public HoverableShapedPanel(HoverListener listener) {
     this(new BorderLayout(), listener, null);
   }
 
+  /**
+   * <p>Constructor for HoverableShapedPanel.</p>
+   *
+   * @param l a {@link java.awt.LayoutManager} object.
+   * @param listener a {@link net.infonode.gui.hover.HoverListener} object.
+   */
   public HoverableShapedPanel(LayoutManager l, HoverListener listener) {
     this(l, listener, null);
   }
 
+  /**
+   * <p>Constructor for HoverableShapedPanel.</p>
+   *
+   * @param l a {@link java.awt.LayoutManager} object.
+   * @param listener a {@link net.infonode.gui.hover.HoverListener} object.
+   * @param hoveredComponent a {@link java.awt.Component} object.
+   */
   public HoverableShapedPanel(LayoutManager l, HoverListener listener,
                               final Component hoveredComponent) {
     super(l);
@@ -58,10 +79,20 @@ public class HoverableShapedPanel extends ShapedPanel implements Hoverable {
     setHoverListener(listener);
   }
 
+  /**
+   * <p>Getter for the field <code>hoverListener</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.hover.HoverListener} object.
+   */
   public HoverListener getHoverListener() {
     return hoverListener;
   }
 
+  /**
+   * <p>Setter for the field <code>hoverListener</code>.</p>
+   *
+   * @param newHoverListener a {@link net.infonode.gui.hover.HoverListener} object.
+   */
   public void setHoverListener(HoverListener newHoverListener) {
     if (hoverListener != newHoverListener) {
       HoverListener oldHoverListener = hoverListener;
@@ -82,6 +113,9 @@ public class HoverableShapedPanel extends ShapedPanel implements Hoverable {
     }
   }
 
+  /**
+   * <p>hoverEnter.</p>
+   */
   public void hoverEnter() {
     if (hoverListener != null) {
       hovered = true;
@@ -89,6 +123,9 @@ public class HoverableShapedPanel extends ShapedPanel implements Hoverable {
     }
   }
 
+  /**
+   * <p>hoverExit.</p>
+   */
   public void hoverExit() {
     if (hoverListener != null) {
       hovered = false;
@@ -96,14 +133,25 @@ public class HoverableShapedPanel extends ShapedPanel implements Hoverable {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>hoveredComponent</code>.</p>
+   *
+   * @return a {@link java.awt.Component} object.
+   */
   public Component getHoveredComponent() {
     return hoveredComponent;
   }
 
+  /**
+   * <p>isHovered.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isHovered() {
     return hovered;
   }
 
+  /** {@inheritDoc} */
   public boolean acceptHover(ArrayList enterableHoverables) {
     return true;
   }

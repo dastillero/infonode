@@ -27,6 +27,8 @@ import javax.swing.border.Border;
 import javax.swing.plaf.BorderUIResource;
 
 /**
+ * <p>BorderValue class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
@@ -34,29 +36,62 @@ public class BorderValue {
   private BorderUIResource defaultBorder;
   private BorderUIResource border;
 
+  /**
+   * <p>Constructor for BorderValue.</p>
+   */
   public BorderValue() {
   }
 
+  /**
+   * <p>Constructor for BorderValue.</p>
+   *
+   * @param defaultBorder a {@link javax.swing.border.Border} object.
+   */
   public BorderValue(Border defaultBorder) {
     this.defaultBorder = new BorderUIResource(defaultBorder);
   }
 
+  /**
+   * <p>Getter for the field <code>defaultBorder</code>.</p>
+   *
+   * @return a {@link javax.swing.plaf.BorderUIResource} object.
+   */
   public BorderUIResource getDefaultBorder() {
     return defaultBorder;
   }
 
+  /**
+   * <p>Setter for the field <code>defaultBorder</code>.</p>
+   *
+   * @param defaultBorder a {@link javax.swing.border.Border} object.
+   */
   public void setDefaultBorder(Border defaultBorder) {
     setDefaultBorder(new BorderUIResource(defaultBorder));
   }
 
+  /**
+   * <p>Setter for the field <code>defaultBorder</code>.</p>
+   *
+   * @param defaultBorder a {@link javax.swing.plaf.BorderUIResource} object.
+   */
   public void setDefaultBorder(BorderUIResource defaultBorder) {
     this.defaultBorder = defaultBorder;
   }
 
+  /**
+   * <p>Getter for the field <code>border</code>.</p>
+   *
+   * @return a {@link javax.swing.plaf.BorderUIResource} object.
+   */
   public BorderUIResource getBorder() {
     return border == null ? defaultBorder : border;
   }
 
+  /**
+   * <p>Setter for the field <code>border</code>.</p>
+   *
+   * @param border a {@link javax.swing.plaf.BorderUIResource} object.
+   */
   public void setBorder(BorderUIResource border) {
     this.border = border;
   }

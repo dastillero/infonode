@@ -26,9 +26,17 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>DockButtonInfo class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class DockButtonInfo extends AbstractButtonInfo {
+  /**
+   * <p>Constructor for DockButtonInfo.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public DockButtonInfo(PropertyMapProperty property) {
     super(property);
   }

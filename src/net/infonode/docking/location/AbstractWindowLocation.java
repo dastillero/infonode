@@ -34,6 +34,8 @@ import java.io.ObjectOutputStream;
 import java.lang.ref.WeakReference;
 
 /**
+ * <p>Abstract AbstractWindowLocation class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.15 $
  */
@@ -41,16 +43,33 @@ abstract public class AbstractWindowLocation implements WindowLocation {
   private WindowLocation parentLocation;
   private WeakReference window;
 
+  /**
+   * <p>set.</p>
+   *
+   * @param parent a {@link net.infonode.docking.DockingWindow} object.
+   * @param child a {@link net.infonode.docking.DockingWindow} object.
+   * @return a boolean.
+   */
   abstract protected boolean set(DockingWindow parent, DockingWindow child);
 
+  /**
+   * <p>Constructor for AbstractWindowLocation.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param parentLocation a {@link net.infonode.docking.location.WindowLocation} object.
+   */
   protected AbstractWindowLocation(DockingWindow window, WindowLocation parentLocation) {
     this.window = new WeakReference(window);
     this.parentLocation = parentLocation;
   }
 
+  /**
+   * <p>Constructor for AbstractWindowLocation.</p>
+   */
   protected AbstractWindowLocation() {
   }
 
+  /** {@inheritDoc} */
   public boolean set(DockingWindow window) {
     DockingWindow w = getWindow();
 
@@ -70,6 +89,7 @@ abstract public class AbstractWindowLocation implements WindowLocation {
     return w != null && w.getRootWindow() != null && !w.isMinimized() ? w : null;
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeBoolean(parentLocation != null);
 
@@ -84,6 +104,13 @@ abstract public class AbstractWindowLocation implements WindowLocation {
     }
   }
 
+  /**
+   * <p>read.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @throws java.io.IOException if any.
+   */
   protected void read(ObjectInputStream in, RootWindow rootWindow) throws IOException {
     parentLocation = in.readBoolean() ? LocationDecoder.decode(in, rootWindow) : null;
     window = in.readBoolean() ?

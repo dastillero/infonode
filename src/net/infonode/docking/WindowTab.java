@@ -66,6 +66,7 @@ class WindowTab extends TitledTab {
   private final DirectionPanel[] buttonBoxes = new DirectionPanel[WindowTabState.values().length];
   private final DirectionPanel customComponents = new DirectionPanel();
   private final DirectionPanel highlightedFocusedPanel = new DirectionPanel() {
+    @Override
     public Dimension getMinimumSize() {
       return new Dimension(0, 0);
     }
@@ -75,12 +76,14 @@ class WindowTab extends TitledTab {
   private boolean isFocused;
 
   private final PropertyMapListener windowPropertiesListener = new PropertyMapListener() {
+    @Override
     public void propertyValuesChanged(PropertyMap propertyObject, Map changes) {
       updateTabButtons(null);
     }
   };
 
   private final PropertyMapTreeListener windowTabPropertiesListener = new PropertyMapTreeListener() {
+    @Override
     public void propertyValuesChanged(Map changes) {
       updateTabButtons(changes);
     }
@@ -92,6 +95,7 @@ class WindowTab extends TitledTab {
 
     for (int i = 0; i < WindowTabState.values().length; i++) {
       buttonBoxes[i] = new DirectionPanel() {
+        @Override
         public Dimension getMinimumSize() {
           return new Dimension(0, 0);
         }
@@ -105,15 +109,18 @@ class WindowTab extends TitledTab {
     setNormalStateTitleComponent(buttonBoxes[WindowTabState.NORMAL.ordinal()]);
 
     addMouseListener(new MouseAdapter() {
+      @Override
       public void mousePressed(MouseEvent e) {
         getWindow().fireTabWindowMouseButtonEvent(e);
         checkPopupMenu(e);
       }
 
+      @Override
       public void mouseClicked(MouseEvent e) {
         getWindow().fireTabWindowMouseButtonEvent(e);
       }
 
+      @Override
       public void mouseReleased(MouseEvent e) {
         getWindow().fireTabWindowMouseButtonEvent(e);
         checkPopupMenu(e);
@@ -137,6 +144,10 @@ class WindowTab extends TitledTab {
     windowTabProperties.getTitledTabProperties().getHighlightedProperties().addSuperObject(EMPTY_PROPERTIES);
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
+  @Override
   public void updateUI() {
     super.updateUI();
 
@@ -205,6 +216,12 @@ class WindowTab extends TitledTab {
     setIcon(getWindow().getIcon());
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
+  @Override
   public String toString() {
     return window != null ? window.toString() : null;
   }

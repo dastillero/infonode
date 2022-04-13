@@ -42,6 +42,7 @@ class RectangleBorderComponent extends JComponent {
     this.lineWidth = lineWidth;
   }
 
+  /** {@inheritDoc} */
   public void paint(Graphics g) {
     g.setColor(Color.BLACK);
     g.setXORMode(Color.WHITE);

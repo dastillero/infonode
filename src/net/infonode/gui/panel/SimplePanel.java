@@ -26,42 +26,90 @@ package net.infonode.gui.panel;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * <p>SimplePanel class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class SimplePanel extends BaseContainer {
   private Component comp;
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   */
   public SimplePanel() {
     this(new BorderLayout());
   }
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   *
+   * @param border a {@link javax.swing.border.Border} object.
+   */
   public SimplePanel(Border border) {
     this();
     setBorder(border);
   }
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   *
+   * @param border a {@link javax.swing.border.Border} object.
+   * @param comp a {@link java.awt.Component} object.
+   */
   public SimplePanel(Border border, Component comp) {
     this(comp);
     setBorder(border);
   }
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   *
+   * @param layoutManager a {@link java.awt.LayoutManager} object.
+   */
   public SimplePanel(LayoutManager layoutManager) {
     super(false, layoutManager);
   }
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public SimplePanel(Component c) {
     this();
     setComponent(c);
   }
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param northComponent a {@link java.awt.Component} object.
+   */
   public SimplePanel(Component c, Component northComponent) {
     this(c);
     add(northComponent, BorderLayout.NORTH);
   }
 
+  /**
+   * <p>Constructor for SimplePanel.</p>
+   *
+   * @param border a {@link javax.swing.border.Border} object.
+   * @param c a {@link java.awt.Component} object.
+   * @param northComponent a {@link java.awt.Component} object.
+   */
   public SimplePanel(Border border, Component c, Component northComponent) {
     this(border, c);
     add(northComponent, BorderLayout.NORTH);
   }
 
+  /**
+   * <p>setComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public void setComponent(Component c) {
     if (comp != null)
       remove(comp);
@@ -75,6 +123,11 @@ public class SimplePanel extends BaseContainer {
     comp = c;
   }
 
+  /**
+   * <p>setSouthComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public void setSouthComponent(Component c) {
     add(c, BorderLayout.SOUTH);
     revalidate();

@@ -36,6 +36,7 @@ import java.awt.*;
  * @author $Author: jesper $
  * @version $Revision: 1.19 $
  * @see TabbedPanel
+ * @see TabbedPanel
  * @see Tab
  */
 public class TabContentPanel extends JPanel {

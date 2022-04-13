@@ -39,6 +39,12 @@ import javax.swing.event.MouseInputListener;
 import net.infonode.gui.ComponentUtil;
 import net.infonode.gui.EventUtil;
 
+/**
+ * <p>DraggableComponent class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class DraggableComponent {
   private final JComponent component;
   private JComponent[] eventComponents;
@@ -93,14 +99,31 @@ public class DraggableComponent {
     }
   };
 
+  /**
+   * <p>Constructor for DraggableComponent.</p>
+   *
+   * @param component a {@link javax.swing.JComponent} object.
+   */
   public DraggableComponent(JComponent component) {
     this(component, component);
   }
 
+  /**
+   * <p>Constructor for DraggableComponent.</p>
+   *
+   * @param component a {@link javax.swing.JComponent} object.
+   * @param eventComponent a {@link javax.swing.JComponent} object.
+   */
   public DraggableComponent(JComponent component, JComponent eventComponent) {
     this(component, new JComponent[]{eventComponent});
   }
 
+  /**
+   * <p>Constructor for DraggableComponent.</p>
+   *
+   * @param component a {@link javax.swing.JComponent} object.
+   * @param eventComponents an array of {@link javax.swing.JComponent} objects.
+   */
   public DraggableComponent(JComponent component, JComponent[] eventComponents) {
     this.component = component;
     component.addComponentListener(new ComponentAdapter() {
@@ -116,6 +139,11 @@ public class DraggableComponent {
     setEventComponents(eventComponents);
   }
 
+  /**
+   * <p>addListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.draggable.DraggableComponentListener} object.
+   */
   public void addListener(DraggableComponentListener l) {
     if (listeners == null)
       listeners = new ArrayList(2);
@@ -123,6 +151,11 @@ public class DraggableComponent {
     listeners.add(l);
   }
 
+  /**
+   * <p>removeListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.draggable.DraggableComponentListener} object.
+   */
   public void removeListener(DraggableComponentListener l) {
     if (listeners != null) {
       listeners.remove(l);
@@ -132,14 +165,29 @@ public class DraggableComponent {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>component</code>.</p>
+   *
+   * @return a {@link javax.swing.JComponent} object.
+   */
   public JComponent getComponent() {
     return component;
   }
 
+  /**
+   * <p>Getter for the field <code>eventComponents</code>.</p>
+   *
+   * @return an array of {@link javax.swing.JComponent} objects.
+   */
   public JComponent[] getEventComponents() {
     return eventComponents;
   }
 
+  /**
+   * <p>Setter for the field <code>eventComponents</code>.</p>
+   *
+   * @param eventComponents an array of {@link javax.swing.JComponent} objects.
+   */
   public void setEventComponents(JComponent[] eventComponents) {
     if (this.eventComponents != null) {
       for (int i = 0; i < this.eventComponents.length; i++) {
@@ -158,18 +206,38 @@ public class DraggableComponent {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>abortDragKeyCode</code>.</p>
+   *
+   * @return a int.
+   */
   public int getAbortDragKeyCode() {
     return abortDragKeyCode;
   }
 
+  /**
+   * <p>Setter for the field <code>abortDragKeyCode</code>.</p>
+   *
+   * @param abortDragKeyCode a int.
+   */
   public void setAbortDragKeyCode(int abortDragKeyCode) {
     this.abortDragKeyCode = abortDragKeyCode;
   }
 
+  /**
+   * <p>isEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEnabled() {
     return enabled;
   }
 
+  /**
+   * <p>Setter for the field <code>enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setEnabled(boolean enabled) {
     if (this.enabled != enabled) {
       this.enabled = enabled;
@@ -177,46 +245,101 @@ public class DraggableComponent {
     }
   }
 
+  /**
+   * <p>isReorderEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isReorderEnabled() {
     return reorderEnabled;
   }
 
+  /**
+   * <p>Setter for the field <code>reorderEnabled</code>.</p>
+   *
+   * @param reorderEnabled a boolean.
+   */
   public void setReorderEnabled(boolean reorderEnabled) {
     this.reorderEnabled = reorderEnabled;
   }
 
+  /**
+   * <p>isReorderRestoreOnDrag.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isReorderRestoreOnDrag() {
     return reorderRestoreOnDrag;
   }
 
+  /**
+   * <p>Setter for the field <code>reorderRestoreOnDrag</code>.</p>
+   *
+   * @param reorderRestoreOnDrag a boolean.
+   */
   public void setReorderRestoreOnDrag(boolean reorderRestoreOnDrag) {
     this.reorderRestoreOnDrag = reorderRestoreOnDrag;
   }
 
+  /**
+   * <p>isDetectOuterAreaAsLine.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isDetectOuterAreaAsLine() {
     return detectOuterAreaAsLine;
   }
 
+  /**
+   * <p>Setter for the field <code>detectOuterAreaAsLine</code>.</p>
+   *
+   * @param detectOuterAreaAsLine a boolean.
+   */
   public void setDetectOuterAreaAsLine(boolean detectOuterAreaAsLine) {
     this.detectOuterAreaAsLine = detectOuterAreaAsLine;
   }
 
+  /**
+   * <p>isEnableInsideDrag.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEnableInsideDrag() {
     return enableInsideDrag;
   }
 
+  /**
+   * <p>Setter for the field <code>enableInsideDrag</code>.</p>
+   *
+   * @param enableInsideDrag a boolean.
+   */
   public void setEnableInsideDrag(boolean enableInsideDrag) {
     this.enableInsideDrag = enableInsideDrag;
   }
 
+  /**
+   * <p>isSelectOnMousePress.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isSelectOnMousePress() {
     return selectOnMousePress;
   }
 
+  /**
+   * <p>Setter for the field <code>selectOnMousePress</code>.</p>
+   *
+   * @param selectOnMousePress a boolean.
+   */
   public void setSelectOnMousePress(boolean selectOnMousePress) {
     this.selectOnMousePress = selectOnMousePress;
   }
 
+  /**
+   * <p>drag.</p>
+   *
+   * @param p a {@link java.awt.Point} object.
+   */
   public void drag(Point p) {
     if (enabled) {
       dragIndex = getComponentIndex(component);
@@ -225,28 +348,54 @@ public class DraggableComponent {
     }
   }
 
+  /**
+   * <p>abortDrag.</p>
+   */
   public void abortDrag() {
     if (dragStarted)
       dragCompleted(null);
   }
 
+  /**
+   * <p>Setter for the field <code>layoutOrderList</code>.</p>
+   *
+   * @param layoutOrderList a {@link java.util.ArrayList} object.
+   */
   public void setLayoutOrderList(ArrayList layoutOrderList) {
     this.layoutOrderList = layoutOrderList;
   }
 
+  /**
+   * <p>select.</p>
+   */
   public void select() {
     if (enabled)
       fireSelectedEvent();
   }
 
+  /**
+   * <p>Setter for the field <code>outerParentArea</code>.</p>
+   *
+   * @param outerParentArea a {@link javax.swing.JComponent} object.
+   */
   public void setOuterParentArea(JComponent outerParentArea) {
     this.outerParentArea = outerParentArea;
   }
 
+  /**
+   * <p>isIgnoreAddNotify.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isIgnoreAddNotify() {
     return ignoreAddNotify;
   }
 
+  /**
+   * <p>Setter for the field <code>ignoreAddNotify</code>.</p>
+   *
+   * @param ignoreAddNotify a boolean.
+   */
   public void setIgnoreAddNotify(boolean ignoreAddNotify) {
     this.ignoreAddNotify = ignoreAddNotify;
   }

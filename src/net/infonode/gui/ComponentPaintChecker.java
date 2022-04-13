@@ -29,11 +29,19 @@ import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
 
 /**
+ * <p>ComponentPaintChecker class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class ComponentPaintChecker {
   private boolean okToPaint = false;
 
+  /**
+   * <p>Constructor for ComponentPaintChecker.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public ComponentPaintChecker(final Component c) {
     c.addHierarchyListener(new HierarchyListener() {
       public void hierarchyChanged(HierarchyEvent e) {
@@ -51,6 +59,11 @@ public class ComponentPaintChecker {
     });
   }
 
+  /**
+   * <p>isPaintingOk.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isPaintingOk() {
     return okToPaint;
   }

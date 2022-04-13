@@ -56,6 +56,14 @@ import java.awt.*;
 public class ChildDropInfo extends DropInfo {
   private DockingWindow childWindow;
 
+  /**
+   * <p>Constructor for ChildDropInfo.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param dropWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param point a {@link java.awt.Point} object.
+   * @param childWindow a {@link net.infonode.docking.DockingWindow} object.
+   */
   public ChildDropInfo(DockingWindow window, DockingWindow dropWindow, Point point, DockingWindow childWindow) {
     super(window, dropWindow, point);
     this.childWindow = childWindow;

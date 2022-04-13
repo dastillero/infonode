@@ -39,14 +39,19 @@ import net.infonode.gui.ComponentUtil;
 import net.infonode.util.ArrayUtil;
 
 /**
+ * <p>HoverManager class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class HoverManager {
-  private static HoverManager INSTANCE = new HoverManager();
+  private static final HoverManager INSTANCE = new HoverManager();
 
   private final HierarchyListener hierarchyListener = new HierarchyListener() {
+    @Override
     public void hierarchyChanged(final HierarchyEvent e) {
       SwingUtilities.invokeLater(new Runnable() {
+        @Override
         public void run() {
           if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0) {
             if (((Component) e.getSource()).isShowing()) {
@@ -69,7 +74,7 @@ public class HoverManager {
 
   private boolean enabled = true;
 
-  private boolean hasPermission = true;
+  //private boolean hasPermission = true;
 
   private boolean active = true;
 
@@ -78,6 +83,7 @@ public class HoverManager {
   private boolean isDrag = false;
 
   private final AWTEventListener eventListener = new AWTEventListener() {
+    @Override
     public void eventDispatched(final AWTEvent e) {
       if (active) {
         HoverManager.this.eventDispatched(e);
@@ -144,15 +150,15 @@ public class HoverManager {
     ArrayList enterables = new ArrayList();
 
     if (event.getSource() instanceof Component) {
-      Component c = (Component) event.getSource();
-      while (c != null) {
-        if (hoverableComponents.contains(c)) {
-          exitables.remove(c);
-          enterables.add(c);
+        Component c = (Component) event.getSource();
+        while (c != null) {
+          if (hoverableComponents.contains(c)) {
+            exitables.remove(c);
+            enterables.add(c);
+          }
+
+          c = c.getParent();
         }
-  
-        c = c.getParent();
-      }
     }
 
     if (enterables.size() > 0) {
@@ -178,6 +184,7 @@ public class HoverManager {
     gotEnterAfterExit = false;
 
     SwingUtilities.invokeLater(new Runnable() {
+      @Override
       public void run() {
         if (!gotEnterAfterExit)
           exitAll();
@@ -185,18 +192,23 @@ public class HoverManager {
     });
   }
 
+  /**
+   * <p>getInstance.</p>
+   *
+   * @return a {@link net.infonode.gui.hover.hoverable.HoverManager} object.
+   */
   public static HoverManager getInstance() {
     return INSTANCE;
   }
 
   private HoverManager() {
-    try {
+    /*try {
       SecurityManager sm = System.getSecurityManager();
       if (sm != null)
         sm.checkPermission(new AWTPermission("listenToAllAWTEvents"));
     } catch (SecurityException e) {
       hasPermission = false;
-    }
+    }*/
   }
 
   private void exitAll() {
@@ -207,16 +219,29 @@ public class HoverManager {
     }
   }
 
+  /**
+   * <p>init.</p>
+   */
   public void init() {
     gotEnterAfterExit = false;
     isDrag = false;
     enabled = true;
   }
 
+  /**
+   * <p>setEventListeningActive.</p>
+   *
+   * @param active a boolean.
+   */
   public void setEventListeningActive(boolean active) {
     this.active = active;
   }
 
+  /**
+   * <p>dispatchEvent.</p>
+   *
+   * @param event a {@link java.awt.event.MouseEvent} object.
+   */
   public void dispatchEvent(MouseEvent event) {
     eventDispatched(event);
   }
@@ -228,12 +253,12 @@ public class HoverManager {
       c.addMouseMotionListener(mouseAdapter);
 
       if (active && hoverableComponents.size() == 1) {
-        try {
+        //try {
           Toolkit.getDefaultToolkit().addAWTEventListener(eventListener, AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
-          hasPermission = true;
-        } catch (SecurityException e) {
-          hasPermission = false;
-        }
+        //  hasPermission = true;
+        //} catch (SecurityException e) {
+        //  hasPermission = false;
+        //}
       }
     }
   }
@@ -244,12 +269,17 @@ public class HoverManager {
       ((Component) hoverable).removeMouseMotionListener(mouseAdapter);
       dispatchExit(hoverable);
 
-      if (hasPermission && hoverableComponents.size() == 0) {
+      if (/*hasPermission &&*/ hoverableComponents.size() == 0) {
         Toolkit.getDefaultToolkit().removeAWTEventListener(eventListener);
       }
     }
   }
 
+  /**
+   * <p>addHoverable.</p>
+   *
+   * @param hoverable a {@link net.infonode.gui.hover.hoverable.Hoverable} object.
+   */
   public void addHoverable(Hoverable hoverable) {
     if (hoverable instanceof Component) {
       Component c = (Component) hoverable;
@@ -264,18 +294,34 @@ public class HoverManager {
     }
   }
 
+  /**
+   * <p>removeHoverable.</p>
+   *
+   * @param hoverable a {@link net.infonode.gui.hover.hoverable.Hoverable} object.
+   */
   public void removeHoverable(Hoverable hoverable) {
     Component c = (Component) hoverable;
     c.removeHierarchyListener(hierarchyListener);
     removeHoverListeners(hoverable);
   }
 
+  /**
+   * <p>isHovered.</p>
+   *
+   * @param c a {@link net.infonode.gui.hover.hoverable.Hoverable} object.
+   * @return a boolean.
+   */
   public boolean isHovered(Hoverable c) {
     return enteredComponents.contains(c);
   }
 
+  /**
+   * <p>isEventListeningActive.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEventListeningActive() {
-    return active && hasPermission;
+    return active /*&& hasPermission*/;
   }
 
   private void dispatchEnter(Hoverable hoverable) {

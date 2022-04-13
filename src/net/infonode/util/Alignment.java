@@ -23,9 +23,6 @@
 // $Id: Alignment.java,v 1.5 2004/09/28 15:07:29 jesper Exp $
 package net.infonode.util;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
 /**
  * An enum class for alignments, left, center, right, top, bottom.
  *
@@ -33,20 +30,29 @@ import java.io.ObjectInputStream;
  * @version $Revision: 1.5 $
  */
 public enum Alignment {
+  /**
+   * Left alignment.
+   */
+  LEFT,
 
-  /** Left alignment. */
-  LEFT, 
-
-  /** Center alignment. */
+  /**
+   * Center alignment.
+   */
   CENTER,
 
-  /** Right alignment. */
+  /**
+   * Right alignment.
+   */
   RIGHT,
 
-  /** Top alignment. */
+  /**
+   * Top alignment.
+   */
   TOP,
 
-  /** Bottom alignment. */
+  /**
+   * Bottom alignment.
+   */
   BOTTOM;
 
   /**

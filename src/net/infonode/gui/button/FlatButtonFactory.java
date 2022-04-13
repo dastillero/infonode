@@ -35,6 +35,7 @@ import java.io.Serializable;
 public class FlatButtonFactory implements ButtonFactory, Serializable {
   private static final long serialVersionUID = 1;
 
+  /** {@inheritDoc} */
   public AbstractButton createButton(Object object) {
     return net.infonode.gui.ButtonFactory.createFlatHighlightButton(null, null, 0, null);
   }

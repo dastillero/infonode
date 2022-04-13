@@ -26,7 +26,7 @@ package net.infonode.gui.colorprovider;
 import java.awt.*;
 
 /**
- * Utility methods for {@link ColorProvider}'s.
+ * Utility methods for {@link net.infonode.gui.colorprovider.ColorProvider}'s.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
@@ -36,7 +36,7 @@ public class ColorProviderUtil {
   }
 
   /**
-   * Returns a {@link ColorProvider} for the color. If the color is null the default provider is returned.
+   * Returns a {@link net.infonode.gui.colorprovider.ColorProvider} for the color. If the color is null the default provider is returned.
    *
    * @param color           the color for which to return a provider
    * @param defaultProvider the default provider

@@ -32,14 +32,26 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
 import java.awt.*;
 
 /**
+ * <p>SlimSplitPaneDivider class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
 public class SlimSplitPaneDivider extends BasicSplitPaneDivider {
+  /**
+   * <p>Constructor for SlimSplitPaneDivider.</p>
+   *
+   * @param ui a {@link javax.swing.plaf.basic.BasicSplitPaneUI} object.
+   */
   public SlimSplitPaneDivider(BasicSplitPaneUI ui) {
     super(ui);
   }
 
+  /**
+   * <p>createLeftOneTouchButton.</p>
+   *
+   * @return a {@link javax.swing.JButton} object.
+   */
   protected JButton createLeftOneTouchButton() {
     ArrowIcon icon = new ArrowIcon(8, Direction.LEFT);
     icon.setShadowEnabled(false);
@@ -51,6 +63,11 @@ public class SlimSplitPaneDivider extends BasicSplitPaneDivider {
     return button;
   }
 
+  /**
+   * <p>createRightOneTouchButton.</p>
+   *
+   * @return a {@link javax.swing.JButton} object.
+   */
   protected JButton createRightOneTouchButton() {
     ArrowIcon icon = new ArrowIcon(8, Direction.RIGHT);
     icon.setShadowEnabled(false);

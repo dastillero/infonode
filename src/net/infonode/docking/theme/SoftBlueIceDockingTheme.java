@@ -130,10 +130,20 @@ public class SoftBlueIceDockingTheme extends DockingWindowsTheme {
         getTabbedPanelProperties().getContentPanelProperties().getShapedPanelProperties().setOpaque(false);
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Soft Blue Ice Theme" + (slim ? " - Slim" : "");
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindowProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.RootWindowProperties} object.
+   */
   public RootWindowProperties getRootWindowProperties() {
     return rootWindowProperties;
   }

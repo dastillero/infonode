@@ -79,6 +79,8 @@ public class GradientComponentPainter extends AbstractComponentPainter {
     colorProviders[3] = bottomRightColor;
   }
 
+  /** {@inheritDoc} */
+  @Override
   public void paint(Component component,
                     Graphics g,
                     int x,
@@ -238,11 +240,15 @@ public class GradientComponentPainter extends AbstractComponentPainter {
     }
   }
 
+  /** {@inheritDoc} */
+  @Override
   public boolean isOpaque(Component component) {
     updateColors(component);
     return !hasAlpha;
   }
 
+  /** {@inheritDoc} */
+  @Override
   public Color getColor(Component component) {
     updateColors(component);
     return ColorUtil.blend(ColorUtil.blend(colors[0], colors[1], 0.5),

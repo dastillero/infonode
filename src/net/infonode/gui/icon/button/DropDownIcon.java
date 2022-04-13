@@ -28,17 +28,34 @@ import net.infonode.util.Direction;
 import java.awt.*;
 
 /**
+ * <p>DropDownIcon class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class DropDownIcon extends ArrowIcon {
+  /**
+   * <p>Constructor for DropDownIcon.</p>
+   *
+   * @param size a int.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public DropDownIcon(int size, Direction direction) {
     this(null, size, direction);
   }
 
+  /**
+   * <p>Constructor for DropDownIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param size a int.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public DropDownIcon(Color color, int size, Direction direction) {
     super(color, size, direction);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2) {
     if (getDirection() == Direction.DOWN) {
       int offset = (getIconWidth() / 4);

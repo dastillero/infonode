@@ -82,10 +82,16 @@ public class GradientTabAreaBorder implements Border, Serializable {
                                            bottomColorProvider);
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return true;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component component, Graphics g, int x, int y, int width, int height) {
     TabbedPanel tp = TabbedUtils.getParentTabbedPanel(component);
 
@@ -103,6 +109,7 @@ public class GradientTabAreaBorder implements Border, Serializable {
                   false);
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return new Insets(0, 0, 0, 0);
   }

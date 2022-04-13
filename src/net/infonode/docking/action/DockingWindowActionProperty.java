@@ -28,7 +28,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.properties.util.ValueHandlerProperty;
 
 /**
- * A property that has a {@link DockingWindowAction} object as value.
+ * A property that has a {@link net.infonode.docking.action.DockingWindowAction} object as value.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -49,10 +49,10 @@ public class DockingWindowActionProperty extends ValueHandlerProperty {
   }
 
   /**
-   * Gets the {@link DockingWindowAction} value of this property in a value container.
+   * Gets the {@link net.infonode.docking.action.DockingWindowAction} value of this property in a value container.
    *
    * @param valueContainer the value container
-   * @return the {@link DockingWindowAction} value
+   * @return the {@link net.infonode.docking.action.DockingWindowAction} value
    */
   public DockingWindowAction get(Object valueContainer) {
     return (DockingWindowAction) getValue(valueContainer);

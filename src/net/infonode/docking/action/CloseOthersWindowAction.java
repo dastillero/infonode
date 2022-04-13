@@ -53,18 +53,30 @@ public class CloseOthersWindowAction extends DockingWindowAction {
   private CloseOthersWindowAction() {
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Close Others";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return window.getWindowParent() instanceof AbstractTabWindow;
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     if (isPerformable(window)) {
       AbstractTabWindow tw = (AbstractTabWindow) window.getWindowParent();
@@ -84,6 +96,12 @@ public class CloseOthersWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

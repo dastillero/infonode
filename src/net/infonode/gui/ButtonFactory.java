@@ -38,6 +38,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 
+/**
+ * <p>ButtonFactory class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ButtonFactory {
   private ButtonFactory() {
   }
@@ -168,6 +174,13 @@ public class ButtonFactory {
     return initButton(new JButton(text, icon));
   }
 
+  /**
+   * <p>createDialogButton.</p>
+   *
+   * @param text a {@link java.lang.String} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createDialogButton(String text, ActionListener action) {
     JButton b = new JButton(text);
     b.setFont(b.getFont().deriveFont(Font.BOLD));
@@ -175,10 +188,25 @@ public class ButtonFactory {
     return b;
   }
 
+  /**
+   * <p>createButton.</p>
+   *
+   * @param text a {@link java.lang.String} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createButton(String text, ActionListener action) {
     return createButton(text, true, action);
   }
 
+  /**
+   * <p>createButton.</p>
+   *
+   * @param text a {@link java.lang.String} object.
+   * @param opaque a boolean.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createButton(String text, boolean opaque, ActionListener action) {
     JButton b = newButton(text);
     b.setOpaque(opaque);
@@ -186,11 +214,27 @@ public class ButtonFactory {
     return b;
   }
 
+  /**
+   * <p>createButton.</p>
+   *
+   * @param iconResource a {@link java.lang.String} object.
+   * @param text a {@link java.lang.String} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createButton(String iconResource, String text, ActionListener action) {
     URL iconURL = ButtonFactory.class.getClassLoader().getResource(iconResource);
     return createButton(iconURL == null ? null : new ImageIcon(iconURL), text, action);
   }
 
+  /**
+   * <p>createButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param text a {@link java.lang.String} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createButton(Icon icon, String text, ActionListener action) {
     JButton b;
 
@@ -206,6 +250,15 @@ public class ButtonFactory {
     return b;
   }
 
+  /**
+   * <p>createButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param tooltipText a {@link java.lang.String} object.
+   * @param opaque a boolean.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createButton(Icon icon, String tooltipText, boolean opaque, ActionListener action) {
     JButton b = newButton(icon);
     b.setToolTipText(tooltipText);
@@ -214,6 +267,15 @@ public class ButtonFactory {
     return b;
   }
 
+  /**
+   * <p>createFlatHighlightButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param tooltipText a {@link java.lang.String} object.
+   * @param padding a int.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createFlatHighlightButton(Icon icon, String tooltipText, int padding,
                                                         ActionListener action) {
     final JButton b = new JButton(icon) {
@@ -234,6 +296,12 @@ public class ButtonFactory {
     return b;
   }
 
+  /**
+   * <p>applyButtonHighlighter.</p>
+   *
+   * @param b a {@link javax.swing.JButton} object.
+   * @param padding a int.
+   */
   public static final void applyButtonHighlighter(JButton b, int padding) {
     b.setVerticalAlignment(SwingConstants.CENTER);
     b.setMargin(new Insets(0, 0, 0, 0));
@@ -242,6 +310,16 @@ public class ButtonFactory {
     b.setRolloverEnabled(true);
   }
 
+  /**
+   * <p>createFlatHighlightButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param tooltipText a {@link java.lang.String} object.
+   * @param padding a int.
+   * @param focusable a boolean.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createFlatHighlightButton(Icon icon, String tooltipText, int padding,
                                                         boolean focusable, ActionListener action) {
     final JButton b = createFlatHighlightButton(icon, tooltipText, padding, action);
@@ -249,24 +327,54 @@ public class ButtonFactory {
     return b;
   }
 
+  /**
+   * <p>createHighlightButton.</p>
+   *
+   * @param text a {@link java.lang.String} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createHighlightButton(String text, ActionListener action) {
     JButton b = newButton(text);
     b.addActionListener(action);
     return b;
   }
 
+  /**
+   * <p>createHighlightButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createHighlightButton(Icon icon, ActionListener action) {
     JButton b = newButton(icon);
     b.addActionListener(action);
     return b;
   }
 
+  /**
+   * <p>createHighlightButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param text a {@link java.lang.String} object.
+   * @param action a {@link java.awt.event.ActionListener} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createHighlightButton(Icon icon, String text, ActionListener action) {
     JButton b = newButton(icon, text);
     b.addActionListener(action);
     return b;
   }
 
+  /**
+   * <p>createFlatIconHoverButton.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @param hovered a {@link javax.swing.Icon} object.
+   * @param pressed a {@link javax.swing.Icon} object.
+   * @return a {@link javax.swing.JButton} object.
+   */
   public static final JButton createFlatIconHoverButton(Icon icon, Icon hovered, Icon pressed) {
     final JButton b = new JButton(icon) {
       public void setUI(ButtonUI ui) {

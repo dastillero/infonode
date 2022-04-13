@@ -28,6 +28,8 @@ import net.infonode.util.Direction;
 import java.awt.*;
 
 /**
+ * <p>Abstract AbstractComponentPainterWrapper class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
@@ -36,22 +38,35 @@ abstract public class AbstractComponentPainterWrapper extends AbstractComponentP
 
   private ComponentPainter painter;
 
+  /**
+   * <p>Constructor for AbstractComponentPainterWrapper.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   protected AbstractComponentPainterWrapper(ComponentPainter painter) {
     this.painter = painter;
   }
 
+  /**
+   * <p>Getter for the field <code>painter</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public ComponentPainter getPainter() {
     return painter;
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return painter.getColor(component);
   }
 
+  /** {@inheritDoc} */
   public boolean isOpaque(Component component) {
     return painter.isOpaque(component);
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component,
                     Graphics g,
                     int x,

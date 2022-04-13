@@ -44,7 +44,7 @@ import javax.swing.border.CompoundBorder;
 
 /**
  * <p>
- * TitledTabProperties holds all properties for a {@link TitledTab}.
+ * TitledTabProperties holds all properties for a {@link net.infonode.tabbedpanel.titledtab.TitledTab}.
  * </p>
  *
  * <p>
@@ -67,12 +67,13 @@ import javax.swing.border.CompoundBorder;
  * <p>
  * By default the tool tip text in all states is the same as the tab text in the normal state. For example, if you
  * change the tab text in the highlighted state and want the tooltip to display the same text, you must set the "Tool
- * Tip Text" property {@link TitledTabStateProperties#TOOL_TIP_TEXT} in the highlighted state.
+ * Tip Text" property {@link net.infonode.tabbedpanel.titledtab.TitledTabStateProperties#TOOL_TIP_TEXT} in the highlighted state.
  * </p>
  *
  * @author $Author: jesper $
  * @version $Revision: 1.42 $
  * @see TitledTab
+ * @see TitledTabStateProperties
  * @see TitledTabStateProperties
  */
 public class TitledTabProperties extends PropertyMapContainer {
@@ -529,9 +530,9 @@ public class TitledTabProperties extends PropertyMapContainer {
    * <p>
    * Sets if this TitledTab should be enabled or not.
    * </p>
-   * 
+   *
    * <p>
-   * <strong>Note:</strong> Calling {@link TitledTab#setEnabled(boolean)} will modify this property for the tab.
+   * <strong>Note:</strong> Calling {@link net.infonode.tabbedpanel.titledtab.TitledTab#setEnabled(boolean)} will modify this property for the tab.
    * </p>
    *
    * @param value true for enabled, otherwise false

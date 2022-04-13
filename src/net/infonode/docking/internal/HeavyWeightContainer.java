@@ -27,27 +27,45 @@ package net.infonode.docking.internal;
 import java.awt.*;
 
 /**
+ * <p>HeavyWeightContainer class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class HeavyWeightContainer extends Panel {
   private Image bufferImage;
   private boolean doubleBuffer = false;
 
+  /**
+   * <p>Constructor for HeavyWeightContainer.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public HeavyWeightContainer(Component c) {
     this(c, false);
   }
 
+  /**
+   * <p>Constructor for HeavyWeightContainer.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param doubleBuffer a boolean.
+   */
   public HeavyWeightContainer(Component c, boolean doubleBuffer) {
     super(new BorderLayout());
     this.doubleBuffer = doubleBuffer;
     add(c, BorderLayout.CENTER);
   }
 
+  /**
+   * <p>invalidate.</p>
+   */
   public void invalidate() {
     super.invalidate();
     bufferImage = null;
   }
 
+  /** {@inheritDoc} */
   public void update(Graphics g) {
     if (doubleBuffer)
       paint(g);
@@ -55,10 +73,16 @@ public class HeavyWeightContainer extends Panel {
       super.update(g);
   }
 
+  /**
+   * <p>isDoubleBuffered.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isDoubleBuffered() {
     return doubleBuffer;
   }
 
+  /** {@inheritDoc} */
   public void paint(Graphics g) {
     if (doubleBuffer) {
       if (bufferImage == null)

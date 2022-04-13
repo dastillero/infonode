@@ -34,10 +34,18 @@ import java.awt.*;
 public class BasePanel extends BaseContainer {
   private Component comp;
 
+  /**
+   * <p>Constructor for BasePanel.</p>
+   */
   protected BasePanel() {
     setForcedOpaque(false);
   }
 
+  /**
+   * <p>setComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   protected void setComponent(Component c) {
     if (comp != null)
       remove(comp);
@@ -51,6 +59,11 @@ public class BasePanel extends BaseContainer {
     comp = c;
   }
 
+  /**
+   * <p>setSouthComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   protected void setSouthComponent(Component c) {
     add(c, BorderLayout.SOUTH);
     revalidate();

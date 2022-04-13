@@ -103,6 +103,12 @@ public class TabWindow extends AbstractTabWindow {
     this(windows, null);
   }
 
+  /**
+   * <p>Constructor for TabWindow.</p>
+   *
+   * @param windows an array of {@link net.infonode.docking.DockingWindow} objects.
+   * @param windowItem a {@link net.infonode.docking.model.TabWindowItem} object.
+   */
   protected TabWindow(DockingWindow[] windows, TabWindowItem windowItem) {
     super(true, windowItem == null ? new TabWindowItem() : windowItem);
 
@@ -149,10 +155,16 @@ public class TabWindow extends AbstractTabWindow {
     PropertyMapWeakListenerManager.addWeakTreeListener(getTabWindowProperties().getMap(), buttonFactoryListener);
   }
 
+  /**
+   * <p>getTabWindowProperties.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.TabWindowProperties} object.
+   */
   public TabWindowProperties getTabWindowProperties() {
     return ((TabWindowItem) getWindowItem()).getTabWindowProperties();
   }
 
+  /** {@inheritDoc} */
   protected void tabSelected(WindowTab tab) {
     super.tabSelected(tab);
 
@@ -162,9 +174,15 @@ public class TabWindow extends AbstractTabWindow {
     }
   }
 
+  /**
+   * <p>update.</p>
+   */
   protected void update() {
   }
 
+  /**
+   * <p>updateButtonVisibility.</p>
+   */
   protected void updateButtonVisibility() {
     doUpdateButtonVisibility(null);
   }
@@ -184,16 +202,32 @@ public class TabWindow extends AbstractTabWindow {
     super.updateButtonVisibility();
   }
 
+  /**
+   * <p>getTabAreaComponentCount.</p>
+   *
+   * @return a int.
+   */
+  @Override
   protected int getTabAreaComponentCount() {
     return ArrayUtil.countNotNull(buttons);
   }
 
+  /**
+   * <p>getTabAreaComponents.</p>
+   *
+   * @param index a int.
+   * @param components an array of {@link javax.swing.JComponent} objects.
+   */
+  @Override
   protected void getTabAreaComponents(int index, JComponent... components) {
     for (int i = 0; i < buttons.length; i++)
       if (buttons[i] != null)
         components[index++] = buttons[i];
   }
 
+  /**
+   * <p>optimizeWindowLayout.</p>
+   */
   protected void optimizeWindowLayout() {
     if (getWindowParent() == null)
       return;
@@ -206,12 +240,14 @@ public class TabWindow extends AbstractTabWindow {
     }
   }
 
+  /** {@inheritDoc} */
   public int addTab(DockingWindow w, int index) {
     int actualIndex = super.addTab(w, index);
     setSelectedTab(actualIndex);
     return actualIndex;
   }
 
+  /** {@inheritDoc} */
   protected int addTabNoSelect(DockingWindow window, int index) {
     DockingWindow beforeWindow = index == getChildWindowCount() ? null : getChildWindow(index);
 
@@ -225,6 +261,11 @@ public class TabWindow extends AbstractTabWindow {
     return i;
   }
 
+  /**
+   * <p>updateWindowItem.</p>
+   *
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   */
   protected void updateWindowItem(RootWindow rootWindow) {
     super.updateWindowItem(rootWindow);
     ((TabWindowItem) getWindowItem()).setParentTabWindowProperties(rootWindow == null ?
@@ -233,39 +274,59 @@ public class TabWindow extends AbstractTabWindow {
                                                                        .getTabWindowProperties());
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return getTabWindowProperties().getMap();
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new TabWindowProperties().getMap();
   }
 
+  /** {@inheritDoc} */
   protected int getEdgeDepth(Direction dir) {
     return dir == getTabbedPanel().getProperties().getTabAreaOrientation() ?
            1 :
            super.getEdgeDepth(dir);
   }
 
+  /** {@inheritDoc} */
   protected int getChildEdgeDepth(DockingWindow window, Direction dir) {
     return dir == getTabbedPanel().getProperties().getTabAreaOrientation() ?
            0 :
            1 + super.getChildEdgeDepth(window, dir);
   }
 
+  /**
+   * <p>getOptimizedWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow getOptimizedWindow() {
     return getChildWindowCount() == 1 ? getChildWindow(0).getOptimizedWindow() : super.getOptimizedWindow();
   }
 
+  /** {@inheritDoc} */
   protected boolean acceptsSplitWith(DockingWindow window) {
     return super.acceptsSplitWith(window) && (getChildWindowCount() != 1 || getChildWindow(0) != window);
   }
 
+  /** {@inheritDoc} */
   protected DockingWindow getBestFittedWindow(DockingWindow parentWindow) {
     return getChildWindowCount() == 1 && (!getChildWindow(0).needsTitleWindow() || parentWindow.showsWindowTitle()) ?
            getChildWindow(0).getBestFittedWindow(parentWindow) : this;
   }
 
+  /** {@inheritDoc} */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(WindowIds.TAB);
     viewWriter.writeWindowItem(getWindowItem(), out, context);

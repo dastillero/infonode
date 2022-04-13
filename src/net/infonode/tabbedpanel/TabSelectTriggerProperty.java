@@ -35,6 +35,7 @@ import net.infonode.properties.util.PropertyValueHandler;
  * @version $Revision: 1.8 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  * @since ITP 1.1.0
  */
 public class TabSelectTriggerProperty extends EnumProperty {

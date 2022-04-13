@@ -54,7 +54,7 @@ import java.io.ObjectOutputStream;
 /**
  * A window bar is located at the edge of a root window.
  * It's a tabbed panel where the content panel is dynamically shown and hidden.
- * A window bar is enabled and disabled using the {@link Component#setEnabled} method.
+ * A window bar is enabled and disabled using the {@link java.awt.Component#setEnabled} method.
  *
  * @author $Author: johan $
  * @version $Revision: 1.69 $
@@ -128,6 +128,11 @@ public class WindowBar extends AbstractTabWindow {
     init();
   }
 
+  /**
+   * <p>getTabWindowProperties.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.TabWindowProperties} object.
+   */
   public TabWindowProperties getTabWindowProperties() {
     return getWindowBarProperties().getTabWindowProperties();
   }
@@ -141,6 +146,7 @@ public class WindowBar extends AbstractTabWindow {
     return ((WindowBarItem) getWindowItem()).getWindowBarProperties();
   }
 
+  /** {@inheritDoc} */
   protected int addTabNoSelect(DockingWindow window, int index) {
     index = super.addTabNoSelect(window, index);
     window.setLastMinimizedDirection(direction);
@@ -178,10 +184,16 @@ public class WindowBar extends AbstractTabWindow {
     return direction;
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindow</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.RootWindow} object.
+   */
   public RootWindow getRootWindow() {
     return rootWindow;
   }
 
+  /** {@inheritDoc} */
   protected void showChildWindow(DockingWindow window) {
     int index = getChildWindowIndex(window);
 
@@ -211,6 +223,9 @@ public class WindowBar extends AbstractTabWindow {
     return heavyWeightEdgePanel;
   }
 
+  /**
+   * <p>update.</p>
+   */
   protected void update() {
     edgePanel.setResizeWidth(getWindowBarProperties().getContentPanelEdgeResizeDistance());
     edgePanel.setContinuousLayout(getWindowBarProperties().getContinuousLayoutEnabled());
@@ -227,6 +242,11 @@ public class WindowBar extends AbstractTabWindow {
     //edgePanel.setForcedOpaque(rootWindow.isHeavyweightSupported() ? true : contentPanel.getProperties().getShapedPanelProperties().getOpaque());
   }
 
+  /**
+   * <p>getPreferredSize.</p>
+   *
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getPreferredSize() {
     if (isEnabled()) {
       Dimension size = super.getPreferredSize();
@@ -237,16 +257,19 @@ public class WindowBar extends AbstractTabWindow {
       return new Dimension(0, 0);
   }
 
+  /** {@inheritDoc} */
   protected void tabSelected(WindowTab tab) {
     getEdgePanel().setVisible(tab != null);
     //edgePanel.setVisible(tab != null);
     super.tabSelected(tab);
   }
 
+  /** {@inheritDoc} */
   protected boolean isInsideTabArea(Point p2) {
     return true;
   }
 
+  /** {@inheritDoc} */
   protected void clearFocus(View view) {
     super.clearFocus(view);
 
@@ -255,10 +278,16 @@ public class WindowBar extends AbstractTabWindow {
     }
   }
 
+  /**
+   * <p>isMinimized.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMinimized() {
     return true;
   }
 
+  /** {@inheritDoc} */
   protected boolean acceptsSplitWith(DockingWindow window) {
     return false;
   }
@@ -267,14 +296,25 @@ public class WindowBar extends AbstractTabWindow {
     return isEnabled() ? super.acceptDrop(p, window) : null;
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return getWindowBarProperties().getMap();
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new WindowBarProperties().getMap();
   }
 
+  /** {@inheritDoc} */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(getContentPanelSize());
     out.writeBoolean(isEnabled());
@@ -282,6 +322,7 @@ public class WindowBar extends AbstractTabWindow {
     super.write(out, context, viewWriter);
   }
 
+  /** {@inheritDoc} */
   protected DockingWindow newRead(ObjectInputStream in, ReadContext context, ViewReader viewReader) throws IOException {
     setContentPanelSize(in.readInt());
     setEnabled(in.readBoolean());
@@ -290,6 +331,7 @@ public class WindowBar extends AbstractTabWindow {
     return this;
   }
 
+  /** {@inheritDoc} */
   protected DockingWindow oldRead(ObjectInputStream in, ReadContext context) throws IOException {
     super.oldRead(in, context);
     setContentPanelSize(in.readInt());

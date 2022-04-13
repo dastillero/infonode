@@ -75,6 +75,7 @@ public final class WindowMenuUtil {
 
         if (!DockingUtil.isAncestor(root.getWindowBar(dir), window) && root.getWindowBar(dir).isEnabled()) {
           moveToMenu.add(new JMenuItem(dir.name(), ARROW_ICONS[i])).addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
               root.getWindowBar(dir).addTab(window);
             }
@@ -160,6 +161,7 @@ public final class WindowMenuUtil {
       JMenuItem item = orientationMenu.add(new JMenuItem(dir.name(), ARROW_ICONS[i]));
       item.setEnabled(dir != properties.getTabAreaOrientation());
       item.addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
           tabWindow.getTabWindowProperties().getTabbedPanelProperties().setTabAreaOrientation(dir);
         }
@@ -187,6 +189,7 @@ public final class WindowMenuUtil {
         JMenuItem item = directionMenu.add(new JMenuItem(dir.name(), ARROW_ICONS[i]));
         item.setEnabled(dir != properties.getNormalProperties().getDirection());
         item.addActionListener(new ActionListener() {
+          @Override
           public void actionPerformed(ActionEvent e) {
             tabWindow.getTabWindowProperties().getTabProperties().getTitledTabProperties().getNormalProperties()
                 .setDirection(dir);
@@ -257,7 +260,7 @@ public final class WindowMenuUtil {
    *
    * @param viewFactoryManager  used for creating a list of views that the user can show
    * @param addTabItems         add items for changing tab direction and orientation
-   * @param addSplitWindowItems add items for {@link SplitWindow}'s
+   * @param addSplitWindowItems add items for {@link net.infonode.docking.SplitWindow}'s
    * @return the window popup menu factory
    * @since IDW 1.2.0
    */

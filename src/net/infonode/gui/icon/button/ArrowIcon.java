@@ -27,36 +27,79 @@ import net.infonode.util.Direction;
 
 import java.awt.*;
 
+/**
+ * <p>ArrowIcon class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ArrowIcon extends AbstractButtonIcon {
   private Direction direction;
 
+  /**
+   * <p>Constructor for ArrowIcon.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public ArrowIcon(Direction direction) {
     this.direction = direction;
   }
 
+  /**
+   * <p>Constructor for ArrowIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public ArrowIcon(Color color, Direction direction) {
     super(color);
     this.direction = direction;
   }
 
+  /**
+   * <p>Constructor for ArrowIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param size a int.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public ArrowIcon(Color color, int size, Direction direction) {
     super(color, size);
     this.direction = direction;
   }
 
+  /**
+   * <p>Constructor for ArrowIcon.</p>
+   *
+   * @param size a int.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public ArrowIcon(int size, Direction direction) {
     this(size, direction, true);
   }
 
+  /**
+   * <p>Constructor for ArrowIcon.</p>
+   *
+   * @param size a int.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param enabled a boolean.
+   */
   public ArrowIcon(int size, Direction direction, boolean enabled) {
     super(size, enabled);
     this.direction = direction;
   }
 
+  /**
+   * <p>Getter for the field <code>direction</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getDirection() {
     return direction;
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2) {
     int size = (x2 - x1 + 1) + ((x2 - x1 + 1) % 2) - 1;
     int offset = (direction.isHorizontal() ? x1 : y1) +

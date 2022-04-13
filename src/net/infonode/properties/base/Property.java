@@ -29,7 +29,7 @@ import net.infonode.properties.base.exception.InvalidPropertyException;
 import net.infonode.properties.base.exception.InvalidPropertyValueException;
 
 /**
- * A property is belongs to a {@link PropertyGroup} and contains name, description, type etc.
+ * A property is belongs to a {@link net.infonode.properties.base.PropertyGroup} and contains name, description, type etc.
  * A property can have multiple values which can be stored in any type of object.
  *
  * @author $Author: jesper $
@@ -70,7 +70,7 @@ public interface Property {
    *
    * @param valueContainer the object containing the value
    * @return the value of this property in an valueContainer, null if the container doesn't contain the value
-   * @throws InvalidPropertyException if the property can not be read from the value container
+   * @throws net.infonode.properties.base.exception.InvalidPropertyException if the property can not be read from the value container
    */
   Object getValue(Object valueContainer) throws InvalidPropertyException;
 
@@ -79,9 +79,9 @@ public interface Property {
    *
    * @param valueContainer the object to set the property value in
    * @param value          the value of the property
-   * @throws ImmutablePropertyException    if this property is immutable
-   * @throws InvalidPropertyException      if this property can't be set in the object
-   * @throws InvalidPropertyValueException if the property value is invalid
+   * @throws net.infonode.properties.base.exception.ImmutablePropertyException    if this property is immutable
+   * @throws net.infonode.properties.base.exception.InvalidPropertyException      if this property can't be set in the object
+   * @throws net.infonode.properties.base.exception.InvalidPropertyValueException if the property value is invalid
    */
   void setValue(Object valueContainer, Object value) throws ImmutablePropertyException, InvalidPropertyException,
       InvalidPropertyValueException;
@@ -121,8 +121,8 @@ public interface Property {
    * Removes the value of this property from an valueContainer.
    *
    * @param valueContainer the object in which to remove the value
-   * @throws ImmutablePropertyException if the property is immutable
-   * @throws CantRemoveValueException   if the property value can't be removed from the valueContainer
+   * @throws net.infonode.properties.base.exception.ImmutablePropertyException if the property is immutable
+   * @throws net.infonode.properties.base.exception.CantRemoveValueException   if the property value can't be removed from the valueContainer
    */
   void removeValue(Object valueContainer) throws ImmutablePropertyException, CantRemoveValueException;
 }

@@ -32,6 +32,8 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
+ * <p>EtchedLineBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  */
@@ -46,14 +48,35 @@ public class EtchedLineBorder implements Border, Serializable {
   private Color highlightColor;
   private Color shadowColor;
 
+  /**
+   * <p>Constructor for EtchedLineBorder.</p>
+   */
   public EtchedLineBorder() {
     this(true, true, true, true);
   }
 
+  /**
+   * <p>Constructor for EtchedLineBorder.</p>
+   *
+   * @param drawTop a boolean.
+   * @param drawLeft a boolean.
+   * @param drawBottom a boolean.
+   * @param drawRight a boolean.
+   */
   public EtchedLineBorder(boolean drawTop, boolean drawLeft, boolean drawBottom, boolean drawRight) {
     this(drawTop, drawLeft, drawBottom, drawRight, null, null);
   }
 
+  /**
+   * <p>Constructor for EtchedLineBorder.</p>
+   *
+   * @param drawTop a boolean.
+   * @param drawLeft a boolean.
+   * @param drawBottom a boolean.
+   * @param drawRight a boolean.
+   * @param highlightColor a {@link java.awt.Color} object.
+   * @param shadowColor a {@link java.awt.Color} object.
+   */
   public EtchedLineBorder(boolean drawTop, boolean drawLeft, boolean drawBottom, boolean drawRight,
                           Color highlightColor, Color shadowColor) {
     this.drawBottom = drawBottom;
@@ -65,14 +88,21 @@ public class EtchedLineBorder implements Border, Serializable {
     this.shadowColor = shadowColor;
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return insets;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     Color c1 = highlightColor == null ? ColorUtil.mult(ComponentUtil.getBackgroundColor(c), 1.70) : highlightColor;
     Color c2 = shadowColor == null ? ColorUtil.mult(ComponentUtil.getBackgroundColor(c), 0.5) : shadowColor;

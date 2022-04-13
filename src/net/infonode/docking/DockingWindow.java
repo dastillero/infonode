@@ -49,6 +49,7 @@ import net.infonode.util.ArrayUtil;
 import net.infonode.util.Direction;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -63,7 +64,7 @@ import java.util.Map;
 
 /**
  * This is the base class for all types of docking windows. The windows are structured in a tree, typically with a
- * {@link RootWindow} at the root. Each DockingWindow has a window parent and a number of child windows.
+ * {@link net.infonode.docking.RootWindow} at the root. Each DockingWindow has a window parent and a number of child windows.
  * <p>
  * <b>Warning: </b> the non-public methods in this class can be changed in non-compatible ways in future versions.
  *
@@ -81,7 +82,7 @@ abstract public class DockingWindow extends BasePanel {
   abstract public Icon getIcon();
 
   /**
-   * Returns the child window with index <tt>index</tt>.
+   * Returns the child window with index <code>index</code>.
    *
    * @param index the child window index
    * @return the child window
@@ -96,17 +97,22 @@ abstract public class DockingWindow extends BasePanel {
   abstract public int getChildWindowCount();
 
   /**
- *
+   * <p>doReplace.</p>
+   *
+   * @param oldWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param newWindow a {@link net.infonode.docking.DockingWindow} object.
    */
   abstract protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow);
 
   /**
- *
+   * <p>doRemoveWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
    */
   abstract protected void doRemoveWindow(DockingWindow window);
 
   /**
- *
+   * <p>update.</p>
    */
   abstract protected void update();
 
@@ -144,7 +150,9 @@ abstract public class DockingWindow extends BasePanel {
   private static int updateModelDepth;
 
   /**
- *
+   * <p>Constructor for DockingWindow.</p>
+   *
+   * @param windowItem a {@link net.infonode.docking.model.WindowItem} object.
    */
   protected DockingWindow(WindowItem windowItem) {
     DockingWindow window = windowItem.getConnectedWindow();
@@ -169,7 +177,7 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>init.</p>
    */
   protected void init() {
     PropertyMapWeakListenerManager.addWeakListener(getWindowProperties().getMap(), propertiesListener);
@@ -191,6 +199,12 @@ abstract public class DockingWindow extends BasePanel {
       windowParent.doUpdate();
   }
 
+  /**
+   * <p>addWindowItem.</p>
+   *
+   * @param w a {@link net.infonode.docking.DockingWindow} object.
+   * @param index a int.
+   */
   protected void addWindowItem(DockingWindow w, int index) {
     boolean isRestore = w.getWindowItem().isRestoreWindow();
     windowItem.addWindow(w.getWindowItem(), index);
@@ -199,12 +213,20 @@ abstract public class DockingWindow extends BasePanel {
       w.updateWindowItems();
   }
   
+  /**
+   * <p>updateWindowItem.</p>
+   *
+   * @param w a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected void updateWindowItem(DockingWindow w) {
   	int index = getChildWindowIndex(w);
   	int modelIndex = index == 0 ? 0 : windowItem.getWindowIndex(getChildWindow(index - 1).getWindowItem()) + 1;
     windowItem.addWindow(w.getWindowItem(), modelIndex);
   }
 
+  /**
+   * <p>updateWindowItems.</p>
+   */
   protected final void updateWindowItems() {
     windowItem.clearWindows();
 
@@ -219,17 +241,17 @@ abstract public class DockingWindow extends BasePanel {
 
   /**
    * <p>
-   * Sets the preferred minimize direction of this window. If the {@link WindowBar} in this direction is enabled this
+   * Sets the preferred minimize direction of this window. If the {@link net.infonode.docking.WindowBar} in this direction is enabled this
    * window will be placed on that bar when {@link #minimize()} is called.
    * </p>
    *
    * <p>
-   * Note that a window will "remember" the last {@link WindowBar} it was added to so the preferred minimize direction
-   * is changed when the window is added to another {@link WindowBar}.
+   * Note that a window will "remember" the last {@link net.infonode.docking.WindowBar} it was added to so the preferred minimize direction
+   * is changed when the window is added to another {@link net.infonode.docking.WindowBar}.
    * </p>
    *
    * @param direction the preferred minimize direction of this window, null (which is default value) means use the
-   *                  closest, enabled {@link WindowBar}
+   *                  closest, enabled {@link net.infonode.docking.WindowBar}
    * @since IDW 1.3.0
    */
   public void setPreferredMinimizeDirection(Direction direction) {
@@ -242,7 +264,7 @@ abstract public class DockingWindow extends BasePanel {
    * for more information.
    * </p>
    *
-   * @return the preferred minimize direction of this window, null if the closest {@link WindowBar} is used
+   * @return the preferred minimize direction of this window, null if the closest {@link net.infonode.docking.WindowBar} is used
    * @since IDW 1.3.0
    */
   public Direction getPreferredMinimizeDirection() {
@@ -265,6 +287,11 @@ abstract public class DockingWindow extends BasePanel {
     this.listeners = listeners;
   }
 
+  /**
+   * <p>isUndocked.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isUndocked() {
     return windowParent != null && windowParent.isUndocked();
   }
@@ -284,7 +311,7 @@ abstract public class DockingWindow extends BasePanel {
    * </p>
    *
    * <p>
-   * The {@link MouseEvent}source is the docking window connected to the tab in
+   * The {@link java.awt.event.MouseEvent}source is the docking window connected to the tab in
    * which the mouse event occured. The event point is the mouse coordinate
    * where the event occured relative to the window.
    * </p>
@@ -398,8 +425,8 @@ abstract public class DockingWindow extends BasePanel {
   /**
    * Starts a drag and drop operation for this window.
    *
-   * @param dropTarget the {@link RootWindow} in which the window can be dropped
-   * @return an {@link DockingWindowDragger} object which controls the drag and drop operation
+   * @param dropTarget the {@link net.infonode.docking.RootWindow} in which the window can be dropped
+   * @return an {@link net.infonode.docking.drag.DockingWindowDragger} object which controls the drag and drop operation
    * @since IDW 1.3.0
    */
   public DockingWindowDragger startDrag(RootWindow dropTarget) {
@@ -416,21 +443,22 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Returns the {@link RootWindow} which contains this window, null if there is none.
+   * Returns the {@link net.infonode.docking.RootWindow} which contains this window, null if there is none.
    *
-   * @return the {@link RootWindow}, null if there is none
+   * @return the {@link net.infonode.docking.RootWindow}, null if there is none
    */
   public RootWindow getRootWindow() {
     return windowParent == null ? null : windowParent.getRootWindow();
   }
 
   /**
-   * Same as {@link #restore()}, but the {@link DockingWindowListener#windowRestoring(DockingWindow)} method of
+   * Same as {@link #restore()}, but the {@link net.infonode.docking.DockingWindowListener#windowRestoring(DockingWindow)} method of
    * the window listeners will be called before restoring the window, giving them the possibility to abort the restore
    * operation.
    *
-   * @throws OperationAbortedException if the restore operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the restore operation was aborted by a window listener
    * @see #restore()
+   * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @since IDW 1.4.0
    */
@@ -511,7 +539,7 @@ abstract public class DockingWindow extends BasePanel {
    * <p>The location of this window is saved and the window can be restored to that location using the
    * {@link #restore()} method.</p>
    *
-   * <p>This method will call the {@link DockingWindowListener#windowClosed(DockingWindow)} method of all the listeners
+   * <p>This method will call the {@link net.infonode.docking.DockingWindowListener#windowClosed(DockingWindow)} method of all the listeners
    * of this window and all window ancestors. The listeners of child windows will not be notified, for example closing
    * a tab window containing views will not notify the listeners of views in that tab window.</p>
    */
@@ -530,12 +558,13 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Same as {@link #close()}, but the {@link DockingWindowListener#windowClosing(DockingWindow)} method of
+   * Same as {@link #close()}, but the {@link net.infonode.docking.DockingWindowListener#windowClosing(DockingWindow)} method of
    * the window listeners will be called before closing the window, giving them the possibility to abort the close
    * operation.
    *
-   * @throws OperationAbortedException if the close operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the close operation was aborted by a window listener
    * @see #close()
+   * @see DockingWindowListener#windowClosing(DockingWindow)
    * @see DockingWindowListener#windowClosing(DockingWindow)
    * @since IDW 1.1.0
    */
@@ -545,11 +574,11 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * <p>Undocks this window from it's window parent i.e. creates a {@link FloatingWindow} containing this window.</p>
+   * <p>Undocks this window from it's window parent i.e. creates a {@link net.infonode.docking.FloatingWindow} containing this window.</p>
    *
    * <p>The window can be docked again by calling {@link #dock()}.</p>
    *
-   * <p>This method will call the {@link DockingWindowListener#windowUndocked(DockingWindow)} method of all the listeners
+   * <p>This method will call the {@link net.infonode.docking.DockingWindowListener#windowUndocked(DockingWindow)} method of all the listeners
    * of this window and all window ancestors. The listeners of child windows will not be notified, for example undocking
    * a tab window containing views will not notify the listeners of views in that tab window.</p>
    *
@@ -563,14 +592,15 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Same as {@link #undock(Point)}, but the {@link DockingWindowListener#windowUndocking(DockingWindow)} method of
+   * Same as {@link #undock(Point)}, but the {@link net.infonode.docking.DockingWindowListener#windowUndocking(DockingWindow)} method of
    * the window listeners will be called before undocking the window, giving them the possibility to abort the undock
    * operation.
    *
    * @param location floating window location in screen coordinates
    * @return the floating window containing the undocked window
-   * @throws OperationAbortedException if the undock operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the undock operation was aborted by a window listener
    * @see #undock(Point)
+   * @see DockingWindowListener#windowClosing(DockingWindow)
    * @see DockingWindowListener#windowClosing(DockingWindow)
    * @since IDW 1.4.0
    */
@@ -587,7 +617,7 @@ abstract public class DockingWindow extends BasePanel {
    * guaranteed that the window is shown anywhere after this method has returned.
    * </p>
    *
-   * <p>This method will call the {@link DockingWindowListener#windowDocked(DockingWindow)} method of all the listeners
+   * <p>This method will call the {@link net.infonode.docking.DockingWindowListener#windowDocked(DockingWindow)} method of all the listeners
    * of this window and all window ancestors. The listeners of child windows will not be notified, for example docking
    * a tab window containing views will not notify the listeners of views in that tab window.</p>
    *
@@ -607,12 +637,13 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Same as {@link #dock()}, but the {@link DockingWindowListener#windowDocking(DockingWindow)} method of
+   * Same as {@link #dock()}, but the {@link net.infonode.docking.DockingWindowListener#windowDocking(DockingWindow)} method of
    * the window listeners will be called before docking the window, giving them the possibility to abort the dock
    * operation.
    *
-   * @throws OperationAbortedException if the dock operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the dock operation was aborted by a window listener
    * @see #dock()
+   * @see DockingWindowListener#windowDocking(DockingWindow)
    * @see DockingWindowListener#windowDocking(DockingWindow)
    * @since IDW 1.4.0
    */
@@ -658,7 +689,7 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Returns true if this window is minimized, ie located in a {@link WindowBar}.
+   * Returns true if this window is minimized, ie located in a {@link net.infonode.docking.WindowBar}.
    *
    * @return true if this window is minimized
    */
@@ -704,12 +735,13 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Same as {@link #maximize()}, but the {@link DockingWindowListener#windowMaximized(DockingWindow)} method of
+   * Same as {@link #maximize()}, but the {@link net.infonode.docking.DockingWindowListener#windowMaximized(DockingWindow)} method of
    * the window listeners will be called before maximizing the window, giving them the possibility to abort the maximize
    * operation.
    *
-   * @throws OperationAbortedException if the maximize operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the maximize operation was aborted by a window listener
    * @see #maximize()
+   * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @since IDW 1.4.0
    */
@@ -740,11 +772,11 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Minimizes this window. The window is minimized to the {@link WindowBar} in the preferred minimize direction,
+   * Minimizes this window. The window is minimized to the {@link net.infonode.docking.WindowBar} in the preferred minimize direction,
    * see {@link #setPreferredMinimizeDirection(net.infonode.util.Direction)} and {@link #getPreferredMinimizeDirection()}.
-   * If the {@link WindowBar} in that direction is not enabled, or the direction is null, thiw window is placed on the
-   * closest enabled {@link WindowBar}.
-   * If no suitable {@link WindowBar} was found or this window already is minimized, no action is performed.
+   * If the {@link net.infonode.docking.WindowBar} in that direction is not enabled, or the direction is null, thiw window is placed on the
+   * closest enabled {@link net.infonode.docking.WindowBar}.
+   * If no suitable {@link net.infonode.docking.WindowBar} was found or this window already is minimized, no action is performed.
    *
    * <p>The location of this window is saved and the window can be restored to that location using the
    * {@link #restore()} method.</p>
@@ -754,7 +786,7 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Minimizes this window to a {@link WindowBar}located in <tt>direction</tt>. If no suitable {@link WindowBar}was
+   * Minimizes this window to a {@link net.infonode.docking.WindowBar}located in <code>direction</code>. If no suitable {@link net.infonode.docking.WindowBar}was
    * found or this window already is minimized, no action is performed.
    *
    * <p>The location of this window is saved and the window can be restored to that location using the
@@ -767,12 +799,13 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Same as {@link #minimize()}, but the {@link DockingWindowListener#windowMinimizing(DockingWindow)} method of
+   * Same as {@link #minimize()}, but the {@link net.infonode.docking.DockingWindowListener#windowMinimizing(DockingWindow)} method of
    * the window listeners will be called before minimizing the window, giving them the possibility to abort the minimize
    * operation.
    *
-   * @throws OperationAbortedException if the minimize operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the minimize operation was aborted by a window listener
    * @see #minimize()
+   * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @since IDW 1.4.0
    */
@@ -784,14 +817,16 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
-   * Same as {@link #minimize(Direction)}, but the {@link DockingWindowListener#windowMinimizing(DockingWindow)} method of
+   * Same as {@link #minimize(Direction)}, but the {@link net.infonode.docking.DockingWindowListener#windowMinimizing(DockingWindow)} method of
    * the window listeners will be called before minimizing the window, giving them the possibility to abort the minimize
    * operation.
    *
-   * @throws OperationAbortedException if the minimize operation was aborted by a window listener
+   * @throws net.infonode.docking.OperationAbortedException if the minimize operation was aborted by a window listener
    * @see #minimize(Direction)
    * @see DockingWindowListener#windowMinimizing(DockingWindow)
+   * @see DockingWindowListener#windowMinimizing(DockingWindow)
    * @since IDW 1.4.0
+   * @param direction a {@link net.infonode.util.Direction} object.
    */
   public void minimizeWithAbort(Direction direction) throws OperationAbortedException {
     if (!isMinimized() && getRootWindow().getWindowBar(direction) != null) {
@@ -852,6 +887,8 @@ abstract public class DockingWindow extends BasePanel {
    * Returns true if this window can be closed by the user.
    *
    * @return true if this window can be closed
+   * @see #close()
+   * @see #closeWithAbort()
    * @see #close()
    * @see #closeWithAbort()
    * @since IDW 1.2.0
@@ -917,6 +954,13 @@ abstract public class DockingWindow extends BasePanel {
     }
   }
 
+  /**
+   * <p>internalReplaceChildWindow.</p>
+   *
+   * @param oldWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param newWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow internalReplaceChildWindow(final DockingWindow oldWindow,
                                                      final DockingWindow newWindow) {
     final WindowAncestors oldAncestors = newWindow.storeAncestors();
@@ -968,14 +1012,29 @@ abstract public class DockingWindow extends BasePanel {
     return (titleProvider == null ? SimpleDockingWindowTitleProvider.INSTANCE : titleProvider).getTitle(this);
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return getTitle();
   }
 
+  /**
+   * <p>storeAncestors.</p>
+   *
+   * @return a {@link net.infonode.docking.internal.WindowAncestors} object.
+   */
   protected WindowAncestors storeAncestors() {
     return new WindowAncestors(getAncestors(), isMinimized(), isUndocked());
   }
 
+  /**
+   * <p>notifyListeners.</p>
+   *
+   * @param ancestors a {@link net.infonode.docking.internal.WindowAncestors} object.
+   */
   protected void notifyListeners(WindowAncestors ancestors) {
     if (isMinimized() && !ancestors.isMinimized())
       fireWindowMinimized(this, ancestors.getAncestors());
@@ -987,16 +1046,27 @@ abstract public class DockingWindow extends BasePanel {
       fireWindowDocked(this, ancestors.getAncestors());
   }
 
+  /**
+   * <p>isShowingInRootWindow.</p>
+   *
+   * @return a boolean.
+   */
   protected boolean isShowingInRootWindow() {
     return windowParent != null && windowParent.isChildShowingInRootWindow(this);
   }
 
+  /**
+   * <p>isChildShowingInRootWindow.</p>
+   *
+   * @param child a {@link net.infonode.docking.DockingWindow} object.
+   * @return a boolean.
+   */
   protected boolean isChildShowingInRootWindow(DockingWindow child) {
     return isShowingInRootWindow();
   }
 
   /**
-   * Makes this window visible. This causes the tabs of all {@link TabWindow} parents containing this
+   * Makes this window visible. This causes the tabs of all {@link net.infonode.docking.TabWindow} parents containing this
    * window to be selected.
    *
    * @since IDW 1.1.0
@@ -1025,6 +1095,11 @@ abstract public class DockingWindow extends BasePanel {
     }
   }
 
+  /**
+   * <p>getPreferredFocusChild.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow getPreferredFocusChild() {
     return getChildWindowCount() > 0 ? getChildWindow(0) : null;
   }
@@ -1038,10 +1113,19 @@ abstract public class DockingWindow extends BasePanel {
     return this;
   }
 
+  /**
+   * <p>getBestFittedWindow.</p>
+   *
+   * @param parentWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow getBestFittedWindow(DockingWindow parentWindow) {
     return this;
   }
 
+  /**
+   * <p>internalClose.</p>
+   */
   protected void internalClose() {
     optimizeAfter(windowParent, new Runnable() {
       public void run() {
@@ -1050,12 +1134,19 @@ abstract public class DockingWindow extends BasePanel {
     });
   }
 
+  /**
+   * <p>showChildWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected void showChildWindow(DockingWindow window) {
     if (windowParent != null && !isMaximized())
       windowParent.showChildWindow(this);
   }
 
   /**
+   * <p>insideTab.</p>
+   *
    * @return true if this window is inside a tab __exclude__
    */
   protected boolean insideTab() {
@@ -1063,12 +1154,19 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
+   * <p>childInsideTab.</p>
+   *
    * @return true if the child windows are inside tabs __exclude__
    */
   protected boolean childInsideTab() {
     return windowParent == null ? false : windowParent.childInsideTab();
   }
 
+  /**
+   * <p>getAncestors.</p>
+   *
+   * @return an array of {@link net.infonode.docking.DockingWindow} objects.
+   */
   protected DockingWindow[] getAncestors() {
     DockingWindow w = this;
     int count = 0;
@@ -1103,6 +1201,11 @@ abstract public class DockingWindow extends BasePanel {
       windowParent.fireWindowRemoved(removedFromWindow, removedWindow);
   }
 
+  /**
+   * <p>fireWindowShown.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected void fireWindowShown(DockingWindow window) {
     if (getListeners() != null) {
       DockingWindowListener[] l = (DockingWindowListener[]) getListeners().toArray(
@@ -1116,6 +1219,12 @@ abstract public class DockingWindow extends BasePanel {
       windowParent.fireWindowShown(window);
   }
 
+  /**
+   * <p>fireViewFocusChanged.</p>
+   *
+   * @param previouslyFocusedView a {@link net.infonode.docking.View} object.
+   * @param focusedView a {@link net.infonode.docking.View} object.
+   */
   protected void fireViewFocusChanged(View previouslyFocusedView, View focusedView) {
     if (getListeners() != null) {
       DockingWindowListener[] l = (DockingWindowListener[]) getListeners().toArray(
@@ -1126,6 +1235,11 @@ abstract public class DockingWindow extends BasePanel {
     }
   }
 
+  /**
+   * <p>fireWindowHidden.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected void fireWindowHidden(DockingWindow window) {
     if (getListeners() != null) {
       DockingWindowListener[] l = (DockingWindowListener[]) getListeners().toArray(
@@ -1339,12 +1453,20 @@ abstract public class DockingWindow extends BasePanel {
       windowParent.fireWindowRestored(window);
   }
 
+  /**
+   * <p>setLastMinimizedDirection.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   protected void setLastMinimizedDirection(Direction direction) {
     windowItem.setLastMinimizedDirection(direction);
   }
 
   /**
- *
+   * <p>clearChildrenFocus.</p>
+   *
+   * @param child a {@link net.infonode.docking.DockingWindow} object.
+   * @param view a {@link net.infonode.docking.View} object.
    */
   protected void clearChildrenFocus(DockingWindow child, View view) {
     for (int i = 0; i < getChildWindowCount(); i++)
@@ -1371,7 +1493,9 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>childRemoved.</p>
+   *
+   * @param child a {@link net.infonode.docking.DockingWindow} object.
    */
   protected void childRemoved(DockingWindow child) {
     if (lastFocusedChildWindow == child)
@@ -1379,7 +1503,7 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>updateButtonVisibility.</p>
    */
   protected void updateButtonVisibility() {
     if (tab != null)
@@ -1390,7 +1514,12 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>readLocations.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @param version a int.
+   * @throws java.io.IOException if any.
    */
   protected final void readLocations(ObjectInputStream in, RootWindow rootWindow,
                                      int version) throws IOException {
@@ -1407,7 +1536,10 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>writeLocations.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @throws java.io.IOException if any.
    */
   protected void writeLocations(ObjectOutputStream out) throws IOException {
     out.writeInt(lastFocusedChildWindow == null ? -1 : getChildWindowIndex(lastFocusedChildWindow));
@@ -1417,7 +1549,9 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>beginOptimize.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
    */
   protected static void beginOptimize(DockingWindow window) {
     optimizeDepth++;
@@ -1429,7 +1563,7 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>endOptimize.</p>
    */
   protected static void endOptimize() {
     PropertyMapManager.getInstance().endBatch();
@@ -1448,7 +1582,10 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>optimizeAfter.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param runnable a {@link java.lang.Runnable} object.
    */
   protected static void optimizeAfter(final DockingWindow window, final Runnable runnable) {
     FocusManager.getInstance().pinFocus(new Runnable() {
@@ -1466,34 +1603,40 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>needsTitleWindow.</p>
+   *
+   * @return a boolean.
    */
   protected boolean needsTitleWindow() {
     return false;
   }
 
   /**
- *
+   * <p>showsWindowTitle.</p>
+   *
+   * @return a boolean.
    */
   protected boolean showsWindowTitle() {
     return false;
   }
 
   /**
- *
+   * <p>optimizeWindowLayout.</p>
    */
   protected void optimizeWindowLayout() {
   }
 
   /**
- *
+   * <p>getLocationWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
    */
   protected DockingWindow getLocationWindow() {
     return this;
   }
 
   /**
- *
+   * <p>fireTitleChanged.</p>
    */
   protected void fireTitleChanged() {
     if (tab != null)
@@ -1503,10 +1646,21 @@ abstract public class DockingWindow extends BasePanel {
       windowParent.fireTitleChanged();
   }
 
+  /**
+   * <p>getContentWindow.</p>
+   *
+   * @param parent a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow getContentWindow(DockingWindow parent) {
     return needsTitleWindow() && !parent.showsWindowTitle() ? new TabWindow(this) : this;
   }
 
+  /**
+   * <p>removeChildWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected final void removeChildWindow(final DockingWindow window) {
     optimizeAfter(window.getWindowParent(), new Runnable() {
       public void run() {
@@ -1527,6 +1681,11 @@ abstract public class DockingWindow extends BasePanel {
     });
   }
 
+  /**
+   * <p>removeWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   final protected void removeWindow(DockingWindow window) {
     window.setWindowParent(null);
 
@@ -1536,6 +1695,9 @@ abstract public class DockingWindow extends BasePanel {
     }
   }
 
+  /**
+   * <p>detach.</p>
+   */
   final protected void detach() {
     DockingWindow oldParent = getWindowParent();
 
@@ -1543,6 +1705,12 @@ abstract public class DockingWindow extends BasePanel {
       oldParent.removeChildWindow(this);
   }
 
+  /**
+   * <p>addWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   final protected DockingWindow addWindow(DockingWindow window) {
     if (window == null)
       return null;
@@ -1560,7 +1728,10 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>rootChanged.</p>
+   *
+   * @param oldRoot a {@link net.infonode.docking.RootWindow} object.
+   * @param newRoot a {@link net.infonode.docking.RootWindow} object.
    */
   protected void rootChanged(RootWindow oldRoot, RootWindow newRoot) {
     if (newRoot != null)
@@ -1574,7 +1745,9 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>clearFocus.</p>
+   *
+   * @param view a {@link net.infonode.docking.View} object.
    */
   protected void clearFocus(View view) {
     for (int i = 0; i < getChildWindowCount(); i++)
@@ -1677,10 +1850,23 @@ abstract public class DockingWindow extends BasePanel {
     };
   }
 
+  /**
+   * <p>acceptsSplitWith.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a boolean.
+   */
   protected boolean acceptsSplitWith(DockingWindow window) {
     return window != this;
   }
 
+  /**
+   * <p>doAcceptDrop.</p>
+   *
+   * @param p a {@link java.awt.Point} object.
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   protected DropAction doAcceptDrop(Point p, DockingWindow window) {
     DropAction da = acceptSplitDrop(p, window, getRootWindow().getRootWindowProperties().getEdgeSplitDistance());
 
@@ -1700,6 +1886,14 @@ abstract public class DockingWindow extends BasePanel {
     return acceptSplitDrop(p, window, -1);
   }
 
+  /**
+   * <p>acceptSplitDrop.</p>
+   *
+   * @param p a {@link java.awt.Point} object.
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param splitDistance a int.
+   * @return a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   protected DropAction acceptSplitDrop(Point p, DockingWindow window, int splitDistance) {
     if (!acceptsSplitWith(window))
       return null;
@@ -1716,6 +1910,13 @@ abstract public class DockingWindow extends BasePanel {
     return null;
   }
 
+  /**
+   * <p>split.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param splitDir a {@link net.infonode.util.Direction} object.
+   * @return a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   protected DropAction split(DockingWindow window, final Direction splitDir) {
     int width = splitDir == Direction.LEFT || splitDir == Direction.RIGHT ? getWidth() / 3 : getWidth();
     int height = splitDir == Direction.DOWN || splitDir == Direction.UP ? getHeight() / 3 : getHeight();
@@ -1739,6 +1940,12 @@ abstract public class DockingWindow extends BasePanel {
     };
   }
 
+  /**
+   * <p>beforeDrop.</p>
+   *
+   * @param target a {@link net.infonode.docking.DockingWindow} object.
+   * @throws net.infonode.docking.OperationAbortedException if any.
+   */
   protected void beforeDrop(DockingWindow target) throws OperationAbortedException {
     if (!isMinimized() && target.isMinimized())
       fireWindowMinimizing(this);
@@ -1747,6 +1954,12 @@ abstract public class DockingWindow extends BasePanel {
       fireWindowUndocking(this);
   }
 
+  /**
+   * <p>createTabWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   protected DropAction createTabWindow(DockingWindow window) {
     getRootWindow().setDragRectangle(SwingUtilities.convertRectangle(getParent(), getBounds(), getRootWindow()));
 
@@ -1770,19 +1983,34 @@ abstract public class DockingWindow extends BasePanel {
     };
   }
 
+  /**
+   * <p>acceptInteriorDrop.</p>
+   *
+   * @param p a {@link java.awt.Point} object.
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   protected DropAction acceptInteriorDrop(Point p, DockingWindow window) {
     return null;
   }
 
   /**
- *
+   * <p>hasParent.</p>
+   *
+   * @param w a {@link net.infonode.docking.DockingWindow} object.
+   * @return a boolean.
    */
   protected boolean hasParent(DockingWindow w) {
     return w == this || (getWindowParent() != null && getWindowParent().hasParent(w));
   }
 
   /**
- *
+   * <p>oldRead.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   * @throws java.io.IOException if any.
    */
   protected DockingWindow oldRead(ObjectInputStream in, ReadContext context) throws IOException {
     windowItem.readSettings(in, context);
@@ -1790,12 +2018,16 @@ abstract public class DockingWindow extends BasePanel {
   }
 
   /**
- *
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
    */
   abstract protected PropertyMap getPropertyObject();
 
   /**
- *
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
    */
   abstract protected PropertyMap createPropertyObject();
 
@@ -1818,19 +2050,44 @@ abstract public class DockingWindow extends BasePanel {
       popupMenu.show(event.getComponent(), event.getX(), event.getY());
   }
 
+  /**
+   * <p>setFocused.</p>
+   *
+   * @param focused a boolean.
+   */
   protected void setFocused(boolean focused) {
     if (tab != null)
       tab.setFocused(focused);
   }
 
+  /**
+   * <p>getEdgeDepth.</p>
+   *
+   * @param dir a {@link net.infonode.util.Direction} object.
+   * @return a int.
+   */
   protected int getEdgeDepth(Direction dir) {
     return 1 + (windowParent == null ? 0 : windowParent.getChildEdgeDepth(this, dir));
   }
 
+  /**
+   * <p>getChildEdgeDepth.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param dir a {@link net.infonode.util.Direction} object.
+   * @return a int.
+   */
   protected int getChildEdgeDepth(DockingWindow window, Direction dir) {
     return windowParent == null ? 0 : windowParent.getChildEdgeDepth(this, dir);
   }
 
+  /**
+   * <p>acceptChildDrop.</p>
+   *
+   * @param p a {@link java.awt.Point} object.
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   protected DropAction acceptChildDrop(Point p, DockingWindow window) {
     for (int i = 0; i < getChildWindowCount(); i++) {
       DockingWindow childWindow = getChildWindow(i);
@@ -1847,10 +2104,20 @@ abstract public class DockingWindow extends BasePanel {
     return null;
   }
 
+  /**
+   * <p>Getter for the field <code>windowItem</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   protected WindowItem getWindowItem() {
     return windowItem;
   }
 
+  /**
+   * <p>getUpdateModel.</p>
+   *
+   * @return a boolean.
+   */
   protected boolean getUpdateModel() {
     return updateModelDepth == 0 && windowItem.isRestoreWindow();
   }
@@ -1868,10 +2135,16 @@ abstract public class DockingWindow extends BasePanel {
       ((DockingWindow) views.get(i)).restoreItem();
   }
 
+  /**
+   * <p>beginUpdateModel.</p>
+   */
   protected static void beginUpdateModel() {
     updateModelDepth++;
   }
 
+  /**
+   * <p>endUpdateModel.</p>
+   */
   protected static void endUpdateModel() {
     updateModelDepth--;
   }
@@ -2036,18 +2309,39 @@ abstract public class DockingWindow extends BasePanel {
     updateWindowItem(getRootWindow());
   }
 
+  /**
+   * <p>updateWindowItem.</p>
+   *
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   */
   protected void updateWindowItem(RootWindow rootWindow) {
     windowItem.setParentDockingWindowProperties(rootWindow == null ?
                                                 WindowItem.emptyProperties :
                                                 rootWindow.getRootWindowProperties().getDockingWindowProperties());
   }
 
+  /**
+   * <p>afterWindowRemoved.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected void afterWindowRemoved(DockingWindow window) {
   }
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @param context a {@link net.infonode.docking.internal.WriteContext} object.
+   * @param viewWriter a {@link net.infonode.docking.model.ViewWriter} object.
+   * @throws java.io.IOException if any.
+   */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
   }
 
+  /**
+   * <p>cleanUpModel.</p>
+   */
   protected void cleanUpModel() {
     if (windowParent != null)
       windowParent.cleanUpModel();
@@ -2076,5 +2370,14 @@ abstract public class DockingWindow extends BasePanel {
 
   DropFilter getInsertTabDropFilter() {
     return getWindowProperties().getDropFilterProperties().getInsertTabDropFilter();
+  }
+  
+  /**
+   * <p>createTopLevelComponent.</p>
+   *
+   * @return a {@link java.awt.Window} object.
+   */
+  protected Window createTopLevelComponent() {
+	return null;
   }
 }

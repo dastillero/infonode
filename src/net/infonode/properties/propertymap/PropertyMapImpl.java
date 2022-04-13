@@ -53,6 +53,8 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 /**
+ * <p>PropertyMapImpl class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.28 $
  */
@@ -229,14 +231,30 @@ public class PropertyMapImpl implements PropertyMap {
 
   private SignalListener mapListener;
 
+  /**
+   * <p>Constructor for PropertyMapImpl.</p>
+   *
+   * @param propertyGroup a {@link net.infonode.properties.propertymap.PropertyMapGroup} object.
+   */
   public PropertyMapImpl(PropertyMapGroup propertyGroup) {
     this(propertyGroup, null);
   }
 
+  /**
+   * <p>Constructor for PropertyMapImpl.</p>
+   *
+   * @param inheritFrom a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   */
   public PropertyMapImpl(PropertyMapImpl inheritFrom) {
     this(inheritFrom.getPropertyGroup(), inheritFrom);
   }
 
+  /**
+   * <p>Constructor for PropertyMapImpl.</p>
+   *
+   * @param propertyGroup a {@link net.infonode.properties.propertymap.PropertyMapGroup} object.
+   * @param superObject a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   */
   public PropertyMapImpl(PropertyMapGroup propertyGroup, PropertyMapImpl superObject) {
     this(propertyGroup, null, null);
 
@@ -244,10 +262,23 @@ public class PropertyMapImpl implements PropertyMap {
       addSuperMap(superObject);
   }
 
+  /**
+   * <p>Constructor for PropertyMapImpl.</p>
+   *
+   * @param parent a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public PropertyMapImpl(PropertyMapImpl parent, PropertyMapProperty property) {
     this(property.getPropertyMapGroup(), parent, property);
   }
 
+  /**
+   * <p>Constructor for PropertyMapImpl.</p>
+   *
+   * @param propertyGroup a {@link net.infonode.properties.propertymap.PropertyMapGroup} object.
+   * @param parent a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public PropertyMapImpl(PropertyMapGroup propertyGroup, PropertyMapImpl parent, PropertyMapProperty property) {
     this.parent = parent;
     this.property = property;
@@ -313,14 +344,25 @@ public class PropertyMapImpl implements PropertyMap {
     return hasListener() || map.checkListeners(visited);
   }
 
+  /**
+   * <p>Getter for the field <code>map</code>.</p>
+   *
+   * @return a {@link net.infonode.util.collection.notifymap.ConstChangeNotifyMap} object.
+   */
   public ConstChangeNotifyMap getMap() {
     return map;
   }
 
+  /**
+   * <p>Getter for the field <code>superMap</code>.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   public PropertyMap getSuperMap() {
     return superMaps.size() == 0 ? null : (PropertyMap) superMaps.get(0);
   }
 
+  /** {@inheritDoc} */
   public Object removeValue(Property property) throws InvalidPropertyException {
     checkProperty(property);
     PropertyValue value = (PropertyValue) values.get(property);
@@ -362,6 +404,8 @@ public class PropertyMapImpl implements PropertyMap {
            ref;
   }
 
+  /** {@inheritDoc} */
+  @Override
   public Object createRelativeRef(Property fromProperty, PropertyMap toObject, Property toProperty) {
     PropertyValue value = setValue(fromProperty,
                                    new PropertyRefValue(this,
@@ -372,16 +416,26 @@ public class PropertyMapImpl implements PropertyMap {
     return value == null ? null : value.getWithDefault(this);
   }
 
+  /**
+   * <p>getSuperMapCount.</p>
+   *
+   * @return a int.
+   */
   public int getSuperMapCount() {
     return superMaps.size();
   }
 
+  /** {@inheritDoc} */
+  @Override
   public void addSuperMap(PropertyMap superMap) {
     PropertyMapImpl superMapImpl = (PropertyMapImpl) superMap;
 
-/*    if (!propertyObjectImpl.propertyGroup.isA(propertyGroup))
-      throw new RuntimeException("Property group '" + propertyObjectImpl.propertyGroup + "' can't be assigned to group '" + propertyGroup + "'!");
-      */
+    /*if (!propertyObjectImpl.propertyGroup.isA(propertyGroup)) {
+      throw new RuntimeException(String.format("Property group '%s' can't be"
+          + "assigned to group '%s'!", 
+          propertyObjectImpl.propertyGroup,
+          propertyGroup));
+    }*/
     PropertyMapManager.getInstance().beginBatch();
 
     try {
@@ -392,6 +446,11 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /**
+   * <p>removeSuperMap.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   public PropertyMap removeSuperMap() {
     if (superMaps.size() > (parent == null ? 0 : parent.superMaps.size())) {
       PropertyMapImpl object = (PropertyMapImpl) superMaps.get(0);
@@ -402,6 +461,7 @@ public class PropertyMapImpl implements PropertyMap {
       return null;
   }
 
+  /** {@inheritDoc} */
   public boolean removeSuperMap(PropertyMap superMap) {
     if (superMaps.size() > (parent == null ? 0 : parent.superMaps.size())) {
       int index = superMaps.indexOf(superMap);
@@ -417,6 +477,7 @@ public class PropertyMapImpl implements PropertyMap {
       return false;
   }
 
+  /** {@inheritDoc} */
   public boolean replaceSuperMap(PropertyMap oldSuperMap, PropertyMap newSuperMap) {
     if (oldSuperMap != newSuperMap && superMaps.size() > (parent == null ? 0 : parent.superMaps.size())) {
       int index = superMaps.indexOf(oldSuperMap);
@@ -486,6 +547,7 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /** {@inheritDoc} */
   public void addTreeListener(PropertyMapTreeListener listener) {
     if (treeListeners == null)
       treeListeners = new ArrayList(2);
@@ -494,6 +556,7 @@ public class PropertyMapImpl implements PropertyMap {
     updateListenerRecursive();
   }
 
+  /** {@inheritDoc} */
   public void removeTreeListener(PropertyMapTreeListener listener) {
     if (treeListeners != null) {
       treeListeners.remove(listener);
@@ -505,6 +568,7 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /** {@inheritDoc} */
   public void addListener(PropertyMapListener listener) {
     if (listeners == null)
       listeners = new ArrayList(2);
@@ -513,6 +577,7 @@ public class PropertyMapImpl implements PropertyMap {
     updateListener();
   }
 
+  /** {@inheritDoc} */
   public void removeListener(PropertyMapListener listener) {
     if (listeners != null) {
       listeners.remove(listener);
@@ -524,10 +589,16 @@ public class PropertyMapImpl implements PropertyMap {
     updateListener();
   }
 
+  /**
+   * <p>Getter for the field <code>propertyGroup</code>.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapGroup} object.
+   */
   public PropertyMapGroup getPropertyGroup() {
     return propertyGroup;
   }
 
+  /** {@inheritDoc} */
   public void addPropertyChangeListener(Property property, PropertyChangeListener listener) {
     if (propertyChangeListeners == null)
       propertyChangeListeners = new HashMap(4);
@@ -543,6 +614,7 @@ public class PropertyMapImpl implements PropertyMap {
     updateListener();
   }
 
+  /** {@inheritDoc} */
   public void removePropertyChangeListener(Property property, PropertyChangeListener listener) {
     if (propertyChangeListeners != null) {
       ArrayList list = (ArrayList) propertyChangeListeners.get(property);
@@ -563,10 +635,20 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>parent</code>.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   */
   public PropertyMapImpl getParent() {
     return parent;
   }
 
+  /**
+   * <p>Getter for the field <code>property</code>.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public PropertyMapProperty getProperty() {
     return property;
   }
@@ -577,10 +659,22 @@ public class PropertyMapImpl implements PropertyMap {
                                          "Property '" + property + "' not found in object '" + propertyGroup + "'!");
   }
 
+  /**
+   * <p>getChildMap.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   public PropertyMap getChildMap(PropertyMapProperty property) {
     return getChildMapImpl(property);
   }
 
+  /**
+   * <p>getChildMapImpl.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   */
   public PropertyMapImpl getChildMapImpl(PropertyMapProperty property) {
     checkProperty(property);
     return (PropertyMapImpl) childMaps.get(property);
@@ -591,6 +685,12 @@ public class PropertyMapImpl implements PropertyMap {
     return value == null ? ((PropertyMapImpl) propertyGroup.getDefaultMap()).getValue(path) : value;
   }
 
+  /**
+   * <p>getValueWithDefault.</p>
+   *
+   * @param property a {@link net.infonode.properties.base.Property} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   public PropertyValue getValueWithDefault(Property property) {
     PropertyValue value = getValue(property);
     return value == null ? getParentDefaultValue(new PropertyPath(property)) : value;
@@ -602,6 +702,12 @@ public class PropertyMapImpl implements PropertyMap {
            getChildMapImpl((PropertyMapProperty) propertyPath.getProperty()).getValue(propertyPath.getTail());
   }
 
+  /**
+   * <p>getValue.</p>
+   *
+   * @param property a {@link net.infonode.properties.base.Property} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   public PropertyValue getValue(Property property) {
     checkProperty(property);
     return (PropertyValue) map.get(property);
@@ -619,6 +725,13 @@ public class PropertyMapImpl implements PropertyMap {
     return oldValue;
   }
 
+  /**
+   * <p>setValue.</p>
+   *
+   * @param property a {@link net.infonode.properties.base.Property} object.
+   * @param value a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   public PropertyValue setValue(Property property, PropertyValue value) {
     checkProperty(property);
     PropertyValue oldValue = getValue(property);
@@ -638,15 +751,32 @@ public class PropertyMapImpl implements PropertyMap {
     return oldValue;
   }
 
+  /**
+   * <p>valueIsSet.</p>
+   *
+   * @param property a {@link net.infonode.properties.base.Property} object.
+   * @return a boolean.
+   */
   public boolean valueIsSet(Property property) {
     PropertyValue value = (PropertyValue) values.get(property);
     return value != null && value.getParent() == null;
   }
 
+  /**
+   * <p>firePropertyValueChanged.</p>
+   *
+   * @param property a {@link net.infonode.properties.base.Property} object.
+   * @param change a {@link net.infonode.util.ValueChange} object.
+   */
   public void firePropertyValueChanged(Property property, ValueChange change) {
     map.fireEntriesChanged(new SingleValueMap(property, change));
   }
 
+  /**
+   * <p>firePropertyTreeValuesChanged.</p>
+   *
+   * @param changes a {@link java.util.Map} object.
+   */
   protected void firePropertyTreeValuesChanged(Map changes) {
     if (treeListeners != null) {
       PropertyMapTreeListener[] l = (PropertyMapTreeListener[]) treeListeners.toArray(
@@ -681,10 +811,19 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /**
+   * <p>dump.</p>
+   */
   public void dump() {
     dump(new Printer(), new HashSet(4));
   }
 
+  /**
+   * <p>dump.</p>
+   *
+   * @param printer a {@link net.infonode.util.Printer} object.
+   * @param printed a {@link java.util.Set} object.
+   */
   public void dump(Printer printer, Set printed) {
     printed.add(this);
 
@@ -715,6 +854,11 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /**
+   * <p>dumpSuperMaps.</p>
+   *
+   * @param printer a {@link net.infonode.util.Printer} object.
+   */
   public void dumpSuperMaps(Printer printer) {
     printer.println(System.identityHashCode(this) + ":" + this);
 
@@ -729,6 +873,7 @@ public class PropertyMapImpl implements PropertyMap {
 
   }
 
+  /** {@inheritDoc} */
   public void clear(boolean recursive) {
     PropertyMapManager.getInstance().beginBatch();
 
@@ -760,6 +905,7 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /** {@inheritDoc} */
   public boolean isEmpty(boolean recursive) {
     for (ConstMapIterator iterator = values.constIterator(); iterator.atEntry(); iterator.next()) {
       PropertyValue value = (PropertyValue) iterator.getValue();
@@ -794,11 +940,13 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out, boolean recursive) throws IOException {
     out.writeInt(SERIALIZE_VERSION);
     doWrite(out, recursive);
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     write(out, true);
   }
@@ -828,6 +976,7 @@ public class PropertyMapImpl implements PropertyMap {
     out.writeBoolean(false);
   }
 
+  /** {@inheritDoc} */
   public void read(ObjectInputStream in) throws IOException {
     PropertyMapManager.getInstance().beginBatch();
 
@@ -844,6 +993,12 @@ public class PropertyMapImpl implements PropertyMap {
     }
   }
 
+  /**
+   * <p>skip.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @throws java.io.IOException if any.
+   */
   public static void skip(ObjectInputStream in) throws IOException {
     int version = in.readInt();
 
@@ -886,10 +1041,12 @@ public class PropertyMapImpl implements PropertyMap {
     return true;
   }
 
+  /** {@inheritDoc} */
   public boolean valuesEqualTo(PropertyMap propertyObject, boolean recursive) {
     return doValuesEqual((PropertyMapImpl) propertyObject, recursive);
   }
 
+  /** {@inheritDoc} */
   public PropertyMap copy(boolean copySuperMaps, boolean recursive) {
     PropertyMapImpl map = new PropertyMapImpl(propertyGroup);
     doCopy(map, copySuperMaps, recursive, true);

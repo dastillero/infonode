@@ -30,27 +30,37 @@ import net.infonode.util.Direction;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * <p>PaneHandler class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class PaneHandler {
   private JFrame frame;
 
-  private PanePainter[] panePainters;
+  private final PanePainter[] panePainters;
 
   private PaneHandlerListener listener;
 
   private DynamicUIManagerListener uiListener = new DynamicUIManagerListener() {
 
+    @Override
     public void lookAndFeelChanged() {
       doUpdate();
     }
 
+    @Override
     public void propertiesChanging() {
       listener.updating();
     }
 
+    @Override
     public void propertiesChanged() {
       doUpdate();
     }
 
+    @Override
     public void lookAndFeelChanging() {
       listener.updating();
     }

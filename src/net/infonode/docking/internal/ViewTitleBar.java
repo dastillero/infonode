@@ -45,7 +45,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * <p>ViewTitleBar class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class ViewTitleBar extends ContentTitleBar {
   private static final ButtonInfo[] buttonInfos = {
@@ -73,6 +76,11 @@ public class ViewTitleBar extends ContentTitleBar {
     }
   };
 
+  /**
+   * <p>Constructor for ViewTitleBar.</p>
+   *
+   * @param view a {@link net.infonode.docking.View} object.
+   */
   public ViewTitleBar(View view) {
     super(view);
     this.view = view;
@@ -181,6 +189,11 @@ public class ViewTitleBar extends ContentTitleBar {
     }
   }
 
+  /**
+   * <p>updateViewButtons.</p>
+   *
+   * @param changes a {@link java.util.Map} object.
+   */
   public void updateViewButtons(Map changes) {
     InternalDockingUtil.updateButtons(buttonInfos,
                                       buttons,
@@ -207,6 +220,11 @@ public class ViewTitleBar extends ContentTitleBar {
     return false;
   }
 
+  /**
+   * <p>updateCustomBarComponents.</p>
+   *
+   * @param list a {@link java.util.List} object.
+   */
   public void updateCustomBarComponents(List list) {
     this.customBarComponents = list;
 
@@ -242,6 +260,9 @@ public class ViewTitleBar extends ContentTitleBar {
     setRightTitleComponents(components, insets);
   }
 
+  /**
+   * <p>dispose.</p>
+   */
   public void dispose() {
     HoverManager.getInstance().removeHoverable(this);
   }
@@ -249,6 +270,7 @@ public class ViewTitleBar extends ContentTitleBar {
   private int pressedCount = 0;
   private boolean dragOutside = false;
 
+  /** {@inheritDoc} */
   protected void processMouseEvent(MouseEvent e) {
     if (e.getID() == MouseEvent.MOUSE_PRESSED)
       pressedCount++;
@@ -263,6 +285,7 @@ public class ViewTitleBar extends ContentTitleBar {
     super.processMouseEvent(e);
   }
 
+  /** {@inheritDoc} */
   protected void processMouseMotionEvent(MouseEvent e) {
     if (e.getID() == MouseEvent.MOUSE_DRAGGED && !dragOutside) {
       dragOutside = !contains(e.getPoint());
@@ -273,6 +296,11 @@ public class ViewTitleBar extends ContentTitleBar {
     super.processMouseMotionEvent(e);
   }
 
+  /**
+   * <p>getMinimumSize.</p>
+   *
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getMinimumSize() {
     if (minimumSizeProvider == null)
       return super.getMinimumSize();
@@ -281,6 +309,11 @@ public class ViewTitleBar extends ContentTitleBar {
     return d == null ? super.getMinimumSize() : d;
   }
 
+  /**
+   * <p>getPreferredSize.</p>
+   *
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getPreferredSize() {
     Dimension d = minimumSizeProvider == null ? null : minimumSizeProvider.getDimension(this);
 

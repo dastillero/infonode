@@ -51,11 +51,18 @@ public class BackgroundPainterColorProvider extends AbstractColorProvider {
   private BackgroundPainterColorProvider() {
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     Color color = ComponentUtil.getBackgroundColor(component);
     return color == null ? UIManager.getColor("control") : color;
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

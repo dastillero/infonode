@@ -148,6 +148,7 @@ public class WindowTabButtonProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(WindowTabButtonProperties)} instead.
    */
+  @Deprecated
   public WindowTabButtonProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;
@@ -256,9 +257,9 @@ public class WindowTabButtonProperties extends PropertyMapContainer {
   }
 
   /**
-   * Gets the {@link DockingWindowAction} that is performed when the button is clicked.
+   * Gets the {@link net.infonode.docking.action.DockingWindowAction} that is performed when the button is clicked.
    *
-   * @return the {@link DockingWindowAction} that is performed when the button is clicked
+   * @return the {@link net.infonode.docking.action.DockingWindowAction} that is performed when the button is clicked
    * @since IDW 1.3.0
    */
   public DockingWindowAction getAction() {
@@ -266,9 +267,9 @@ public class WindowTabButtonProperties extends PropertyMapContainer {
   }
 
   /**
-   * Sets the {@link DockingWindowAction} that will be performed when the button is clicked.
+   * Sets the {@link net.infonode.docking.action.DockingWindowAction} that will be performed when the button is clicked.
    *
-   * @param action the {@link DockingWindowAction} that is performed when the button is clicked
+   * @param action the {@link net.infonode.docking.action.DockingWindowAction} that is performed when the button is clicked
    * @return this
    * @since IDW 1.3.0
    */
@@ -280,7 +281,7 @@ public class WindowTabButtonProperties extends PropertyMapContainer {
   /**
    * Sets the action is performed when the button is clicked.
    * Also sets the icon and tooltip text of the button using the values from
-   * {@link DockingWindowAction}.
+   * {@link net.infonode.docking.action.DockingWindowAction}.
    *
    * @param action the action that is performed when the button is clicked
    * @return this

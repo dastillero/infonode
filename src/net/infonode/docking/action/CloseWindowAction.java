@@ -32,10 +32,10 @@ import java.io.ObjectStreamException;
 
 /**
  * <p>
- * Closes a window using the {@link DockingWindow#close()} method.
+ * Closes a window using the {@link net.infonode.docking.DockingWindow#close()} method.
  * </p>
  * <p>
- * In a GUI, you would typically use {@link CloseWithAbortWindowAction} instead of this class.
+ * In a GUI, you would typically use {@link net.infonode.docking.action.CloseWithAbortWindowAction} instead of this class.
  * </p>
  *
  * @author $Author: jesper $
@@ -55,23 +55,41 @@ public final class CloseWindowAction extends DockingWindowAction {
   private CloseWindowAction() {
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Close";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return window.isClosable();
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     if (isPerformable(window))
       window.close();
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

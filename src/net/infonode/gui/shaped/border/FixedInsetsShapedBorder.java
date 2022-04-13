@@ -28,6 +28,8 @@ import net.infonode.gui.shaped.ShapedUtil;
 import java.awt.*;
 
 /**
+ * <p>FixedInsetsShapedBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
@@ -36,11 +38,18 @@ public class FixedInsetsShapedBorder extends AbstractShapedBorderWrapper {
 
   private Insets insets;
 
+  /**
+   * <p>Constructor for FixedInsetsShapedBorder.</p>
+   *
+   * @param insets a {@link java.awt.Insets} object.
+   * @param border a {@link net.infonode.gui.shaped.border.ShapedBorder} object.
+   */
   public FixedInsetsShapedBorder(Insets insets, ShapedBorder border) {
     super(border);
     this.insets = insets;
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return ShapedUtil.transformInsets(c, insets);
   }

@@ -30,6 +30,8 @@ import javax.swing.border.CompoundBorder;
 import java.awt.*;
 
 /**
+ * <p>BorderUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
@@ -37,6 +39,14 @@ public class BorderUtil {
   private BorderUtil() {
   }
 
+  /**
+   * <p>getInsetsOutside.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param border a {@link javax.swing.border.Border} object.
+   * @param outside a {@link javax.swing.border.Border} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public static Insets getInsetsOutside(Component c, Border border, Border outside) {
     Insets insets = new Insets(0, 0, 0, 0);
     getInsetsOutside(c, border, outside, insets);
@@ -59,6 +69,12 @@ public class BorderUtil {
     }
   }
 
+  /**
+   * <p>copy.</p>
+   *
+   * @param border a {@link javax.swing.border.Border} object.
+   * @return a {@link javax.swing.border.Border} object.
+   */
   public static Border copy(final Border border) {
     return new Border() {
       public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {

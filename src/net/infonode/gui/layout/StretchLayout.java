@@ -25,24 +25,42 @@ package net.infonode.gui.layout;
 
 import java.awt.*;
 
+/**
+ * <p>StretchLayout class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class StretchLayout implements LayoutManager {
+  /** Constant <code>BOTH</code> */
   public static final StretchLayout BOTH = new StretchLayout();
 
   private boolean horizontal;
   private boolean vertical;
 
+  /**
+   * <p>Constructor for StretchLayout.</p>
+   */
   public StretchLayout() {
     this(true, true);
   }
 
+  /**
+   * <p>Constructor for StretchLayout.</p>
+   *
+   * @param horizontal a boolean.
+   * @param vertical a boolean.
+   */
   public StretchLayout(boolean horizontal, boolean vertical) {
     this.horizontal = horizontal;
     this.vertical = vertical;
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(String name, Component comp) {
   }
 
+  /** {@inheritDoc} */
   public void layoutContainer(Container parent) {
     Dimension innerSize = LayoutUtil.getInteriorSize(parent);
     Insets insets = parent.getInsets();
@@ -58,14 +76,17 @@ public class StretchLayout implements LayoutManager {
     }
   }
 
+  /** {@inheritDoc} */
   public Dimension minimumLayoutSize(Container parent) {
     return LayoutUtil.add(LayoutUtil.getMaxMinimumSize(LayoutUtil.getVisibleChildren(parent)), parent.getInsets());
   }
 
+  /** {@inheritDoc} */
   public Dimension preferredLayoutSize(Container parent) {
     return LayoutUtil.add(LayoutUtil.getMaxPreferredSize(LayoutUtil.getVisibleChildren(parent)), parent.getInsets());
   }
 
+  /** {@inheritDoc} */
   public void removeLayoutComponent(Component comp) {
   }
 }

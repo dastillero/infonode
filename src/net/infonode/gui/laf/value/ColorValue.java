@@ -27,6 +27,8 @@ import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 
 /**
+ * <p>ColorValue class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
@@ -34,42 +36,92 @@ public class ColorValue {
   private ColorUIResource color;
   private ColorUIResource defaultColor;
 
+  /**
+   * <p>Constructor for ColorValue.</p>
+   */
   public ColorValue() {
     this(Color.BLACK);
   }
 
+  /**
+   * <p>Constructor for ColorValue.</p>
+   *
+   * @param r a int.
+   * @param g a int.
+   * @param b a int.
+   */
   public ColorValue(int r, int g, int b) {
     this(new ColorUIResource(r, g, b));
   }
 
+  /**
+   * <p>Constructor for ColorValue.</p>
+   *
+   * @param defaultColor a {@link java.awt.Color} object.
+   */
   public ColorValue(Color defaultColor) {
     this(new ColorUIResource(defaultColor));
   }
 
+  /**
+   * <p>Constructor for ColorValue.</p>
+   *
+   * @param defaultColor a {@link javax.swing.plaf.ColorUIResource} object.
+   */
   public ColorValue(ColorUIResource defaultColor) {
     this.defaultColor = defaultColor;
   }
 
+  /**
+   * <p>Getter for the field <code>color</code>.</p>
+   *
+   * @return a {@link javax.swing.plaf.ColorUIResource} object.
+   */
   public ColorUIResource getColor() {
     return color == null ? defaultColor : color;
   }
 
+  /**
+   * <p>Setter for the field <code>color</code>.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   */
   public void setColor(Color color) {
     setColor(new ColorUIResource(color));
   }
 
+  /**
+   * <p>Setter for the field <code>color</code>.</p>
+   *
+   * @param color a {@link javax.swing.plaf.ColorUIResource} object.
+   */
   public void setColor(ColorUIResource color) {
     this.color = color;
   }
 
+  /**
+   * <p>Setter for the field <code>defaultColor</code>.</p>
+   *
+   * @param defaultColor a {@link java.awt.Color} object.
+   */
   public void setDefaultColor(Color defaultColor) {
     setDefaultColor(new ColorUIResource(defaultColor));
   }
 
+  /**
+   * <p>Setter for the field <code>defaultColor</code>.</p>
+   *
+   * @param defaultColor a {@link javax.swing.plaf.ColorUIResource} object.
+   */
   public void setDefaultColor(ColorUIResource defaultColor) {
     this.defaultColor = defaultColor;
   }
 
+  /**
+   * <p>Setter for the field <code>defaultColor</code>.</p>
+   *
+   * @param defaultColor a {@link net.infonode.gui.laf.value.ColorValue} object.
+   */
   public void setDefaultColor(ColorValue defaultColor) {
     setDefaultColor(defaultColor.getColor());
   }

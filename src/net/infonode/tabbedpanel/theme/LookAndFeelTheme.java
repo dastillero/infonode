@@ -315,6 +315,12 @@ public class LookAndFeelTheme extends TabbedPanelTitledTabTheme {
     };
   }
 
+  /**
+   * <p>getBorderColor.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getBorderColor(Direction d) {
     return ui.getContentTabAreaBorderColor(d);
   }

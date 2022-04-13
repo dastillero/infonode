@@ -31,7 +31,7 @@ import javax.swing.*;
 import java.io.Serializable;
 
 /**
- * An action that can be performed on a {@link DockingWindow}. It has a name and an optional icon.
+ * An action that can be performed on a {@link net.infonode.docking.DockingWindow}. It has a name and an optional icon.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -97,6 +97,11 @@ abstract public class DockingWindowAction implements Serializable, IconProvider 
     return null;
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return getName();
   }

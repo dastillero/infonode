@@ -28,6 +28,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
+ * <p>EventUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
@@ -35,12 +37,27 @@ public class EventUtil {
   private EventUtil() {
   }
 
+  /**
+   * <p>convert.</p>
+   *
+   * @param event a {@link java.awt.event.MouseEvent} object.
+   * @param newSource a {@link java.awt.Component} object.
+   * @return a {@link java.awt.event.MouseEvent} object.
+   */
   public static MouseEvent convert(MouseEvent event, Component newSource) {
     return convert(event,
                    newSource,
                    SwingUtilities.convertPoint((Component) event.getSource(), event.getPoint(), newSource));
   }
 
+  /**
+   * <p>convert.</p>
+   *
+   * @param event a {@link java.awt.event.MouseEvent} object.
+   * @param newSource a {@link java.awt.Component} object.
+   * @param p a {@link java.awt.Point} object.
+   * @return a {@link java.awt.event.MouseEvent} object.
+   */
   public static MouseEvent convert(MouseEvent event, Component newSource, Point p) {
     return new MouseEvent(newSource,
                           event.getID(),

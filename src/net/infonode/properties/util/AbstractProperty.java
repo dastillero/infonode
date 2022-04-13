@@ -57,35 +57,67 @@ abstract public class AbstractProperty implements Property {
       group.addProperty(this);
   }
 
+  /**
+   * <p>Getter for the field <code>group</code>.</p>
+   *
+   * @return a {@link net.infonode.properties.base.PropertyGroup} object.
+   */
   public PropertyGroup getGroup() {
     return group;
   }
 
+  /**
+   * <p>Getter for the field <code>name</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * <p>Getter for the field <code>type</code>.</p>
+   *
+   * @return a {@link java.lang.Class} object.
+   */
   public Class getType() {
     return type;
   }
 
+  /**
+   * <p>Getter for the field <code>description</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getDescription() {
     return description;
   }
 
+  /**
+   * <p>isMutable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMutable() {
     return true;
   }
 
+  /** {@inheritDoc} */
   public void setValue(Object object, Object value) {
     if (!canBeAssiged(value))
       throw new InvalidPropertyValueException(this, value);
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return getName();
   }
 
+  /** {@inheritDoc} */
   public boolean canBeAssiged(Object value) {
     return isMutable() && (value == null || getType().isAssignableFrom(value.getClass()));
   }

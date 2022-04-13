@@ -30,16 +30,29 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
+ * <p>ValueDecoder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
 public class ValueDecoder {
+  /** Constant <code>SIMPLE=0</code> */
   public static final int SIMPLE = 0;
+  /** Constant <code>REF=1</code> */
   public static final int REF = 1;
 
   private ValueDecoder() {
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param propertyObject a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @param property a {@link net.infonode.properties.base.Property} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   * @throws java.io.IOException if any.
+   */
   public static PropertyValue decode(ObjectInputStream in, PropertyMapImpl propertyObject, Property property) throws IOException {
     int type = in.readInt();
 
@@ -55,6 +68,12 @@ public class ValueDecoder {
     }
   }
 
+  /**
+   * <p>skip.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @throws java.io.IOException if any.
+   */
   public static void skip(ObjectInputStream in) throws IOException {
     int type = in.readInt();
 

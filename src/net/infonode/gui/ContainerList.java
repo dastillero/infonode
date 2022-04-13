@@ -30,17 +30,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <p>ContainerList class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class ContainerList extends ChangeNotifyList {
   private Container container;
 
+  /**
+   * <p>Constructor for ContainerList.</p>
+   *
+   * @param container a {@link java.awt.Container} object.
+   */
   public ContainerList(Container container) {
     super(new ArrayList());
     this.container = container;
   }
 
+  /**
+   * <p>changed.</p>
+   */
   protected void changed() {
     container.removeAll();
     List list = getList();

@@ -36,8 +36,8 @@ import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
 /**
  * <p>
  * TitledTabTabbedPanelHoverAction is an action that makes it easy to change
- * properties for a hovered {@link TitledTab} and the {@link TabbedPanel} it is a
- * member of. The action is meant to be set as a {@link HoverListener} for a
+ * properties for a hovered {@link net.infonode.tabbedpanel.titledtab.TitledTab} and the {@link net.infonode.tabbedpanel.TabbedPanel} it is a
+ * member of. The action is meant to be set as a {@link net.infonode.gui.hover.HoverListener} for a
  * TitledTab in the
  * {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties}.
  * </p>
@@ -66,6 +66,7 @@ import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
  * @author johan
  * @version $Revision: 1.5 $
  * @see TabbedPanel
+ * @see TabbedPanelProperties
  * @see TitledTab
  * @see net.infonode.tabbedpanel.titledtab.TitledTabProperties
  * @see TabbedPanelProperties
@@ -163,6 +164,7 @@ public class TitledTabTabbedPanelHoverAction implements HoverListener {
     return tabbedPanelProperties;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     TitledTab tab = (TitledTab) event.getSource();
     if (onlyHighlighted) {
@@ -177,6 +179,7 @@ public class TitledTabTabbedPanelHoverAction implements HoverListener {
     tab.getProperties().addSuperObject(titledTabProperties);
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     TitledTab tab = (TitledTab) event.getSource();
     removeTabbedPanel(tab.getTabbedPanel());

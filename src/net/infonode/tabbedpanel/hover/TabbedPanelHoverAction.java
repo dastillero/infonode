@@ -31,7 +31,7 @@ import net.infonode.tabbedpanel.TabbedPanelProperties;
 /**
  * <p>
  * TabbedPanelHoverAction is an action that makes it easy to change properties for
- * a hovered {@link TabbedPanel}. The action is meant to be set as a {@link HoverListener}
+ * a hovered {@link net.infonode.tabbedpanel.TabbedPanel}. The action is meant to be set as a {@link net.infonode.gui.hover.HoverListener}
  * for the entire tabbed panel, the tab area, the tab area components area and/or the
  * content area in their corresponding properties objects.
  * </p>
@@ -45,6 +45,7 @@ import net.infonode.tabbedpanel.TabbedPanelProperties;
  * @author johan
  * @version $Revision: 1.9 $
  * @see TabbedPanel
+ * @see TabbedPanelProperties
  * @see TabbedPanelProperties
  * @see net.infonode.tabbedpanel.TabAreaProperties
  * @see net.infonode.tabbedpanel.TabAreaComponentsProperties
@@ -81,10 +82,12 @@ public class TabbedPanelHoverAction implements HoverListener {
     return props;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     ((TabbedPanel) event.getSource()).getProperties().addSuperObject(props);
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     ((TabbedPanel) event.getSource()).getProperties().removeSuperObject(props);
   }

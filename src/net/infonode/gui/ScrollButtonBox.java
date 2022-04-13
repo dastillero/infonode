@@ -35,6 +35,12 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
+/**
+ * <p>ScrollButtonBox class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ScrollButtonBox extends SimplePanel {
   private AbstractButton upButton;
   private AbstractButton downButton;
@@ -60,6 +66,12 @@ public class ScrollButtonBox extends SimplePanel {
     }
   };
 
+  /**
+   * <p>Constructor for ScrollButtonBox.</p>
+   *
+   * @param vertical a boolean.
+   * @param iconSize a int.
+   */
   public ScrollButtonBox(boolean vertical, int iconSize) {
     this(vertical,
          ButtonFactory.createFlatHighlightButton(new ArrowIcon(iconSize, Direction.UP), "", 0, null),
@@ -68,6 +80,15 @@ public class ScrollButtonBox extends SimplePanel {
          ButtonFactory.createFlatHighlightButton(new ArrowIcon(iconSize, Direction.RIGHT), "", 0, null));
   }
 
+  /**
+   * <p>Constructor for ScrollButtonBox.</p>
+   *
+   * @param vertical a boolean.
+   * @param upButton a {@link javax.swing.AbstractButton} object.
+   * @param downButton a {@link javax.swing.AbstractButton} object.
+   * @param leftButton a {@link javax.swing.AbstractButton} object.
+   * @param rightButton a {@link javax.swing.AbstractButton} object.
+   */
   public ScrollButtonBox(final boolean vertical,
                          AbstractButton upButton,
                          AbstractButton downButton,
@@ -88,26 +109,51 @@ public class ScrollButtonBox extends SimplePanel {
     setButtons(upButton, downButton, leftButton, rightButton);
   }
 
+  /**
+   * <p>Setter for the field <code>button1Enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setButton1Enabled(boolean enabled) {
     this.button1Enabled = enabled;
     if (getComponentCount() > 0)
       ((AbstractButton) getComponent(0)).setEnabled(enabled);
   }
 
+  /**
+   * <p>Setter for the field <code>button2Enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setButton2Enabled(boolean enabled) {
     this.button2Enabled = enabled;
     if (getComponentCount() > 0)
       ((AbstractButton) getComponent(1)).setEnabled(enabled);
   }
 
+  /**
+   * <p>isButton1Enabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isButton1Enabled() {
     return button1Enabled;
   }
 
+  /**
+   * <p>isButton2Enabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isButton2Enabled() {
     return button2Enabled;
   }
 
+  /**
+   * <p>addListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.ScrollButtonBoxListener} object.
+   */
   public void addListener(ScrollButtonBoxListener listener) {
     if (listeners == null)
       listeners = new ArrayList(2);
@@ -115,6 +161,11 @@ public class ScrollButtonBox extends SimplePanel {
     listeners.add(listener);
   }
 
+  /**
+   * <p>removeListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.ScrollButtonBoxListener} object.
+   */
   public void removeListener(ScrollButtonBoxListener listener) {
     if (listeners != null) {
       listeners.remove(listener);
@@ -124,10 +175,20 @@ public class ScrollButtonBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>isVertical.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isVertical() {
     return vertical;
   }
 
+  /**
+   * <p>Setter for the field <code>vertical</code>.</p>
+   *
+   * @param vertical a boolean.
+   */
   public void setVertical(boolean vertical) {
     if (vertical != this.vertical) {
       this.vertical = vertical;
@@ -136,6 +197,14 @@ public class ScrollButtonBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>setButtons.</p>
+   *
+   * @param upButton a {@link javax.swing.AbstractButton} object.
+   * @param downButton a {@link javax.swing.AbstractButton} object.
+   * @param leftButton a {@link javax.swing.AbstractButton} object.
+   * @param rightButton a {@link javax.swing.AbstractButton} object.
+   */
   public void setButtons(AbstractButton upButton,
                          AbstractButton downButton,
                          AbstractButton leftButton,
@@ -151,18 +220,38 @@ public class ScrollButtonBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>upButton</code>.</p>
+   *
+   * @return a {@link javax.swing.AbstractButton} object.
+   */
   public AbstractButton getUpButton() {
     return upButton;
   }
 
+  /**
+   * <p>Getter for the field <code>downButton</code>.</p>
+   *
+   * @return a {@link javax.swing.AbstractButton} object.
+   */
   public AbstractButton getDownButton() {
     return downButton;
   }
 
+  /**
+   * <p>Getter for the field <code>leftButton</code>.</p>
+   *
+   * @return a {@link javax.swing.AbstractButton} object.
+   */
   public AbstractButton getLeftButton() {
     return leftButton;
   }
 
+  /**
+   * <p>Getter for the field <code>rightButton</code>.</p>
+   *
+   * @return a {@link javax.swing.AbstractButton} object.
+   */
   public AbstractButton getRightButton() {
     return rightButton;
   }

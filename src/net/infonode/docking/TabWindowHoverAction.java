@@ -33,28 +33,23 @@ import net.infonode.tabbedpanel.titledtab.TitledTab;
 import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
 
 /**
- * <p>
  * TabWindowHoverAction is a hover action that makes it easy to change properties for a tab window
  * and the title bar in the view.
- * </p>
- *
  * <p>
  * This action contains a titled tab proeprties object, a tabbed panel properties object and a view
  * title bar properties object. Those objects are automatically added/removed as superobject to the
  * currently hovered tab window if this action is set as a hover listener in the titled tab properties
  * and the content panel properties for the tabbed panel.
- * </p>
- *
  * <p>
  * Example:
  * <pre>
  * rootWindowProperties.getTabWindowProperties().getTabbedPanelProperties().getContentPanelProperties().setHoverListener(tabWindowHoverAction);<br>
  * rootWindowProperties.getTabWindowProperties().getTabProperties().getTitledTabProperties().setHoverListener(tabWindowHoverAction);
  * </pre>
- * </p>
  *
  * @author johan
  * @since IDW 1.4.0
+ * @version $Id: $Id
  */
 public class TabWindowHoverAction implements HoverListener {
   private TabbedPanelProperties tabbedPanelProperties;
@@ -91,6 +86,13 @@ public class TabWindowHoverAction implements HoverListener {
     this(new TabbedPanelProperties(), new TitledTabProperties(), new ViewTitleBarProperties());
   }
 
+  /**
+   * <p>Constructor for TabWindowHoverAction.</p>
+   *
+   * @param tabbedPanelProperties a {@link net.infonode.tabbedpanel.TabbedPanelProperties} object.
+   * @param titledTabProperties a {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties} object.
+   * @param viewTitleBarProperties a {@link net.infonode.docking.properties.ViewTitleBarProperties} object.
+   */
   public TabWindowHoverAction(TabbedPanelProperties tabbedPanelProperties,
                               TitledTabProperties titledTabProperties,
                               ViewTitleBarProperties viewTitleBarProperties) {
@@ -129,6 +131,7 @@ public class TabWindowHoverAction implements HoverListener {
     return viewTitleBarProperties;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     if (event.getSource() instanceof TabbedPanel) {
       TabbedPanel tp = (TabbedPanel) event.getSource();
@@ -151,6 +154,7 @@ public class TabWindowHoverAction implements HoverListener {
     }
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     if (event.getSource() instanceof TabbedPanel) {
       TabbedPanel tp = (TabbedPanel) event.getSource();

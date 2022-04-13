@@ -30,7 +30,7 @@ import net.infonode.properties.util.ValueHandlerProperty;
 import javax.swing.border.Border;
 
 /**
- * A property of type {@link Border}.
+ * A property of type {@link javax.swing.border.Border}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $

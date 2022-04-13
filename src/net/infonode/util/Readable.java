@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
- * Interface for objects that can be read from an {@link ObjectInputStream}.
+ * Interface for objects that can be read from an {@link java.io.ObjectInputStream}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -37,7 +37,7 @@ public interface Readable {
    * Reads this object from an ObjectInputStream.
    *
    * @param in the stream
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   void read(ObjectInputStream in) throws IOException;
 }

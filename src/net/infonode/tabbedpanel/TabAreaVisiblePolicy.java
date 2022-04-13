@@ -30,22 +30,29 @@ package net.infonode.tabbedpanel;
  * @version $Revision: 1.3 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  * @since ITP 1.4.0
  */
 public enum TabAreaVisiblePolicy {
-
-  /** Always visible policy. This means that the tab area is always visible. */
+  /**
+   * Always visible policy. This means that the tab area is always visible.
+   */
   ALWAYS,
 
-  /** Never visible policy. This means that the tab area is never visible. */
+  /**
+   * Never visible policy. This means that the tab area is never visible.
+   */
   NEVER,
-
-  /** Tabs exist visible policy. This means that the tab area will only be visible if it contains tabs. */
+  
+  /**
+   * Tabs exist visible policy. This means that the tab area will only be visible if it contains tabs.
+   */
   TABS_EXIST,
 
   /**
    * More than one visible policy. This means that the tab area is visible when the tabbed
    * panel contains more than one tab.
    */
-  MORE_THAN_ONE_TAB
+  MORE_THAN_ONE_TAB;
+
 }

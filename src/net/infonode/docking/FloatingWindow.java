@@ -73,7 +73,7 @@ import java.util.Map;
  * Floating window inherits its component properties and shaped panel properties from the root
  * window's window area. It is possible to set specific component and shaped panel properties for
  * a floating window in the {@link net.infonode.docking.properties.FloatingWindowProperties}, see
- * {@link FloatingWindow#getFloatingWindowProperties()}.
+ * {@link net.infonode.docking.FloatingWindow#getFloatingWindowProperties()}.
  * </p>
  *
  * <p>
@@ -120,6 +120,10 @@ public class FloatingWindow extends DockingWindow {
   };
 
   FloatingWindow(RootWindow rootWindow) {
+	  this(rootWindow, null);
+  }
+  
+  FloatingWindow(RootWindow rootWindow, DockingWindow window) {
     super(new FloatingWindowItem());
 
     getFloatingWindowProperties().addSuperObject(rootWindow.getRootWindowProperties().getFloatingWindowProperties());
@@ -128,16 +132,22 @@ public class FloatingWindow extends DockingWindow {
     shapedPanel = new ShapedPanel();
     setComponent(shapedPanel);
 
-    Component c = rootWindow.getTopLevelComponent();
-    dialog = getFloatingWindowProperties().getUseFrame() ? (Window) new JFrame() :
-             (Window) (c instanceof Frame ? new JDialog((Frame) c) : new JDialog((Dialog) c));
+    if (window != null) {
+      dialog = window.createTopLevelComponent();
+    }
+    if (dialog == null) {
+      Component c = rootWindow.getTopLevelComponent();
+      dialog = getFloatingWindowProperties().getUseFrame() ? (Window) new JFrame() :
+                 (Window) (c instanceof Frame ? new JDialog((Frame) c) : new JDialog((Dialog) c));
+
+      if (dialog instanceof JDialog)
+        ((JDialog) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+      else
+        ((JFrame) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+    }
+    
     ((RootPaneContainer) dialog).getContentPane().add(this, BorderLayout.CENTER);
-
-    if (dialog instanceof JDialog)
-      ((JDialog) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-    else
-      ((JFrame) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
+    
     dialog.addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent e) {
         try {
@@ -191,7 +201,7 @@ public class FloatingWindow extends DockingWindow {
   }
 
   FloatingWindow(RootWindow rootWindow, DockingWindow window, Point p, Dimension internalSize) {
-    this(rootWindow);
+    this(rootWindow, window);
     setWindow(window);
     setInternalSize(internalSize);
     dialog.setLocation(p.x, p.y);
@@ -293,33 +303,61 @@ public class FloatingWindow extends DockingWindow {
   }
 
   /**
-   * Floating window cannot be minimized
+   * {@inheritDoc}
    *
-   * @param direction
+   * Floating window cannot be minimized
    */
   public void minimize(Direction direction) {
   }
 
+  /**
+   * <p>isDockable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isDockable() {
     return false;
   }
 
+  /**
+   * <p>isMaximizable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMaximizable() {
     return false;
   }
 
+  /**
+   * <p>isMinimizable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isMinimizable() {
     return false;
   }
 
+  /**
+   * <p>isRestorable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRestorable() {
     return false;
   }
 
+  /**
+   * <p>isUndockable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isUndockable() {
     return false;
   }
 
+  /**
+   * <p>close.</p>
+   */
   public void close() {
     PropertyMapWeakListenerManager.removeWeakTreeListener(getFloatingWindowProperties().getMap(), propertiesListener);
     RootWindow rw = getRootWindow();
@@ -339,18 +377,34 @@ public class FloatingWindow extends DockingWindow {
     }
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return window == null ? null : window.getIcon();
   }
 
+  /** {@inheritDoc} */
   public DockingWindow getChildWindow(int index) {
     return window;
   }
 
+  /**
+   * <p>getChildWindowCount.</p>
+   *
+   * @return a int.
+   */
   public int getChildWindowCount() {
     return window == null ? 0 : 1;
   }
 
+  /**
+   * <p>isUndocked.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isUndocked() {
     return true;
   }
@@ -423,6 +477,7 @@ public class FloatingWindow extends DockingWindow {
       FocusManager.focusWindow(focusWindow);
   }
 
+  /** {@inheritDoc} */
   protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow) {
     if (oldWindow == window) {
       if (window != null) {
@@ -445,6 +500,8 @@ public class FloatingWindow extends DockingWindow {
     updateButtonVisibility();
   }
 
+  /** {@inheritDoc} */
+  @Override
   protected void doRemoveWindow(DockingWindow window) {
     if (window != null) {
       shapedPanel.remove(window);
@@ -454,6 +511,8 @@ public class FloatingWindow extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
+  @Override
   protected void afterWindowRemoved(DockingWindow window) {
     if (getFloatingWindowProperties().getAutoCloseEnabled())
       close();
@@ -462,26 +521,37 @@ public class FloatingWindow extends DockingWindow {
   private void doUpdateTitle() {
     if (titleUpdater == null) {
       titleUpdater = new Runnable() {
+        @Override
         public void run() {
           if (dialog != null) {
-            if (dialog instanceof Dialog)
-              ((Dialog) dialog).setTitle(window == null ? "" : window.getTitle());
-            else
-              ((Frame) dialog).setTitle(window == null ? "" : window.getTitle());
+            String newTitle = window == null ? "" : window.getTitle();
+            if (dialog instanceof Dialog) {
+              String oldTitle = ((Dialog) dialog).getTitle();
+              if (newTitle == null || !newTitle.equals(oldTitle)) {
+                ((Dialog) dialog).setTitle(newTitle);
+              }
+            } else {
+              String oldTitle = ((Frame) dialog).getTitle();
+              if (newTitle == null || !newTitle.equals(oldTitle)) {
+                ((Frame) dialog).setTitle(newTitle);
+              }
+            }
           }
 
           titleUpdater = null;
         }
       };
 
-      SwingUtilities.invokeLater(titleUpdater);
+      titleUpdater.run();
     }
   }
 
+  /** {@inheritDoc} */
   protected boolean acceptsSplitWith(DockingWindow window) {
     return false;
   }
 
+  /** {@inheritDoc} */
   protected DropAction doAcceptDrop(Point p, DockingWindow window) {
     DockingWindow dropWindow = maximizedWindow != null ? maximizedWindow : this.window;
 
@@ -498,6 +568,7 @@ public class FloatingWindow extends DockingWindow {
     return super.doAcceptDrop(p, window);
   }
 
+  /** {@inheritDoc} */
   protected DropAction acceptInteriorDrop(Point p, DockingWindow window) {
     if (this.window != null)
       return null;
@@ -514,6 +585,9 @@ public class FloatingWindow extends DockingWindow {
     return null;
   }
 
+  /**
+   * <p>update.</p>
+   */
   protected void update() {
   }
 
@@ -525,6 +599,7 @@ public class FloatingWindow extends DockingWindow {
     // Do nothing
   }
 
+  /** {@inheritDoc} */
   protected void showChildWindow(DockingWindow window) {
     if (maximizedWindow != null && window == this.window)
       setMaximizedWindow(null);
@@ -532,10 +607,20 @@ public class FloatingWindow extends DockingWindow {
     super.showChildWindow(window);
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return new SplitWindowProperties().getMap();
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new SplitWindowProperties().getMap();
   }
@@ -560,6 +645,9 @@ public class FloatingWindow extends DockingWindow {
       InternalPropertiesUtil.applyTo(shapedProperties, shapedPanel);
   }
 
+  /**
+   * <p>fireTitleChanged.</p>
+   */
   protected void fireTitleChanged() {
     super.fireTitleChanged();
 
@@ -572,6 +660,15 @@ public class FloatingWindow extends DockingWindow {
     ((RootPaneContainer) dialog).getRootPane().setPreferredSize(null);
   }
 
+  /**
+   * <p>read.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @param viewReader a {@link net.infonode.docking.model.ViewReader} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   * @throws java.io.IOException if any.
+   */
   protected DockingWindow read(ObjectInputStream in, ReadContext context, ViewReader viewReader) throws IOException {
     dialog.setSize(new Dimension(in.readInt(), in.readInt()));
     dialog.setLocation(in.readInt(), in.readInt());
@@ -585,6 +682,7 @@ public class FloatingWindow extends DockingWindow {
     return this;
   }
 
+  /** {@inheritDoc} */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(dialog.getWidth());
     out.writeInt(dialog.getHeight());

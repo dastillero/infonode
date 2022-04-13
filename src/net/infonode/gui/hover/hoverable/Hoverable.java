@@ -26,12 +26,27 @@ package net.infonode.gui.hover.hoverable;
 import java.util.ArrayList;
 
 /**
+ * <p>Hoverable interface.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public interface Hoverable {
+  /**
+   * <p>acceptHover.</p>
+   *
+   * @param enterableHoverables a {@link java.util.ArrayList} object.
+   * @return a boolean.
+   */
   boolean acceptHover(ArrayList enterableHoverables);
 
+  /**
+   * <p>hoverEnter.</p>
+   */
   void hoverEnter();
 
+  /**
+   * <p>hoverExit.</p>
+   */
   void hoverExit();
 }

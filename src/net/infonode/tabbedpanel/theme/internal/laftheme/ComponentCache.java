@@ -28,8 +28,14 @@ import java.awt.*;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
+/**
+ * <p>ComponentCache class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 class ComponentCache {
-  private ArrayList cache = new ArrayList(10);
+  private final ArrayList cache = new ArrayList(10);
 
   private int index = 0;
 
@@ -43,7 +49,7 @@ class ComponentCache {
   }
 
   Component getComponent() {
-    JComponent c = null;
+    JComponent c;
 
     if (index == cache.size()) {
       c = createComponent();

@@ -64,14 +64,14 @@ import net.infonode.util.Direction;
 import net.infonode.util.ValueChange;
 
 /**
- * <p>A TitledTab is a tab that has support for text, icon and a custom Swing component
+ * >A TitledTab is a tab that has support for text, icon and a custom Swing component
  * (called title component). Titled tab supports several properties that makes it possible
- * to change the look (borders, colors, insets), layout (up, down, left, right).</p>
+ * to change the look (borders, colors, insets), layout (up, down, left, right).
  *
  * <p>Titled tab has a line based layout, i.e. the text, icon and title component are
  * laid out in a line. The layout of the tab can be rotated, i.e. the text and the icon will
  * be rotated 90, 180 or 270 degrees. The title component will not be rotated but moved so
- * that the line layout will persist.</p>
+ * that the line layout will persist.
  *
  * <p>A titled tab has 3 rendering states:
  * <ul>
@@ -79,19 +79,19 @@ import net.infonode.util.ValueChange;
  * <li>Highlighted - The tab is either highlighted or selected
  * <li>Disabled - The tab is disabled and cannot be selected or highlighted
  * </ul>Most of the properties for the tab can be configured for each of the tab rendering
- * states.</p>
+ * states.
  *
  * <p><strong>Note:</strong> If only the normal state properties have been configured, the
  * highlighted and disabled state will automatically use the same properties as for the normal
- * state, see {@link TitledTabProperties} and {@link TitledTabStateProperties}.</p>
+ * state, see {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties} and {@link net.infonode.tabbedpanel.titledtab.TitledTabStateProperties}.
  *
  * <p>TitledTab implements the {@link net.infonode.gui.icon.IconProvider} interface and
  * overloads toString() so that both text and icon for the normal state is shown in the
- * tab drop down list in a tabbed panel.</p>
+ * tab drop down list in a tabbed panel.
  *
- * <p>TitledTab supports mouse hovering. A {@link HoverListener} can be set in the
- * {@link TitledTabProperties}. The hover listener receives a {@link HoverEvent} when the mouse
- * enters or exits the tab. The hover event's source will be the affected titled tab.</p>
+ * <p>TitledTab supports mouse hovering. A {@link net.infonode.gui.hover.HoverListener} can be set in the
+ * {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties}. The hover listener receives a {@link net.infonode.gui.hover.HoverEvent} when the mouse
+ * enters or exits the tab. The hover event's source will be the affected titled tab.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.89 $
@@ -454,11 +454,13 @@ public class TitledTab extends Tab implements IconProvider {
         hoverListener.mouseEntered(new HoverEvent(TitledTab.this));
     }
 
+    @Override
     public void hoverExit() {
       if (hoverListener != null)
         hoverListener.mouseExited(new HoverEvent(TitledTab.this));
     }
 
+    @Override
     public boolean acceptHover(ArrayList enterableHoverables) {
       return true;
     }
@@ -466,24 +468,31 @@ public class TitledTab extends Tab implements IconProvider {
 
   private final HoverablePanel eventPanel = new HoverablePanel(new BorderLayout()) {
 
+    @Override
     public boolean contains(int x, int y) {
       return getComponentCount() > 0 && getComponent(0).contains(x, y);
     }
 
+    @Override
+    @Deprecated
     public boolean inside(int x, int y) {
-      return getComponentCount() > 0 && getComponent(0).inside(x, y);
+        return contains(x, y);
     }
 
   };
 
+  /** {@inheritDoc} */
+  @Override
   public boolean contains(int x, int y) {
     Point p = SwingUtilities.convertPoint(this, new Point(x, y), eventPanel);
     return eventPanel.contains(p.x, p.y);
   }
 
+  /** {@inheritDoc} */
+  @Override
+  @Deprecated
   public boolean inside(int x, int y) {
-    Point p = SwingUtilities.convertPoint(this, new Point(x, y), eventPanel);
-    return eventPanel.inside(p.x, p.y);
+      return contains(x, y);
   }
 
   private final StatePanel normalStatePanel;
@@ -758,12 +767,12 @@ public class TitledTab extends Tab implements IconProvider {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * <p>Sets if this TitledTab should be highlighted or not.</p>
    *
    * <p><strong>Note:</strong> This will only have effect if this TitledTab
    * is enabled and a member of a tabbed panel.</p>
-   *
-   * @param highlighted true for highlight, otherwise false
    */
   public void setHighlighted(boolean highlighted) {
     super.setHighlighted(highlighted);
@@ -771,17 +780,17 @@ public class TitledTab extends Tab implements IconProvider {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * <p>
    * Sets if this TitledTab should be enabled or disabled
    * </p>
-   * 
+   *
    * <p>
    * <strong>Note:</strong> since ITP 1.5.0 this method will change the enabled property
    * in the {@link TitledTabProperties} for this tab. Enabled/disabled can be controlled by
    * modifying the property or this method.
    * </p>
-   *
-   * @param enabled true for enabled, otherwise false
    */
   public void setEnabled(boolean enabled) {
     super.setEnabled(enabled);
@@ -847,9 +856,9 @@ public class TitledTab extends Tab implements IconProvider {
   }
 
   /**
-   * Adds a MouseListener to receive mouse events from this TitledTab.
+   * {@inheritDoc}
    *
-   * @param l the MouseListener
+   * Adds a MouseListener to receive mouse events from this TitledTab.
    */
   public synchronized void addMouseListener(MouseListener l) {
     if (mouseListeners == null)
@@ -858,9 +867,9 @@ public class TitledTab extends Tab implements IconProvider {
   }
 
   /**
-   * Removes a MouseListener
+   * {@inheritDoc}
    *
-   * @param l the MouseListener to remove
+   * Removes a MouseListener
    */
   public synchronized void removeMouseListener(MouseListener l) {
     if (mouseListeners != null) {
@@ -890,9 +899,9 @@ public class TitledTab extends Tab implements IconProvider {
   }
 
   /**
-   * Adds a MouseMotionListener to receive mouse events from this TitledTab.
+   * {@inheritDoc}
    *
-   * @param l the MouseMotionListener
+   * Adds a MouseMotionListener to receive mouse events from this TitledTab.
    */
   public synchronized void addMouseMotionListener(MouseMotionListener l) {
     if (mouseMotionListeners == null)
@@ -902,9 +911,9 @@ public class TitledTab extends Tab implements IconProvider {
   }
 
   /**
-   * Removes a MouseMotionListener
+   * {@inheritDoc}
    *
-   * @param l the MouseMotionListener to remove
+   * Removes a MouseMotionListener
    */
   public synchronized void removeMouseMotionListener(MouseMotionListener l) {
     if (mouseMotionListeners != null) {
@@ -949,6 +958,7 @@ public class TitledTab extends Tab implements IconProvider {
     return new TranslatingShape(shape, p.x, p.y);
   }
 
+  /** {@inheritDoc} */
   protected void setTabbedPanel(TabbedPanel tabbedPanel) {
     if (tabbedPanel == null)
       HoverManager.getInstance().removeHoverable(eventPanel);
@@ -1141,15 +1151,20 @@ public class TitledTab extends Tab implements IconProvider {
     updateCurrentStatePanel();
   }
 
+  /** {@inheritDoc} */
   public void setUI(PanelUI ui) {
     if (getUI() != UI)
       super.setUI(UI);
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
   public void updateUI() {
     setUI(UI);
   }
 
+  /** {@inheritDoc} */
   public void setOpaque(boolean opaque) {
     // Ignore
   }

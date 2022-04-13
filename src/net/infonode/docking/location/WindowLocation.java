@@ -29,11 +29,25 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>WindowLocation interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
 public interface WindowLocation {
+  /**
+   * <p>set.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a boolean.
+   */
   boolean set(DockingWindow window);
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @throws java.io.IOException if any.
+   */
   void write(ObjectOutputStream out) throws IOException;
 }

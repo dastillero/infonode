@@ -34,6 +34,8 @@ import java.util.EventObject;
  * @version $Revision: 1.10 $
  * @see TabListener
  * @see TabbedPanel
+ * @see TabListener
+ * @see TabbedPanel
  * @see Tab
  */
 public class TabEvent extends EventObject {

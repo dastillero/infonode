@@ -27,6 +27,8 @@ import net.infonode.docking.RootWindow;
 import net.infonode.docking.ViewSerializer;
 
 /**
+ * <p>ReadContext class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
@@ -36,6 +38,14 @@ public class ReadContext {
   private boolean propertyValuesAvailable;
   private boolean readPropertiesEnabled;
 
+  /**
+   * <p>Constructor for ReadContext.</p>
+   *
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @param version a int.
+   * @param propertyValuesAvailable a boolean.
+   * @param readPropertiesEnabled a boolean.
+   */
   public ReadContext(RootWindow rootWindow,
                      int version,
                      boolean propertyValuesAvailable,
@@ -46,23 +56,45 @@ public class ReadContext {
     this.readPropertiesEnabled = readPropertiesEnabled;
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindow</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.RootWindow} object.
+   */
   public RootWindow getRootWindow() {
     return rootWindow;
   }
 
+  /**
+   * <p>getViewSerializer.</p>
+   *
+   * @return a {@link net.infonode.docking.ViewSerializer} object.
+   */
   public ViewSerializer getViewSerializer() {
     return rootWindow.getViewSerializer();
   }
 
+  /**
+   * <p>isPropertyValuesAvailable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isPropertyValuesAvailable() {
     return propertyValuesAvailable;
   }
 
+  /**
+   * <p>Getter for the field <code>readPropertiesEnabled</code>.</p>
+   *
+   * @return a boolean.
+   */
   public boolean getReadPropertiesEnabled() {
     return readPropertiesEnabled;
   }
 
   /**
+   * <p>Getter for the field <code>version</code>.</p>
+   *
    * @return returns the serialized version
    */
   public int getVersion() {

@@ -32,7 +32,7 @@ import javax.swing.*;
 import java.io.ObjectStreamException;
 
 /**
- * Restores a window using the {@link DockingWindow#restore()} method. The action calls
+ * Restores a window using the {@link net.infonode.docking.DockingWindow#restore()} method. The action calls
  * {@link net.infonode.docking.DockingWindow#restoreWithAbort()}.
  *
  * @author $Author: jesper $
@@ -52,15 +52,22 @@ public class RestoreWithAbortWindowAction extends DockingWindowAction {
   private RestoreWithAbortWindowAction() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Restore";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return window != null && (window.isMinimized() || window.isMaximized()) &&
            window.isRestorable();// && !window.isUndocked();
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     try {
       if (window != null && window.isRestorable())
@@ -71,10 +78,21 @@ public class RestoreWithAbortWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

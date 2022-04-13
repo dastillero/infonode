@@ -28,7 +28,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.properties.util.ValueHandlerProperty;
 
 /**
- * A {@link String} property.
+ * A {@link java.lang.String} property.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $

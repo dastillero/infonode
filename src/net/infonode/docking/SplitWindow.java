@@ -91,6 +91,15 @@ public class SplitWindow extends DockingWindow {
     this(horizontal, dividerLocation, leftWindow, rightWindow, null);
   }
 
+  /**
+   * <p>Constructor for SplitWindow.</p>
+   *
+   * @param horizontal a boolean.
+   * @param dividerLocation a float.
+   * @param leftWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param rightWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param windowItem a {@link net.infonode.docking.model.SplitWindowItem} object.
+   */
   protected SplitWindow(boolean horizontal, float dividerLocation, DockingWindow leftWindow,
                         DockingWindow rightWindow, SplitWindowItem windowItem) {
     super(windowItem == null ? new SplitWindowItem() : windowItem);
@@ -231,6 +240,9 @@ public class SplitWindow extends DockingWindow {
     ((SplitWindowItem) getWindowItem()).setHorizontal(horizontal);
   }
 
+  /**
+   * <p>update.</p>
+   */
   protected void update() {
     splitPane.setDividerSize(getSplitWindowProperties().getDividerSize());
     splitPane.setContinuousLayout(getSplitWindowProperties().getContinuousLayoutEnabled());
@@ -238,6 +250,9 @@ public class SplitWindow extends DockingWindow {
     splitPane.setDragIndicatorColor(getSplitWindowProperties().getDragIndicatorColor());
   }
 
+  /**
+   * <p>optimizeWindowLayout.</p>
+   */
   protected void optimizeWindowLayout() {
     DockingWindow parent = getWindowParent();
 
@@ -251,11 +266,13 @@ public class SplitWindow extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
   public DockingWindow getChildWindow(int index) {
     return getWindows()[index];
   }
 
 
+  /** {@inheritDoc} */
   protected void rootChanged(RootWindow oldRoot, RootWindow newRoot) {
     super.rootChanged(oldRoot, newRoot);
     if (newRoot != null)
@@ -270,15 +287,26 @@ public class SplitWindow extends DockingWindow {
            new DockingWindow[]{getLeftWindow(), getRightWindow()};
   }
 
+  /**
+   * <p>getChildWindowCount.</p>
+   *
+   * @return a int.
+   */
   public int getChildWindowCount() {
     return getWindows().length;
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return getLeftWindow() == null ?
            (getRightWindow() == null ? null : getRightWindow().getIcon()) : getLeftWindow().getIcon();
   }
 
+  /** {@inheritDoc} */
   protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow) {
     if (getLeftWindow() == oldWindow) {
       leftWindow = newWindow;
@@ -292,6 +320,7 @@ public class SplitWindow extends DockingWindow {
     ComponentUtil.validate(splitPane);
   }
 
+  /** {@inheritDoc} */
   protected void doRemoveWindow(DockingWindow window) {
     if (window == getLeftWindow()) {
       leftWindow = null;
@@ -303,6 +332,7 @@ public class SplitWindow extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
   protected DockingWindow oldRead(ObjectInputStream in, ReadContext context) throws IOException {
     splitPane.setHorizontal(in.readBoolean());
     splitPane.setDividerLocation(in.readFloat());
@@ -319,6 +349,11 @@ public class SplitWindow extends DockingWindow {
   }
 
 
+  /**
+   * <p>updateWindowItem.</p>
+   *
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   */
   protected void updateWindowItem(RootWindow rootWindow) {
     super.updateWindowItem(rootWindow);
     ((SplitWindowItem) getWindowItem()).setParentSplitWindowProperties(rootWindow == null ?
@@ -327,10 +362,20 @@ public class SplitWindow extends DockingWindow {
                                                                            .getSplitWindowProperties());
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return getSplitWindowProperties().getMap();
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new SplitWindowProperties().getMap();
   }
@@ -349,11 +394,13 @@ public class SplitWindow extends DockingWindow {
       splitPane.setRightComponent(rightWindow);
   }
 
+  /** {@inheritDoc} */
   protected int getChildEdgeDepth(DockingWindow window, Direction dir) {
     return (window == leftWindow ? dir : dir.getOpposite()) == (isHorizontal() ? Direction.RIGHT : Direction.DOWN) ? 0 :
            super.getChildEdgeDepth(window, dir);
   }
 
+  /** {@inheritDoc} */
   protected DropAction doAcceptDrop(Point p, DockingWindow window) {
     DropAction da = acceptChildDrop(p, window);
 
@@ -378,6 +425,7 @@ public class SplitWindow extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(WindowIds.SPLIT);
     viewWriter.writeWindowItem(getWindowItem(), out, context);
@@ -385,6 +433,15 @@ public class SplitWindow extends DockingWindow {
     getRightWindow().write(out, context, viewWriter);
   }
 
+  /**
+   * <p>newRead.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @param viewReader a {@link net.infonode.docking.model.ViewReader} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   * @throws java.io.IOException if any.
+   */
   protected DockingWindow newRead(ObjectInputStream in, ReadContext context, ViewReader viewReader) throws IOException {
     DockingWindow leftWindow = WindowDecoder.decodeWindow(in, context, viewReader);
     DockingWindow rightWindow = WindowDecoder.decodeWindow(in, context, viewReader);

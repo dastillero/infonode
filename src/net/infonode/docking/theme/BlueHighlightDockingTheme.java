@@ -41,14 +41,27 @@ import java.awt.*;
 public final class BlueHighlightDockingTheme extends DockingWindowsTheme {
   private RootWindowProperties rootWindowProperties;
 
+  /**
+   * <p>Constructor for BlueHighlightDockingTheme.</p>
+   */
   public BlueHighlightDockingTheme() {
     rootWindowProperties = createRootWindowProperties();
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Blue Highlight Theme";
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindowProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.RootWindowProperties} object.
+   */
   public RootWindowProperties getRootWindowProperties() {
     return rootWindowProperties;
   }

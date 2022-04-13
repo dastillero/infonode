@@ -30,7 +30,7 @@ import net.infonode.properties.util.ValueHandlerProperty;
 import javax.swing.*;
 
 /**
- * A property of type {@link Icon}.
+ * A property of type {@link javax.swing.Icon}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $

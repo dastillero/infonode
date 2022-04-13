@@ -31,15 +31,19 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>NullLocation class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
 public class NullLocation implements WindowLocation {
+  /** Constant <code>INSTANCE</code> */
   public static final NullLocation INSTANCE = new NullLocation();
 
   private NullLocation() {
   }
 
+  /** {@inheritDoc} */
   public boolean set(DockingWindow window) {
     RootWindow rootWindow = window.getRootWindow();
 
@@ -50,6 +54,7 @@ public class NullLocation implements WindowLocation {
     return true;
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(LocationDecoder.NULL);
   }

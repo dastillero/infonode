@@ -31,10 +31,10 @@ package net.infonode.tabbedpanel;
  * @version $Revision: 1.7 $
  * @see TabbedPanel
  * @see TabbedPanelProperties
+ * @see TabbedPanelProperties
  * @since ITP 1.1.0
  */
 public enum TabSelectTrigger {
-
   /**
    * Mouse press select trigger. This means that a tab will be selected on
    * mouse pressed (button down).
@@ -45,5 +45,5 @@ public enum TabSelectTrigger {
    * Mouse release select trigger. This means that a tab will be selected on
    * mouse release (button up).
    */
-  MOUSE_RELEASE
+  MOUSE_RELEASE;
 }

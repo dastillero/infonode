@@ -27,18 +27,31 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
+ * <p>PropertyMapRefDecoder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class PropertyMapRefDecoder {
+  /** Constant <code>PARENT=0</code> */
   public static final int PARENT = 0;
+  /** Constant <code>THIS=1</code> */
   public static final int THIS = 1;
+  /** Constant <code>PROPERTY_OBJECT_PROPERTY=2</code> */
   public static final int PROPERTY_OBJECT_PROPERTY = 2;
+  /** Constant <code>COMPOSITE=3</code> */
   public static final int COMPOSITE = 3;
 
   private PropertyMapRefDecoder() {
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @return a {@link net.infonode.properties.propertymap.ref.PropertyMapRef} object.
+   * @throws java.io.IOException if any.
+   */
   public static PropertyMapRef decode(ObjectInputStream in) throws IOException {
     int type = in.readInt();
 

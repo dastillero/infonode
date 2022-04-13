@@ -24,6 +24,8 @@
 package net.infonode.util.math;
 
 /**
+ * <p>Int4 class.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.2 $
  */
@@ -33,14 +35,30 @@ final public class Int4 {
   private int c;
   private int d;
 
+  /**
+   * <p>Constructor for Int4.</p>
+   */
   public Int4() {
     this(0, 0, 0, 0);
   }
 
+  /**
+   * <p>Constructor for Int4.</p>
+   *
+   * @param i a {@link net.infonode.util.math.Int4} object.
+   */
   public Int4(Int4 i) {
     this(i.a, i.b, i.c, i.d);
   }
 
+  /**
+   * <p>Constructor for Int4.</p>
+   *
+   * @param a a int.
+   * @param b a int.
+   * @param c a int.
+   * @param d a int.
+   */
   public Int4(int a, int b, int c, int d) {
     this.a = a;
     this.b = b;
@@ -48,38 +66,84 @@ final public class Int4 {
     this.d = d;
   }
 
+  /**
+   * <p>Getter for the field <code>a</code>.</p>
+   *
+   * @return a int.
+   */
   public int getA() {
     return a;
   }
 
+  /**
+   * <p>Setter for the field <code>a</code>.</p>
+   *
+   * @param a a int.
+   */
   public void setA(int a) {
     this.a = a;
   }
 
+  /**
+   * <p>Getter for the field <code>b</code>.</p>
+   *
+   * @return a int.
+   */
   public int getB() {
     return b;
   }
 
+  /**
+   * <p>Setter for the field <code>b</code>.</p>
+   *
+   * @param b a int.
+   */
   public void setB(int b) {
     this.b = b;
   }
 
+  /**
+   * <p>Getter for the field <code>c</code>.</p>
+   *
+   * @return a int.
+   */
   public int getC() {
     return c;
   }
 
+  /**
+   * <p>Setter for the field <code>c</code>.</p>
+   *
+   * @param c a int.
+   */
   public void setC(int c) {
     this.c = c;
   }
 
+  /**
+   * <p>Getter for the field <code>d</code>.</p>
+   *
+   * @return a int.
+   */
   public int getD() {
     return d;
   }
 
+  /**
+   * <p>Setter for the field <code>d</code>.</p>
+   *
+   * @param d a int.
+   */
   public void setD(int d) {
     this.d = d;
   }
 
+  /**
+   * <p>set.</p>
+   *
+   * @param i a {@link net.infonode.util.math.Int4} object.
+   * @return a {@link net.infonode.util.math.Int4} object.
+   */
   public Int4 set(Int4 i) {
     a = i.a;
     b = i.b;
@@ -88,6 +152,12 @@ final public class Int4 {
     return this;
   }
 
+  /**
+   * <p>add.</p>
+   *
+   * @param i a {@link net.infonode.util.math.Int4} object.
+   * @return a {@link net.infonode.util.math.Int4} object.
+   */
   public Int4 add(Int4 i) {
     a += i.a;
     b += i.b;
@@ -96,6 +166,12 @@ final public class Int4 {
     return this;
   }
 
+  /**
+   * <p>sub.</p>
+   *
+   * @param i a {@link net.infonode.util.math.Int4} object.
+   * @return a {@link net.infonode.util.math.Int4} object.
+   */
   public Int4 sub(Int4 i) {
     a -= i.a;
     b -= i.b;
@@ -104,6 +180,12 @@ final public class Int4 {
     return this;
   }
 
+  /**
+   * <p>div.</p>
+   *
+   * @param value a long.
+   * @return a {@link net.infonode.util.math.Int4} object.
+   */
   public Int4 div(long value) {
     a /= value;
     b /= value;
@@ -112,6 +194,12 @@ final public class Int4 {
     return this;
   }
 
+  /**
+   * <p>mul.</p>
+   *
+   * @param value a long.
+   * @return a {@link net.infonode.util.math.Int4} object.
+   */
   public Int4 mul(long value) {
     a *= value;
     b *= value;
@@ -120,6 +208,11 @@ final public class Int4 {
     return this;
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return a + ", " + b + ", " + c + ", " + d;
   }

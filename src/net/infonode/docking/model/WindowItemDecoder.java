@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
+ * <p>WindowItemDecoder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */

@@ -39,6 +39,7 @@ public class WriteContext {
    * Constructor.
    *
    * @param writePropertiesEnabled true if property values should be written
+   * @param viewSerializer a {@link net.infonode.docking.ViewSerializer} object.
    */
   public WriteContext(boolean writePropertiesEnabled, ViewSerializer viewSerializer) {
     this.writePropertiesEnabled = writePropertiesEnabled;
@@ -54,10 +55,20 @@ public class WriteContext {
     return writePropertiesEnabled;
   }
 
+  /**
+   * <p>Getter for the field <code>viewSerializer</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.ViewSerializer} object.
+   */
   public ViewSerializer getViewSerializer() {
     return viewSerializer;
   }
 
+  /**
+   * <p>Setter for the field <code>viewSerializer</code>.</p>
+   *
+   * @param viewSerializer a {@link net.infonode.docking.ViewSerializer} object.
+   */
   public void setViewSerializer(ViewSerializer viewSerializer) {
     this.viewSerializer = viewSerializer;
   }

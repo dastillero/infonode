@@ -28,19 +28,41 @@ import net.infonode.docking.DockingWindow;
 import java.awt.event.MouseEvent;
 
 /**
+ * <p>Abstract DropAction class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
 abstract public class DropAction {
+  /**
+   * <p>execute.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param mouseEvent a {@link java.awt.event.MouseEvent} object.
+   */
   abstract public void execute(DockingWindow window, MouseEvent mouseEvent);
 
+  /**
+   * <p>Constructor for DropAction.</p>
+   */
   protected DropAction() {
   }
 
+  /**
+   * <p>showTitle.</p>
+   *
+   * @return a boolean.
+   */
   public boolean showTitle() {
     return true;
   }
 
+  /**
+   * <p>clear.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param newDropAction a {@link net.infonode.docking.internalutil.DropAction} object.
+   */
   public void clear(DockingWindow window, DropAction newDropAction) {
   }
 

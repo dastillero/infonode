@@ -32,8 +32,8 @@ import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
 /**
  * <p>
  * TitledTabHoverAction is an action that makes it easy to change properties for
- * a hovered {@link TitledTab}. The action is meant to be set as a {@link HoverListener}
- * in the {@link TitledTabProperties}.
+ * a hovered {@link net.infonode.tabbedpanel.titledtab.TitledTab}. The action is meant to be set as a {@link net.infonode.gui.hover.HoverListener}
+ * in the {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties}.
  * </p>
  *
  * <p>
@@ -45,6 +45,7 @@ import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
  * @author johan
  * @version $Revision: 1.12 $
  * @see TitledTab
+ * @see TitledTabProperties
  * @see TitledTabProperties
  * @since ITP 1.3.0
  */
@@ -78,10 +79,12 @@ public class TitledTabHoverAction implements HoverListener {
     return props;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     ((TitledTab) event.getSource()).getProperties().addSuperObject(props);
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     ((TitledTab) event.getSource()).getProperties().removeSuperObject(props);
   }

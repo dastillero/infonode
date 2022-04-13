@@ -29,31 +29,66 @@ import net.infonode.util.Direction;
 import java.awt.*;
 
 /**
+ * <p>DirectionPanel class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  */
 public class DirectionPanel extends BaseContainer {
+  /**
+   * <p>Constructor for DirectionPanel.</p>
+   */
   public DirectionPanel() {
     this(Direction.RIGHT, 0);
   }
 
+  /**
+   * <p>Constructor for DirectionPanel.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param spacing a int.
+   */
   public DirectionPanel(Direction direction, int spacing) {
     super(new DirectionLayout(direction, spacing));
     setForcedOpaque(false);
   }
 
+  /**
+   * <p>Constructor for DirectionPanel.</p>
+   *
+   * @param components an array of {@link java.awt.Component} objects.
+   */
   public DirectionPanel(Component[] components) {
     this(Direction.RIGHT, components);
   }
 
+  /**
+   * <p>Constructor for DirectionPanel.</p>
+   *
+   * @param spacing a int.
+   * @param components an array of {@link java.awt.Component} objects.
+   */
   public DirectionPanel(int spacing, Component[] components) {
     this(Direction.RIGHT, spacing, components);
   }
 
+  /**
+   * <p>Constructor for DirectionPanel.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param components an array of {@link java.awt.Component} objects.
+   */
   public DirectionPanel(Direction direction, Component[] components) {
     this(direction, 0, components);
   }
 
+  /**
+   * <p>Constructor for DirectionPanel.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param spacing a int.
+   * @param components an array of {@link java.awt.Component} objects.
+   */
   public DirectionPanel(Direction direction, int spacing, Component[] components) {
     this(direction, spacing);
 
@@ -61,6 +96,11 @@ public class DirectionPanel extends BaseContainer {
       add(components[i]);
   }
 
+  /**
+   * <p>setDirection.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public void setDirection(Direction direction) {
     ((DirectionLayout) getLayout()).setDirection(direction);
   }

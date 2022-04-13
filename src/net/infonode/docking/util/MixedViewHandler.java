@@ -32,8 +32,8 @@ import java.io.ObjectOutputStream;
 
 /**
  * The mixed view map simplifies mixing static and dynamic views inside the same root window.
- * The static views are handled by an {@link AbstractViewMap} and the dynamic views are handled
- * by an custom {@link ViewSerializer}.
+ * The static views are handled by an {@link net.infonode.docking.util.AbstractViewMap} and the dynamic views are handled
+ * by an custom {@link net.infonode.docking.ViewSerializer}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -47,17 +47,23 @@ public class MixedViewHandler implements ViewFactoryManager, ViewSerializer {
    * Constructor.
    *
    * @param viewMap        this map is first searched when serializing a view
-   * @param viewSerializer is used if the view was not found in the <tt>viewMap</tt>
+   * @param viewSerializer is used if the view was not found in the <code>viewMap</code>
    */
   public MixedViewHandler(AbstractViewMap viewMap, ViewSerializer viewSerializer) {
     this.viewMap = viewMap;
     this.viewSerializer = viewSerializer;
   }
 
+  /**
+   * <p>getViewFactories.</p>
+   *
+   * @return an array of {@link net.infonode.docking.util.ViewFactory} objects.
+   */
   public ViewFactory[] getViewFactories() {
     return new ViewFactory[0];
   }
 
+  /** {@inheritDoc} */
   public void writeView(View view, ObjectOutputStream out) throws IOException {
     if (viewMap.contains(view)) {
       out.writeBoolean(true);
@@ -69,6 +75,7 @@ public class MixedViewHandler implements ViewFactoryManager, ViewSerializer {
     }
   }
 
+  /** {@inheritDoc} */
   public View readView(ObjectInputStream in) throws IOException {
     return in.readBoolean() ? viewMap.readView(in) : viewSerializer.readView(in);
   }

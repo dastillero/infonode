@@ -26,25 +26,47 @@ package net.infonode.gui.icon.button;
 import java.awt.*;
 
 /**
+ * <p>WindowIcon class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class WindowIcon extends AbstractButtonIcon {
+  /**
+   * <p>Constructor for WindowIcon.</p>
+   */
   public WindowIcon() {
   }
 
+  /**
+   * <p>Constructor for WindowIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   */
   public WindowIcon(Color color) {
     super(color);
   }
 
+  /**
+   * <p>Constructor for WindowIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public WindowIcon(Color color, int size) {
     super(color, size);
   }
 
+  /**
+   * <p>Constructor for WindowIcon.</p>
+   *
+   * @param size a int.
+   */
   public WindowIcon(int size) {
     super(size);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2, boolean isShadow) {
     g.fillRect(x1, y1, x2 - x1 + 1, y2 - y1 + 1);
 

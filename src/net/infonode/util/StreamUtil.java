@@ -27,10 +27,21 @@ package net.infonode.util;
 import java.io.*;
 
 /**
+ * <p>StreamUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
 public class StreamUtil {
+  /**
+   * <p>readAll.</p>
+   *
+   * @param in a {@link java.io.InputStream} object.
+   * @param data an array of byte.
+   * @param offset a int.
+   * @param length a int.
+   * @throws java.io.IOException if any.
+   */
   public static final void readAll(InputStream in, byte[] data, int offset, int length) throws IOException {
     while (length > 0) {
       int len = in.read(data, offset, length);
@@ -43,6 +54,13 @@ public class StreamUtil {
     }
   }
 
+  /**
+   * <p>readAll.</p>
+   *
+   * @param is a {@link java.io.InputStream} object.
+   * @return an array of byte.
+   * @throws java.io.IOException if any.
+   */
   public static final byte[] readAll(InputStream is) throws IOException {
     byte[] data = new byte[is.available()];
     int pos = 0;
@@ -54,6 +72,13 @@ public class StreamUtil {
     return data;
   }
 
+  /**
+   * <p>writeObject.</p>
+   *
+   * @param object a {@link java.lang.Object} object.
+   * @return an array of byte.
+   * @throws java.io.IOException if any.
+   */
   public static final byte[] writeObject(Object object) throws IOException {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     ObjectOutputStream o2 = new ObjectOutputStream(out);
@@ -62,10 +87,25 @@ public class StreamUtil {
     return ArrayUtil.part(out.toByteArray(), 0, out.size());
   }
 
+  /**
+   * <p>readObject.</p>
+   *
+   * @param data an array of byte.
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.IOException if any.
+   * @throws java.lang.ClassNotFoundException if any.
+   */
   public static final Object readObject(byte[] data) throws IOException, ClassNotFoundException {
     return new ObjectInputStream(new ByteArrayInputStream(data)).readObject();
   }
 
+  /**
+   * <p>write.</p>
+   *
+   * @param writable a {@link net.infonode.util.Writable} object.
+   * @return an array of byte.
+   * @throws java.io.IOException if any.
+   */
   public static byte[] write(Writable writable) throws IOException {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     ObjectOutputStream o2 = new ObjectOutputStream(out);
@@ -74,14 +114,36 @@ public class StreamUtil {
     return out.toByteArray();
   }
 
+  /**
+   * <p>read.</p>
+   *
+   * @param data an array of byte.
+   * @param readable a {@link net.infonode.util.Readable} object.
+   * @throws java.io.IOException if any.
+   */
   public static void read(byte[] data, Readable readable) throws IOException {
     readable.read(new ObjectInputStream(new ByteArrayInputStream(data)));
   }
 
+  /**
+   * <p>readAll.</p>
+   *
+   * @param in a {@link java.io.InputStream} object.
+   * @param data an array of byte.
+   * @throws java.io.IOException if any.
+   */
   public static void readAll(InputStream in, byte[] data) throws IOException {
     readAll(in, data, 0, data.length);
   }
 
+  /**
+   * <p>write.</p>
+   *
+   * @param in a {@link java.io.InputStream} object.
+   * @param out a {@link java.io.OutputStream} object.
+   * @param length a int.
+   * @throws java.io.IOException if any.
+   */
   public static void write(InputStream in, OutputStream out, int length) throws IOException {
     byte[] data = new byte[10000];
 

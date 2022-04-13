@@ -26,10 +26,17 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>MinimizeButtonInfo class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 public class MinimizeButtonInfo extends AbstractButtonInfo {
+  /**
+   * <p>Constructor for MinimizeButtonInfo.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public MinimizeButtonInfo(PropertyMapProperty property) {
     super(property);
   }

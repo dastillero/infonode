@@ -51,18 +51,30 @@ public final class MinimizeWithAbortWindowAction extends DockingWindowAction {
   private MinimizeWithAbortWindowAction() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Minimize";
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return window != null && !window.isMinimized() && window.isMinimizable();
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     try {
       if (isPerformable(window))
@@ -73,6 +85,12 @@ public final class MinimizeWithAbortWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

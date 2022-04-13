@@ -72,7 +72,7 @@ public final class DockingUtil {
    * All the views are added to a tab window which is placed in the root window.
    *
    * @param views                 contains all the static views
-   * @param viewSerializer        the view serializer used in the created {@link RootWindow}
+   * @param viewSerializer        the view serializer used in the created {@link net.infonode.docking.RootWindow}
    * @param createWindowPopupMenu true if a standard window popup menu should be created
    * @return the created root window
    */
@@ -94,7 +94,7 @@ public final class DockingUtil {
    * </p>
    *
    * @param views                 contains all the static views
-   * @param viewSerializer        the view serializer used in the created {@link RootWindow}
+   * @param viewSerializer        the view serializer used in the created {@link net.infonode.docking.RootWindow}
    * @param createWindowPopupMenu true if a standard window popup menu should be created
    * @return the created root window
    * @since IDW 1.4.0
@@ -124,11 +124,11 @@ public final class DockingUtil {
   }
 
   /**
-   * Returns true if <tt>ancestor</tt> is an ancestor of <tt>child</tt> or the windows are the same.
+   * Returns true if <code>ancestor</code> is an ancestor of <code>child</code> or the windows are the same.
    *
    * @param ancestor the ancestor window
    * @param child    the child window
-   * @return true if <tt>ancestor</tt> is an ancestor of <tt>child</tt> or the windows are the same
+   * @return true if <code>ancestor</code> is an ancestor of <code>child</code> or the windows are the same
    */
   public static boolean isAncestor(DockingWindow ancestor, DockingWindow child) {
     return child != null && (ancestor == child || isAncestor(ancestor, child.getWindowParent()));
@@ -163,10 +163,10 @@ public final class DockingUtil {
   }
 
   /**
-   * Returns the {@link TabWindow} for a window. This is either the window itself or the parent window.
+   * Returns the {@link net.infonode.docking.TabWindow} for a window. This is either the window itself or the parent window.
    *
    * @param window the window
-   * @return the {@link TabWindow} for the window
+   * @return the {@link net.infonode.docking.TabWindow} for the window
    * @since IDW 1.3.0
    */
   public static TabWindow getTabWindowFor(DockingWindow window) {
@@ -177,10 +177,10 @@ public final class DockingUtil {
   }
 
   /**
-   * Returns the {@link FloatingWindow} for a window if the window is undocked.
+   * Returns the {@link net.infonode.docking.FloatingWindow} for a window if the window is undocked.
    *
    * @param window the window
-   * @return the {@link FloatingWindow} for the window or null if the window is not undocked
+   * @return the {@link net.infonode.docking.FloatingWindow} for the window or null if the window is not undocked
    * @since IDW 1.4.0
    */
   public static FloatingWindow getFloatingWindowFor(DockingWindow window) {

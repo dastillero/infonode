@@ -32,10 +32,16 @@ import java.awt.*;
  * @version $Revision: 1.6 $
  */
 abstract public class AbstractColorProvider implements ColorProvider {
+  /**
+   * <p>getColor.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getColor() {
     return Color.BLACK;
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return getColor();
   }

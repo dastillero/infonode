@@ -24,7 +24,7 @@
 package net.infonode.properties.propertymap;
 
 /**
- * Base class for property classes that use a {@link PropertyMap}.
+ * Base class for property classes that use a {@link net.infonode.properties.propertymap.PropertyMap}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $

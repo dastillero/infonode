@@ -35,7 +35,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Utility class for performing multiple modifications to {@link PropertyMap}'s and merging change notifications to
+ * Utility class for performing multiple modifications to {@link net.infonode.properties.propertymap.PropertyMap}'s and merging change notifications to
  * optimize performance.
  *
  * @author $Author: jesper $
@@ -84,7 +84,7 @@ public class PropertyMapManager {
 
   /**
    * Executes a method inside a {@link #beginBatch()} - {@link #endBatch()} pair. See {@link #beginBatch()} for
-   * more information. It's safe to call other batch methods from inside {@link Runnable#run}.
+   * more information. It's safe to call other batch methods from inside {@link java.lang.Runnable#run}.
    *
    * @param runnable the runnable to invoke
    */

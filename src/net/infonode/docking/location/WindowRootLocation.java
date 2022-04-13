@@ -32,10 +32,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>WindowRootLocation class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
 public class WindowRootLocation extends AbstractWindowLocation {
+  /**
+   * <p>Constructor for WindowRootLocation.</p>
+   *
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   */
   public WindowRootLocation(RootWindow rootWindow) {
     super(rootWindow, null);
   }
@@ -43,17 +50,27 @@ public class WindowRootLocation extends AbstractWindowLocation {
   private WindowRootLocation() {
   }
 
+  /** {@inheritDoc} */
   protected boolean set(DockingWindow parent, DockingWindow child) {
     RootWindow rootWindow = (RootWindow) parent;
     InternalDockingUtil.addToRootWindow(child, rootWindow);
     return true;
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(LocationDecoder.ROOT);
     super.write(out);
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   * @return a {@link net.infonode.docking.location.WindowRootLocation} object.
+   * @throws java.io.IOException if any.
+   */
   public static WindowRootLocation decode(ObjectInputStream in, RootWindow rootWindow) throws IOException {
     WindowRootLocation location = new WindowRootLocation();
     location.read(in, rootWindow);

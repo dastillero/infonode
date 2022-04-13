@@ -30,6 +30,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
 
+/**
+ * <p>Abstract AbstractButtonIcon class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public abstract class AbstractButtonIcon implements Icon, Serializable {
   private static final long serialVersionUID = 1;
 
@@ -39,52 +45,108 @@ public abstract class AbstractButtonIcon implements Icon, Serializable {
   private float shadowStrength = 0.3f;
   private boolean enabled = true;
 
+  /**
+   * <p>Constructor for AbstractButtonIcon.</p>
+   */
   public AbstractButtonIcon() {
   }
 
+  /**
+   * <p>Constructor for AbstractButtonIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   */
   public AbstractButtonIcon(Color color) {
     this.defaultColor = color;
   }
 
+  /**
+   * <p>Constructor for AbstractButtonIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public AbstractButtonIcon(Color color, int size) {
     this(color);
     this.size = size;
   }
 
+  /**
+   * <p>Constructor for AbstractButtonIcon.</p>
+   *
+   * @param size a int.
+   */
   public AbstractButtonIcon(int size) {
     this(size, true);
   }
 
+  /**
+   * <p>Constructor for AbstractButtonIcon.</p>
+   *
+   * @param size a int.
+   * @param enabled a boolean.
+   */
   public AbstractButtonIcon(int size, boolean enabled) {
     this();
     this.size = size;
     this.enabled = enabled;
   }
 
+  /**
+   * <p>getIconWidth.</p>
+   *
+   * @return a int.
+   */
   public int getIconWidth() {
     return size;
   }
 
+  /**
+   * <p>getIconHeight.</p>
+   *
+   * @return a int.
+   */
   public int getIconHeight() {
     return size;
   }
 
+  /**
+   * <p>isShadowEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isShadowEnabled() {
     return shadowEnabled;
   }
 
+  /**
+   * <p>Setter for the field <code>shadowEnabled</code>.</p>
+   *
+   * @param shadowEnabled a boolean.
+   */
   public void setShadowEnabled(boolean shadowEnabled) {
     this.shadowEnabled = shadowEnabled;
   }
 
+  /**
+   * <p>Getter for the field <code>shadowStrength</code>.</p>
+   *
+   * @return a float.
+   */
   public float getShadowStrength() {
     return shadowStrength;
   }
 
+  /**
+   * <p>Setter for the field <code>shadowStrength</code>.</p>
+   *
+   * @param shadowStrength a float.
+   */
   public void setShadowStrength(float shadowStrength) {
     this.shadowStrength = shadowStrength;
   }
 
+  /** {@inheritDoc} */
   public void paintIcon(Component c, Graphics g, int x, int y) {
     Color oldColor = g.getColor();
     Color color = defaultColor == null ?
@@ -108,10 +170,31 @@ public abstract class AbstractButtonIcon implements Icon, Serializable {
     g.setColor(oldColor);
   }
 
+  /**
+   * <p>paintIcon.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param g a {@link java.awt.Graphics} object.
+   * @param x1 a int.
+   * @param y1 a int.
+   * @param x2 a int.
+   * @param y2 a int.
+   * @param isShadow a boolean.
+   */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2, boolean isShadow) {
     paintIcon(c, g, x1, y1, x2, y2);
   }
 
+  /**
+   * <p>paintIcon.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param g a {@link java.awt.Graphics} object.
+   * @param x1 a int.
+   * @param y1 a int.
+   * @param x2 a int.
+   * @param y2 a int.
+   */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2) {
   }
 }

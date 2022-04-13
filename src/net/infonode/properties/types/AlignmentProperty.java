@@ -28,7 +28,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.util.Alignment;
 
 /**
- * A property of type {@link Alignment}.
+ * A property of type {@link net.infonode.util.Alignment}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $

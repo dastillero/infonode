@@ -48,20 +48,24 @@ public class PropertyMapValueHandler implements PropertyValueHandler {
   private PropertyMapValueHandler() {
   }
 
+  /** {@inheritDoc} */
   public Object getValue(Property property, Object object) {
     PropertyMapImpl propertyMap = (PropertyMapImpl) object;
     PropertyValue value = propertyMap.getValueWithDefault(property);
     return value == null ? null : value.getWithDefault(propertyMap);
   }
 
+  /** {@inheritDoc} */
   public void setValue(Property property, Object object, Object value) {
     ((PropertyMapImpl) object).setValue(property, new SimplePropertyValue(value));
   }
 
+  /** {@inheritDoc} */
   public boolean getValueIsRemovable(Property property, Object object) {
     return !(property instanceof PropertyGroupProperty);
   }
 
+  /** {@inheritDoc} */
   public void removeValue(Property property, Object object) {
     if (property instanceof PropertyGroupProperty)
       throw new CantRemoveValueException(property);
@@ -69,6 +73,7 @@ public class PropertyMapValueHandler implements PropertyValueHandler {
     ((PropertyMapImpl) object).removeValue(property);
   }
 
+  /** {@inheritDoc} */
   public boolean getValueIsSet(Property property, Object object) {
     return (property instanceof PropertyGroupProperty) || ((PropertyMapImpl) object).valueIsSet(property);
   }

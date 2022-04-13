@@ -29,6 +29,8 @@ import net.infonode.properties.gui.util.ShapedPanelProperties;
 import net.infonode.util.Direction;
 
 /**
+ * <p>InternalPropertiesUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
@@ -40,6 +42,7 @@ public class InternalPropertiesUtil {
    * Applies the property values to a shaped panel.
    *
    * @param panel the shaped panel on which to apply the property values
+   * @param properties a {@link net.infonode.properties.gui.util.ShapedPanelProperties} object.
    */
   public static final void applyTo(ShapedPanelProperties properties, ShapedPanel panel) {
     applyTo(properties, panel, null);
@@ -49,6 +52,8 @@ public class InternalPropertiesUtil {
    * Applies the property values to a shaped panel.
    *
    * @param panel the shaped panel on which to apply the property values
+   * @param properties a {@link net.infonode.properties.gui.util.ShapedPanelProperties} object.
+   * @param d a {@link net.infonode.util.Direction} object.
    */
   public static final void applyTo(ShapedPanelProperties properties, ShapedPanel panel, Direction d) {
     panel.setHorizontalFlip(properties.getHorizontalFlip());

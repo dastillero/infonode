@@ -31,7 +31,7 @@ import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 
 /**
- * An abstract base class for {@link ComponentPainter}'s. Default implementations for both paint methods are provided,
+ * An abstract base class for {@link net.infonode.gui.componentpainter.ComponentPainter}'s. Default implementations for both paint methods are provided,
  * but becuase they call each other a sub class must override one or both methods.
  *
  * @author $Author: jesper $
@@ -41,13 +41,18 @@ import java.io.Serializable;
 abstract public class AbstractComponentPainter implements ComponentPainter, Serializable {
   private static final long serialVersionUID = 1;
 
+  /**
+   * <p>Constructor for AbstractComponentPainter.</p>
+   */
   protected AbstractComponentPainter() {
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component, Graphics g, int x, int y, int width, int height) {
     paint(component, g, x, y, width, height, Direction.RIGHT, false, false);
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component,
                     Graphics g,
                     int x,
@@ -80,6 +85,7 @@ abstract public class AbstractComponentPainter implements ComponentPainter, Seri
     }
   }
 
+  /** {@inheritDoc} */
   public boolean isOpaque(Component component) {
     return true;
   }

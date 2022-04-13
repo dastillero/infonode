@@ -53,6 +53,7 @@ public class LengthLimitedDockingWindowTitleProvider implements DockingWindowTit
     this.maxLength = maxLength;
   }
 
+  /** {@inheritDoc} */
   public String getTitle(DockingWindow window) {
     ArrayList viewTitles = new ArrayList();
     ArrayList viewPrimary = new ArrayList();

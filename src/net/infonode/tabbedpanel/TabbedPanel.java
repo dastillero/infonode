@@ -25,7 +25,6 @@ package net.infonode.tabbedpanel;
 
 import net.infonode.gui.*;
 import net.infonode.gui.draggable.*;
-import net.infonode.gui.hover.HoverEvent;
 import net.infonode.gui.hover.HoverListener;
 import net.infonode.gui.hover.panel.HoverableShapedPanel;
 import net.infonode.gui.layout.DirectionLayout;
@@ -56,34 +55,25 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <p>
  * A TabbedPanel is a component that handles a group of components in a notebook
- * like manor. Each component is represented by a {@link Tab}. A tab is a
+ * like manor. Each component is represented by a {@link net.infonode.tabbedpanel.Tab}. A tab is a
  * component itself that defines how the tab will be rendered. The tab also
  * holds a reference to the content component associated with the tab. The
  * tabbed panel is divided into two areas, the tab area where the tabs are
  * displayed and the content area where the tab's content component is
  * displayed.
- * </p>
- *
  * <p>
  * The demo program for InfoNode Tabbed Panel on
  * <a href="http://www.infonode.net/index.html?itpdemo" target="_blank">
  * www.infonode.net</a> demonstrates and explains most of the tabbed panel's
  * features.
- * </p>
- *
  * <p>
- * The tabbed panel is configured using a {@link TabbedPanelProperties} object.
+ * The tabbed panel is configured using a {@link net.infonode.tabbedpanel.TabbedPanelProperties} object.
  * A tabbed panel will always have a properties object with default values based
  * on the current Look and Feel
- * </p>
- *
  * <p>
  * Tabs can be added, inserted, removed, selected, highlighted, dragged and
  * moved.
- * </p>
- *
  * <p>
  * The tabbed panel support tab placement in a horizontal line above or under
  * the content area or a vertical row to the left or to the right of the content
@@ -92,8 +82,6 @@ import java.util.Set;
  * mouse wheel is activated and scrollbuttons are shown so that the tabs can be
  * scrolled. Compression means that the tabs will be downsized to fit into the
  * visible tab area.
- * </p>
- *
  * <p>
  * It is possible to display a button in the tab area next to the tabs that shows
  * a drop down list (called tab drop down list) with all the tabs where it is
@@ -102,34 +90,26 @@ import java.util.Set;
  * list can show a text and an icon for a tab. The text is retrieved by calling
  * toString() on the tab and the icon is only retrieved if the tab implements the
  * {@link net.infonode.gui.icon.IconProvider} interface.
- * </p>
- *
  * <p>
  * It is possible to set an array of components (called tab area components) to
  * be shown next to the tabs in the tab area, the same place where the drop down
  * list and the scrollbuttons are shown. This for example useful for adding
  * buttons to the tabbed panel.
- * </p>
- *
  * <p>
- * It is possible to add a {@link TabListener} and receive events when a tab is
+ * It is possible to add a {@link net.infonode.tabbedpanel.TabListener} and receive events when a tab is
  * added, removed, selected, deselected, highlighted, dehighlighted, moved,
  * dragged, dropped or drag is aborted. The listener will receive events for all
  * the tabs in the tabbed panel. A tabbed panel will trigger selected,
  * deselected, highlighted and dehighlighted even if for example the selected
  * tab is null (no selected tab), i.e. null will be treated as if it was a tab.
- * </p>
- *
  * <p>
  * A tabbed panel supports several mouse hover alternatives. It is possible to
- * specify {@link HoverListener}s for the entire tabbed panel, the tab area, the
+ * specify {@link net.infonode.gui.hover.HoverListener}s for the entire tabbed panel, the tab area, the
  * tab area components area and the content area. The listeners are set in the
  * TabbedPanelProperties, TabAreaProperties, TabAreaComponentsProperties and the
  * TabbedPanelContentPanelProperties. A hover listener is called when the mouse
- * enter or exits the area. The hover listener is called with a {@link HoverEvent}
+ * enter or exits the area. The hover listener is called with a {@link net.infonode.gui.hover.HoverEvent}
  * and the source for the event is always the hovered tabbed panel.
- * </p>
- *
  * <p>
  * A tabbed panel calls the hover listeners in the following order:
  * <ol>
@@ -141,16 +121,16 @@ import java.util.Set;
  * </ol>
  * When the tabbed panel is no longer hovered, the hover listenrs are called in the
  * reverse order.
- * </p>
- *
  * <p>
- * It is possible to specify different hover policies ({@link TabbedPanelHoverPolicy})
+ * It is possible to specify different hover policies ({@link net.infonode.tabbedpanel.TabbedPanelHoverPolicy})
  * in the TabbedPanelProperties that affects all hover areas of the tabbed panel.
- * </p>
  *
  * @author $Author: jesper $
  * @version $Revision: 1.167 $
  * @see Tab
+ * @see TabbedPanelProperties
+ * @see TabListener
+ * @see TabbedPanelHoverPolicy
  * @see TitledTab
  * @see TabbedPanelProperties
  * @see TabListener
@@ -864,6 +844,7 @@ public class TabbedPanel extends JPanel {
    * @param tab tab to be added
    * @see #insertTab(Tab, int)
    * @see TabbedPanelProperties
+   * @see TabbedPanelProperties
    */
   public void addTab(Tab tab) {
     doInsertTab(tab, null, -1);
@@ -883,6 +864,7 @@ public class TabbedPanel extends JPanel {
    * @param tab   tab to be inserted
    * @param index the index to insert tab at
    * @see #addTab
+   * @see TabbedPanelProperties
    * @see TabbedPanelProperties
    */
   public void insertTab(Tab tab, int index) {
@@ -909,6 +891,7 @@ public class TabbedPanel extends JPanel {
    * @param p   the point to insert tab at. Must be relative to this tabbed
    *            panel.
    * @see #addTab
+   * @see TabbedPanelProperties
    * @see TabbedPanelProperties
    */
   public void insertTab(Tab tab, Point p) {
@@ -1056,7 +1039,7 @@ public class TabbedPanel extends JPanel {
    *
    * @param index index of tab
    * @return tab at index
-   * @throws ArrayIndexOutOfBoundsException if there is no tab at index
+   * @throws java.lang.ArrayIndexOutOfBoundsException if there is no tab at index
    */
   public Tab getTabAt(int index) {
     DraggableComponent component = draggableComponentBox.getDraggableComponentAt(index);
@@ -1534,6 +1517,7 @@ public class TabbedPanel extends JPanel {
     }
   }
 
+  /** {@inheritDoc} */
   protected void processMouseEvent(MouseEvent event) {
     if (event.getID() == MouseEvent.MOUSE_ENTERED) {
       if (!mouseEntered) {
@@ -1587,12 +1571,15 @@ public class TabbedPanel extends JPanel {
       setCursor(null);
     }
 
+    @Override
     public boolean contains(int x, int y) {
       return properties.getShadowEnabled() ? doContains(x, y) : super.contains(x, y);
     }
 
+    @Override
+    @Deprecated
     public boolean inside(int x, int y) {
-      return properties.getShadowEnabled() ? doContains(x, y) : super.inside(x, y);
+      return contains(x, y);
     }
 
     private boolean doContains(int x, int y) {
@@ -1600,6 +1587,7 @@ public class TabbedPanel extends JPanel {
       return x >= 0 && y >= 0 && x < d.getWidth() && y < d.getHeight();
     }
 
+    @Override
     public void paint(Graphics g) {
       super.paint(g);
 

@@ -29,7 +29,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.properties.util.ValueHandlerProperty;
 
 /**
- * A property which has {@link ButtonFactory}'s as values.
+ * A property which has {@link net.infonode.gui.button.ButtonFactory}'s as values.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.2 $
@@ -51,7 +51,7 @@ public class ButtonFactoryProperty extends ValueHandlerProperty {
   }
 
   /**
-   * Returns the {@link ButtonFactory} value of this property in a value container.
+   * Returns the {@link net.infonode.gui.button.ButtonFactory} value of this property in a value container.
    *
    * @param valueContainer the value container
    * @return the button factory value of this property
@@ -61,7 +61,7 @@ public class ButtonFactoryProperty extends ValueHandlerProperty {
   }
 
   /**
-   * Sets the {@link ButtonFactory} value of this property in a value container.
+   * Sets the {@link net.infonode.gui.button.ButtonFactory} value of this property in a value container.
    *
    * @param valueContainer the value container
    * @param buttonFactory  the button factory

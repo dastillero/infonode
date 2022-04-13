@@ -31,6 +31,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 /**
+ * <p>UIManagerUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
@@ -38,15 +40,35 @@ public class UIManagerUtil {
   private UIManagerUtil() {
   }
 
+  /**
+   * <p>getInsets.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public static Insets getInsets(String key) {
     return InsetsUtil.copy(UIManager.getInsets(key));
   }
 
+  /**
+   * <p>getInsets.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param insets a {@link java.awt.Insets} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public static Insets getInsets(String key, Insets insets) {
     Insets i = getInsets(key);
     return i == null ? insets : i;
   }
 
+  /**
+   * <p>getInsets.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param defaultKey a {@link java.lang.String} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public static Insets getInsets(String key, String defaultKey) {
     Insets i = getInsets(key);
 
@@ -57,14 +79,35 @@ public class UIManagerUtil {
     return i == null ? new Insets(0, 0, 0, 0) : i;
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color getColor(String key) {
     return ColorUtil.copy(UIManager.getColor(key));
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param defaultKey a {@link java.lang.String} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color getColor(String key, String defaultKey) {
     return getColor(key, defaultKey, Color.BLACK);
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param defaultKey a {@link java.lang.String} object.
+   * @param defaultColor a {@link java.awt.Color} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color getColor(String key, String defaultKey, Color defaultColor) {
     Color i = getColor(key);
 
@@ -75,10 +118,23 @@ public class UIManagerUtil {
     return i == null ? defaultColor : i;
   }
 
+  /**
+   * <p>getBorder.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @return a {@link javax.swing.border.Border} object.
+   */
   public static Border getBorder(String key) {
     return BorderUtil.copy(UIManager.getBorder(key));
   }
 
+  /**
+   * <p>getBorder.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param defaultKey a {@link java.lang.String} object.
+   * @return a {@link javax.swing.border.Border} object.
+   */
   public static Border getBorder(String key, String defaultKey) {
     Border i = getBorder(key);
 
@@ -89,6 +145,12 @@ public class UIManagerUtil {
     return i == null ? BorderFactory.createEmptyBorder() : i;
   }
 
+  /**
+   * <p>getFont.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @return a {@link java.awt.Font} object.
+   */
   public static Font getFont(String key) {
     Font font = UIManager.getFont(key);
     if (font == null)
@@ -96,6 +158,13 @@ public class UIManagerUtil {
     return FontUtil.copy(font);
   }
 
+  /**
+   * <p>getFont.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param defaultKey a {@link java.lang.String} object.
+   * @return a {@link java.awt.Font} object.
+   */
   public static Font getFont(String key, String defaultKey) {
     Font i = getFont(key);
 
@@ -106,6 +175,13 @@ public class UIManagerUtil {
     return i == null ? new Font("Dialog", 0, 11) : i;
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @param key a {@link java.lang.String} object.
+   * @param defaultColor a {@link java.awt.Color} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color getColor(String key, Color defaultColor) {
     Color c = getColor(key);
     return c == null ? defaultColor : c;

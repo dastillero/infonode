@@ -26,7 +26,7 @@ package net.infonode.properties.util;
 import net.infonode.properties.base.PropertyGroup;
 
 /**
- * Base class for properties that use a {@link PropertyValueHandler}.
+ * Base class for properties that use a {@link net.infonode.properties.util.PropertyValueHandler}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
@@ -52,23 +52,28 @@ public class ValueHandlerProperty extends AbstractProperty {
     this.valueHandler = valueHandler;
   }
 
+  /** {@inheritDoc} */
   public void setValue(Object object, Object value) {
     super.setValue(object, value);
     valueHandler.setValue(this, object, value);
   }
 
+  /** {@inheritDoc} */
   public Object getValue(Object object) {
     return valueHandler.getValue(this, object);
   }
 
+  /** {@inheritDoc} */
   public boolean valueIsRemovable(Object object) {
     return valueHandler.getValueIsRemovable(this, object);
   }
 
+  /** {@inheritDoc} */
   public void removeValue(Object object) {
     valueHandler.removeValue(this, object);
   }
 
+  /** {@inheritDoc} */
   public boolean valueIsSet(Object object) {
     return valueHandler.getValueIsSet(this, object);
   }

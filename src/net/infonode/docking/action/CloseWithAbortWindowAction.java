@@ -30,7 +30,7 @@ import javax.swing.*;
 import java.io.ObjectStreamException;
 
 /**
- * Closes a window using the {@link DockingWindow#closeWithAbort()} method.
+ * Closes a window using the {@link net.infonode.docking.DockingWindow#closeWithAbort()} method.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
@@ -47,14 +47,21 @@ public final class CloseWithAbortWindowAction extends DockingWindowAction {
   private CloseWithAbortWindowAction() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return CloseWindowAction.INSTANCE.getName();
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return window.isClosable();
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     try {
       if (isPerformable(window))
@@ -65,10 +72,21 @@ public final class CloseWithAbortWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return CloseWindowAction.INSTANCE.getIcon();
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

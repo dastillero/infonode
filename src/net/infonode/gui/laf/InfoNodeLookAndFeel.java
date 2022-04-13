@@ -66,6 +66,7 @@ import java.lang.reflect.InvocationTargetException;
  * @version $Revision: 1.22 $
  */
 public class InfoNodeLookAndFeel extends MetalLookAndFeel {
+  /** Constant <code>LOOK_AND_FEEL_INFO</code> */
   public static final UIManager.LookAndFeelInfo LOOK_AND_FEEL_INFO =
       new UIManager.LookAndFeelInfo("InfoNode", InfoNodeLookAndFeel.class.getName());
 
@@ -230,21 +231,19 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
     return theme;
   }
 
+  /**
+   * <p>initialize.</p>
+   */
+  @Override
   public void initialize() {
     super.initialize();
 
     if (oldMetalTheme == null) {
       // Try to obtain the old Metal theme if possible
       try {
-        oldMetalTheme = (MetalTheme) MetalLookAndFeel.class.getMethod("getCurrentTheme", null).invoke(null, null);
+        oldMetalTheme = (MetalTheme) MetalLookAndFeel.class.getMethod("getCurrentTheme", (Class<?>)null).invoke(null, (Object)null);
       }
-      catch (NoSuchMethodException e) {
-        // Ignore
-      }
-      catch (IllegalAccessException e) {
-        // Ignore
-      }
-      catch (InvocationTargetException e) {
+      catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
         // Ignore
       }
     }
@@ -252,19 +251,34 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
     setCurrentTheme(defaultTheme);
   }
 
+  /**
+   * <p>uninitialize.</p>
+   */
+  @Override
   public void uninitialize() {
     setCurrentTheme(oldMetalTheme == null ? new DefaultMetalTheme() : oldMetalTheme);
     oldMetalTheme = null;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return LOOK_AND_FEEL_INFO.getName();
   }
 
+  /**
+   * <p>getDescription.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getDescription() {
     return "A slim look and feel based on Metal.";
   }
 
+  /** {@inheritDoc} */
   protected void initClassDefaults(UIDefaults table) {
     super.initClassDefaults(table);
 
@@ -324,6 +338,7 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
     }
   }
 
+  /** {@inheritDoc} */
   protected void initComponentDefaults(UIDefaults table) {
     super.initComponentDefaults(table);
 
@@ -335,7 +350,7 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
     };
 
     Object[] defaults = {
-      "SplitPane.dividerSize", new Integer(theme.getSplitPaneDividerSize()),
+      "SplitPane.dividerSize", Integer.valueOf(theme.getSplitPaneDividerSize()),
 //      "SplitPaneDivider.border", new BorderUIResource(splitPaneDividerBorder),
 //      "SplitPane.border", new BorderUIResource(splitPaneBorder),
 
@@ -362,7 +377,7 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
 
       "ScrollBar.background", theme.getScrollBarBackgroundColor(),
       "ScrollBar.shadow", theme.getScrollBarBackgroundShadowColor(),
-      "ScrollBar.width", new Integer(theme.getScrollBarWidth()),
+      "ScrollBar.width", Integer.valueOf(theme.getScrollBarWidth()),
 //    "ScrollBar.border", new BorderUIResource(new LineBorder(Color.GRAY, 1)),
 
 //    "ScrollBar.thumb", new RelativeColor(thumbColor, 0.8).getColor(),
@@ -410,7 +425,7 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
 
 //      "Button.border", new BorderUIResource(buttonBorder),
 //      "Button.disabledShadow", new ColorUIResource(Color.GREEN), //ColorUtil.blend(textColor, controlColor, 0.5f)),
-      "Button.textShiftOffset", new Integer(2),
+      "Button.textShiftOffset", 2,
       "Button.select", theme.getControlLightShadowColor(),
 //    "Button.focus", focusColor,
       "Button.margin", theme.getButtonMargin(),
@@ -419,7 +434,7 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
 
       "ToggleButton.margin", theme.getButtonMargin(),
       "ToggleButton.select", theme.getControlLightShadowColor(),
-      "ToggleButton.textShiftOffset", new Integer(2),
+      "ToggleButton.textShiftOffset", 2,
 
       "Tree.openIcon", theme.getTreeOpenIcon(),
       "Tree.closedIcon", theme.getTreeClosedIcon(),
@@ -428,8 +443,8 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
           new TreeIcon(TreeIcon.PLUS, 10, 10, true, theme.getTextColor(), theme.getTreeIconBackgroundColor())),
       "Tree.expandedIcon", new IconUIResource(
           new TreeIcon(TreeIcon.MINUS, 10, 10, true, theme.getTextColor(), theme.getTreeIconBackgroundColor())),
-      "Tree.leftChildIndent", new Integer(5),
-      "Tree.rightChildIndent", new Integer(11),
+      "Tree.leftChildIndent", 5,
+      "Tree.rightChildIndent", 11,
 //    "Tree.rowHeight", new Integer(12),
 
       "OptionPane.errorIcon", LookAndFeel.makeIcon(iconClass, "icons/Error.gif"),
@@ -443,7 +458,7 @@ public class InfoNodeLookAndFeel extends MetalLookAndFeel {
   }
 
   /**
-   * Installs this look and feel with the {@link UIManager}, if it's not already installed.
+   * Installs this look and feel with the {@link javax.swing.UIManager}, if it's not already installed.
    */
   public static void install() {
     if (!ArrayUtil.contains(UIManager.getInstalledLookAndFeels(), LOOK_AND_FEEL_INFO))

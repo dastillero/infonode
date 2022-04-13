@@ -27,10 +27,17 @@ import net.infonode.gui.ReleaseInfoDialog;
 import net.infonode.gui.laf.InfoNodeLookAndFeelReleaseInfo;
 
 /**
+ * <p>Info class.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.3 $
  */
 public class Info {
+  /**
+   * <p>main.</p>
+   *
+   * @param args an array of {@link java.lang.String} objects.
+   */
   public static final void main(String[] args) {
     ReleaseInfoDialog.showDialog(InfoNodeLookAndFeelReleaseInfo.getReleaseInfo(), null);
     System.exit(0);

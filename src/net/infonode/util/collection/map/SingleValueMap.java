@@ -28,6 +28,8 @@ import net.infonode.util.collection.map.base.ConstMap;
 import net.infonode.util.collection.map.base.ConstMapIterator;
 
 /**
+ * <p>SingleValueMap class.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.3 $
  */
@@ -35,23 +37,37 @@ public class SingleValueMap implements ConstMap {
   private Object key;
   private Object value;
 
+  /**
+   * <p>Constructor for SingleValueMap.</p>
+   *
+   * @param key a {@link java.lang.Object} object.
+   * @param value a {@link java.lang.Object} object.
+   */
   public SingleValueMap(Object key, Object value) {
     this.key = key;
     this.value = value;
   }
 
+  /** {@inheritDoc} */
   public Object get(Object key) {
     return Utils.equals(key, this.key) ? value : null;
   }
 
+  /** {@inheritDoc} */
   public boolean containsKey(Object key) {
     return Utils.equals(key, this.key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsValue(Object value) {
     return Utils.equals(value, this.value);
   }
 
+  /**
+   * <p>constIterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.ConstMapIterator} object.
+   */
   public ConstMapIterator constIterator() {
     return new ConstMapIterator() {
       private boolean done;
@@ -74,6 +90,11 @@ public class SingleValueMap implements ConstMap {
     };
   }
 
+  /**
+   * <p>isEmpty.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEmpty() {
     return false;
   }

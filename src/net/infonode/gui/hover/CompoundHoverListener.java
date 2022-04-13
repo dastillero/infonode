@@ -66,11 +66,13 @@ public class CompoundHoverListener implements HoverListener {
     return secondListener;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     firstListener.mouseEntered(event);
     secondListener.mouseEntered(event);
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     secondListener.mouseExited(event);
     firstListener.mouseExited(event);

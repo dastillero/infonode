@@ -24,13 +24,31 @@
 package net.infonode.util.signal;
 
 /**
+ * <p>SignalHook interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
 public interface SignalHook {
+  /**
+   * <p>add.</p>
+   *
+   * @param listener a {@link net.infonode.util.signal.SignalListener} object.
+   */
   void add(SignalListener listener);
 
+  /**
+   * <p>addWeak.</p>
+   *
+   * @param listener a {@link net.infonode.util.signal.SignalListener} object.
+   */
   void addWeak(SignalListener listener);
 
+  /**
+   * <p>remove.</p>
+   *
+   * @param listener a {@link net.infonode.util.signal.SignalListener} object.
+   * @return a boolean.
+   */
   boolean remove(SignalListener listener);
 }

@@ -34,6 +34,14 @@ import net.infonode.properties.util.ValueHandlerProperty;
  * @version $Revision: 1.2 $
  */
 public class DimensionProviderProperty extends ValueHandlerProperty {
+  /**
+   * <p>Constructor for DimensionProviderProperty.</p>
+   *
+   * @param group a {@link net.infonode.properties.base.PropertyGroup} object.
+   * @param name a {@link java.lang.String} object.
+   * @param description a {@link java.lang.String} object.
+   * @param valueStorage a {@link net.infonode.properties.util.PropertyValueHandler} object.
+   */
   public DimensionProviderProperty(PropertyGroup group, String name, String description, PropertyValueHandler valueStorage) {
     super(group, name, DimensionProvider.class, description, valueStorage);
   }

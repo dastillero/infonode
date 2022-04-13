@@ -24,12 +24,30 @@
 package net.infonode.gui;
 
 /**
+ * <p>ScrollableBoxListener interface.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public interface ScrollableBoxListener {
+  /**
+   * <p>scrolledLeft.</p>
+   *
+   * @param box a {@link net.infonode.gui.ScrollableBox} object.
+   */
   public void scrolledLeft(ScrollableBox box);
 
+  /**
+   * <p>scrolledRight.</p>
+   *
+   * @param box a {@link net.infonode.gui.ScrollableBox} object.
+   */
   public void scrolledRight(ScrollableBox box);
 
+  /**
+   * <p>changed.</p>
+   *
+   * @param box a {@link net.infonode.gui.ScrollableBox} object.
+   */
   public void changed(ScrollableBox box);
 }

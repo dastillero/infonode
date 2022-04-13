@@ -23,8 +23,20 @@
 // $Id: PaneUIListener.java,v 1.2 2005/12/04 12:56:44 jesper Exp $
 package net.infonode.tabbedpanel.theme.internal.laftheme;
 
+/**
+ * <p>PaneUIListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface PaneUIListener {
+  /**
+   * <p>updating.</p>
+   */
   void updating();
 
+  /**
+   * <p>updated.</p>
+   */
   void updated();
 }

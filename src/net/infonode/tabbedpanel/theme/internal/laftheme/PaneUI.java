@@ -40,6 +40,12 @@ import net.infonode.tabbedpanel.TabbedPanel;
 import net.infonode.tabbedpanel.TabbedPanelContentPanel;
 import net.infonode.util.Direction;
 
+/**
+ * <p>PaneUI class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class PaneUI {
   private static final boolean PAINT_TAB_AREA = true;
 
@@ -123,10 +129,18 @@ public class PaneUI {
 
   private boolean enabled = true;
 
+  /**
+   * <p>Constructor for PaneUI.</p>
+   *
+   * @param listener a {@link net.infonode.tabbedpanel.theme.internal.laftheme.PaneUIListener} object.
+   */
   public PaneUI(final PaneUIListener listener) {
     this.listener = listener;
   }
 
+  /**
+   * <p>init.</p>
+   */
   public void init() {
     paneHandler.update();
   }
@@ -143,11 +157,19 @@ public class PaneUI {
     initPostCommonValues();
   }
 
+  /**
+   * <p>dispose.</p>
+   */
   public void dispose() {
     enabled = false;
     paneHandler.dispose();
   }
 
+  /**
+   * <p>Setter for the field <code>enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setEnabled(final boolean enabled) {
     this.enabled = enabled;
   }
@@ -537,42 +559,99 @@ public class PaneUI {
     swapWidthHeights[index] = bounds2.height > 1.5 * bounds.height;
   }
 
+  /**
+   * <p>isContentOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isContentOpaque() {
     return contentOpaque;
   }
 
+  /**
+   * <p>isOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isOpaque() {
     return opaque;
   }
 
+  /**
+   * <p>isTabAreaComponentsOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isTabAreaComponentsOpaque() {
     return tabAreaComponentsOpaque;
   }
 
+  /**
+   * <p>isTabAreaOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isTabAreaOpaque() {
     return tabAreaOpaque;
   }
 
+  /**
+   * <p>getFont.</p>
+   *
+   * @return a {@link java.awt.Font} object.
+   */
   public Font getFont() {
     return paneHandler.getPainter(Direction.UP).getFont();
   }
 
+  /**
+   * <p>isSwapWidthHeight.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a boolean.
+   */
   public boolean isSwapWidthHeight(Direction d) {
     return swapWidthHeights[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>Getter for the field <code>normalInsets</code>.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getNormalInsets(Direction d) {
     return normalInsets[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>Getter for the field <code>selectedInsets</code>.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getSelectedInsets(Direction d) {
     return selectedInsets[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getNormalTabInsets.</p>
+   *
+   * @param areaOrientation a {@link net.infonode.util.Direction} object.
+   * @param tabDirection a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getNormalTabInsets(Direction areaOrientation, Direction tabDirection) {
     return getRealTabInsets(areaOrientation, tabDirection, getNormalInsets(areaOrientation));
   }
 
+  /**
+   * <p>getSelectedTabInsets.</p>
+   *
+   * @param areaOrientation a {@link net.infonode.util.Direction} object.
+   * @param tabDirection a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getSelectedTabInsets(Direction areaOrientation, Direction tabDirection) {
     return getRealTabInsets(areaOrientation, tabDirection, getSelectedInsets(areaOrientation));
   }
@@ -587,43 +666,101 @@ public class PaneUI {
     return insets;
   }
 
+  /**
+   * <p>Getter for the field <code>contentInsets</code>.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @param tabAreaVisible a boolean.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getContentInsets(Direction d, boolean tabAreaVisible) {
     return tabAreaVisible ?
                            adjustedContentInsets[getDirectionIndex(d)] : adjustedContentInsetsTabAreaHidden[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getTabAreaInsets.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getTabAreaInsets(Direction d) {
     return areaInsets[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getTabExternalMinSize.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getTabExternalMinSize(Direction d) {
     return minimumSizes[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>Getter for the field <code>tabInsets</code>.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getTabInsets(Direction d) {
     return tabInsets[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getTabSpacing.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a int.
+   */
   public int getTabSpacing(Direction d) {
     return spacings[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getSelectedRaised.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a int.
+   */
   public int getSelectedRaised(Direction d) {
     return raiseds[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getContentTabAreaBorderColor.</p>
+   *
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getContentTabAreaBorderColor(Direction d) {
     return contentTabAreaBorderColors[getDirectionIndex(d)];
   }
 
+  /**
+   * <p>getTabSpacing.</p>
+   *
+   * @return a int.
+   */
   public int getTabSpacing() {
     return 0;
   }
 
+  /**
+   * <p>Getter for the field <code>textIconGap</code>.</p>
+   *
+   * @return a int.
+   */
   public int getTextIconGap() {
     return textIconGap;
   }
 
+  /**
+   * <p>Getter for the field <code>scrollOffset</code>.</p>
+   *
+   * @return a int.
+   */
   public int getScrollOffset() {
     return scrollOffset;
   }
@@ -676,6 +813,11 @@ public class PaneUI {
     return new Insets(top, left, bottom, right);
   }
 
+  /**
+   * <p>Setter for the field <code>hoveredTab</code>.</p>
+   *
+   * @param tab a {@link net.infonode.tabbedpanel.Tab} object.
+   */
   public void setHoveredTab(Tab tab) {
     if (enabled) {
       if (tab != hoveredTab) {
@@ -690,6 +832,16 @@ public class PaneUI {
     }
   }
 
+  /**
+   * <p>paintTabArea.</p>
+   *
+   * @param tp a {@link net.infonode.tabbedpanel.TabbedPanel} object.
+   * @param g a {@link java.awt.Graphics} object.
+   * @param x a int.
+   * @param y a int.
+   * @param width a int.
+   * @param height a int.
+   */
   public void paintTabArea(TabbedPanel tp, Graphics g, int x, int y, int width, int height) {
     if (enabled) {
       if (tp.isTabAreaVisible()) {
@@ -863,6 +1015,16 @@ public class PaneUI {
       return tabData.getTabAreaWidth() + insets.left + insets.right + EXTRA_SIZE;
   }
 
+  /**
+   * <p>paintContentArea.</p>
+   *
+   * @param p a {@link net.infonode.tabbedpanel.TabbedPanelContentPanel} object.
+   * @param g a {@link java.awt.Graphics} object.
+   * @param x a int.
+   * @param y a int.
+   * @param width a int.
+   * @param height a int.
+   */
   public void paintContentArea(TabbedPanelContentPanel p, Graphics g, int x, int y, int width, int height) {
     if (enabled) {
       if (PAINT_CONTENT_AREA) {

@@ -31,6 +31,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>PropertyMapPropertyRef class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
  */
@@ -41,24 +43,43 @@ public class PropertyMapPropertyRef implements PropertyMapRef {
     this.propertyName = propertyName;
   }
 
+  /**
+   * <p>Constructor for PropertyMapPropertyRef.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public PropertyMapPropertyRef(PropertyMapProperty property) {
     propertyName = property.getName();
   }
 
+  /** {@inheritDoc} */
   public PropertyMapImpl getMap(PropertyMapImpl object) {
     return object == null ?
            null : object.getChildMapImpl((PropertyMapProperty) object.getPropertyGroup().getProperty(propertyName));
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return "(property '" + propertyName + "')";
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(PropertyMapRefDecoder.PROPERTY_OBJECT_PROPERTY);
     out.writeUTF(propertyName);
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @return a {@link net.infonode.properties.propertymap.ref.PropertyMapRef} object.
+   * @throws java.io.IOException if any.
+   */
   public static PropertyMapRef decode(ObjectInputStream in) throws IOException {
     return new PropertyMapPropertyRef(in.readUTF());
   }

@@ -29,7 +29,10 @@ import net.infonode.gui.colorprovider.FixedColorProvider;
 import java.awt.*;
 
 /**
+ * <p>RoundedCornerBorder class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class RoundedCornerBorder extends PolygonBorder {
   private static final long serialVersionUID = 1;
@@ -64,10 +67,26 @@ public class RoundedCornerBorder extends PolygonBorder {
 
   private Insets insets;
 
+  /**
+   * <p>Constructor for RoundedCornerBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param cType a int.
+   */
   public RoundedCornerBorder(ColorProvider lineColor, int cType) {
     this(lineColor, cType, true, true, true, true);
   }
 
+  /**
+   * <p>Constructor for RoundedCornerBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param cType a int.
+   * @param drawTop a boolean.
+   * @param drawLeft a boolean.
+   * @param drawBottom a boolean.
+   * @param drawRight a boolean.
+   */
   public RoundedCornerBorder(ColorProvider lineColor,
                              int cType,
                              boolean drawTop,
@@ -77,11 +96,35 @@ public class RoundedCornerBorder extends PolygonBorder {
     this(lineColor, FixedColorProvider.WHITE, cType, cType, cType, cType, drawTop, drawLeft, drawBottom, drawRight);
   }
 
+  /**
+   * <p>Constructor for RoundedCornerBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param cType1 a int.
+   * @param cType2 a int.
+   * @param cType3 a int.
+   * @param cType4 a int.
+   */
   public RoundedCornerBorder(ColorProvider lineColor, ColorProvider highlightColor,
                              int cType1, int cType2, int cType3, int cType4) {
     this(lineColor, highlightColor, cType1, cType2, cType3, cType4, true, true, true, true);
   }
 
+  /**
+   * <p>Constructor for RoundedCornerBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param cType1 a int.
+   * @param cType2 a int.
+   * @param cType3 a int.
+   * @param cType4 a int.
+   * @param drawTop a boolean.
+   * @param drawLeft a boolean.
+   * @param drawBottom a boolean.
+   * @param drawRight a boolean.
+   */
   public RoundedCornerBorder(ColorProvider lineColor, ColorProvider highlightColor,
                              int cType1, int cType2, int cType3, int cType4,
                              boolean drawTop, boolean drawLeft, boolean drawBottom, boolean drawRight) {
@@ -97,6 +140,7 @@ public class RoundedCornerBorder extends PolygonBorder {
                         drawRight ? 1 : 0);
   }
 
+  /** {@inheritDoc} */
   protected Insets getShapedBorderInsets(Component c) {
     return insets;
   }

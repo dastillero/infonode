@@ -47,8 +47,10 @@ import java.awt.*;
  * @since ITP 1.2.0
  */
 public class SoftBlueIceTheme extends TabbedPanelTitledTabTheme {
+  /** Constant <code>DEFAULT_DARK_COLOR</code> */
   public static final FixedColorProvider DEFAULT_DARK_COLOR = new FixedColorProvider(
       ColorUtil.mult(new Color(160, 170, 190), 0.90));
+  /** Constant <code>DEFAULT_LIGHT_COLOR</code> */
   public static final FixedColorProvider DEFAULT_LIGHT_COLOR = new FixedColorProvider(new Color(220, 230, 240));
 
   private ColorProvider darkColor;
@@ -181,14 +183,29 @@ public class SoftBlueIceTheme extends TabbedPanelTitledTabTheme {
         .setComponentPainter(highlightPainter);
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Soft Blue Ice Theme";
   }
 
+  /**
+   * <p>Getter for the field <code>tabbedPanelProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.tabbedpanel.TabbedPanelProperties} object.
+   */
   public TabbedPanelProperties getTabbedPanelProperties() {
     return tabbedPanelProperties;
   }
 
+  /**
+   * <p>Getter for the field <code>titledTabProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties} object.
+   */
   public TitledTabProperties getTitledTabProperties() {
     return titledTabProperties;
   }

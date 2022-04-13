@@ -128,6 +128,7 @@ public class SplitWindowProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(SplitWindowProperties)} instead.
    */
+  @Deprecated
   public SplitWindowProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;

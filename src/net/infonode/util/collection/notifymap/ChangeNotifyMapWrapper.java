@@ -29,6 +29,12 @@ import net.infonode.util.collection.map.base.ConstMapIterator;
 import net.infonode.util.collection.map.base.Map;
 import net.infonode.util.collection.map.base.MapIterator;
 
+/**
+ * <p>ChangeNotifyMapWrapper class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ChangeNotifyMapWrapper extends AbstractChangeNotifyMap {
   private class Iterator implements MapIterator {
     private MapIterator iterator;
@@ -61,42 +67,65 @@ public class ChangeNotifyMapWrapper extends AbstractChangeNotifyMap {
 
   private Map map;
 
+  /**
+   * <p>Constructor for ChangeNotifyMapWrapper.</p>
+   *
+   * @param map a {@link net.infonode.util.collection.map.base.Map} object.
+   */
   public ChangeNotifyMapWrapper(Map map) {
     this.map = map;
   }
 
+  /**
+   * <p>Getter for the field <code>map</code>.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.Map} object.
+   */
   public Map getMap() {
     return map;
   }
 
+  /** {@inheritDoc} */
   public Object get(Object key) {
     return map.get(key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsKey(Object key) {
     return map.containsKey(key);
   }
 
+  /** {@inheritDoc} */
   public boolean containsValue(Object value) {
     return map.containsValue(value);
   }
 
+  /**
+   * <p>isEmpty.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEmpty() {
     return map.isEmpty();
   }
 
+  /** {@inheritDoc} */
   public Object put(Object key, Object value) {
     Object oldValue = map.put(key, value);
     fireEntryChanged(key, oldValue, value);
     return oldValue;
   }
 
+  /** {@inheritDoc} */
   public Object remove(Object key) {
     Object oldValue = map.remove(key);
     fireEntryRemoved(key, oldValue);
     return oldValue;
   }
 
+  /**
+   * <p>clear.</p>
+   */
   public void clear() {
     MapAdapter changeMap = new MapAdapter();
 
@@ -108,6 +137,11 @@ public class ChangeNotifyMapWrapper extends AbstractChangeNotifyMap {
     fireEntriesChanged(changeMap);
   }
 
+  /**
+   * <p>iterator.</p>
+   *
+   * @return a {@link net.infonode.util.collection.map.base.MapIterator} object.
+   */
   public MapIterator iterator() {
     return new Iterator(map.iterator());
   }

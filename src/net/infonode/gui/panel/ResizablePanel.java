@@ -33,6 +33,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 /**
+ * <p>ResizablePanel class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.19 $
  */
@@ -51,10 +53,22 @@ public class ResizablePanel extends BaseContainer {
   private int dragIndicatorThickness = 4;
   private Component comp;
 
+  /**
+   * <p>Constructor for ResizablePanel.</p>
+   *
+   * @param _direction a {@link net.infonode.util.Direction} object.
+   */
   public ResizablePanel(Direction _direction) {
     this(false, _direction, null);
   }
 
+  /**
+   * <p>Constructor for ResizablePanel.</p>
+   *
+   * @param useHeavyWeightDragIndicator a boolean.
+   * @param _direction a {@link net.infonode.util.Direction} object.
+   * @param mouseListenComponent a {@link java.awt.Component} object.
+   */
   public ResizablePanel(boolean useHeavyWeightDragIndicator, Direction _direction, Component mouseListenComponent) {
     super(new BorderLayout());
     this.heavyWeight = useHeavyWeightDragIndicator;
@@ -144,6 +158,11 @@ public class ResizablePanel extends BaseContainer {
     });
   }
 
+  /**
+   * <p>setComponent.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   */
   public void setComponent(Component c) {
     if (comp != null)
       remove(comp);
@@ -157,16 +176,31 @@ public class ResizablePanel extends BaseContainer {
     comp = c;
   }
 
+  /**
+   * <p>setDragIndicatorColor.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   */
   public void setDragIndicatorColor(Color color) {
     dragIndicator.setBackground(color == null ? Color.DARK_GRAY : color);
   }
 
+  /**
+   * <p>Setter for the field <code>layeredPane</code>.</p>
+   *
+   * @param layeredPane a {@link javax.swing.JComponent} object.
+   */
   public void setLayeredPane(JComponent layeredPane) {
     this.layeredPane = layeredPane;
     if (innerArea == null)
       innerArea = layeredPane;
   }
 
+  /**
+   * <p>Setter for the field <code>innerArea</code>.</p>
+   *
+   * @param innerArea a {@link javax.swing.JComponent} object.
+   */
   public void setInnerArea(JComponent innerArea) {
     if (innerArea == null)
       innerArea = layeredPane;
@@ -174,14 +208,29 @@ public class ResizablePanel extends BaseContainer {
       this.innerArea = innerArea;
   }
 
+  /**
+   * <p>isContinuousLayout.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isContinuousLayout() {
     return continuousLayout;
   }
 
+  /**
+   * <p>Setter for the field <code>continuousLayout</code>.</p>
+   *
+   * @param continuousLayout a boolean.
+   */
   public void setContinuousLayout(boolean continuousLayout) {
     this.continuousLayout = continuousLayout;
   }
 
+  /**
+   * <p>getPreferredSize.</p>
+   *
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getPreferredSize() {
     Dimension d = super.getPreferredSize();
     return getBoundedSize(direction.isHorizontal() ? d.width : d.height);
@@ -225,10 +274,20 @@ public class ResizablePanel extends BaseContainer {
     }
   }
 
+  /**
+   * <p>Setter for the field <code>resizeWidth</code>.</p>
+   *
+   * @param width a int.
+   */
   public void setResizeWidth(int width) {
     this.resizeWidth = width;
   }
 
+  /**
+   * <p>Getter for the field <code>resizeWidth</code>.</p>
+   *
+   * @return a int.
+   */
   public int getResizeWidth() {
     return resizeWidth;
   }
@@ -261,10 +320,16 @@ public class ResizablePanel extends BaseContainer {
     cursorChanged = false;
   }
 
+  /**
+   * <p>Getter for the field <code>direction</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getDirection() {
     return direction;
   }
 
+  /** {@inheritDoc} */
   public void setVisible(boolean aFlag) {
     super.setVisible(aFlag);
   }

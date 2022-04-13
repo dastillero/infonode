@@ -41,14 +41,33 @@ public class FixedTransformComponentPainter extends AbstractComponentPainterWrap
   private boolean horizontalFlip;
   private boolean verticalFlip;
 
+  /**
+   * <p>Constructor for FixedTransformComponentPainter.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public FixedTransformComponentPainter(ComponentPainter painter) {
     this(painter, Direction.RIGHT);
   }
 
+  /**
+   * <p>Constructor for FixedTransformComponentPainter.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public FixedTransformComponentPainter(ComponentPainter painter, Direction direction) {
     this(painter, direction, false, false);
   }
 
+  /**
+   * <p>Constructor for FixedTransformComponentPainter.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param horizontalFlip a boolean.
+   * @param verticalFlip a boolean.
+   */
   public FixedTransformComponentPainter(ComponentPainter painter,
                                         Direction direction,
                                         boolean horizontalFlip,
@@ -59,10 +78,12 @@ public class FixedTransformComponentPainter extends AbstractComponentPainterWrap
     this.verticalFlip = verticalFlip;
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component, Graphics g, int x, int y, int width, int height) {
     super.paint(component, g, x, y, width, height, direction, horizontalFlip, verticalFlip);
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component,
                     Graphics g,
                     int x,

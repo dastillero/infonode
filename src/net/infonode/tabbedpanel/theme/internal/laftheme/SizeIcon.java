@@ -26,30 +26,61 @@ package net.infonode.tabbedpanel.theme.internal.laftheme;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * <p>SizeIcon class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class SizeIcon implements Icon {
+  /** Constant <code>EMPTY</code> */
   public static SizeIcon EMPTY = new SizeIcon(0, 0);
 
   private int width;
   private int height;
   private boolean swap;
 
+  /**
+   * <p>Constructor for SizeIcon.</p>
+   *
+   * @param width a int.
+   * @param height a int.
+   */
   public SizeIcon(int width, int height) {
     this(width, height, false);
   }
 
+  /**
+   * <p>Constructor for SizeIcon.</p>
+   *
+   * @param width a int.
+   * @param height a int.
+   * @param swap a boolean.
+   */
   public SizeIcon(int width, int height, boolean swap) {
     this.width = width;
     this.height = height;
     this.swap = swap;
   }
 
+  /** {@inheritDoc} */
   public void paintIcon(Component c, Graphics g, int x, int y) {
   }
 
+  /**
+   * <p>getIconWidth.</p>
+   *
+   * @return a int.
+   */
   public int getIconWidth() {
     return swap ? height : width;
   }
 
+  /**
+   * <p>getIconHeight.</p>
+   *
+   * @return a int.
+   */
   public int getIconHeight() {
     return swap ? width : height;
   }

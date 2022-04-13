@@ -37,7 +37,7 @@ public interface Writable {
    * Writes this object to an ObjectOutputStream.
    *
    * @param out the stream
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   void write(ObjectOutputStream out) throws IOException;
 }

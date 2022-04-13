@@ -31,8 +31,11 @@ import net.infonode.gui.shaped.border.AbstractPolygonBorder;
 import java.awt.*;
 
 /**
+ * <p>SlopedTabLineBorder class.</p>
+ *
  * @author johan
  * @since 1.2.0
+ * @version $Id: $Id
  */
 public class SlopedTabLineBorder extends AbstractPolygonBorder {
   private static final long serialVersionUID = 1;
@@ -92,18 +95,45 @@ public class SlopedTabLineBorder extends AbstractPolygonBorder {
   private static int y;
   private static int index;
 
+  /**
+   * <p>Constructor for SlopedTabLineBorder.</p>
+   */
   public SlopedTabLineBorder() {
     this(0, 1);
   }
 
+  /**
+   * <p>Constructor for SlopedTabLineBorder.</p>
+   *
+   * @param leftSlope a float.
+   * @param rightSlope a float.
+   */
   public SlopedTabLineBorder(float leftSlope, float rightSlope) {
     this(leftSlope, rightSlope, 22, 22);
   }
 
+  /**
+   * <p>Constructor for SlopedTabLineBorder.</p>
+   *
+   * @param leftSlope a float.
+   * @param rightSlope a float.
+   * @param leftHeight a int.
+   * @param rightHeight a int.
+   */
   public SlopedTabLineBorder(float leftSlope, float rightSlope, int leftHeight, int rightHeight) {
     this(leftSlope, rightSlope, leftHeight, rightHeight, false, false, false, false);
   }
 
+  /**
+   * <p>Constructor for SlopedTabLineBorder.</p>
+   *
+   * @param leftSlope a float.
+   * @param rightSlope a float.
+   * @param bottomLeftRounded a boolean.
+   * @param topLeftRounded a boolean.
+   * @param topRightRounded a boolean.
+   * @param bottomRightRounded a boolean.
+   */
   public SlopedTabLineBorder(float leftSlope, float rightSlope,
                              boolean bottomLeftRounded, boolean topLeftRounded, boolean topRightRounded,
                              boolean bottomRightRounded) {
@@ -117,6 +147,18 @@ public class SlopedTabLineBorder extends AbstractPolygonBorder {
          bottomRightRounded);
   }
 
+  /**
+   * <p>Constructor for SlopedTabLineBorder.</p>
+   *
+   * @param leftSlope a float.
+   * @param rightSlope a float.
+   * @param leftHeight a int.
+   * @param rightHeight a int.
+   * @param bottomLeftRounded a boolean.
+   * @param topLeftRounded a boolean.
+   * @param topRightRounded a boolean.
+   * @param bottomRightRounded a boolean.
+   */
   public SlopedTabLineBorder(float leftSlope, float rightSlope, int leftHeight, int rightHeight,
                              boolean bottomLeftRounded, boolean topLeftRounded, boolean topRightRounded,
                              boolean bottomRightRounded) {
@@ -133,6 +175,21 @@ public class SlopedTabLineBorder extends AbstractPolygonBorder {
          bottomRightRounded);
   }
 
+  /**
+   * <p>Constructor for SlopedTabLineBorder.</p>
+   *
+   * @param lineColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param highlightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param drawBottomLine a boolean.
+   * @param leftSlope a float.
+   * @param rightSlope a float.
+   * @param leftHeight a int.
+   * @param rightHeight a int.
+   * @param bottomLeftRounded a boolean.
+   * @param topLeftRounded a boolean.
+   * @param topRightRounded a boolean.
+   * @param bottomRightRounded a boolean.
+   */
   public SlopedTabLineBorder(ColorProvider lineColor, ColorProvider highlightColor, boolean drawBottomLine,
                              float leftSlope, float rightSlope, int leftHeight, int rightHeight,
                              boolean bottomLeftRounded, boolean topLeftRounded, boolean topRightRounded,
@@ -149,10 +206,12 @@ public class SlopedTabLineBorder extends AbstractPolygonBorder {
     this.bottomRightRounded = bottomRightRounded;
   }
 
+  /** {@inheritDoc} */
   protected boolean lineIsDrawn(int index, Polygon polygon) {
     return drawBottomLine || index < polygon.npoints - 1;
   }
 
+  /** {@inheritDoc} */
   protected Insets getShapedBorderInsets(Component c) {
     return new Insets(1,
                       (isBottomLeftRounded(c) ? 4 : 1) +
@@ -164,6 +223,12 @@ public class SlopedTabLineBorder extends AbstractPolygonBorder {
                       (int) (rightSlope * rightHeight));
   }
 
+  /**
+   * <p>isBottomLeftRounded.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a boolean.
+   */
   protected boolean isBottomLeftRounded(Component c) {
     return bottomLeftRounded;
   }
@@ -196,6 +261,7 @@ public class SlopedTabLineBorder extends AbstractPolygonBorder {
     return corner[corner.length - 1];
   }
 
+  /** {@inheritDoc} */
   protected Polygon createPolygon(Component c, int width, int height) {
     boolean bottomLeftRounded = isBottomLeftRounded(c);
     int leftX = (int) (leftHeight * leftSlope + (bottomLeftRounded ? 4 : 0));

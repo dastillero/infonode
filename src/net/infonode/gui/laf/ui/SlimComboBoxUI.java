@@ -34,19 +34,36 @@ import javax.swing.plaf.metal.MetalComboBoxUI;
 import java.awt.*;
 
 /**
+ * <p>SlimComboBoxUI class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
 public class SlimComboBoxUI extends MetalComboBoxUI {
+  /** Constant <code>FOCUS_BORDER</code> */
   public static Border FOCUS_BORDER = new CompoundBorder(new LineBorder(Color.BLACK), new EmptyBorder(0, 3, 0, 3));
+  /** Constant <code>NORMAL_BORDER</code> */
   public static Border NORMAL_BORDER = new EmptyBorder(1, 4, 1, 4);
 
+  /**
+   * Creates the component UI.
+   * 
+   * @param b parent component.
+   * @return the UI created.
+   */
   public static ComponentUI createUI(JComponent b) {
     return new SlimComboBoxUI();
   }
 
+  /**
+   * <p>createRenderer.</p>
+   *
+   * @return a {@link javax.swing.ListCellRenderer} object.
+   */
+  @Override
   protected ListCellRenderer createRenderer() {
     return new BasicComboBoxRenderer() {
+      @Override
       public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
                                                     boolean cellHasFocus) {
         JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

@@ -80,6 +80,7 @@ public class TwoColoredLineBorder extends RoundedCornerBorder {
     this.open = open;
   }
 
+  /** {@inheritDoc} */
   protected void paintPolygon(Component c, Graphics2D g, Polygon polygon, int width, int height) {
     TabbedPanel tp = TabbedUtils.getParentTabbedPanel(c);
     if (tp != null) {

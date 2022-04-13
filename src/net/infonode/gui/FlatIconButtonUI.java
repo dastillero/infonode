@@ -28,16 +28,26 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
+ * <p>FlatIconButtonUI class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class FlatIconButtonUI extends BasicButtonUI {
   private final static FlatIconButtonUI buttonUI = new FlatIconButtonUI();
 
+  /**
+   * Creates the UI for the component.
+   * 
+   * @param c parent component.
+   * @return the UI created.
+   */
   public static ComponentUI createUI(JComponent c) {
     return buttonUI;
   }
 
+  /** {@inheritDoc} */
+  @Override
   protected void installDefaults(AbstractButton b) {
   }
 

@@ -42,6 +42,12 @@ import net.infonode.tabbedpanel.theme.internal.laftheme.SizeIcon;
 import net.infonode.util.ColorUtil;
 import net.infonode.util.Direction;
 
+/**
+ * <p>TitleBarUI class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class TitleBarUI {
   private static final int NUM_FADE_COLORS = 25;
 
@@ -178,21 +184,38 @@ public class TitleBarUI {
 
   private final TitleBarUIListener listener;
 
+  /**
+   * <p>Constructor for TitleBarUI.</p>
+   *
+   * @param listener a {@link net.infonode.docking.theme.internal.laftheme.TitleBarUIListener} object.
+   * @param enabled a boolean.
+   */
   public TitleBarUI(TitleBarUIListener listener, boolean enabled) {
     this.enabled = enabled;
     this.listener = listener;
   }
 
+  /**
+   * <p>Setter for the field <code>enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setEnabled(boolean enabled) {
     this.enabled = enabled;
   }
 
+  /**
+   * <p>dispose.</p>
+   */
   public void dispose() {
     DynamicUIManager.getInstance().removePrioritizedListener(uiListener);
     frame.removeAll();
     frame.dispose();
   }
 
+  /**
+   * <p>init.</p>
+   */
   public void init() {
     DynamicUIManager.getInstance().addPrioritizedListener(uiListener);
 
@@ -313,6 +336,11 @@ public class TitleBarUI {
     return foundBackgroundColor;
   }
 
+  /**
+   * <p>getSizeDimensionProvider.</p>
+   *
+   * @return a {@link net.infonode.gui.DimensionProvider} object.
+   */
   public DimensionProvider getSizeDimensionProvider() {
     return skipIFrame ? null : new DimensionProvider() {
       public Dimension getDimension(Component c) {
@@ -321,6 +349,16 @@ public class TitleBarUI {
     };
   }
 
+  /**
+   * <p>paintTitleBar.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param g a {@link java.awt.Graphics} object.
+   * @param selected a boolean.
+   * @param width a int.
+   * @param height a int.
+   * @param d a {@link net.infonode.util.Direction} object.
+   */
   public void paintTitleBar(Component c, Graphics g, boolean selected, int width, int height, Direction d) {
     if (enabled) {
       View view = findView(c);
@@ -394,18 +432,38 @@ public class TitleBarUI {
     iFrame.validate();
   }
 
+  /**
+   * <p>isRenderingIcon.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRenderingIcon() {
     return !skipIFrame;
   }
 
+  /**
+   * <p>isRenderingTitle.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRenderingTitle() {
     return !skipIFrame;
   }
 
+  /**
+   * <p>getRenderingDirection.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getRenderingDirection() {
     return Direction.RIGHT;
   }
 
+  /**
+   * <p>Getter for the field <code>inactiveComponentPainter</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public ComponentPainter getInactiveComponentPainter() {
     if (!skipIFrame)
       return inactiveComponentPainter;
@@ -417,6 +475,11 @@ public class TitleBarUI {
     return createComponentPainter(bkg, UIManager.getColor("InternalFrame.inactiveTitleGradient"));
   }
 
+  /**
+   * <p>Getter for the field <code>activeComponentPainter</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public ComponentPainter getActiveComponentPainter() {
     if (!skipIFrame)
       return activeComponentPainter;
@@ -428,14 +491,29 @@ public class TitleBarUI {
     return createComponentPainter(bkg, UIManager.getColor("InternalFrame.activeTitleGradient"));
   }
 
+  /**
+   * <p>getInsets.</p>
+   *
+   * @return a {@link java.awt.Insets} object.
+   */
   public Insets getInsets() {
     return skipIFrame ? new Insets(2, 2, 2, 2) : new Insets(0, 0, 0, RIGHT_INSET);
   }
 
+  /**
+   * <p>Getter for the field <code>inactiveBackgroundColor</code>.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getInactiveBackgroundColor() {
     return inactiveBackgroundColor;
   }
 
+  /**
+   * <p>Getter for the field <code>activeBackgroundColor</code>.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getActiveBackgroundColor() {
     return activeBackgroundColor;
   }

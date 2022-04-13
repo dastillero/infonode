@@ -30,15 +30,25 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
+ * <p>SlimInternalFrameTitlePane class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class SlimInternalFrameTitlePane extends BasicInternalFrameTitlePane {
+  /**
+   * <p>Constructor for SlimInternalFrameTitlePane.</p>
+   *
+   * @param f a {@link javax.swing.JInternalFrame} object.
+   */
   public SlimInternalFrameTitlePane(JInternalFrame f) {
     super(f);
     setBorder(new EdgeBorder(UIManager.getColor("controlDkShadow"), false, true, false, false));
   }
 
+  /**
+   * <p>createButtons.</p>
+   */
   protected void createButtons() {
     iconButton = ButtonFactory.createFlatHighlightButton(iconIcon,
                                                          UIManager.getString("InternalFrame.iconButtonToolTip"),

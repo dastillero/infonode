@@ -42,10 +42,20 @@ public class DefaultDockingTheme extends DockingWindowsTheme {
   public DefaultDockingTheme() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Default Theme";
   }
 
+  /**
+   * <p>Getter for the field <code>rootWindowProperties</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.properties.RootWindowProperties} object.
+   */
   public RootWindowProperties getRootWindowProperties() {
     return rootWindowProperties;
   }

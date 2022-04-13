@@ -28,6 +28,8 @@ import net.infonode.util.Direction;
 import java.awt.*;
 
 /**
+ * <p>RectangleUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
@@ -35,6 +37,17 @@ public class RectangleUtil {
   private RectangleUtil() {
   }
 
+  /**
+   * <p>transform.</p>
+   *
+   * @param rectangle a {@link java.awt.Rectangle} object.
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param horizontalFlip a boolean.
+   * @param verticalFlip a boolean.
+   * @param width a int.
+   * @param height a int.
+   * @return a {@link java.awt.Rectangle} object.
+   */
   public static Rectangle transform(Rectangle rectangle,
                                     Direction direction,
                                     boolean horizontalFlip,

@@ -25,10 +25,22 @@ package net.infonode.gui;
 
 import java.awt.*;
 
+/**
+ * <p>FontUtil class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class FontUtil {
   private FontUtil() {
   }
 
+  /**
+   * <p>copy.</p>
+   *
+   * @param font a {@link java.awt.Font} object.
+   * @return a {@link java.awt.Font} object.
+   */
   public static Font copy(Font font) {
     return font == null ? null : new Font(font.getName(), font.getStyle(), font.getSize());
   }

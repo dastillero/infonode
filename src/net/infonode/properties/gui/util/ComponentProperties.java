@@ -40,7 +40,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * Properties and property values for a {@link JComponent}.
+ * Properties and property values for a {@link javax.swing.JComponent}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.17 $

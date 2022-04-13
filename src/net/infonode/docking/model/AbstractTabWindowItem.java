@@ -31,32 +31,54 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>Abstract AbstractTabWindowItem class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 abstract public class AbstractTabWindowItem extends WindowItem {
   private WindowItem selectedItem;
 
+  /**
+   * <p>Constructor for AbstractTabWindowItem.</p>
+   */
   protected AbstractTabWindowItem() {
   }
 
+  /**
+   * <p>Constructor for AbstractTabWindowItem.</p>
+   *
+   * @param windowItem a {@link net.infonode.docking.model.WindowItem} object.
+   */
   protected AbstractTabWindowItem(WindowItem windowItem) {
     super(windowItem);
   }
 
+  /**
+   * <p>Getter for the field <code>selectedItem</code>.</p>
+   *
+   * @return a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public WindowItem getSelectedItem() {
     return selectedItem;
   }
 
+  /**
+   * <p>Setter for the field <code>selectedItem</code>.</p>
+   *
+   * @param selectedItem a {@link net.infonode.docking.model.WindowItem} object.
+   */
   public void setSelectedItem(WindowItem selectedItem) {
     this.selectedItem = selectedItem;
   }
 
+  /** {@inheritDoc} */
   public void writeSettings(ObjectOutputStream out, WriteContext context) throws IOException {
     super.writeSettings(out, context);
     out.writeInt(getWindowIndex(selectedItem));
   }
 
+  /** {@inheritDoc} */
   public void readSettings(ObjectInputStream in, ReadContext context) throws IOException {
     super.readSettings(in, context);
 

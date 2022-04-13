@@ -27,7 +27,7 @@ import java.awt.Color;
 import java.io.ObjectStreamException;
 
 /**
- * A {@link ColorProvider} which always returns the same color.
+ * A {@link net.infonode.gui.colorprovider.ColorProvider} which always returns the same color.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
@@ -56,10 +56,21 @@ public class FixedColorProvider extends AbstractColorProvider {
     this.color = color;
   }
 
+  /**
+   * <p>Getter for the field <code>color</code>.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getColor() {
     return color;
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return color.equals(Color.BLACK) ? BLACK : this;
   }

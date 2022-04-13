@@ -29,6 +29,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * <p>DirectionLayout class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class DirectionLayout implements LayoutManager2 {
   private static final Insets EMPTY_INSETS = new Insets(0, 0, 0, 0);
 
@@ -39,54 +45,114 @@ public class DirectionLayout implements LayoutManager2 {
 
   private ArrayList layoutOrderList;
 
+  /**
+   * <p>Constructor for DirectionLayout.</p>
+   */
   public DirectionLayout() {
     this(Direction.RIGHT);
   }
 
+  /**
+   * <p>Constructor for DirectionLayout.</p>
+   *
+   * @param componentSpacing a int.
+   */
   public DirectionLayout(int componentSpacing) {
     this(Direction.RIGHT, componentSpacing);
   }
 
+  /**
+   * <p>Constructor for DirectionLayout.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public DirectionLayout(Direction direction) {
     this(direction, 0);
   }
 
+  /**
+   * <p>Constructor for DirectionLayout.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param componentSpacing a int.
+   */
   public DirectionLayout(Direction direction, int componentSpacing) {
     this.direction = direction;
     this.componentSpacing = componentSpacing;
   }
 
+  /**
+   * <p>Getter for the field <code>componentSpacing</code>.</p>
+   *
+   * @return a int.
+   */
   public int getComponentSpacing() {
     return componentSpacing;
   }
 
+  /**
+   * <p>Setter for the field <code>componentSpacing</code>.</p>
+   *
+   * @param componentSpacing a int.
+   */
   public void setComponentSpacing(int componentSpacing) {
     this.componentSpacing = componentSpacing;
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(String name, Component comp) {
   }
 
+  /**
+   * <p>Getter for the field <code>direction</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getDirection() {
     return direction;
   }
 
+  /**
+   * <p>Setter for the field <code>direction</code>.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public void setDirection(Direction direction) {
     this.direction = direction;
   }
 
+  /**
+   * <p>isVertical.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isVertical() {
     return !direction.isHorizontal();
   }
 
+  /**
+   * <p>isCompressing.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isCompressing() {
     return compressing;
   }
 
+  /**
+   * <p>Setter for the field <code>compressing</code>.</p>
+   *
+   * @param compressing a boolean.
+   */
   public void setCompressing(boolean compressing) {
     this.compressing = compressing;
   }
 
+  /**
+   * <p>Setter for the field <code>layoutOrderList</code>.</p>
+   *
+   * @param layoutOrderList a {@link java.util.ArrayList} object.
+   */
   public void setLayoutOrderList(ArrayList layoutOrderList) {
     this.layoutOrderList = layoutOrderList;
   }
@@ -122,6 +188,7 @@ public class DirectionLayout implements LayoutManager2 {
     component.setSize(createSize(size, Math.min(maxOtherSize, otherSize)));
   }
 
+  /** {@inheritDoc} */
   public void layoutContainer(Container parent) {
     Component[] components = getVisibleChildren(parent);
     
@@ -240,6 +307,12 @@ public class DirectionLayout implements LayoutManager2 {
     }
   }
 
+  /**
+   * <p>Setter for the field <code>componentInsets</code>.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param i a {@link java.awt.Insets} object.
+   */
   public void setComponentInsets(Component c, Insets i) {
     if (i == null) {
       removeLayoutComponent(c);
@@ -274,6 +347,7 @@ public class DirectionLayout implements LayoutManager2 {
     return o == null ? EMPTY_INSETS : (Insets) o;
   }
 
+  /** {@inheritDoc} */
   public Dimension minimumLayoutSize(Container parent) {
     Component[] c = getVisibleChildren(parent);
     int size = 0;
@@ -289,6 +363,7 @@ public class DirectionLayout implements LayoutManager2 {
     return d;
   }
 
+  /** {@inheritDoc} */
   public Dimension preferredLayoutSize(Container parent) {
     Component[] c = getVisibleChildren(parent);
     int size = 0;
@@ -306,6 +381,7 @@ public class DirectionLayout implements LayoutManager2 {
     return d;
   }
 
+  /** {@inheritDoc} */
   public void removeLayoutComponent(Component comp) {
     if (componentInsets != null) {
       componentInsets.remove(comp);
@@ -315,21 +391,26 @@ public class DirectionLayout implements LayoutManager2 {
     }
   }
 
+  /** {@inheritDoc} */
   public void addLayoutComponent(Component comp, Object constraints) {
     setComponentInsets(comp, (Insets) constraints);
   }
 
+  /** {@inheritDoc} */
   public float getLayoutAlignmentX(Container target) {
     return 0;
   }
 
+  /** {@inheritDoc} */
   public float getLayoutAlignmentY(Container target) {
     return 0;
   }
 
+  /** {@inheritDoc} */
   public void invalidateLayout(Container target) {
   }
 
+  /** {@inheritDoc} */
   public Dimension maximumLayoutSize(Container parent) {
     Component[] c = getVisibleChildren(parent);
     int size = 0;

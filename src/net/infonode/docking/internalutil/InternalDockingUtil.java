@@ -45,6 +45,8 @@ import net.infonode.util.IntList;
 import net.infonode.util.Printer;
 
 /**
+ * <p>InternalDockingUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.28 $
  */
@@ -52,8 +54,15 @@ public class InternalDockingUtil {
   private InternalDockingUtil() {
   }
 
+  /** Constant <code>DEFAULT_BUTTON_ICON_SIZE=10</code> */
   public static final int DEFAULT_BUTTON_ICON_SIZE = 10;
 
+  /**
+   * <p>getViews.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param views a {@link java.util.ArrayList} object.
+   */
   public static void getViews(DockingWindow window, ArrayList views) {
     if (window == null)
       return;
@@ -65,16 +74,22 @@ public class InternalDockingUtil {
     }
   }
 
+  /**
+   * <p>getWindowPath.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @return a {@link net.infonode.util.IntList} object.
+   */
   public static IntList getWindowPath(DockingWindow window) {
     return getWindowPath(window, IntList.EMPTY_LIST);
   }
 
   /**
-   * Returns the window located at <tt>windowPath</tt>.
+   * Returns the window located at <code>windowPath</code>.
    *
    * @param relativeToWindow the window the path is relative to
    * @param windowPath       the window path
-   * @return the window located at <tt>windowPath</tt>
+   * @return the window located at <code>windowPath</code>
    */
   public static DockingWindow getWindow(DockingWindow relativeToWindow, IntList windowPath) {
     return windowPath.isEmpty() ?
@@ -88,6 +103,12 @@ public class InternalDockingUtil {
     return parent == null ? tail : getWindowPath(parent, new IntList(parent.getChildWindowIndex(window), tail));
   }
 
+  /**
+   * <p>addDebugMenuItems.</p>
+   *
+   * @param menu a {@link javax.swing.JPopupMenu} object.
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   */
   public static void addDebugMenuItems(JPopupMenu menu, final DockingWindow window) {
     menu.add("Dump Tree").addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -96,6 +117,12 @@ public class InternalDockingUtil {
     });
   }
 
+  /**
+   * <p>dump.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param printer a {@link net.infonode.util.Printer} object.
+   */
   public static void dump(DockingWindow window, Printer printer) {
     DockingWindow parent = window.getWindowParent();
 
@@ -123,6 +150,12 @@ public class InternalDockingUtil {
     }
   }
 
+  /**
+   * <p>createInnerRootWindow.</p>
+   *
+   * @param views an array of {@link net.infonode.docking.View} objects.
+   * @return a {@link net.infonode.docking.RootWindow} object.
+   */
   public static RootWindow createInnerRootWindow(View[] views) {
     RootWindow rootWindow = DockingUtil.createRootWindow(new ViewMap(views), true);
     rootWindow.getRootWindowProperties().getWindowAreaProperties().setBackgroundColor(null);
@@ -133,6 +166,17 @@ public class InternalDockingUtil {
     return rootWindow;
   }
 
+  /**
+   * <p>updateButtons.</p>
+   *
+   * @param buttonInfos an array of {@link net.infonode.docking.internalutil.ButtonInfo} objects.
+   * @param buttons an array of {@link javax.swing.AbstractButton} objects.
+   * @param container a {@link java.awt.Container} object.
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param map a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   * @param changes a {@link java.util.Map} object.
+   * @return a boolean.
+   */
   public static boolean updateButtons(ButtonInfo[] buttonInfos,
                                       AbstractButton[] buttons,
                                       Container container,
@@ -179,6 +223,12 @@ public class InternalDockingUtil {
     return updateContainer;
   }
 
+  /**
+   * <p>addToRootWindow.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param rootWindow a {@link net.infonode.docking.RootWindow} object.
+   */
   public static void addToRootWindow(DockingWindow window, RootWindow rootWindow) {
     if (rootWindow == null)
       return;

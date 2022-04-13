@@ -46,6 +46,13 @@ import java.awt.*;
  * @since IDW 1.4.0
  */
 public class InteriorDropInfo extends DropInfo {
+  /**
+   * <p>Constructor for InteriorDropInfo.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param dropWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param point a {@link java.awt.Point} object.
+   */
   public InteriorDropInfo(DockingWindow window, DockingWindow dropWindow, Point point) {
     super(window, dropWindow, point);
   }

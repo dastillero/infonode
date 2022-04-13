@@ -56,12 +56,12 @@ public class ViewMap extends AbstractViewMap {
 
   /**
    * Adds a view to the map.
-   *
-   * @param id   the view id
-   * @param view the view
+   * 
+   * @param id view identifier.
+   * @param view view to add.
    */
   public void addView(int id, View view) {
-    addView(new Integer(id), view);
+    addView(Integer.valueOf(id), view);
   }
 
   /**
@@ -70,7 +70,7 @@ public class ViewMap extends AbstractViewMap {
    * @param id the view id
    */
   public void removeView(int id) {
-    removeView(new Integer(id));
+    removeView(Integer.valueOf(id));
   }
 
   /**
@@ -80,15 +80,19 @@ public class ViewMap extends AbstractViewMap {
    * @return the view with the id
    */
   public View getView(int id) {
-    return getView(new Integer(id));
+    return getView(Integer.valueOf(id));
   }
 
+  /** {@inheritDoc} */
+  @Override
   protected void writeViewId(Object id, ObjectOutputStream out) throws IOException {
     out.writeInt(((Integer) id).intValue());
   }
 
+  /** {@inheritDoc} */
+  @Override
   protected Object readViewId(ObjectInputStream in) throws IOException {
-    return new Integer(in.readInt());
+    return Integer.valueOf(in.readInt());
   }
 
 

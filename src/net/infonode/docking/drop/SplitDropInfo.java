@@ -46,6 +46,14 @@ import java.awt.*;
 public class SplitDropInfo extends DropInfo {
   private Direction splitDirection;
 
+  /**
+   * <p>Constructor for SplitDropInfo.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param dropWindow a {@link net.infonode.docking.DockingWindow} object.
+   * @param point a {@link java.awt.Point} object.
+   * @param splitDirection a {@link net.infonode.util.Direction} object.
+   */
   public SplitDropInfo(DockingWindow window, DockingWindow dropWindow, Point point, Direction splitDirection) {
     super(window, dropWindow, point);
     this.splitDirection = splitDirection;

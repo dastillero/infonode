@@ -39,6 +39,7 @@ import java.io.Serializable;
 public class SimpleDockingWindowTitleProvider implements DockingWindowTitleProvider, Serializable {
   private static final long serialVersionUID = 1;
 
+  /** Constant <code>INSTANCE</code> */
   public static final SimpleDockingWindowTitleProvider INSTANCE = new SimpleDockingWindowTitleProvider();
 
   /**
@@ -47,6 +48,7 @@ public class SimpleDockingWindowTitleProvider implements DockingWindowTitleProvi
   private SimpleDockingWindowTitleProvider() {
   }
 
+  /** {@inheritDoc} */
   public String getTitle(DockingWindow window) {
     StringBuffer title = new StringBuffer(40);
     getTitle(window, title);
@@ -69,6 +71,12 @@ public class SimpleDockingWindowTitleProvider implements DockingWindowTitleProvi
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

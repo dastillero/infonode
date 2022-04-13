@@ -696,6 +696,7 @@ public class RootWindowProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(RootWindowProperties)} instead.
    */
+  @Deprecated
   public RootWindowProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;

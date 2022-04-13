@@ -33,6 +33,7 @@ import net.infonode.properties.types.BooleanProperty;
  *
  * @author $Author: jesper $
  * @since IDW 1.4.0
+ * @version $Id: $Id
  */
 public class FloatingWindowProperties extends PropertyMapContainer {
   /**

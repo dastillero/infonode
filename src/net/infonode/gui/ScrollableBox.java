@@ -34,6 +34,12 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
+/**
+ * <p>ScrollableBox class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class ScrollableBox extends SimplePanel {
   private LayoutManager l = new LayoutManager() {
     public void addLayoutComponent(String name, Component comp) {
@@ -81,6 +87,13 @@ public class ScrollableBox extends SimplePanel {
 
   private ArrayList listeners = new ArrayList(1);
 
+  /**
+   * <p>Constructor for ScrollableBox.</p>
+   *
+   * @param scrollingContainer a {@link javax.swing.JComponent} object.
+   * @param vertical a boolean.
+   * @param scrollOffset a int.
+   */
   public ScrollableBox(final JComponent scrollingContainer, boolean vertical, int scrollOffset) {
     setLayout(l);
     this.vertical = vertical;
@@ -98,29 +111,64 @@ public class ScrollableBox extends SimplePanel {
     });
   }
 
+  /**
+   * <p>addScrollableBoxListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.ScrollableBoxListener} object.
+   */
   public void addScrollableBoxListener(ScrollableBoxListener listener) {
     listeners.add(listener);
   }
 
+  /**
+   * <p>removeScrollableBoxListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.ScrollableBoxListener} object.
+   */
   public void removeScrollableBoxListener(ScrollableBoxListener listener) {
     listeners.remove(listener);
   }
 
+  /**
+   * <p>setScrollingContainer.</p>
+   *
+   * @param component a {@link javax.swing.JComponent} object.
+   */
   public void setScrollingContainer(final JComponent component) {
   }
 
+  /**
+   * <p>getScrollingComponent.</p>
+   *
+   * @return a {@link javax.swing.JComponent} object.
+   */
   public JComponent getScrollingComponent() {
     return (getComponentCount() == 0) ? null : (JComponent) getComponent(0);
   }
 
+  /**
+   * <p>scrollLeft.</p>
+   *
+   * @param numIndex a int.
+   */
   public void scrollLeft(int numIndex) {
     setLeftIndex(leftIndex - numIndex);
   }
 
+  /**
+   * <p>scrollRight.</p>
+   *
+   * @param numIndex a int.
+   */
   public void scrollRight(int numIndex) {
     setLeftIndex(leftIndex + numIndex);
   }
 
+  /**
+   * <p>ensureVisible.</p>
+   *
+   * @param index a int.
+   */
   public void ensureVisible(int index) {
     if (leftIndex > index) {
       setLeftIndex(index);
@@ -134,14 +182,29 @@ public class ScrollableBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>isLeftEnd.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isLeftEnd() {
     return leftEnd;
   }
 
+  /**
+   * <p>isRightEnd.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isRightEnd() {
     return rightEnd;
   }
 
+  /**
+   * <p>Setter for the field <code>scrollOffset</code>.</p>
+   *
+   * @param scrollOffset a int.
+   */
   public void setScrollOffset(int scrollOffset) {
     if (scrollOffset != this.scrollOffset) {
       this.scrollOffset = scrollOffset;
@@ -149,20 +212,40 @@ public class ScrollableBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>scrollOffset</code>.</p>
+   *
+   * @return a int.
+   */
   public int getScrollOffset() {
     return scrollOffset;
   }
 
+  /**
+   * <p>isVertical.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isVertical() {
     return vertical;
   }
 
+  /**
+   * <p>Setter for the field <code>vertical</code>.</p>
+   *
+   * @param vertical a boolean.
+   */
   public void setVertical(boolean vertical) {
     this.vertical = vertical;
     update();
     fireChanged();
   }
 
+  /**
+   * <p>Setter for the field <code>layoutOrderList</code>.</p>
+   *
+   * @param layoutOrderList a {@link java.util.ArrayList} object.
+   */
   public void setLayoutOrderList(ArrayList layoutOrderList) {
     this.layoutOrderList = layoutOrderList;
   }
@@ -260,6 +343,9 @@ public class ScrollableBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
   public void updateUI() {
     super.updateUI();
     if (listeners != null)

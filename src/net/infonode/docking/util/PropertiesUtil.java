@@ -33,6 +33,7 @@ import net.infonode.util.Direction;
  *
  * @author johan
  * @since IDW 1.4.0
+ * @version $Id: $Id
  */
 public class PropertiesUtil {
   private PropertiesUtil() {
@@ -40,9 +41,9 @@ public class PropertiesUtil {
 
   /**
    * <p>
-   * Creates and returns a new {@link RootWindowProperties} object that is meant to be
-   * added as super object on another {@link RootWindowProperties} object, for example
-   * a theme's {@link RootWindowProperties}.
+   * Creates and returns a new {@link net.infonode.docking.properties.RootWindowProperties} object that is meant to be
+   * added as super object on another {@link net.infonode.docking.properties.RootWindowProperties} object, for example
+   * a theme's {@link net.infonode.docking.properties.RootWindowProperties}.
    * </p>
    *
    * <p>
@@ -64,7 +65,7 @@ public class PropertiesUtil {
    * </p>
    *
    * <p>
-   * This function sets properties in the give {@link RootWindowProperties} object:
+   * This function sets properties in the give {@link net.infonode.docking.properties.RootWindowProperties} object:
    * </p>
    * <ul>
    * <li>View title bars are made visible at the top of a view.</li>
@@ -82,7 +83,7 @@ public class PropertiesUtil {
    * value.
    * </p>
    *
-   * @param rootProps {@link RootWindowProperties} object to modify
+   * @param rootProps {@link net.infonode.docking.properties.RootWindowProperties} object to modify
    */
   public static void setTitleBarStyle(RootWindowProperties rootProps) {
     setupTitleBarStyleProperties(rootProps);

@@ -26,9 +26,16 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>ButtonInfo interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 public interface ButtonInfo {
+  /**
+   * <p>getProperty.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   PropertyMapProperty getProperty();
 }

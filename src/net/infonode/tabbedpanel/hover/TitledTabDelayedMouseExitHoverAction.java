@@ -34,9 +34,9 @@ import javax.swing.*;
 
 /**
  * <p>
- * TitledTabDelayedMouseExitHoverAction is an action that wraps a {@link HoverListener} and delays
- * the mouse exit when a {@link TitledTab} is no longer hovered. The action is meant to be set
- * as a {@link HoverListener} in the {@link TitledTabProperties}.
+ * TitledTabDelayedMouseExitHoverAction is an action that wraps a {@link net.infonode.gui.hover.HoverListener} and delays
+ * the mouse exit when a {@link net.infonode.tabbedpanel.titledtab.TitledTab} is no longer hovered. The action is meant to be set
+ * as a {@link net.infonode.gui.hover.HoverListener} in the {@link net.infonode.tabbedpanel.titledtab.TitledTabProperties}.
  * </p>
  *
  * <p>
@@ -48,6 +48,7 @@ import javax.swing.*;
  * @author johan
  * @version $Revision: 1.6 $
  * @see TitledTab
+ * @see TitledTabProperties
  * @see TitledTabProperties
  * @since ITP 1.3.0
  */
@@ -98,10 +99,12 @@ public class TitledTabDelayedMouseExitHoverAction implements HoverListener {
     return null;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     delayedAction.mouseEntered(event);
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     final TitledTab tab = (TitledTab) event.getSource();
     final TabbedPanel tp = tab.getTabbedPanel();

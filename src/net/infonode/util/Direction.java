@@ -34,17 +34,24 @@ import java.io.ObjectOutputStream;
  * @version $Revision: 1.6 $
  */
 public enum Direction implements Writable {
-
-  /** Up direction. */
+  /**
+   * Up direction.
+   */
   UP(false),
 
-  /** Right direction. */
+  /**
+   * Right direction.
+   */
   RIGHT(true),
 
-  /** Down direction. */
+  /**
+   * Down direction.
+   */
   DOWN(false),
 
-  /** Left direction. */
+  /**
+   * Left direction.
+   */
   LEFT(true);
 
   static {
@@ -55,7 +62,7 @@ public enum Direction implements Writable {
   }
 
   private transient Direction rotateCW;
-  private transient boolean isHorizontal;
+  private final transient boolean isHorizontal;
 
   private Direction(boolean isHorizontal) {
     this.isHorizontal = isHorizontal;
@@ -102,14 +109,21 @@ public enum Direction implements Writable {
    *
    * @param in the stream containing the direction
    * @return the direction
-   * @throws IOException if there is a stream error
+   * @throws java.io.IOException if there is a stream error
    */
   public static Direction decode(ObjectInputStream in) throws IOException {
-    int ordinal = in.readShort();
-    return values()[ordinal];
+      int ordinal = in.readShort();
+      return values()[ordinal];
   }
 
+  /**
+   * Encodes and writes a direction to a stream.
+   * 
+   * @param out the stream to be written.
+   * @throws IOException  if there is a stream error.
+   */
+  @Override
   public void write(ObjectOutputStream out) throws IOException {
-    out.writeShort(ordinal());
+      out.writeShort(ordinal());
   }
 }

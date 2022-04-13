@@ -27,6 +27,12 @@ import javax.swing.*;
 import javax.swing.plaf.PanelUI;
 import java.awt.*;
 
+/**
+ * <p>BaseContainer class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class BaseContainer extends JPanel {
   private Color foreground;
 
@@ -47,18 +53,37 @@ public class BaseContainer extends JPanel {
   private static PanelUI UI = new PanelUI() {
   };
 
+  /**
+   * <p>Constructor for BaseContainer.</p>
+   */
   public BaseContainer() {
     this(true);
   }
 
+  /**
+   * <p>Constructor for BaseContainer.</p>
+   *
+   * @param opaque a boolean.
+   */
   public BaseContainer(boolean opaque) {
     this(opaque, new BorderLayout());
   }
 
+  /**
+   * <p>Constructor for BaseContainer.</p>
+   *
+   * @param l a {@link java.awt.LayoutManager} object.
+   */
   public BaseContainer(LayoutManager l) {
     this(true, l);
   }
 
+  /**
+   * <p>Constructor for BaseContainer.</p>
+   *
+   * @param opaque a boolean.
+   * @param l a {@link java.awt.LayoutManager} object.
+   */
   public BaseContainer(final boolean opaque, LayoutManager l) {
     super(l);
 
@@ -67,6 +92,7 @@ public class BaseContainer extends JPanel {
     updateOpaque();
   }
 
+  /** {@inheritDoc} */
   public void setUI(PanelUI ui) {
     Color oBackground = overridedBackground;
     Color oForeground = overridedForeground;
@@ -109,29 +135,34 @@ public class BaseContainer extends JPanel {
 
   // Overrided
 
+  /** {@inheritDoc} */
   public void setOpaque(boolean opaque) {
     this.opaque = opaque;
 
     updateOpaque();
   }
 
+  /** {@inheritDoc} */
   protected void paintComponent(Graphics g) {
     if (forcedOpaque)
       super.paintComponent(g);
   }
 
+  /** {@inheritDoc} */
   public void setForeground(Color fg) {
     this.foreground = fg;
 
     updateForeground();
   }
 
+  /** {@inheritDoc} */
   public void setBackground(Color bg) {
     this.background = bg;
 
     updateBackground();
   }
 
+  /** {@inheritDoc} */
   public void setFont(Font font) {
     this.font = font;
 

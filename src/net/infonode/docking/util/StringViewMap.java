@@ -67,9 +67,9 @@ public class StringViewMap extends AbstractViewMap {
 
   /**
    * Adds a view to the map.
-   *
-   * @param id   the view id
-   * @param view the view
+   * 
+   * @param id view identifier.
+   * @param view view to add.
    */
   public void addView(String id, View view) {
     addView((Object) id, view);
@@ -94,10 +94,12 @@ public class StringViewMap extends AbstractViewMap {
     return getView((Object) id);
   }
 
+  /** {@inheritDoc} */
   protected void writeViewId(Object id, ObjectOutputStream out) throws IOException {
     out.writeUTF((String) id);
   }
 
+  /** {@inheritDoc} */
   protected Object readViewId(ObjectInputStream in) throws IOException {
     return in.readUTF();
   }

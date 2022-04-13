@@ -26,6 +26,8 @@ package net.infonode.gui.shaped.border;
 import java.io.Serializable;
 
 /**
+ * <p>Abstract AbstractShapedBorder class.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.4 $
  */

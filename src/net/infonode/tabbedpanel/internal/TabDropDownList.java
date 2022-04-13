@@ -34,6 +34,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
+ * <p>TabDropDownList class.</p>
+ *
  * @author Bjorn Lind
  * @version $Revision: 1.18 $ $Date: 2005/12/04 13:46:05 $
  * @since ITP 1.1.0
@@ -54,6 +56,12 @@ public class TabDropDownList extends PopupList {
     }
   };
 
+  /**
+   * <p>Constructor for TabDropDownList.</p>
+   *
+   * @param tabbedPanel a {@link net.infonode.tabbedpanel.TabbedPanel} object.
+   * @param button a {@link javax.swing.AbstractButton} object.
+   */
   public TabDropDownList(final TabbedPanel tabbedPanel, AbstractButton button) {
     super(button);
     this.tabbedPanel = tabbedPanel;
@@ -89,10 +97,16 @@ public class TabDropDownList extends PopupList {
     setOpaque(false);
   }
 
+  /**
+   * <p>dispose.</p>
+   */
   public void dispose() {
     tabbedPanel.removeTabListener(tabListener);
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
   public void updateUI() {
     super.updateUI();
 

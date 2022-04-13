@@ -30,6 +30,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 /**
+ * <p>TranslatingShape class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
@@ -38,52 +40,82 @@ public class TranslatingShape implements Shape {
   private double dx;
   private double dy;
 
+  /**
+   * <p>Constructor for TranslatingShape.</p>
+   *
+   * @param shape a {@link java.awt.Shape} object.
+   * @param dx a double.
+   * @param dy a double.
+   */
   public TranslatingShape(Shape shape, double dx, double dy) {
     this.shape = shape;
     this.dx = dx;
     this.dy = dy;
   }
 
+  /**
+   * <p>getBounds.</p>
+   *
+   * @return a {@link java.awt.Rectangle} object.
+   */
   public Rectangle getBounds() {
     Rectangle r = shape.getBounds();
     r.translate((int) dx, (int) dy);
     return r;
   }
 
+  /**
+   * <p>getBounds2D.</p>
+   *
+   * @return a {@link java.awt.geom.Rectangle2D} object.
+   */
   public Rectangle2D getBounds2D() {
     Rectangle2D r = shape.getBounds2D();
     r.setRect(r.getMinX() + dx, r.getMinY() + dy, r.getWidth(), r.getHeight());
     return r;
   }
 
+  /** {@inheritDoc} */
   public boolean contains(double x, double y) {
     return shape.contains(x - dx, y - dy);
   }
 
+  /**
+   * <p>contains.</p>
+   *
+   * @param p a {@link java.awt.geom.Point2D} object.
+   * @return a boolean.
+   */
   public boolean contains(Point2D p) {
     return contains(p.getX(), p.getY());
   }
 
+  /** {@inheritDoc} */
   public boolean intersects(double x, double y, double w, double h) {
     return shape.intersects(x - dx, y - dy, w, h);
   }
 
+  /** {@inheritDoc} */
   public boolean intersects(Rectangle2D r) {
     return intersects(r.getMinX(), r.getMinY(), r.getWidth(), r.getHeight());
   }
 
+  /** {@inheritDoc} */
   public boolean contains(double x, double y, double w, double h) {
     return shape.contains(x - dx, y - dy, w, h);
   }
 
+  /** {@inheritDoc} */
   public boolean contains(Rectangle2D r) {
     return contains(r.getMinX() - dx, r.getMinY() - dy, r.getWidth(), r.getHeight());
   }
 
+  /** {@inheritDoc} */
   public PathIterator getPathIterator(AffineTransform at) {
     return new Iterator(shape.getPathIterator(at));
   }
 
+  /** {@inheritDoc} */
   public PathIterator getPathIterator(AffineTransform at, double flatness) {
     return new Iterator(shape.getPathIterator(at, flatness));
   }

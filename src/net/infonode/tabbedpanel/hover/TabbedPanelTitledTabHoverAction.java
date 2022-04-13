@@ -33,8 +33,8 @@ import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
 /**
  * <p>
  * TabbedPanelTitledTabHoverAction is an action that makes it easy to change
- * properties for a hovered {@link TabbedPanel} containing {@link TitledTab}s.
- * The action is meant to be set as a {@link HoverListener} for the entire
+ * properties for a hovered {@link net.infonode.tabbedpanel.TabbedPanel} containing {@link net.infonode.tabbedpanel.titledtab.TitledTab}s.
+ * The action is meant to be set as a {@link net.infonode.gui.hover.HoverListener} for the entire
  * tabbed panel, the tab area, the tab area components area and/or the content
  * area in their corresponding properties objects.
  * </p>
@@ -68,7 +68,9 @@ import net.infonode.tabbedpanel.titledtab.TitledTabProperties;
  * @author johan
  * @version $Revision: 1.12 $
  * @see TabbedPanel
+ * @see TabbedPanelProperties
  * @see TitledTab
+ * @see TitledTabProperties
  * @see TabbedPanelProperties
  * @see net.infonode.tabbedpanel.TabAreaProperties
  * @see net.infonode.tabbedpanel.TabAreaComponentsProperties
@@ -175,6 +177,7 @@ public class TabbedPanelTitledTabHoverAction implements HoverListener {
     return tabbedPanelProperties;
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     TabbedPanel tp = (TabbedPanel) event.getSource();
     tp.getProperties().addSuperObject(tabbedPanelProperties);
@@ -185,6 +188,7 @@ public class TabbedPanelTitledTabHoverAction implements HoverListener {
       applyTitledTabProperties(tp, null);
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     TabbedPanel tp = (TabbedPanel) event.getSource();
     tp.getProperties().removeSuperObject(tabbedPanelProperties);

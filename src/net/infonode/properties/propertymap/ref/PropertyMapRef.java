@@ -29,11 +29,25 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>PropertyMapRef interface.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.6 $
  */
 public interface PropertyMapRef {
+  /**
+   * <p>getMap.</p>
+   *
+   * @param map a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   * @return a {@link net.infonode.properties.propertymap.PropertyMapImpl} object.
+   */
   PropertyMapImpl getMap(PropertyMapImpl map);
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @throws java.io.IOException if any.
+   */
   void write(ObjectOutputStream out) throws IOException;
 }

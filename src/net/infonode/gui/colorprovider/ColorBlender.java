@@ -54,10 +54,16 @@ public class ColorBlender extends AbstractColorProvider {
     this.blendAmount = blendAmount;
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return ColorUtil.blend(color1.getColor(component), color2.getColor(component), blendAmount);
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getColor() {
     return ColorUtil.blend(color1.getColor(), color2.getColor(), blendAmount);
   }

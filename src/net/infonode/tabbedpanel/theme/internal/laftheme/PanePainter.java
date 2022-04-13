@@ -132,11 +132,19 @@ class PanePainter extends JTabbedPane {
     doValidation();
   }
 
+  /**
+   * <p>getFont.</p>
+   *
+   * @return a {@link java.awt.Font} object.
+   */
   public Font getFont() {
     Font font = UIManager.getFont("TabbedPane.font");
     return font == null ? super.getFont() : font;
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
   public void updateUI() {
     setBorder(null);
     setBackground(null);
@@ -154,13 +162,22 @@ class PanePainter extends JTabbedPane {
           new MouseEvent(this, MouseEvent.MOUSE_ENTERED, System.currentTimeMillis(), 0, 0, 0, 0, false));
   }
 
+  /**
+   * <p>hasFocus.</p>
+   *
+   * @return a boolean.
+   */
   public boolean hasFocus() {
     return focusActive;
   }
 
+  /**
+   * <p>repaint.</p>
+   */
   public void repaint() {
   }
 
+  /** {@inheritDoc} */
   public void repaint(long tm, int x, int y, int width, int height) {
   }
 
@@ -176,15 +193,19 @@ class PanePainter extends JTabbedPane {
     g.translate(-tx, -ty);
   }
 
+  /** {@inheritDoc} */
   protected void processMouseEvent(MouseEvent e) {
   }
 
+  /** {@inheritDoc} */
   protected void processMouseMotionEvent(MouseEvent e) {
   }
 
+  /** {@inheritDoc} */
   protected void processFocusEvent(FocusEvent e) {
   }
 
+  /** {@inheritDoc} */
   protected void processMouseWheelEvent(MouseWheelEvent e) {
   }
 }

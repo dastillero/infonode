@@ -60,10 +60,12 @@ abstract public class AbstractTabWindow extends DockingWindow {
   private static int MINIMUM_SIZE = 7;
 
   private final DropAction dropAction = new DropAction() {
+    @Override
     public boolean showTitle() {
       return false;
     }
 
+    @Override
     public void execute(DockingWindow window, MouseEvent mouseEvent) {
       if (window.getWindowParent() == AbstractTabWindow.this) {
         // Tab moved inside window
@@ -87,6 +89,7 @@ abstract public class AbstractTabWindow extends DockingWindow {
       }
     }
 
+    @Override
     public void clear(DockingWindow window, DropAction newDropAction) {
       if (newDropAction != this) {
         if (window.getWindowParent() == AbstractTabWindow.this) {
@@ -125,6 +128,12 @@ abstract public class AbstractTabWindow extends DockingWindow {
    */
   abstract public TabWindowProperties getTabWindowProperties();
 
+  /**
+   * <p>Constructor for AbstractTabWindow.</p>
+   *
+   * @param showContent a boolean.
+   * @param windowItem a {@link net.infonode.docking.model.WindowItem} object.
+   */
   protected AbstractTabWindow(boolean showContent, WindowItem windowItem) {
     super(windowItem);
     if (showContent) {
@@ -198,6 +207,9 @@ abstract public class AbstractTabWindow extends DockingWindow {
     });
   }
 
+  /**
+   * <p>initMouseListener.</p>
+   */
   protected void initMouseListener() {
     getTabbedPanel().addMouseListener(new MouseAdapter() {
       public void mousePressed(MouseEvent e) {
@@ -232,7 +244,7 @@ abstract public class AbstractTabWindow extends DockingWindow {
    * </p>
    *
    * @return a list containing the custom tab area components, list elements are
-   *         of type {@link JComponent}
+   *         of type {@link javax.swing.JComponent}
    * @since IDW 1.3.0
    */
   public final java.util.List getCustomTabAreaComponents() {
@@ -306,7 +318,7 @@ abstract public class AbstractTabWindow extends DockingWindow {
    * @param window the window
    * @param index  the index where to insert the tab
    * @return the index of the added tab, this might not be the same as
-   *         <tt>index</tt> if the tab already is added to this tab window
+   *         <code>index</code> if the tab already is added to this tab window
    */
   public int addTab(DockingWindow window, int index) {
     PropertyMapManager.getInstance().beginBatch();
@@ -319,6 +331,13 @@ abstract public class AbstractTabWindow extends DockingWindow {
     }
   }
 
+  /**
+   * <p>addTabNoSelect.</p>
+   *
+   * @param window a {@link net.infonode.docking.DockingWindow} object.
+   * @param index a int.
+   * @return a int.
+   */
   protected int addTabNoSelect(DockingWindow window, int index) {
     WindowAncestors ancestors = window.storeAncestors();
     beginOptimize(window.getWindowParent());
@@ -342,42 +361,69 @@ abstract public class AbstractTabWindow extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
   protected boolean isChildShowingInRootWindow(DockingWindow child) {
     return super.isChildShowingInRootWindow(child) && child == getSelectedWindow();
   }
 
+  /** {@inheritDoc} */
   protected void showChildWindow(DockingWindow window) {
     setSelectedTab(getChildWindowIndex(window));
     super.showChildWindow(window);
   }
 
+  /**
+   * <p>childInsideTab.</p>
+   *
+   * @return a boolean.
+   */
   protected boolean childInsideTab() {
     return true;
   }
 
+  /**
+   * <p>setTabWindowProperties.</p>
+   *
+   * @param properties a {@link net.infonode.docking.properties.TabWindowProperties} object.
+   */
   protected void setTabWindowProperties(TabWindowProperties properties) {
     getTabbedPanel().getProperties().addSuperObject(properties.getTabbedPanelProperties());
   }
 
+  /** {@inheritDoc} */
   protected void clearFocus(View view) {
     if (getSelectedWindow() != null) {
       getSelectedWindow().clearFocus(view);
     }
   }
 
+  /**
+   * <p>getPreferredFocusChild.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow getPreferredFocusChild() {
     return getSelectedWindow() == null ? super.getPreferredFocusChild() : getSelectedWindow();
   }
 
+  /** {@inheritDoc} */
   protected void clearChildrenFocus(DockingWindow child, View view) {
     if (getSelectedWindow() != child)
       clearFocus(view);
   }
 
+  /**
+   * <p>getTabAreaComponentCount.</p>
+   *
+   * @return a int.
+   */
   protected int getTabAreaComponentCount() {
     return 0;
   }
 
+  /**
+   * <p>updateTabAreaComponents.</p>
+   */
   protected void updateTabAreaComponents() {
     int ls = tabAreaComponents == null ? 0 : tabAreaComponents.size();
     JComponent[] components = new JComponent[ls + getTabAreaComponentCount()];
@@ -389,13 +435,29 @@ abstract public class AbstractTabWindow extends DockingWindow {
     getTabbedPanel().setTabAreaComponents(components);
   }
 
+  /**
+   * <p>Getter for the field <code>tabAreaComponents</code>.</p>
+   *
+   * @param index a int.
+   * @param components an array of {@link javax.swing.JComponent} objects.
+   */
   protected void getTabAreaComponents(int index, JComponent[] components) {
   }
 
+  /**
+   * <p>Getter for the field <code>ignoreSelected</code>.</p>
+   *
+   * @return a boolean.
+   */
   protected final boolean getIgnoreSelected() {
     return ignoreSelected > 0;
   }
 
+  /**
+   * <p>tabSelected.</p>
+   *
+   * @param tab a {@link net.infonode.docking.WindowTab} object.
+   */
   protected void tabSelected(WindowTab tab) {
     if (!getIgnoreSelected() && tab != null) {
       final RootWindow root = getRootWindow();
@@ -412,22 +474,43 @@ abstract public class AbstractTabWindow extends DockingWindow {
       fireTitleChanged();
   }
 
+  /**
+   * <p>Getter for the field <code>tabbedPanel</code>.</p>
+   *
+   * @return a {@link net.infonode.tabbedpanel.TabbedPanel} object.
+   */
   protected TabbedPanel getTabbedPanel() {
     return tabbedPanel;
   }
 
+  /** {@inheritDoc} */
   public DockingWindow getChildWindow(int index) {
     return ((WindowTab) tabbedPanel.getTabAt(index)).getWindow();
   }
 
+  /**
+   * <p>getLocationWindow.</p>
+   *
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   */
   protected DockingWindow getLocationWindow() {
     return tabbedPanel.getTabCount() == 1 ? getChildWindow(0) : this;
   }
 
+  /**
+   * <p>getChildWindowCount.</p>
+   *
+   * @return a int.
+   */
   public int getChildWindowCount() {
     return tabbedPanel.getTabCount();
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     DockingWindow window = getSelectedWindow();
     return window != null ? window.getIcon() : getChildWindowCount() > 0 ? getChildWindow(0).getIcon() : null;
@@ -443,6 +526,7 @@ abstract public class AbstractTabWindow extends DockingWindow {
     return properties;
   }
 
+  /** {@inheritDoc} */
   protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow) {
     beginIgnoreSelected();
 
@@ -464,6 +548,7 @@ abstract public class AbstractTabWindow extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
   protected void doRemoveWindow(DockingWindow window) {
     beginIgnoreSelected();
 
@@ -485,10 +570,17 @@ abstract public class AbstractTabWindow extends DockingWindow {
     ignoreSelected--;
   }
 
+  /**
+   * <p>isInsideTabArea.</p>
+   *
+   * @param p2 a {@link java.awt.Point} object.
+   * @return a boolean.
+   */
   protected boolean isInsideTabArea(Point p2) {
     return tabbedPanel.tabAreaContainsPoint(p2);
   }
 
+  /** {@inheritDoc} */
   protected DropAction acceptInteriorDrop(Point p, DockingWindow window) {
     if (getChildWindowCount() == 1 && window == getChildWindow(0) && dragTab == null)
       return null;
@@ -534,10 +626,16 @@ abstract public class AbstractTabWindow extends DockingWindow {
     }
   }
 
+  /**
+   * <p>showsWindowTitle.</p>
+   *
+   * @return a boolean.
+   */
   protected boolean showsWindowTitle() {
     return true;
   }
 
+  /** {@inheritDoc} */
   protected DockingWindow oldRead(ObjectInputStream in, ReadContext context) throws IOException {
     int size = in.readInt();
     int selectedIndex = in.readInt();
@@ -566,6 +664,7 @@ abstract public class AbstractTabWindow extends DockingWindow {
       return null;
   }
 
+  /** {@inheritDoc} */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(getChildWindowCount());
 
@@ -573,6 +672,15 @@ abstract public class AbstractTabWindow extends DockingWindow {
       getChildWindow(i).write(out, context, viewWriter);
   }
 
+  /**
+   * <p>newRead.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @param context a {@link net.infonode.docking.internal.ReadContext} object.
+   * @param viewReader a {@link net.infonode.docking.model.ViewReader} object.
+   * @return a {@link net.infonode.docking.DockingWindow} object.
+   * @throws java.io.IOException if any.
+   */
   protected DockingWindow newRead(ObjectInputStream in, ReadContext context, ViewReader viewReader) throws IOException {
     int size = in.readInt();
 
@@ -590,6 +698,9 @@ abstract public class AbstractTabWindow extends DockingWindow {
     return getChildWindowCount() > 0 ? this : null;
   }
 
+  /**
+   * <p>updateSelectedTab.</p>
+   */
   protected void updateSelectedTab() {
     WindowItem selectedItem = ((AbstractTabWindowItem) getWindowItem()).getSelectedItem();
 

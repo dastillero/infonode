@@ -28,15 +28,27 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuItemUI;
 
 /**
+ * <p>SlimMenuItemUI class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class SlimMenuItemUI extends BasicMenuItemUI {
 
+  /**
+   * Creates the component UI.
+   * 
+   * @param b parent component.
+   * @return the UI created.
+   */
   public static ComponentUI createUI(JComponent b) {
     return new SlimMenuItemUI();
   }
 
+  /**
+   * <p>installDefaults.</p>
+   */
+  @Override
   protected void installDefaults() {
     super.installDefaults();
   }

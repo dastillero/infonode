@@ -31,6 +31,8 @@ import net.infonode.util.Direction;
 import java.awt.*;
 
 /**
+ * <p>ShapedUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
@@ -38,14 +40,34 @@ public class ShapedUtil {
   private ShapedUtil() {
   }
 
+  /**
+   * <p>getDirection.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public static Direction getDirection(Component c) {
     return c instanceof ShapedPanel ? ((ShapedPanel) c).getDirection() : Direction.RIGHT;
   }
 
+  /**
+   * <p>transformInsets.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param insets a {@link java.awt.Insets} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public static Insets transformInsets(Component c, Insets insets) {
     return InsetsUtil.rotate(getDirection(c), flipInsets(c, insets));
   }
 
+  /**
+   * <p>flipInsets.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param i a {@link java.awt.Insets} object.
+   * @return a {@link java.awt.Insets} object.
+   */
   public static Insets flipInsets(Component c, Insets i) {
     if (c instanceof ShapedPanel) {
       if (((ShapedPanel) c).isHorizontalFlip())
@@ -57,6 +79,12 @@ public class ShapedUtil {
     return i;
   }
 
+  /**
+   * <p>rotateCW.</p>
+   *
+   * @param polygon a {@link java.awt.Polygon} object.
+   * @param height a int.
+   */
   public static void rotateCW(Polygon polygon, int height) {
     for (int i = 0; i < polygon.npoints; i++) {
       int tmp = polygon.ypoints[i];
@@ -65,6 +93,14 @@ public class ShapedUtil {
     }
   }
 
+  /**
+   * <p>rotate.</p>
+   *
+   * @param polygon a {@link java.awt.Polygon} object.
+   * @param d a {@link net.infonode.util.Direction} object.
+   * @param width a int.
+   * @param height a int.
+   */
   public static void rotate(Polygon polygon, Direction d, int width, int height) {
     if (d == Direction.UP) {
       rotateCW(polygon, height);
@@ -80,6 +116,13 @@ public class ShapedUtil {
     }
   }
 
+  /**
+   * <p>transform.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param rect a {@link java.awt.Rectangle} object.
+   * @return a {@link java.awt.Rectangle} object.
+   */
   public static Rectangle transform(Component c, Rectangle rect) {
     if (c instanceof ShapedPanel) {
       ShapedPanel sp = (ShapedPanel) c;
@@ -94,14 +137,37 @@ public class ShapedUtil {
       return rect;
   }
 
+  /**
+   * <p>transform.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param dim a {@link java.awt.Dimension} object.
+   * @return a {@link java.awt.Dimension} object.
+   */
   public static Dimension transform(Component c, Dimension dim) {
     return getDirection(c).isHorizontal() ? dim : new Dimension(dim.height, dim.width);
   }
 
+  /**
+   * <p>getWidth.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param width a int.
+   * @param height a int.
+   * @return a int.
+   */
   public static int getWidth(Component c, int width, int height) {
     return getDirection(c).isHorizontal() ? width : height;
   }
 
+  /**
+   * <p>getHeight.</p>
+   *
+   * @param c a {@link java.awt.Component} object.
+   * @param width a int.
+   * @param height a int.
+   * @return a int.
+   */
   public static int getHeight(Component c, int width, int height) {
     return getDirection(c).isHorizontal() ? height : width;
   }

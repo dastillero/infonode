@@ -26,24 +26,45 @@ package net.infonode.gui.colorprovider;
 import java.awt.*;
 
 /**
+ * <p>ColorProviderList class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
  */
 public class ColorProviderList extends AbstractColorProvider {
   private ColorProvider[] providers;
 
+  /**
+   * <p>Constructor for ColorProviderList.</p>
+   *
+   * @param colorProvider1 a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param colorProvider2 a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   public ColorProviderList(ColorProvider colorProvider1, ColorProvider colorProvider2) {
     this(new ColorProvider[]{colorProvider1, colorProvider2});
   }
 
+  /**
+   * <p>Constructor for ColorProviderList.</p>
+   *
+   * @param colorProvider1 a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param colorProvider2 a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param colorProvider3 a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   public ColorProviderList(ColorProvider colorProvider1, ColorProvider colorProvider2, ColorProvider colorProvider3) {
     this(new ColorProvider[]{colorProvider1, colorProvider2, colorProvider3});
   }
 
+  /**
+   * <p>Constructor for ColorProviderList.</p>
+   *
+   * @param providers an array of {@link net.infonode.gui.colorprovider.ColorProvider} objects.
+   */
   public ColorProviderList(ColorProvider[] providers) {
     this.providers = (ColorProvider[]) providers.clone();
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     Color c = null;
 
@@ -57,6 +78,11 @@ public class ColorProviderList extends AbstractColorProvider {
     return c;
   }
 
+  /**
+   * <p>getColor.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getColor() {
     Color c = null;
 

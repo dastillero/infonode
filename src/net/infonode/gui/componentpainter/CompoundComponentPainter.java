@@ -39,11 +39,18 @@ public class CompoundComponentPainter extends AbstractComponentPainter {
   private ComponentPainter bottomPainter;
   private ComponentPainter topPainter;
 
+  /**
+   * <p>Constructor for CompoundComponentPainter.</p>
+   *
+   * @param bottomPainter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   * @param topPainter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public CompoundComponentPainter(ComponentPainter bottomPainter, ComponentPainter topPainter) {
     this.bottomPainter = bottomPainter;
     this.topPainter = topPainter;
   }
 
+  /** {@inheritDoc} */
   public void paint(Component component,
                     Graphics g,
                     int x,
@@ -57,10 +64,12 @@ public class CompoundComponentPainter extends AbstractComponentPainter {
     topPainter.paint(component, g, x, y, width, height, direction, horizontalFlip, verticalFlip);
   }
 
+  /** {@inheritDoc} */
   public boolean isOpaque(Component component) {
     return bottomPainter.isOpaque(component) || topPainter.isOpaque(component);
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     return topPainter.getColor(component);
   }

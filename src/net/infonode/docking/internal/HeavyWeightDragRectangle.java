@@ -27,7 +27,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>HeavyWeightDragRectangle class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class HeavyWeightDragRectangle extends JPanel {
   private int width = 4;
@@ -53,6 +56,9 @@ public class HeavyWeightDragRectangle extends JPanel {
     }
   };
 
+  /**
+   * <p>Constructor for HeavyWeightDragRectangle.</p>
+   */
   public HeavyWeightDragRectangle() {
     super(new BorderLayout());
     setOpaque(false);
@@ -65,17 +71,28 @@ public class HeavyWeightDragRectangle extends JPanel {
     setColor(Color.BLACK);
   }
 
+  /** {@inheritDoc} */
   public void setBounds(int x, int y, int width, int height) {
     super.setBounds(x, y, width, height);
     revalidate();
   }
 
+  /**
+   * <p>setBorderWidth.</p>
+   *
+   * @param width a int.
+   */
   public void setBorderWidth(int width) {
     this.width = width;
 
     revalidate();
   }
 
+  /**
+   * <p>setColor.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   */
   public void setColor(Color c) {
     northCanvas.setBackground(c);
     southCanvas.setBackground(c);

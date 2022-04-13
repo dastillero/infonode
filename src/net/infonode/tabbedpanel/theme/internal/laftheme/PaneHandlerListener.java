@@ -23,8 +23,20 @@
 // $Id: PaneHandlerListener.java,v 1.2 2005/12/04 12:56:44 jesper Exp $
 package net.infonode.tabbedpanel.theme.internal.laftheme;
 
+/**
+ * <p>PaneHandlerListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface PaneHandlerListener {
+  /**
+   * <p>updating.</p>
+   */
   void updating();
 
+  /**
+   * <p>updated.</p>
+   */
   void updated();
 }

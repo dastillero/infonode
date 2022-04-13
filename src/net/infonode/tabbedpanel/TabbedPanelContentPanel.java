@@ -55,6 +55,7 @@ import net.infonode.util.ValueChange;
  * @author $Author: jesper $
  * @version $Revision: 1.60 $
  * @see TabbedPanel
+ * @see TabbedPanel
  * @see Tab
  */
 public class TabbedPanelContentPanel extends BaseContainer {

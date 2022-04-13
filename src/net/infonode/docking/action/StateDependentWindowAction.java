@@ -75,14 +75,21 @@ public class StateDependentWindowAction extends DockingWindowAction {
     this.maximizedAction = maximizedAction;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "State Dependent";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return getActionProvider(window).isPerformable(window);
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     getActionProvider(window).perform(window);
   }

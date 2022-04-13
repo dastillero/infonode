@@ -57,6 +57,7 @@ public class EnumProperty extends ValueHandlerProperty {
     this.validValues = (Object[]) validValues.clone();
   }
 
+  /** {@inheritDoc} */
   public void setValue(Object object, Object value) {
     if (!ArrayUtil.contains(validValues, value))
       throw new IllegalArgumentException("Invalid enum value!");
@@ -73,6 +74,7 @@ public class EnumProperty extends ValueHandlerProperty {
     return (Object[]) validValues.clone();
   }
 
+  /** {@inheritDoc} */
   public Object getValue(Object object) {
     Object value = super.getValue(object);
     return value == null ? validValues[0] : value;

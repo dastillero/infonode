@@ -30,7 +30,7 @@ import net.infonode.properties.util.ValueHandlerProperty;
 import java.awt.*;
 
 /**
- * A property of type {@link Color}.
+ * A property of type {@link java.awt.Color}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $

@@ -32,25 +32,58 @@ import java.awt.image.ImageObserver;
 import java.awt.image.PixelGrabber;
 import java.net.URL;
 
+/**
+ * <p>ImageUtils class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public final class ImageUtils {
+  /**
+   * <p>create.</p>
+   *
+   * @param filename a {@link java.lang.String} object.
+   * @return a {@link java.awt.Image} object.
+   * @throws net.infonode.util.ImageException if any.
+   */
   public static final Image create(String filename) throws ImageException {
     Image image = Toolkit.getDefaultToolkit().createImage(filename);
     waitImage(image);
     return image;
   }
 
+  /**
+   * <p>create.</p>
+   *
+   * @param url a {@link java.net.URL} object.
+   * @return a {@link java.awt.Image} object.
+   * @throws net.infonode.util.ImageException if any.
+   */
   public static final Image create(URL url) throws ImageException {
     Image image = Toolkit.getDefaultToolkit().createImage(url);
     waitImage(image);
     return image;
   }
 
+  /**
+   * <p>create.</p>
+   *
+   * @param data an array of byte.
+   * @return a {@link java.awt.Image} object.
+   * @throws net.infonode.util.ImageException if any.
+   */
   public static final Image create(byte data[]) throws ImageException {
     Image image = Toolkit.getDefaultToolkit().createImage(data);
     waitImage(image);
     return image;
   }
 
+  /**
+   * <p>waitImage.</p>
+   *
+   * @param image a {@link java.awt.Image} object.
+   * @throws net.infonode.util.ImageException if any.
+   */
   public static final void waitImage(Image image) throws ImageException {
     MediaTracker tracker = new MediaTracker(new Canvas()); //use dummy component
     tracker.addImage(image, 1);
@@ -63,10 +96,28 @@ public final class ImageUtils {
     }
   }
 
+  /**
+   * <p>getPixels.</p>
+   *
+   * @param image a {@link java.awt.Image} object.
+   * @return an array of int.
+   * @throws net.infonode.util.ImageException if any.
+   */
   public static final int[] getPixels(Image image) throws ImageException {
     return getPixels(image, 0, 0, image.getWidth(null), image.getHeight(null));
   }
 
+  /**
+   * <p>getPixels.</p>
+   *
+   * @param image a {@link java.awt.Image} object.
+   * @param x a int.
+   * @param y a int.
+   * @param width a int.
+   * @param height a int.
+   * @return an array of int.
+   * @throws net.infonode.util.ImageException if any.
+   */
   public static final int[] getPixels(Image image, int x, int y, int width, int height) throws ImageException {
     int[] pixels = new int[width * height];
     PixelGrabber pg = new PixelGrabber(image, x, y, width, height, pixels, 0, width);
@@ -83,26 +134,64 @@ public final class ImageUtils {
     return pixels;
   }
 
+  /**
+   * <p>getAlpha.</p>
+   *
+   * @param pixel a int.
+   * @return a int.
+   */
   public static final int getAlpha(int pixel) {
     return (pixel >> 24) & 0xff;
   }
 
+  /**
+   * <p>getRed.</p>
+   *
+   * @param pixel a int.
+   * @return a int.
+   */
   public static final int getRed(int pixel) {
     return (pixel >> 16) & 0xff;
   }
 
+  /**
+   * <p>getGreen.</p>
+   *
+   * @param pixel a int.
+   * @return a int.
+   */
   public static final int getGreen(int pixel) {
     return (pixel >> 8) & 0xff;
   }
 
+  /**
+   * <p>getBlue.</p>
+   *
+   * @param pixel a int.
+   * @return a int.
+   */
   public static final int getBlue(int pixel) {
     return pixel & 0xff;
   }
 
+  /**
+   * <p>createPixel.</p>
+   *
+   * @param red a int.
+   * @param green a int.
+   * @param blue a int.
+   * @return a int.
+   */
   public static final int createPixel(int red, int green, int blue) {
     return (0xff << 24) | (red << 16) | (green << 8) | blue;
   }
 
+  /**
+   * <p>toIntColor.</p>
+   *
+   * @param i a {@link net.infonode.util.math.Int4} object.
+   * @return a int.
+   */
   public static int toIntColor(Int4 i) {
     return ((i.getD() << 8) & 0xff000000) |
            (i.getA() & 0xff0000) |
@@ -110,20 +199,49 @@ public final class ImageUtils {
            ((i.getC() >> 16) & 0xff);
   }
 
+  /**
+   * <p>toInt4.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @return a {@link net.infonode.util.math.Int4} object.
+   */
   public static Int4 toInt4(Color c) {
     return new Int4(c.getRed() << 16, c.getGreen() << 16, c.getBlue() << 16, c.getAlpha() << 16);
   }
 
+  /**
+   * <p>toColor.</p>
+   *
+   * @param c a {@link net.infonode.util.math.Int4} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color toColor(Int4 c) {
     return new Color(c.getA() >> 16, c.getB() >> 16, c.getC() >> 16, c.getD() >> 16);
   }
 
+  /**
+   * <p>createGradientPixels.</p>
+   *
+   * @param colors an array of {@link java.awt.Color} objects.
+   * @param width a int.
+   * @param height a int.
+   * @return an array of int.
+   */
   public static final int[] createGradientPixels(Color[] colors, int width, int height) {
     int[] pixels = new int[width * height];
     createGradientPixels(colors, width, height, pixels);
     return pixels;
   }
 
+  /**
+   * <p>createGradientPixels.</p>
+   *
+   * @param colors an array of {@link java.awt.Color} objects.
+   * @param width a int.
+   * @param height a int.
+   * @param pixels an array of int.
+   * @return an array of int.
+   */
   public static final int[] createGradientPixels(Color[] colors, int width, int height, int[] pixels) {
     int p = 0;
 
@@ -150,6 +268,16 @@ public final class ImageUtils {
     return pixels;
   }
 
+  /**
+   * <p>createTransform.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   * @param horizontalFlip a boolean.
+   * @param verticalFlip a boolean.
+   * @param width a int.
+   * @param height a int.
+   * @return a {@link java.awt.geom.AffineTransform} object.
+   */
   public static AffineTransform createTransform(Direction direction,
                                                 boolean horizontalFlip,
                                                 boolean verticalFlip,

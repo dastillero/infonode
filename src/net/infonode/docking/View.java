@@ -184,7 +184,7 @@ public class View extends DockingWindow {
    * rotated with the tab direction.
    * </p>
    *
-   * @return a list containing the custom tab components, list elements are of type {@link JComponent}
+   * @return a list containing the custom tab components, list elements are of type {@link javax.swing.JComponent}
    * @since IDW 1.3.0
    */
   public java.util.List getCustomTabComponents() {
@@ -201,10 +201,10 @@ public class View extends DockingWindow {
    * layout is rotated with the title bar direction.
    * </p>
    * <p>
-   * <strong>Note:</strong> The components are only shon if the title bar is visible, see {@link ViewTitleBarProperties}.
+   * <strong>Note:</strong> The components are only shon if the title bar is visible, see {@link net.infonode.docking.properties.ViewTitleBarProperties}.
    * </p>
    *
-   * @return a list containing the custom title bar components, list elements are of type {@link JComponent}
+   * @return a list containing the custom title bar components, list elements are of type {@link javax.swing.JComponent}
    * @since IDW 1.4.0
    */
   public List getCustomTitleBarComponents() {
@@ -230,9 +230,9 @@ public class View extends DockingWindow {
   }
 
   /**
-   * Sets the component inside the view.
+   * {@inheritDoc}
    *
-   * @param component the component to place inside the view
+   * Sets the component inside the view.
    * @since IDW 1.1.0
    */
   public void setComponent(Component component) {
@@ -248,14 +248,23 @@ public class View extends DockingWindow {
     return ((ViewItem) getWindowItem()).getViewProperties();
   }
 
+  /**
+   * <p>update.</p>
+   */
   protected void update() {
     // TODO:
   }
 
+  /** {@inheritDoc} */
   public DockingWindow getChildWindow(int index) {
     return null;
   }
 
+  /**
+   * <p>getChildWindowCount.</p>
+   *
+   * @return a int.
+   */
   public int getChildWindowCount() {
     return 0;
   }
@@ -278,6 +287,11 @@ public class View extends DockingWindow {
     return lastFocusedComponent;
   }
 
+  /**
+   * <p>isFocusCycleRoot.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isFocusCycleRoot() {
     return true;
   }
@@ -301,18 +315,32 @@ public class View extends DockingWindow {
     }
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return getViewProperties().getIcon();
   }
 
+  /** {@inheritDoc} */
   protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow) {
     throw new RuntimeException(View.class + ".replaceChildWindow called!");
   }
 
+  /** {@inheritDoc} */
   protected void doRemoveWindow(DockingWindow window) {
     throw new RuntimeException(View.class + ".removeChildWindow called!");
   }
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @param context a {@link net.infonode.docking.internal.WriteContext} object.
+   * @throws java.io.IOException if any.
+   */
   protected void write(ObjectOutputStream out, WriteContext context) throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -342,6 +370,7 @@ public class View extends DockingWindow {
     return view;
   }
 
+  /** {@inheritDoc} */
   protected DropAction doAcceptDrop(Point p, DockingWindow window) {
     if (getWindowParent() instanceof TabWindow && titleBar != null &&
         titleBar.contains(SwingUtilities.convertPoint(this, p, titleBar))) {
@@ -353,6 +382,7 @@ public class View extends DockingWindow {
            super.doAcceptDrop(p, window);
   }
 
+  /** {@inheritDoc} */
   protected DropAction acceptInteriorDrop(Point p, DockingWindow window) {
     if (getWindowParent() instanceof TabWindow && titleBar != null && window.getWindowParent() != getWindowParent()) {
       Point p2 = SwingUtilities.convertPoint(this, p, titleBar);
@@ -384,6 +414,11 @@ public class View extends DockingWindow {
     }
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return getTitle();
   }
@@ -404,6 +439,7 @@ public class View extends DockingWindow {
     newRoot.addView(this);
   }
 
+  /** {@inheritDoc} */
   protected void setFocused(boolean focused) {
     super.setFocused(focused);
     if (isfocused != focused) {
@@ -418,6 +454,7 @@ public class View extends DockingWindow {
     }
   }
 
+  /** {@inheritDoc} */
   protected void rootChanged(final RootWindow oldRoot, final RootWindow newRoot) {
     super.rootChanged(oldRoot, newRoot);
     setRootWindow(newRoot);
@@ -433,14 +470,29 @@ public class View extends DockingWindow {
     }
   }
 
+  /**
+   * <p>getPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap getPropertyObject() {
     return getViewProperties().getMap();
   }
 
+  /**
+   * <p>createPropertyObject.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
+   */
   protected PropertyMap createPropertyObject() {
     return new ViewProperties().getMap();
   }
 
+  /**
+   * <p>needsTitleWindow.</p>
+   *
+   * @return a boolean.
+   */
   protected boolean needsTitleWindow() {
     return getViewProperties().getAlwaysShowTitle();
   }
@@ -537,6 +589,9 @@ public class View extends DockingWindow {
     }
   }
 
+  /**
+   * <p>updateButtonVisibility.</p>
+   */
   protected void updateButtonVisibility() {
     super.updateButtonVisibility();
 
@@ -544,6 +599,7 @@ public class View extends DockingWindow {
       titleBar.updateViewButtons(null);
   }
 
+  /** {@inheritDoc} */
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(WindowIds.VIEW);
     viewWriter.writeView(this, out, context);

@@ -33,33 +33,43 @@ package net.infonode.tabbedpanel;
  * @see TabbedPanel
  */
 public class TabAdapter implements TabListener {
+  /** {@inheritDoc} */
   public void tabAdded(TabEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabRemoved(TabRemovedEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabDragged(TabDragEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabDropped(TabDragEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabDragAborted(TabEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabSelected(TabStateChangedEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabDeselected(TabStateChangedEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabHighlighted(TabStateChangedEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabDehighlighted(TabStateChangedEvent event) {
   }
 
+  /** {@inheritDoc} */
   public void tabMoved(TabEvent event) {
   }
 }

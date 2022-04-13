@@ -25,6 +25,12 @@ package net.infonode.gui.draggable;
 
 import java.awt.*;
 
+/**
+ * <p>DraggableComponentBoxEvent class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class DraggableComponentBoxEvent {
   private DraggableComponentBox source;
   private DraggableComponent draggableComponent;
@@ -32,20 +38,46 @@ public class DraggableComponentBoxEvent {
   private DraggableComponentEvent draggableComponentEvent;
   private Point draggableComponentBoxPoint;
 
+  /**
+   * <p>Constructor for DraggableComponentBoxEvent.</p>
+   *
+   * @param source a {@link net.infonode.gui.draggable.DraggableComponentBox} object.
+   */
   public DraggableComponentBoxEvent(DraggableComponentBox source) {
     this(source, null);
   }
 
+  /**
+   * <p>Constructor for DraggableComponentBoxEvent.</p>
+   *
+   * @param source a {@link net.infonode.gui.draggable.DraggableComponentBox} object.
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public DraggableComponentBoxEvent(DraggableComponentBox source, DraggableComponent component) {
     this(source, component, null, null);
   }
 
+  /**
+   * <p>Constructor for DraggableComponentBoxEvent.</p>
+   *
+   * @param source a {@link net.infonode.gui.draggable.DraggableComponentBox} object.
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public DraggableComponentBoxEvent(DraggableComponentBox source,
                                     DraggableComponent component,
                                     DraggableComponentEvent event) {
     this(source, component, event, null);
   }
 
+  /**
+   * <p>Constructor for DraggableComponentBoxEvent.</p>
+   *
+   * @param source a {@link net.infonode.gui.draggable.DraggableComponentBox} object.
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   * @param point a {@link java.awt.Point} object.
+   */
   public DraggableComponentBoxEvent(DraggableComponentBox source,
                                     DraggableComponent component,
                                     DraggableComponentEvent event,
@@ -56,6 +88,13 @@ public class DraggableComponentBoxEvent {
     this.draggableComponentBoxPoint = point;
   }
 
+  /**
+   * <p>Constructor for DraggableComponentBoxEvent.</p>
+   *
+   * @param source a {@link net.infonode.gui.draggable.DraggableComponentBox} object.
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @param oldDraggableComponent a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public DraggableComponentBoxEvent(DraggableComponentBox source,
                                     DraggableComponent component,
                                     DraggableComponent oldDraggableComponent) {
@@ -63,22 +102,47 @@ public class DraggableComponentBoxEvent {
     this.oldDraggableComponent = oldDraggableComponent;
   }
 
+  /**
+   * <p>Getter for the field <code>source</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.draggable.DraggableComponentBox} object.
+   */
   public DraggableComponentBox getSource() {
     return source;
   }
 
+  /**
+   * <p>Getter for the field <code>draggableComponent</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public DraggableComponent getDraggableComponent() {
     return draggableComponent;
   }
 
+  /**
+   * <p>Getter for the field <code>oldDraggableComponent</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public DraggableComponent getOldDraggableComponent() {
     return oldDraggableComponent;
   }
 
+  /**
+   * <p>Getter for the field <code>draggableComponentBoxPoint</code>.</p>
+   *
+   * @return a {@link java.awt.Point} object.
+   */
   public Point getDraggableComponentBoxPoint() {
     return draggableComponentBoxPoint;
   }
 
+  /**
+   * <p>Getter for the field <code>draggableComponentEvent</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.draggable.DraggableComponentEvent} object.
+   */
   public DraggableComponentEvent getDraggableComponentEvent() {
     return draggableComponentEvent;
   }

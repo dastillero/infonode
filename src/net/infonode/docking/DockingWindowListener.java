@@ -25,13 +25,13 @@ package net.infonode.docking;
 
 /**
  * <p>
- * A listener for {@link DockingWindow} events. All events are propagated upwards in the window tree, so
+ * A listener for {@link net.infonode.docking.DockingWindow} events. All events are propagated upwards in the window tree, so
  * a listener will receive events for the window that it was added to and all descendants of that window.
  * </p>
  *
  * <p>
  * Note: New methods might be added to this interface in the future. To ensure future compatibility inherit from
- * {@link DockingWindowAdapter} instead of directly implementing this interface.
+ * {@link net.infonode.docking.DockingWindowAdapter} instead of directly implementing this interface.
  * </p>
  *
  * @author $Author: jesper $
@@ -88,13 +88,13 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * Note that this method is only called when {@link DockingWindow#closeWithAbort()} is called explicitly, not
-   * when a window is implicitly closed as a result of another method call. Throwing an {@link OperationAbortedException}
+   * Note that this method is only called when {@link net.infonode.docking.DockingWindow#closeWithAbort()} is called explicitly, not
+   * when a window is implicitly closed as a result of another method call. Throwing an {@link net.infonode.docking.OperationAbortedException}
    * will cause the close operation to be aborted.
    * </p>
    *
    * @param window the window that is closing
-   * @throws OperationAbortedException if this exception is thrown the close operation will be aborted
+   * @throws net.infonode.docking.OperationAbortedException if this exception is thrown the close operation will be aborted
    */
   void windowClosing(DockingWindow window) throws OperationAbortedException;
 
@@ -104,7 +104,7 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * Note that this method is only called when {@link DockingWindow#close()} or {@link DockingWindow#closeWithAbort()}
+   * Note that this method is only called when {@link net.infonode.docking.DockingWindow#close()} or {@link net.infonode.docking.DockingWindow#closeWithAbort()}
    * is called explicitly, not when a window is implicitly closed as a result of another method call.
    * </p>
    *
@@ -118,13 +118,13 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * Note that this method is only called when {@link DockingWindow#undockWithAbort(java.awt.Point)} is called explicitly, not
-   * when a window is implicitly undocked as a result of another method call. Throwing an {@link OperationAbortedException}
+   * Note that this method is only called when {@link net.infonode.docking.DockingWindow#undockWithAbort(java.awt.Point)} is called explicitly, not
+   * when a window is implicitly undocked as a result of another method call. Throwing an {@link net.infonode.docking.OperationAbortedException}
    * will cause the undock operation to be aborted.
    * </p>
    *
    * @param window the window that is undocking
-   * @throws OperationAbortedException if this exception is thrown the undock operation will be aborted
+   * @throws net.infonode.docking.OperationAbortedException if this exception is thrown the undock operation will be aborted
    * @since IDW 1.4.0
    */
   void windowUndocking(DockingWindow window) throws OperationAbortedException;
@@ -135,8 +135,8 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * This method is called when a window is undocked using {@link DockingWindow#undock(java.awt.Point)},
-   * {@link DockingWindow#undockWithAbort(java.awt.Point)} or is added to a window that is undocked.
+   * This method is called when a window is undocked using {@link net.infonode.docking.DockingWindow#undock(java.awt.Point)},
+   * {@link net.infonode.docking.DockingWindow#undockWithAbort(java.awt.Point)} or is added to a window that is undocked.
    * </p>
    *
    * @param window the window that has been undocked
@@ -150,13 +150,13 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * <strong>Note:</strong> that this method is only called when {@link DockingWindow#dockWithAbort()} is called explicitly, not
-   * when a window is implicitly docked as a result of another method call. Throwing an {@link OperationAbortedException}
+   * <strong>Note:</strong> that this method is only called when {@link net.infonode.docking.DockingWindow#dockWithAbort()} is called explicitly, not
+   * when a window is implicitly docked as a result of another method call. Throwing an {@link net.infonode.docking.OperationAbortedException}
    * will cause the dock operation to be aborted.
    * </p>
    *
    * @param window the window that is docking
-   * @throws OperationAbortedException if this exception is thrown the dock operation will be aborted i.e. no views in the
+   * @throws net.infonode.docking.OperationAbortedException if this exception is thrown the dock operation will be aborted i.e. no views in the
    *                                   window will be docked
    * @since IDW 1.4.0
    */
@@ -183,13 +183,13 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * <strong>Note:</strong> that this method is only called when {@link DockingWindow#minimizeWithAbort()} is called
+   * <strong>Note:</strong> that this method is only called when {@link net.infonode.docking.DockingWindow#minimizeWithAbort()} is called
    * explicitly, not when a window is implicitly docked as a result of another method call. Throwing an
-   * {@link OperationAbortedException} will cause the minimize operation to be aborted.
+   * {@link net.infonode.docking.OperationAbortedException} will cause the minimize operation to be aborted.
    * </p>
    *
    * @param window the window that is minimizing
-   * @throws OperationAbortedException if this exception is thrown the minimize operation will be aborted
+   * @throws net.infonode.docking.OperationAbortedException if this exception is thrown the minimize operation will be aborted
    * @since IDW 1.4.0
    */
   void windowMinimizing(DockingWindow window) throws OperationAbortedException;
@@ -208,13 +208,13 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * <strong>Note:</strong> that this method is only called when {@link DockingWindow#maximizeWithAbort()} is called
+   * <strong>Note:</strong> that this method is only called when {@link net.infonode.docking.DockingWindow#maximizeWithAbort()} is called
    * explicitly, not when a window is implicitly docked as a result of another method call. Throwing an
-   * {@link OperationAbortedException} will cause the maximize operation to be aborted.
+   * {@link net.infonode.docking.OperationAbortedException} will cause the maximize operation to be aborted.
    * </p>
    *
    * @param window the window that is maximizing
-   * @throws OperationAbortedException if this exception is thrown the maximize operation will be aborted
+   * @throws net.infonode.docking.OperationAbortedException if this exception is thrown the maximize operation will be aborted
    * @since IDW 1.4.0
    */
   void windowMaximizing(DockingWindow window) throws OperationAbortedException;
@@ -233,13 +233,13 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * <strong>Note:</strong> that this method is only called when {@link DockingWindow#restoreWithAbort()} is called
+   * <strong>Note:</strong> that this method is only called when {@link net.infonode.docking.DockingWindow#restoreWithAbort()} is called
    * explicitly, not when a window is implicitly restored as a result of another method call. Throwing an
-   * {@link OperationAbortedException} will cause the restore operation to be aborted.
+   * {@link net.infonode.docking.OperationAbortedException} will cause the restore operation to be aborted.
    * </p>
    *
    * @param window the window that is restoring
-   * @throws OperationAbortedException if this exception is thrown the restore operation will be aborted
+   * @throws net.infonode.docking.OperationAbortedException if this exception is thrown the restore operation will be aborted
    * @since IDW 1.4.0
    */
   void windowRestoring(DockingWindow window) throws OperationAbortedException;
@@ -250,7 +250,7 @@ public interface DockingWindowListener {
    * </p>
    *
    * <p>
-   * Note that this method is only called when {@link DockingWindow#restore()}
+   * Note that this method is only called when {@link net.infonode.docking.DockingWindow#restore()}
    * is called explicitly, not when a window is implicitly restored as a result of another method call.
    * </p>
    *

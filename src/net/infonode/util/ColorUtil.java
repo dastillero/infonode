@@ -25,18 +25,44 @@ package net.infonode.util;
 
 import java.awt.*;
 
+/**
+ * <p>ColorUtil class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public final class ColorUtil {
   private ColorUtil() {
   }
 
+  /**
+   * <p>getOpposite.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color getOpposite(Color c) {
     return isDark(c) ? Color.WHITE : Color.BLACK;
   }
 
+  /**
+   * <p>shade.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @param amount a double.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color shade(Color c, double amount) {
     return blend(c, getOpposite(c), amount);
   }
 
+  /**
+   * <p>mult.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @param amount a double.
+   * @return a {@link java.awt.Color} object.
+   */
   public static final Color mult(Color c, double amount) {
     return c == null ? null : new Color(Math.min(255, (int) (c.getRed() * amount)),
                                         Math.min(255, (int) (c.getGreen() * amount)),
@@ -44,10 +70,24 @@ public final class ColorUtil {
                                         c.getAlpha());
   }
 
+  /**
+   * <p>setAlpha.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @param alpha a int.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color setAlpha(Color c, int alpha) {
     return c == null ? null : new Color(c.getRed(), c.getGreen(), c.getBlue(), alpha);
   }
 
+  /**
+   * <p>add.</p>
+   *
+   * @param c1 a {@link java.awt.Color} object.
+   * @param c2 a {@link java.awt.Color} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static final Color add(Color c1, Color c2) {
     return c1 == null ? c2 :
            c2 == null ? c1 :
@@ -57,6 +97,14 @@ public final class ColorUtil {
                      c1.getAlpha());
   }
 
+  /**
+   * <p>blend.</p>
+   *
+   * @param c1 a {@link java.awt.Color} object.
+   * @param c2 a {@link java.awt.Color} object.
+   * @param v a double.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color blend(Color c1, Color c2, double v) {
     double v2 = 1 - v;
     return c1 == null ? (c2 == null ? null : c2) :
@@ -67,14 +115,32 @@ public final class ColorUtil {
                      Math.min(255, (int) (c1.getAlpha() * v2 + c2.getAlpha() * v)));
   }
 
+  /**
+   * <p>isDark.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @return a boolean.
+   */
   public static boolean isDark(Color c) {
     return c.getRed() + c.getGreen() + c.getBlue() < 3 * 180;
   }
 
+  /**
+   * <p>highlight.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color highlight(Color c) {
     return mult(c, isDark(c) ? 1.5F : 0.67F);
   }
 
+  /**
+   * <p>copy.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @return a {@link java.awt.Color} object.
+   */
   public static Color copy(Color c) {
     return c == null ? null : new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
   }

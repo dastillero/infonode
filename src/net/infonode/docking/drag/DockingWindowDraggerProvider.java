@@ -26,7 +26,7 @@ package net.infonode.docking.drag;
 import java.awt.event.MouseEvent;
 
 /**
- * Provides a {@link DockingWindowDragger}.
+ * Provides a {@link net.infonode.docking.drag.DockingWindowDragger}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
@@ -34,10 +34,10 @@ import java.awt.event.MouseEvent;
  */
 public interface DockingWindowDraggerProvider {
   /**
-   * Returns a {@link DockingWindowDragger}.
+   * Returns a {@link net.infonode.docking.drag.DockingWindowDragger}.
    *
    * @param mouseEvent the mouse event that started the drag
-   * @return the {@link DockingWindowDragger}
+   * @return the {@link net.infonode.docking.drag.DockingWindowDragger}
    */
   DockingWindowDragger getDragger(MouseEvent mouseEvent);
 }

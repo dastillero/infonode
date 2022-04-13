@@ -175,6 +175,7 @@ public class WindowBarProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(WindowBarProperties)} instead.
    */
+  @Deprecated
   public WindowBarProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;

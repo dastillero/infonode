@@ -36,25 +36,26 @@ import java.awt.*;
 
 /**
  * <p>
- * A panel that has support for a {@link ComponentPainter} and a {@link ShapedBorder}.
- * The background of the panel is painted as normal and then the {@link ComponentPainter}
- * paints the area inside the {@link ShapedBorder} or the complete component area if the
- * its border isn't a {@link ShapedBorder}.
+ * A panel that has support for a {@link net.infonode.gui.componentpainter.ComponentPainter} and a {@link net.infonode.gui.shaped.border.ShapedBorder}.
+ * The background of the panel is painted as normal and then the {@link net.infonode.gui.componentpainter.ComponentPainter}
+ * paints the area inside the {@link net.infonode.gui.shaped.border.ShapedBorder} or the complete component area if the
+ * its border isn't a {@link net.infonode.gui.shaped.border.ShapedBorder}.
  * </p>
  *
  * <p>
- * If a {@link ShapedBorder} is applied to this panel, mouse events etc. are only triggered
- * for this panel if the point is inside the {@link Shape} of the {@link ShapedBorder}. Child
- * components of this panel can optionally be clipped using the {@link Shape}.
+ * If a {@link net.infonode.gui.shaped.border.ShapedBorder} is applied to this panel, mouse events etc. are only triggered
+ * for this panel if the point is inside the {@link java.awt.Shape} of the {@link net.infonode.gui.shaped.border.ShapedBorder}. Child
+ * components of this panel can optionally be clipped using the {@link java.awt.Shape}.
  * </p>
  *
  * <p>
- * A {@link ShapedBorder} wrapped inside {@link CompoundBorder}'s will be used by the ShapedPanel,
- * but a {@link ShapedBorder} wrapped inside other border types can't be found and is hence not
+ * A {@link net.infonode.gui.shaped.border.ShapedBorder} wrapped inside {@link javax.swing.border.CompoundBorder}'s will be used by the ShapedPanel,
+ * but a {@link net.infonode.gui.shaped.border.ShapedBorder} wrapped inside other border types can't be found and is hence not
  * used by the panel.
  * </p>
  *
  * @author johan
+ * @version $Id: $Id
  */
 public class ShapedPanel extends BaseContainer implements BackgroundPainter {
   private Direction direction = Direction.RIGHT;
@@ -65,29 +66,58 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
   private ShapedBorder shapedBorder;
   private Insets shapedInsets;
 
+  /**
+   * <p>Constructor for ShapedPanel.</p>
+   */
   public ShapedPanel() {
     super();
   }
 
+  /**
+   * <p>Constructor for ShapedPanel.</p>
+   *
+   * @param l a {@link java.awt.LayoutManager} object.
+   */
   public ShapedPanel(LayoutManager l) {
     super(l);
   }
 
+  /**
+   * <p>Constructor for ShapedPanel.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public ShapedPanel(ComponentPainter painter) {
     this();
     this.painter = painter;
   }
 
+  /**
+   * <p>Constructor for ShapedPanel.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   * @param border a {@link javax.swing.border.Border} object.
+   */
   public ShapedPanel(ComponentPainter painter, Border border) {
     this(painter);
     setBorder(border);
   }
 
+  /**
+   * <p>Constructor for ShapedPanel.</p>
+   *
+   * @param component a {@link java.awt.Component} object.
+   */
   public ShapedPanel(Component component) {
     this();
     add(component, BorderLayout.CENTER);
   }
 
+  /**
+   * <p>getShape.</p>
+   *
+   * @return a {@link java.awt.Shape} object.
+   */
   public Shape getShape() {
     ShapedBorder b = getShapedBorder();
     return b == null ? null : b.getShape(this,
@@ -97,10 +127,20 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
                                          getHeight() - shapedInsets.top - shapedInsets.bottom);
   }
 
+  /**
+   * <p>getComponentPainter.</p>
+   *
+   * @return a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public ComponentPainter getComponentPainter() {
     return painter;
   }
 
+  /**
+   * <p>setComponentPainter.</p>
+   *
+   * @param painter a {@link net.infonode.gui.componentpainter.ComponentPainter} object.
+   */
   public void setComponentPainter(ComponentPainter painter) {
     if (this.painter != painter) {
       this.painter = painter;
@@ -109,14 +149,29 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>direction</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getDirection() {
     return direction;
   }
 
+  /**
+   * <p>isHorizontalFlip.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isHorizontalFlip() {
     return horizontalFlip;
   }
 
+  /**
+   * <p>Setter for the field <code>horizontalFlip</code>.</p>
+   *
+   * @param horizontalFlip a boolean.
+   */
   public void setHorizontalFlip(boolean horizontalFlip) {
     if (this.horizontalFlip != horizontalFlip) {
       this.horizontalFlip = horizontalFlip;
@@ -124,10 +179,20 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     }
   }
 
+  /**
+   * <p>isVerticalFlip.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isVerticalFlip() {
     return verticalFlip;
   }
 
+  /**
+   * <p>Setter for the field <code>verticalFlip</code>.</p>
+   *
+   * @param verticalFlip a boolean.
+   */
   public void setVerticalFlip(boolean verticalFlip) {
     if (this.verticalFlip != verticalFlip) {
       this.verticalFlip = verticalFlip;
@@ -135,6 +200,11 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     }
   }
 
+  /**
+   * <p>Setter for the field <code>direction</code>.</p>
+   *
+   * @param direction a {@link net.infonode.util.Direction} object.
+   */
   public void setDirection(Direction direction) {
     if (this.direction != direction) {
       this.direction = direction;
@@ -144,24 +214,41 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     }
   }
 
+  /**
+   * <p>isClipChildren.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isClipChildren() {
     return clipChildren;
   }
 
+  /**
+   * <p>Setter for the field <code>clipChildren</code>.</p>
+   *
+   * @param clipChildren a boolean.
+   */
   public void setClipChildren(boolean clipChildren) {
     this.clipChildren = clipChildren;
   }
 
+  /**
+   * <p>Getter for the field <code>shapedBorder</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.shaped.border.ShapedBorder} object.
+   */
   public ShapedBorder getShapedBorder() {
     return shapedBorder;
   }
 
+  /** {@inheritDoc} */
   public void setBorder(Border border) {
     super.setBorder(border);
     shapedBorder = null;
     findShapedBorder(getBorder(), new Insets(0, 0, 0, 0));
   }
 
+  /** {@inheritDoc} */
   protected void paintChildren(Graphics g) {
     if (clipChildren) {
       Shape shape = getShape();
@@ -185,6 +272,7 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     super.paintChildren(g);
   }
 
+  /** {@inheritDoc} */
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
@@ -206,6 +294,8 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     }
   }
 
+  /** {@inheritDoc} */
+  @Override
   public boolean contains(int x, int y) {
     if (x < 0 || y < 0 || x >= getWidth() || y >= getHeight())
       return false;
@@ -214,14 +304,13 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
     return shape == null ? super.contains(x, y) : shape.contains(x, y);
   }
 
+  /** {@inheritDoc} */
+  @Override
+  @Deprecated
   public boolean inside(int x, int y) {
-    if (x < 0 || y < 0 || x >= getWidth() || y >= getHeight())
-      return false;
-
-    Shape shape = getShape();
-    return shape == null ? super.inside(x, y) : shape.contains(x, y);
+      return contains(x, y);
   }
-
+  
   private boolean findShapedBorder(Border border, Insets i) {
     if (border == null)
       return false;

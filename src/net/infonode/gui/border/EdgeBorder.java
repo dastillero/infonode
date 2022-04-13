@@ -34,6 +34,8 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
+ * <p>EdgeBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.14 $
  */
@@ -48,23 +50,58 @@ public class EdgeBorder implements Border, Serializable {
   private boolean drawRight;
   private Insets insets;
 
+  /**
+   * <p>Constructor for EdgeBorder.</p>
+   */
   public EdgeBorder() {
     this(true, true, true, true);
   }
 
+  /**
+   * <p>Constructor for EdgeBorder.</p>
+   *
+   * @param drawTop a boolean.
+   * @param drawBottom a boolean.
+   * @param drawLeft a boolean.
+   * @param drawRight a boolean.
+   */
   public EdgeBorder(boolean drawTop, boolean drawBottom, boolean drawLeft, boolean drawRight) {
     this(null, drawTop, drawBottom, drawLeft, drawRight);
   }
 
+  /**
+   * <p>Constructor for EdgeBorder.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param drawTop a boolean.
+   * @param drawBottom a boolean.
+   * @param drawLeft a boolean.
+   * @param drawRight a boolean.
+   */
   public EdgeBorder(Color color, boolean drawTop, boolean drawBottom, boolean drawLeft, boolean drawRight) {
     ColorProvider c = color == null ? null : new FixedColorProvider(color);
     init(c, c, drawTop, drawBottom, drawLeft, drawRight);
   }
 
+  /**
+   * <p>Constructor for EdgeBorder.</p>
+   *
+   * @param color a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   */
   public EdgeBorder(ColorProvider color) {
     init(color, color, true, true, true, true);
   }
 
+  /**
+   * <p>Constructor for EdgeBorder.</p>
+   *
+   * @param topLeftColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param bottomRightColor a {@link net.infonode.gui.colorprovider.ColorProvider} object.
+   * @param drawTop a boolean.
+   * @param drawBottom a boolean.
+   * @param drawLeft a boolean.
+   * @param drawRight a boolean.
+   */
   public EdgeBorder(ColorProvider topLeftColor,
                     ColorProvider bottomRightColor,
                     boolean drawTop,
@@ -89,6 +126,7 @@ public class EdgeBorder implements Border, Serializable {
     insets = new Insets(drawTop ? 1 : 0, drawLeft ? 1 : 0, drawBottom ? 1 : 0, drawRight ? 1 : 0);
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     Color topLeft = getColor(topLeftColor, c);
     Color bottomRight = getColor(bottomRightColor, c);
@@ -111,10 +149,16 @@ public class EdgeBorder implements Border, Serializable {
     }
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return insets;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }

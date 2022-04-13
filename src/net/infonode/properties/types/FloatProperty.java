@@ -152,9 +152,11 @@ public class FloatProperty extends ValueHandlerProperty {
    * @param value          the float value
    */
   public void set(Object valueContainer, float value) {
-    setValue(valueContainer, new Float(value));
+    setValue(valueContainer, Float.valueOf(value));
   }
 
+  /** {@inheritDoc} */
+  @Override
   public boolean canBeAssiged(Object value) {
     if (!super.canBeAssiged(value))
       return false;

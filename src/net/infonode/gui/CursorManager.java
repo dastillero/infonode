@@ -30,6 +30,8 @@ import java.awt.event.ComponentEvent;
 import java.util.WeakHashMap;
 
 /**
+ * <p>CursorManager class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.17 $
  */
@@ -84,6 +86,12 @@ public class CursorManager {
   private CursorManager() {
   }
 
+  /**
+   * <p>setGlobalCursor.</p>
+   *
+   * @param root a {@link javax.swing.JRootPane} object.
+   * @param cursor a {@link java.awt.Cursor} object.
+   */
   public static void setGlobalCursor(final JRootPane root, Cursor cursor) {
     if (root == null)
       return;
@@ -115,6 +123,12 @@ public class CursorManager {
     }
   }
 
+  /**
+   * <p>getCurrentGlobalCursor.</p>
+   *
+   * @param root a {@link javax.swing.JRootPane} object.
+   * @return a {@link java.awt.Cursor} object.
+   */
   public static Cursor getCurrentGlobalCursor(JRootPane root) {
     if (root == null)
       return Cursor.getDefaultCursor();
@@ -123,6 +137,11 @@ public class CursorManager {
     return rci == null || !rci.isCursorSet() ? Cursor.getDefaultCursor() : rci.getCursor();
   }
 
+  /**
+   * <p>resetGlobalCursor.</p>
+   *
+   * @param root a {@link javax.swing.JRootPane} object.
+   */
   public static void resetGlobalCursor(JRootPane root) {
     if (root == null)
       return;
@@ -135,14 +154,30 @@ public class CursorManager {
     }
   }
 
+  /**
+   * <p>Setter for the field <code>enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public static void setEnabled(boolean enabled) {
     CursorManager.enabled = enabled;
   }
 
+  /**
+   * <p>isEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public static boolean isEnabled() {
     return enabled;
   }
 
+  /**
+   * <p>getCursorLayerComponent.</p>
+   *
+   * @param root a {@link javax.swing.JRootPane} object.
+   * @return a {@link javax.swing.JComponent} object.
+   */
   public static JComponent getCursorLayerComponent(JRootPane root) {
     if (root == null)
       return null;
@@ -151,6 +186,12 @@ public class CursorManager {
     return rci == null ? null : rci.getComponent();
   }
 
+  /**
+   * <p>isGlobalCursorSet.</p>
+   *
+   * @param root a {@link javax.swing.JRootPane} object.
+   * @return a boolean.
+   */
   public static boolean isGlobalCursorSet(JRootPane root) {
     if (root == null)
       return false;

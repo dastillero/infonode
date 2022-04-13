@@ -54,28 +54,52 @@ public class IntList {
   }
 
   /**
-   * @return
+   * <p>Getter for the field <code>value</code>.</p>
+   *
+   * @return a int.
    */
   public int getValue() {
     return value;
   }
 
+  /**
+   * <p>Getter for the field <code>next</code>.</p>
+   *
+   * @return a {@link net.infonode.util.IntList} object.
+   */
   public IntList getNext() {
     return next;
   }
 
+  /**
+   * <p>isEmpty.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEmpty() {
     return this == EMPTY_LIST;
   }
 
+  /** {@inheritDoc} */
   public boolean equals(Object object) {
     return object instanceof IntList && equals((IntList) object);
   }
 
+  /**
+   * <p>equals.</p>
+   *
+   * @param list a {@link net.infonode.util.IntList} object.
+   * @return a boolean.
+   */
   public boolean equals(IntList list) {
     return value == list.value && (next == null ? list.next == null : next.equals(list.next));
   }
 
+  /**
+   * <p>hashCode.</p>
+   *
+   * @return a int.
+   */
   public int hashCode() {
     int result = 17;
     result = 37 * result + value;
@@ -86,6 +110,12 @@ public class IntList {
     return result;
   }
 
+  /**
+   * <p>write.</p>
+   *
+   * @param out a {@link java.io.ObjectOutputStream} object.
+   * @throws java.io.IOException if any.
+   */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(value);
 
@@ -93,11 +123,23 @@ public class IntList {
       next.write(out);
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @return a {@link net.infonode.util.IntList} object.
+   * @throws java.io.IOException if any.
+   */
   public static IntList decode(ObjectInputStream in) throws IOException {
     int i = in.readInt();
     return i == -1 ? EMPTY_LIST : new IntList(i, decode(in));
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return value + (next == null ? "" : ", " + next.toString());
   }

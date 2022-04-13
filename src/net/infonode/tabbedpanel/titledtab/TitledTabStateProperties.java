@@ -39,6 +39,7 @@ import javax.swing.*;
  * @version $Revision: 1.24 $
  * @see TitledTab
  * @see TitledTabProperties
+ * @see TitledTabProperties
  */
 public class TitledTabStateProperties extends PropertyMapContainer {
   /**

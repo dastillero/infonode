@@ -28,7 +28,7 @@ import net.infonode.docking.DockingWindow;
 import java.io.ObjectStreamException;
 
 /**
- * Uses the {@link DockingWindow#restoreFocus()} method to restore focus to the last focus owner
+ * Uses the {@link net.infonode.docking.DockingWindow#restoreFocus()} method to restore focus to the last focus owner
  * that inside a window.
  *
  * @author $Author: jesper $
@@ -46,18 +46,31 @@ public final class RestoreFocusWindowAction extends DockingWindowAction {
   private RestoreFocusWindowAction() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Restore Focus";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     return true;
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     window.restoreFocus();
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

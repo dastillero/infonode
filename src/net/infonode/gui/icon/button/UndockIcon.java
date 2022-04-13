@@ -28,27 +28,50 @@ import net.infonode.gui.GraphicsUtil;
 import java.awt.*;
 
 /**
+ * <p>UndockIcon class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class UndockIcon extends AbstractButtonIcon {
   private static final long serialVersionUID = 1;
 
+  /**
+   * <p>Constructor for UndockIcon.</p>
+   */
   public UndockIcon() {
     super();
   }
 
+  /**
+   * <p>Constructor for UndockIcon.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   */
   public UndockIcon(Color c) {
     super(c);
   }
 
+  /**
+   * <p>Constructor for UndockIcon.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public UndockIcon(Color c, int size) {
     super(c, size);
   }
 
+  /**
+   * <p>Constructor for UndockIcon.</p>
+   *
+   * @param size a int.
+   */
   public UndockIcon(int size) {
     super(size);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, final Graphics g, final int x1, final int y1, final int x2, final int y2) {
     int xOffs = (x2 - x1) > 6 ? 1 : 0;
     int yOffs = xOffs;

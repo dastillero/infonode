@@ -26,7 +26,7 @@ package net.infonode.docking.theme;
 import net.infonode.docking.properties.RootWindowProperties;
 
 /**
- * A docking windows theme. A theme provides a {@link RootWindowProperties} object which can be applied to a
+ * A docking windows theme. A theme provides a {@link net.infonode.docking.properties.RootWindowProperties} object which can be applied to a
  * {@link net.infonode.docking.RootWindow} like this:
  *
  * <pre>
@@ -52,9 +52,17 @@ abstract public class DockingWindowsTheme {
    */
   abstract public RootWindowProperties getRootWindowProperties();
 
+  /**
+   * <p>Constructor for DockingWindowsTheme.</p>
+   */
   protected DockingWindowsTheme() {
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return getName();
   }

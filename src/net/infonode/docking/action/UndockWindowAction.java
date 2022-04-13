@@ -34,7 +34,7 @@ import java.awt.*;
 import java.io.ObjectStreamException;
 
 /**
- * Undocks a window using the {@link DockingWindow#undock(Point)} method.
+ * Undocks a window using the {@link net.infonode.docking.DockingWindow#undock(Point)} method.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.8 $
@@ -53,14 +53,25 @@ public class UndockWindowAction extends DockingWindowAction {
   private UndockWindowAction() {
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Undock";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     if (window.isUndockable()) {
       FloatingWindow fw = DockingUtil.getFloatingWindowFor(window);
@@ -71,6 +82,7 @@ public class UndockWindowAction extends DockingWindowAction {
     return false;
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     if (isPerformable(window)) {
       Point p = window.getLocation();
@@ -79,6 +91,12 @@ public class UndockWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

@@ -35,6 +35,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * <p>PopupList class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class PopupList extends SimplePanel {
   private class PopupButtonModel extends DefaultButtonModel {
     private boolean pressed;
@@ -161,6 +167,11 @@ public class PopupList extends SimplePanel {
   private Popup popup = new Popup();
   private ArrayList listeners = new ArrayList(1);
 
+  /**
+   * <p>Constructor for PopupList.</p>
+   *
+   * @param component a {@link javax.swing.AbstractButton} object.
+   */
   public PopupList(AbstractButton component) {
     setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     setButton(component);
@@ -179,10 +190,20 @@ public class PopupList extends SimplePanel {
     });
   }
 
+  /**
+   * <p>getList.</p>
+   *
+   * @return a {@link javax.swing.JList} object.
+   */
   public JList getList() {
     return popup.getList();
   }
 
+  /**
+   * <p>setButton.</p>
+   *
+   * @param component a {@link javax.swing.AbstractButton} object.
+   */
   public void setButton(AbstractButton component) {
     if (getComponentCount() > 0) {
       AbstractButton c = (AbstractButton) getComponent(0);
@@ -199,28 +220,56 @@ public class PopupList extends SimplePanel {
     component.addMouseMotionListener(popup.getMouseMotionListener());
   }
 
+  /**
+   * <p>getButton.</p>
+   *
+   * @return a {@link javax.swing.AbstractButton} object.
+   */
   public AbstractButton getButton() {
     return getComponentCount() == 0 ? null : (AbstractButton) getComponent(0);
   }
 
+  /**
+   * <p>updateUI.</p>
+   */
   public void updateUI() {
     super.updateUI();
     if (popup != null)
       SwingUtilities.updateComponentTreeUI(popup);
   }
 
+  /**
+   * <p>addPopupListListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.PopupListListener} object.
+   */
   public void addPopupListListener(PopupListListener l) {
     listeners.add(l);
   }
 
+  /**
+   * <p>removePopupListListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.PopupListListener} object.
+   */
   public void removePopupListListener(PopupListListener l) {
     listeners.remove(l);
   }
 
+  /**
+   * <p>addListSelectionListener.</p>
+   *
+   * @param l a {@link javax.swing.event.ListSelectionListener} object.
+   */
   public void addListSelectionListener(ListSelectionListener l) {
     getList().addListSelectionListener(l);
   }
 
+  /**
+   * <p>removeListSelectionListener.</p>
+   *
+   * @param l a {@link javax.swing.event.ListSelectionListener} object.
+   */
   public void removeListSelectionListener(ListSelectionListener l) {
     getList().removeListSelectionListener(l);
   }

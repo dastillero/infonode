@@ -30,12 +30,20 @@ import net.infonode.properties.util.ValueHandlerProperty;
 import java.awt.*;
 
 /**
- * A property of type {@link Insets}.
+ * A property of type {@link java.awt.Insets}.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
 public class InsetsProperty extends ValueHandlerProperty {
+  /**
+   * <p>Constructor for InsetsProperty.</p>
+   *
+   * @param group a {@link net.infonode.properties.base.PropertyGroup} object.
+   * @param name a {@link java.lang.String} object.
+   * @param description a {@link java.lang.String} object.
+   * @param valueStorage a {@link net.infonode.properties.util.PropertyValueHandler} object.
+   */
   public InsetsProperty(PropertyGroup group, String name, String description, PropertyValueHandler valueStorage) {
     super(group, name, Insets.class, description, valueStorage);
   }

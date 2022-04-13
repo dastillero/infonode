@@ -28,28 +28,50 @@ import net.infonode.gui.GraphicsUtil;
 import java.awt.*;
 
 /**
+ * <p>RestoreIcon class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  */
 public class RestoreIcon extends AbstractButtonIcon {
   private static final long serialVersionUID = 4019344427358669254L;
 
+  /**
+   * <p>Constructor for RestoreIcon.</p>
+   */
   public RestoreIcon() {
     super();
   }
 
+  /**
+   * <p>Constructor for RestoreIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   */
   public RestoreIcon(Color color) {
     super(color);
   }
 
+  /**
+   * <p>Constructor for RestoreIcon.</p>
+   *
+   * @param color a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public RestoreIcon(Color color, int size) {
     super(color, size);
   }
 
+  /**
+   * <p>Constructor for RestoreIcon.</p>
+   *
+   * @param size a int.
+   */
   public RestoreIcon(int size) {
     super(size);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2) {
     int boxHeight = (2 * (y2 - y1 + 1)) / 3 - 1;
     int boxWidth = (5 * (x2 - x1 + 1)) / 6 - 1;

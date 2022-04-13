@@ -26,10 +26,17 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>CloseButtonInfo class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
 public class CloseButtonInfo extends AbstractButtonInfo {
+  /**
+   * <p>Constructor for CloseButtonInfo.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public CloseButtonInfo(PropertyMapProperty property) {
     super(property);
   }

@@ -29,23 +29,33 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
+ * <p>ParentMapRef class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
 public class ParentMapRef implements PropertyMapRef {
+  /** Constant <code>INSTANCE</code> */
   public static final ParentMapRef INSTANCE = new ParentMapRef();
 
   private ParentMapRef() {
   }
 
+  /** {@inheritDoc} */
   public PropertyMapImpl getMap(PropertyMapImpl object) {
     return object == null ? null : object.getParent();
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return "parent";
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(PropertyMapRefDecoder.PARENT);
   }

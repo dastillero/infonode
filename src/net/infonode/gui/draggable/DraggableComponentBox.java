@@ -37,6 +37,12 @@ import net.infonode.gui.layout.DirectionLayout;
 import net.infonode.gui.panel.SimplePanel;
 import net.infonode.util.Direction;
 
+/**
+ * <p>DraggableComponentBox class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class DraggableComponentBox extends SimplePanel {
   private final boolean componentBoxEnabled = true;
 
@@ -92,10 +98,21 @@ public class DraggableComponentBox extends SimplePanel {
     }
   };
 
+  /**
+   * <p>Constructor for DraggableComponentBox.</p>
+   *
+   * @param iconSize a int.
+   */
   public DraggableComponentBox(int iconSize) {
     this(iconSize, true);
   }
 
+  /**
+   * <p>Constructor for DraggableComponentBox.</p>
+   *
+   * @param iconSize a int.
+   * @param useDefaultScrollButtons a boolean.
+   */
   public DraggableComponentBox(int iconSize, boolean useDefaultScrollButtons) {
     this.iconSize = iconSize;
     this.useDefaultScrollButtons = useDefaultScrollButtons;
@@ -150,6 +167,11 @@ public class DraggableComponentBox extends SimplePanel {
     initialize();
   }
 
+  /**
+   * <p>addListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.draggable.DraggableComponentBoxListener} object.
+   */
   public void addListener(DraggableComponentBoxListener listener) {
     if (listeners == null)
       listeners = new ArrayList(2);
@@ -157,6 +179,11 @@ public class DraggableComponentBox extends SimplePanel {
     listeners.add(listener);
   }
 
+  /**
+   * <p>removeListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.draggable.DraggableComponentBoxListener} object.
+   */
   public void removeListener(DraggableComponentBoxListener listener) {
     if (listeners != null) {
       listeners.remove(listener);
@@ -166,10 +193,21 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>addDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public void addDraggableComponent(DraggableComponent component) {
     insertDraggableComponent(component, -1);
   }
 
+  /**
+   * <p>insertDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @param index a int.
+   */
   public void insertDraggableComponent(DraggableComponent component, int index) {
     component.setLayoutOrderList(layoutOrderList);
 
@@ -204,6 +242,12 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>insertDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @param p a {@link java.awt.Point} object.
+   */
   public void insertDraggableComponent(DraggableComponent component, Point p) {
     int componentIndex = getComponentIndexAtPoint(p);
     if (componentIndex != -1 && layoutOrderList.size() > 0)
@@ -212,6 +256,11 @@ public class DraggableComponentBox extends SimplePanel {
       insertDraggableComponent(component, -1);
   }
 
+  /**
+   * <p>selectDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public void selectDraggableComponent(DraggableComponent component) {
     if (component == null) {
       if (selectedComponent != null) {
@@ -225,6 +274,11 @@ public class DraggableComponentBox extends SimplePanel {
       component.select();
   }
 
+  /**
+   * <p>removeDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public void removeDraggableComponent(DraggableComponent component) {
     if (component != null && draggableComponentList.contains(component)) {
       //component.abortDrag();
@@ -268,38 +322,86 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>containsDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @return a boolean.
+   */
   public boolean containsDraggableComponent(DraggableComponent component) {
     return draggableComponentList.contains(component);
   }
 
+  /**
+   * <p>getSelectedDraggableComponent.</p>
+   *
+   * @return a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public DraggableComponent getSelectedDraggableComponent() {
     return selectedComponent;
   }
 
+  /**
+   * <p>getDraggableComponentCount.</p>
+   *
+   * @return a int.
+   */
   public int getDraggableComponentCount() {
     return layoutOrderList.size();
   }
 
+  /**
+   * <p>getDraggableComponentAt.</p>
+   *
+   * @param index a int.
+   * @return a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public DraggableComponent getDraggableComponentAt(int index) {
     return index < layoutOrderList.size() ? findDraggableComponent((Component) layoutOrderList.get(index)) : null;
   }
 
+  /**
+   * <p>getDraggableComponentIndex.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @return a int.
+   */
   public int getDraggableComponentIndex(DraggableComponent component) {
     return layoutOrderList.indexOf(component.getComponent());
   }
 
+  /**
+   * <p>getDraggableComponents.</p>
+   *
+   * @return an array of {@link java.lang.Object} objects.
+   */
   public Object[] getDraggableComponents() {
     return draggableComponentList.toArray();
   }
 
+  /**
+   * <p>getBoxComponents.</p>
+   *
+   * @return an array of {@link java.awt.Component} objects.
+   */
   public Component[] getBoxComponents() {
     return componentBox.getComponents();
   }
 
+  /**
+   * <p>getDepthSortOrder.</p>
+   *
+   * @return a boolean.
+   */
   public boolean getDepthSortOrder() {
     return descendingSortOrder;
   }
 
+  /**
+   * <p>setDepthSortOrder.</p>
+   *
+   * @param descending a boolean.
+   */
   public void setDepthSortOrder(boolean descending) {
     if (descending != this.descendingSortOrder) {
       this.descendingSortOrder = descending;
@@ -308,10 +410,20 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>isScrollEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isScrollEnabled() {
     return scrollEnabled;
   }
 
+  /**
+   * <p>Setter for the field <code>scrollEnabled</code>.</p>
+   *
+   * @param scrollEnabled a boolean.
+   */
   public void setScrollEnabled(boolean scrollEnabled) {
     if (scrollEnabled != this.scrollEnabled) {
       this.scrollEnabled = scrollEnabled;
@@ -319,10 +431,20 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>scrollOffset</code>.</p>
+   *
+   * @return a int.
+   */
   public int getScrollOffset() {
     return scrollOffset;
   }
 
+  /**
+   * <p>Setter for the field <code>scrollOffset</code>.</p>
+   *
+   * @param scrollOffset a int.
+   */
   public void setScrollOffset(int scrollOffset) {
     if (scrollOffset != this.scrollOffset) {
       this.scrollOffset = scrollOffset;
@@ -331,10 +453,20 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>getComponentSpacing.</p>
+   *
+   * @return a int.
+   */
   public int getComponentSpacing() {
     return getDirectionLayout().getComponentSpacing();
   }
 
+  /**
+   * <p>setComponentSpacing.</p>
+   *
+   * @param componentSpacing a int.
+   */
   public void setComponentSpacing(int componentSpacing) {
     if (componentSpacing != getDirectionLayout().getComponentSpacing()) {
       if (getComponentSpacing() < 0 && componentSpacing >= 0) {
@@ -348,26 +480,56 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>isEnsureSelectedVisible.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEnsureSelectedVisible() {
     return ensureSelectedVisible;
   }
 
+  /**
+   * <p>Setter for the field <code>ensureSelectedVisible</code>.</p>
+   *
+   * @param ensureSelectedVisible a boolean.
+   */
   public void setEnsureSelectedVisible(boolean ensureSelectedVisible) {
     this.ensureSelectedVisible = ensureSelectedVisible;
   }
 
+  /**
+   * <p>isAutoSelect.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isAutoSelect() {
     return autoSelect;
   }
 
+  /**
+   * <p>Setter for the field <code>autoSelect</code>.</p>
+   *
+   * @param autoSelect a boolean.
+   */
   public void setAutoSelect(boolean autoSelect) {
     this.autoSelect = autoSelect;
   }
 
+  /**
+   * <p>Getter for the field <code>componentDirection</code>.</p>
+   *
+   * @return a {@link net.infonode.util.Direction} object.
+   */
   public Direction getComponentDirection() {
     return componentDirection;
   }
 
+  /**
+   * <p>Setter for the field <code>componentDirection</code>.</p>
+   *
+   * @param componentDirection a {@link net.infonode.util.Direction} object.
+   */
   public void setComponentDirection(Direction componentDirection) {
     if (componentDirection != this.componentDirection) {
       this.componentDirection = componentDirection;
@@ -383,6 +545,11 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>Setter for the field <code>topComponent</code>.</p>
+   *
+   * @param topComponent a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public void setTopComponent(DraggableComponent topComponent) {
     if (topComponent != this.topComponent) {
       this.topComponent = topComponent;
@@ -391,18 +558,39 @@ public class DraggableComponentBox extends SimplePanel {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>scrollButtonBox</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.ScrollButtonBox} object.
+   */
   public ScrollButtonBox getScrollButtonBox() {
     return scrollButtonBox;
   }
 
+  /**
+   * <p>Getter for the field <code>outerParentArea</code>.</p>
+   *
+   * @return a {@link javax.swing.JComponent} object.
+   */
   public JComponent getOuterParentArea() {
     return outerParentArea;
   }
 
+  /**
+   * <p>Setter for the field <code>outerParentArea</code>.</p>
+   *
+   * @param outerParentArea a {@link javax.swing.JComponent} object.
+   */
   public void setOuterParentArea(JComponent outerParentArea) {
     this.outerParentArea = outerParentArea;
   }
 
+  /**
+   * <p>dragDraggableComponent.</p>
+   *
+   * @param component a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   * @param p a {@link java.awt.Point} object.
+   */
   public void dragDraggableComponent(DraggableComponent component, Point p) {
     if (draggableComponentList.contains(component)) {
       component.drag(SwingUtilities.convertPoint(this, p, component.getComponent()));
@@ -411,6 +599,11 @@ public class DraggableComponentBox extends SimplePanel {
     //component.drag(SwingUtilities.convertPoint(this, p, component.getComponent()));
   }
 
+  /**
+   * <p>getMaximumSize.</p>
+   *
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getMaximumSize() {
     if (scrollEnabled)
       return getPreferredSize();
@@ -422,6 +615,11 @@ public class DraggableComponentBox extends SimplePanel {
 
   }
 
+  /**
+   * <p>getInnerSize.</p>
+   *
+   * @return a {@link java.awt.Dimension} object.
+   */
   public Dimension getInnerSize() {
     boolean mustSort = this.mustSort;
     this.mustSort = false;
@@ -430,6 +628,11 @@ public class DraggableComponentBox extends SimplePanel {
     return d;
   }
 
+  /**
+   * <p>scrollToVisible.</p>
+   *
+   * @param c a {@link net.infonode.gui.draggable.DraggableComponent} object.
+   */
   public void scrollToVisible(final DraggableComponent c) {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {

@@ -33,65 +33,109 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
+ * <p>SimplePropertyValue class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.14 $
  */
 public class SimplePropertyValue implements PropertyValue {
   private final Object value;
 
+  /**
+   * <p>Constructor for SimplePropertyValue.</p>
+   *
+   * @param value a {@link java.lang.Object} object.
+   */
   public SimplePropertyValue(Object value) {
     this.value = value;
   }
 
+  /** {@inheritDoc} */
   public void updateListener(boolean enable) {
   }
 
+  /**
+   * <p>getParent.</p>
+   *
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   */
   public PropertyValue getParent() {
     return null;
   }
 
+  /** {@inheritDoc} */
   public Object get(PropertyMapImpl object) {
     return value;
   }
 
+  /** {@inheritDoc} */
   public Object getWithDefault(PropertyMapImpl object) {
     return value;
   }
 
+  /** {@inheritDoc} */
   public PropertyValue getSubValue(PropertyMapImpl object) {
     return null;
   }
 
+  /**
+   * <p>unset.</p>
+   */
   public void unset() {
   }
 
+  /**
+   * <p>toString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String toString() {
     return String.valueOf(value);
   }
 
+  /** {@inheritDoc} */
   public void dump(Printer printer) {
     printer.println(toString());
   }
 
+  /** {@inheritDoc} */
   public boolean equals(Object obj) {
     return obj != null &&
            obj instanceof SimplePropertyValue &&
            Utils.equals(((SimplePropertyValue) obj).value, value);
   }
 
+  /**
+   * <p>hashCode.</p>
+   *
+   * @return a int.
+   */
   public int hashCode() {
     return value.hashCode();
   }
 
+  /** {@inheritDoc} */
   public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(ValueDecoder.SIMPLE);
     out.writeObject(value);
   }
 
+  /**
+   * <p>isSerializable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isSerializable() {
     return value instanceof Serializable;
   }
 
+  /**
+   * <p>decode.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @return a {@link net.infonode.properties.propertymap.value.PropertyValue} object.
+   * @throws java.io.IOException if any.
+   */
   public static PropertyValue decode(ObjectInputStream in) throws IOException {
     try {
       return new SimplePropertyValue(in.readObject());
@@ -101,6 +145,12 @@ public class SimplePropertyValue implements PropertyValue {
     }
   }
 
+  /**
+   * <p>skip.</p>
+   *
+   * @param in a {@link java.io.ObjectInputStream} object.
+   * @throws java.io.IOException if any.
+   */
   public static void skip(ObjectInputStream in) throws IOException {
     try {
       in.readObject();
@@ -110,6 +160,7 @@ public class SimplePropertyValue implements PropertyValue {
     }
   }
 
+  /** {@inheritDoc} */
   public PropertyValue copyTo(PropertyMapImpl propertyMap) {
     return this;
   }

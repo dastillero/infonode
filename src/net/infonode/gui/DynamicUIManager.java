@@ -29,6 +29,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
+/**
+ * <p>DynamicUIManager class.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public class DynamicUIManager {
   private static final DynamicUIManager instance = new DynamicUIManager();
 
@@ -62,6 +68,11 @@ public class DynamicUIManager {
   private Toolkit currentToolkit;
   private boolean propertyChangePending;
 
+  /**
+   * <p>Getter for the field <code>instance</code>.</p>
+   *
+   * @return a {@link net.infonode.gui.DynamicUIManager} object.
+   */
   public static DynamicUIManager getInstance() {
     return instance;
   }
@@ -103,18 +114,38 @@ public class DynamicUIManager {
     }
   }
 
+  /**
+   * <p>addListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.DynamicUIManagerListener} object.
+   */
   public void addListener(DynamicUIManagerListener l) {
     listeners.add(l);
   }
 
+  /**
+   * <p>removeListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.DynamicUIManagerListener} object.
+   */
   public void removeListener(DynamicUIManagerListener l) {
     listeners.remove(l);
   }
 
+  /**
+   * <p>addPrioritizedListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.DynamicUIManagerListener} object.
+   */
   public void addPrioritizedListener(DynamicUIManagerListener l) {
     prioritizedListeners.add(l);
   }
 
+  /**
+   * <p>removePrioritizedListener.</p>
+   *
+   * @param l a {@link net.infonode.gui.DynamicUIManagerListener} object.
+   */
   public void removePrioritizedListener(DynamicUIManagerListener l) {
     prioritizedListeners.remove(l);
   }

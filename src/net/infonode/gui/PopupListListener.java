@@ -24,8 +24,16 @@
 package net.infonode.gui;
 
 /**
+ * <p>PopupListListener interface.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public interface PopupListListener {
+  /**
+   * <p>willBecomeVisible.</p>
+   *
+   * @param list a {@link net.infonode.gui.PopupList} object.
+   */
   void willBecomeVisible(PopupList list);
 }

@@ -26,9 +26,17 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>UndockButtonInfo class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class UndockButtonInfo extends AbstractButtonInfo {
+  /**
+   * <p>Constructor for UndockButtonInfo.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public UndockButtonInfo(PropertyMapProperty property) {
     super(property);
   }

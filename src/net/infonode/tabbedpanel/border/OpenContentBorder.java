@@ -213,6 +213,7 @@ public class OpenContentBorder implements Border, Serializable {
     return new Point(start, end);
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     TabbedPanel tabbedPanel = TabbedUtils.getParentTabbedPanelContentPanel(c).getTabbedPanel();
 
@@ -327,6 +328,7 @@ public class OpenContentBorder implements Border, Serializable {
     //graphics.drawLine(x1, y1, x2, y2);
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     int hInset = highlightColorProvider != null ? 1 : 0;
     int tlInset = (topLeftLineColor != null ? 1 : 0) + hInset;
@@ -334,6 +336,11 @@ public class OpenContentBorder implements Border, Serializable {
     return new Insets(tlInset, tlInset, brInset, brInset);
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return true;
   }

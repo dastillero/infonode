@@ -28,7 +28,7 @@ import net.infonode.properties.util.PropertyValueHandler;
 import net.infonode.properties.util.ValueHandlerProperty;
 
 /**
- * A property that has a {@link DockingWindowTitleProvider} object as value.
+ * A property that has a {@link net.infonode.docking.title.DockingWindowTitleProvider} object as value.
  *
  * @author $Author: jesper $
  * @version $Revision: 1.4 $
@@ -51,17 +51,17 @@ public class DockingWindowTitleProviderProperty extends ValueHandlerProperty {
   }
 
   /**
-   * Gets the {@link DockingWindowTitleProvider} value of this property in a value container.
+   * Gets the {@link net.infonode.docking.title.DockingWindowTitleProvider} value of this property in a value container.
    *
    * @param valueContainer the value container
-   * @return the {@link DockingWindowTitleProvider} value of this property in a value container
+   * @return the {@link net.infonode.docking.title.DockingWindowTitleProvider} value of this property in a value container
    */
   public DockingWindowTitleProvider get(Object valueContainer) {
     return (DockingWindowTitleProvider) getValue(valueContainer);
   }
 
   /**
-   * Sets the {@link DockingWindowTitleProvider} value of this property in a value container.
+   * Sets the {@link net.infonode.docking.title.DockingWindowTitleProvider} value of this property in a value container.
    *
    * @param valueContainer the value container
    * @param provider       the value

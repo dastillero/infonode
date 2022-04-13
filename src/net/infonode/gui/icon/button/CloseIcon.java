@@ -28,28 +28,50 @@ import net.infonode.gui.GraphicsUtil;
 import java.awt.*;
 
 /**
+ * <p>CloseIcon class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.10 $
  */
 public class CloseIcon extends AbstractButtonIcon {
   private static final long serialVersionUID = 1423301116958557861L;
 
+  /**
+   * <p>Constructor for CloseIcon.</p>
+   */
   public CloseIcon() {
     super();
   }
 
+  /**
+   * <p>Constructor for CloseIcon.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   */
   public CloseIcon(Color c) {
     super(c);
   }
 
+  /**
+   * <p>Constructor for CloseIcon.</p>
+   *
+   * @param c a {@link java.awt.Color} object.
+   * @param size a int.
+   */
   public CloseIcon(Color c, int size) {
     super(c, size);
   }
 
+  /**
+   * <p>Constructor for CloseIcon.</p>
+   *
+   * @param size a int.
+   */
   public CloseIcon(int size) {
     super(size);
   }
 
+  /** {@inheritDoc} */
   protected void paintIcon(Component c, Graphics g, int x1, int y1, int x2, int y2) {
     GraphicsUtil.drawOptimizedLine(g, x1, y1 + 1, x2 - 1, y2);
     GraphicsUtil.drawOptimizedLine(g, x1 + 1, y1 + 1, x2, y2);

@@ -33,6 +33,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>ShadowPainter class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.9 $
  * @since ITP 1.1.0
@@ -55,6 +57,24 @@ public class ShadowPainter {
   private float shadowStrength;
   private boolean highlightedTabIsLast;
 
+  /**
+   * <p>Constructor for ShadowPainter.</p>
+   *
+   * @param component a {@link java.awt.Component} object.
+   * @param componentsPanel a {@link javax.swing.JComponent} object.
+   * @param highlightedTab a {@link javax.swing.JComponent} object.
+   * @param contentPanel a {@link javax.swing.JComponent} object.
+   * @param tabAreaComponentsPanel a {@link javax.swing.JComponent} object.
+   * @param tabAreaContainer a {@link javax.swing.JComponent} object.
+   * @param tabBox a {@link javax.swing.JComponent} object.
+   * @param tabOrientation a {@link net.infonode.util.Direction} object.
+   * @param paintTabAreaShadow a boolean.
+   * @param shadowSize a int.
+   * @param shadowBlendSize a int.
+   * @param shadowColor a {@link java.awt.Color} object.
+   * @param shadowStrength a float.
+   * @param highlightedTabIsLast a boolean.
+   */
   public ShadowPainter(Component component, JComponent componentsPanel, JComponent highlightedTab,
                        JComponent contentPanel, JComponent tabAreaComponentsPanel, JComponent tabAreaContainer,
                        JComponent tabBox, Direction tabOrientation, boolean paintTabAreaShadow,
@@ -77,6 +97,11 @@ public class ShadowPainter {
     this.highlightedTabIsLast = highlightedTabIsLast;
   }
 
+  /**
+   * <p>paint.</p>
+   *
+   * @param g a {@link java.awt.Graphics} object.
+   */
   public void paint(Graphics g) {
     panelBackgroundColor = ComponentUtil.getBackgroundColor(component);
     panelBackgroundColor = panelBackgroundColor == null ?

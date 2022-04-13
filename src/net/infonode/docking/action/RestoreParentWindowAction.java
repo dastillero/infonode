@@ -33,7 +33,7 @@ import javax.swing.*;
 import java.io.ObjectStreamException;
 
 /**
- * Restores a window using the {@link DockingWindow#restore()} method. If the parent window is a {@link TabWindow}
+ * Restores a window using the {@link net.infonode.docking.DockingWindow#restore()} method. If the parent window is a {@link net.infonode.docking.TabWindow}
  * which is maximized, it is restored.
  *
  * @author $Author: jesper $
@@ -53,10 +53,16 @@ public final class RestoreParentWindowAction extends DockingWindowAction {
   private RestoreParentWindowAction() {
   }
 
+  /**
+   * <p>getName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return "Restore";
   }
 
+  /** {@inheritDoc} */
   public boolean isPerformable(DockingWindow window) {
     if (window.isMinimized() && window.isRestorable())
       return true;
@@ -66,6 +72,7 @@ public final class RestoreParentWindowAction extends DockingWindowAction {
     }
   }
 
+  /** {@inheritDoc} */
   public void perform(DockingWindow window) {
     if (window != null && window.isMinimized())
       restore(window);
@@ -77,6 +84,11 @@ public final class RestoreParentWindowAction extends DockingWindowAction {
     }
   }
 
+  /**
+   * <p>Getter for the field <code>icon</code>.</p>
+   *
+   * @return a {@link javax.swing.Icon} object.
+   */
   public Icon getIcon() {
     return icon;
   }
@@ -86,6 +98,12 @@ public final class RestoreParentWindowAction extends DockingWindowAction {
       window.restore();
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

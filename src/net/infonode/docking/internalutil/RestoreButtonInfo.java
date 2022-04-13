@@ -26,10 +26,17 @@ package net.infonode.docking.internalutil;
 import net.infonode.properties.propertymap.PropertyMapProperty;
 
 /**
+ * <p>RestoreButtonInfo class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.7 $
  */
 public class RestoreButtonInfo extends AbstractButtonInfo {
+  /**
+   * <p>Constructor for RestoreButtonInfo.</p>
+   *
+   * @param property a {@link net.infonode.properties.propertymap.PropertyMapProperty} object.
+   */
   public RestoreButtonInfo(PropertyMapProperty property) {
     super(property);
   }

@@ -37,6 +37,8 @@ import javax.swing.plaf.basic.BasicGraphicsUtils;
 import net.infonode.gui.UIManagerUtil;
 
 /**
+ * <p>FocusBorder class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.15 $
  */
@@ -49,6 +51,11 @@ public class FocusBorder implements Border, Serializable {
 
   private boolean enabled = true;
 
+  /**
+   * <p>Constructor for FocusBorder.</p>
+   *
+   * @param focusComponent a {@link java.awt.Component} object.
+   */
   public FocusBorder(final Component focusComponent) {
     this.component = focusComponent;
     focusComponent.addFocusListener(new FocusListener() {
@@ -64,24 +71,41 @@ public class FocusBorder implements Border, Serializable {
     });
   }
 
+  /** {@inheritDoc} */
   public Insets getBorderInsets(Component c) {
     return INSETS;
   }
 
+  /**
+   * <p>isBorderOpaque.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isBorderOpaque() {
     return false;
   }
 
+  /**
+   * <p>isEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEnabled() {
     return enabled;
   }
 
+  /**
+   * <p>Setter for the field <code>enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setEnabled(boolean enabled) {
     if (enabled != this.enabled) {
       this.enabled = enabled;
     }
   }
 
+  /** {@inheritDoc} */
   public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
     if (enabled && component.hasFocus()) {
       g.setColor(UIManagerUtil.getColor("Button.focus", "TabbedPane.focus"));

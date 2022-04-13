@@ -27,22 +27,36 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>EmptyIcon class.</p>
+ *
  * @author Jesper Nordenberg
  * @version $Revision: 1.4 $ $Date: 2005/02/16 11:28:11 $
  */
 public class EmptyIcon implements Icon {
+  /** Constant <code>INSTANCE</code> */
   public static final EmptyIcon INSTANCE = new EmptyIcon();
 
   private EmptyIcon() {
   }
 
+  /** {@inheritDoc} */
   public void paintIcon(Component c, Graphics g, int x, int y) {
   }
 
+  /**
+   * <p>getIconWidth.</p>
+   *
+   * @return a int.
+   */
   public int getIconWidth() {
     return 0;
   }
 
+  /**
+   * <p>getIconHeight.</p>
+   *
+   * @return a int.
+   */
   public int getIconHeight() {
     return 0;
   }

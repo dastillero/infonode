@@ -129,6 +129,7 @@ public class WindowTabProperties extends PropertyMapContainer {
    * @since IDW 1.1.0
    * @deprecated Use {@link #removeSuperObject(WindowTabProperties)} instead.
    */
+  @Deprecated
   public WindowTabProperties removeSuperObject() {
     getMap().removeSuperMap();
     return this;

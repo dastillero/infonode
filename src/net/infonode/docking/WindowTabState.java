@@ -30,13 +30,18 @@ package net.infonode.docking;
  * @version $Revision: 1.4 $
  */
 enum WindowTabState {
+  /**
+   * Normal state means that the tab is not highlighted or focused.
+   */
+   NORMAL,
 
-  /** Normal state means that the tab is not highlighted or focused. */
-  NORMAL,
-
-  /** Highlighted state occurs when the tab is selected or otherwise highlighted. */
+  /**
+   * Highlighted state occurs when the tab is selected or otherwise highlighted.
+   */
   HIGHLIGHTED,
 
-  /** Focused state is when the window that the tab is connected to contains the focus owner. */
-  FOCUSED
+  /**
+   * Focused state is when the window that the tab is connected to contains the focus owner.
+   */
+  FOCUSED;
 }

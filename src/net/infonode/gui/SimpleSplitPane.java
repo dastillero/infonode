@@ -35,6 +35,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 /**
+ * <p>SimpleSplitPane class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.28 $
  */
@@ -125,10 +127,21 @@ public class SimpleSplitPane extends BaseContainer {
   private ArrayList listeners = new ArrayList(0);
   private Color dragIndicatorColor = Color.DARK_GRAY;
 
+  /**
+   * <p>Constructor for SimpleSplitPane.</p>
+   *
+   * @param horizontal a boolean.
+   */
   public SimpleSplitPane(boolean horizontal) {
     this(horizontal, false);
   }
 
+  /**
+   * <p>Constructor for SimpleSplitPane.</p>
+   *
+   * @param horizontal a boolean.
+   * @param heavyWeightDragIndicator a boolean.
+   */
   public SimpleSplitPane(boolean horizontal, boolean heavyWeightDragIndicator) {
     setLayout(splitLayout);
     add(dividerPanel);
@@ -177,12 +190,24 @@ public class SimpleSplitPane extends BaseContainer {
     });
   }
 
+  /**
+   * <p>Constructor for SimpleSplitPane.</p>
+   *
+   * @param horizontal a boolean.
+   * @param leftComponent a {@link java.awt.Component} object.
+   * @param rightComponent a {@link java.awt.Component} object.
+   */
   public SimpleSplitPane(boolean horizontal, Component leftComponent, Component rightComponent) {
     this(horizontal);
     setLeftComponent(leftComponent);
     setRightComponent(rightComponent);
   }
 
+  /**
+   * <p>addListener.</p>
+   *
+   * @param listener a {@link net.infonode.gui.SimpleSplitPaneListener} object.
+   */
   public void addListener(SimpleSplitPaneListener listener) {
     ArrayList newListeners = new ArrayList(listeners.size() + 1);
     newListeners.addAll(listeners);
@@ -190,27 +215,57 @@ public class SimpleSplitPane extends BaseContainer {
     listeners.add(listener);
   }
 
+  /**
+   * <p>Getter for the field <code>dividerPanel</code>.</p>
+   *
+   * @return a {@link javax.swing.JComponent} object.
+   */
   public JComponent getDividerPanel() {
     return dividerPanel;
   }
 
+  /**
+   * <p>isDividerDraggable.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isDividerDraggable() {
     return dividerDraggable;
   }
 
+  /**
+   * <p>Setter for the field <code>dividerDraggable</code>.</p>
+   *
+   * @param dividerDraggable a boolean.
+   */
   public void setDividerDraggable(boolean dividerDraggable) {
     this.dividerDraggable = dividerDraggable;
     updateDividerCursor();
   }
 
+  /**
+   * <p>setHeavyWeightDragIndicator.</p>
+   *
+   * @param heavyWeight a boolean.
+   */
   public void setHeavyWeightDragIndicator(boolean heavyWeight) {
     initDragIndicatior(heavyWeight);
   }
 
+  /**
+   * <p>Getter for the field <code>dragIndicatorColor</code>.</p>
+   *
+   * @return a {@link java.awt.Color} object.
+   */
   public Color getDragIndicatorColor() {
     return dragIndicatorColor;
   }
 
+  /**
+   * <p>Setter for the field <code>dragIndicatorColor</code>.</p>
+   *
+   * @param dragIndicatorColor a {@link java.awt.Color} object.
+   */
   public void setDragIndicatorColor(Color dragIndicatorColor) {
     this.dragIndicatorColor = dragIndicatorColor;
     dragIndicator.setBackground(dragIndicatorColor);
@@ -259,18 +314,38 @@ public class SimpleSplitPane extends BaseContainer {
     return (float) leftSize / totalSize;
   }
 
+  /**
+   * <p>Setter for the field <code>continuousLayout</code>.</p>
+   *
+   * @param value a boolean.
+   */
   public void setContinuousLayout(boolean value) {
     continuousLayout = value;
   }
 
+  /**
+   * <p>isContinuousLayout.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isContinuousLayout() {
     return continuousLayout;
   }
 
+  /**
+   * <p>Getter for the field <code>dividerSize</code>.</p>
+   *
+   * @return a int.
+   */
   public int getDividerSize() {
     return dividerSize;
   }
 
+  /**
+   * <p>Setter for the field <code>dividerSize</code>.</p>
+   *
+   * @param dividerSize a int.
+   */
   public void setDividerSize(int dividerSize) {
     this.dividerSize = dividerSize;
     revalidate();
@@ -311,20 +386,40 @@ public class SimpleSplitPane extends BaseContainer {
     return horizontal ? new Point(pos, otherPos) : new Point(otherPos, pos);
   }
 
+  /**
+   * <p>isHorizontal.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isHorizontal() {
     return horizontal;
   }
 
+  /**
+   * <p>Setter for the field <code>horizontal</code>.</p>
+   *
+   * @param horizontal a boolean.
+   */
   public void setHorizontal(boolean horizontal) {
     this.horizontal = horizontal;
     updateDividerCursor();
     revalidate();
   }
 
+  /**
+   * <p>Getter for the field <code>dividerLocation</code>.</p>
+   *
+   * @return a float.
+   */
   public float getDividerLocation() {
     return dividerLocation;
   }
 
+  /**
+   * <p>Setter for the field <code>dividerLocation</code>.</p>
+   *
+   * @param dividerLocation a float.
+   */
   public void setDividerLocation(float dividerLocation) {
     this.dividerLocation = dividerLocation;
     revalidate();
@@ -333,10 +428,20 @@ public class SimpleSplitPane extends BaseContainer {
       ((SimpleSplitPaneListener) listeners.get(i)).dividerLocationChanged(this);
   }
 
+  /**
+   * <p>Getter for the field <code>leftComponent</code>.</p>
+   *
+   * @return a {@link java.awt.Component} object.
+   */
   public Component getLeftComponent() {
     return leftComponent;
   }
 
+  /**
+   * <p>Setter for the field <code>leftComponent</code>.</p>
+   *
+   * @param leftComponent a {@link java.awt.Component} object.
+   */
   public void setLeftComponent(Component leftComponent) {
     if (this.leftComponent != null)
       remove(this.leftComponent);
@@ -349,10 +454,20 @@ public class SimpleSplitPane extends BaseContainer {
     revalidate();
   }
 
+  /**
+   * <p>Getter for the field <code>rightComponent</code>.</p>
+   *
+   * @return a {@link java.awt.Component} object.
+   */
   public Component getRightComponent() {
     return rightComponent;
   }
 
+  /**
+   * <p>Setter for the field <code>rightComponent</code>.</p>
+   *
+   * @param rightComponent a {@link java.awt.Component} object.
+   */
   public void setRightComponent(Component rightComponent) {
     if (this.rightComponent != null)
       remove(this.rightComponent);
@@ -371,6 +486,12 @@ public class SimpleSplitPane extends BaseContainer {
         new Cursor(horizontal ? Cursor.W_RESIZE_CURSOR : Cursor.N_RESIZE_CURSOR) : Cursor.getDefaultCursor());
   }
 
+  /**
+   * <p>setComponents.</p>
+   *
+   * @param leftComponent a {@link java.awt.Component} object.
+   * @param rightComponent a {@link java.awt.Component} object.
+   */
   public void setComponents(Component leftComponent, Component rightComponent) {
     setLeftComponent(leftComponent);
     setRightComponent(rightComponent);

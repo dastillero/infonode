@@ -34,7 +34,10 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 /**
+ * <p>DelayedHoverExitAction class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class DelayedHoverExitAction implements HoverListener {
 
@@ -44,23 +47,49 @@ public class DelayedHoverExitAction implements HoverListener {
   private HoverListener action;
   private int delay;
 
+  /**
+   * <p>Constructor for DelayedHoverExitAction.</p>
+   *
+   * @param action a {@link net.infonode.gui.hover.HoverListener} object.
+   * @param delay a int.
+   */
   public DelayedHoverExitAction(HoverListener action, int delay) {
     this.action = action;
     this.delay = delay;
   }
 
+  /**
+   * <p>Getter for the field <code>delay</code>.</p>
+   *
+   * @return a int.
+   */
   public int getDelay() {
     return delay;
   }
 
+  /**
+   * <p>Setter for the field <code>delay</code>.</p>
+   *
+   * @param delay a int.
+   */
   public void setDelay(int delay) {
     this.delay = delay;
   }
 
+  /**
+   * <p>getHoverAction.</p>
+   *
+   * @return a {@link net.infonode.gui.hover.HoverListener} object.
+   */
   public HoverListener getHoverAction() {
     return action;
   }
 
+  /**
+   * <p>forceExit.</p>
+   *
+   * @param component a {@link java.awt.Component} object.
+   */
   public void forceExit(Component component) {
     if (timers.containsKey(component)) {
       ((Timer) timers.get(component)).stop();
@@ -71,6 +100,7 @@ public class DelayedHoverExitAction implements HoverListener {
     }
   }
 
+  /** {@inheritDoc} */
   public void mouseEntered(HoverEvent event) {
     final Component c = event.getSource();
 
@@ -89,6 +119,7 @@ public class DelayedHoverExitAction implements HoverListener {
     }
   }
 
+  /** {@inheritDoc} */
   public void mouseExited(HoverEvent event) {
     exitEvents.put(event.getSource(), event);
     ((Timer) timers.get(event.getSource())).restart();

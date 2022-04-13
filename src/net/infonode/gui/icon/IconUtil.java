@@ -27,6 +27,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>IconUtil class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.5 $
  */
@@ -34,6 +36,7 @@ public class IconUtil {
   private IconUtil() {
   }
 
+  /** Constant <code>SMALL_ICON</code> */
   public static final Icon SMALL_ICON = new Icon() {
     public int getIconHeight() {
       return 1;
@@ -47,6 +50,12 @@ public class IconUtil {
     }
   };
 
+  /**
+   * <p>copy.</p>
+   *
+   * @param icon a {@link javax.swing.Icon} object.
+   * @return a {@link javax.swing.Icon} object.
+   */
   public static Icon copy(final Icon icon) {
     return new Icon() {
       public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -63,6 +72,12 @@ public class IconUtil {
     };
   }
 
+  /**
+   * <p>getIcon.</p>
+   *
+   * @param object a {@link java.lang.Object} object.
+   * @return a {@link javax.swing.Icon} object.
+   */
   public static Icon getIcon(Object object) {
     return object == null ? null :
            object instanceof AbstractButton ? (Icon) ((AbstractButton) object).getIcon() :
@@ -70,16 +85,34 @@ public class IconUtil {
            object instanceof IconProvider ? ((IconProvider) object).getIcon() : null;
   }
 
+  /**
+   * <p>getIconWidth.</p>
+   *
+   * @param object a {@link java.lang.Object} object.
+   * @return a int.
+   */
   public static int getIconWidth(Object object) {
     Icon icon = getIcon(object);
     return icon == null ? 0 : icon.getIconWidth();
   }
 
+  /**
+   * <p>getIconHeight.</p>
+   *
+   * @param object a {@link java.lang.Object} object.
+   * @return a int.
+   */
   public static int getIconHeight(Object object) {
     Icon icon = getIcon(object);
     return icon == null ? 0 : icon.getIconHeight();
   }
 
+  /**
+   * <p>getMaxIconWidth.</p>
+   *
+   * @param objects an array of {@link java.lang.Object} objects.
+   * @return a int.
+   */
   public static int getMaxIconWidth(Object[] objects) {
     int max = 0;
 

@@ -23,18 +23,59 @@
 // $Id: DraggableComponentBoxListener.java,v 1.2 2004/06/17 13:01:11 johan Exp $
 package net.infonode.gui.draggable;
 
+/**
+ * <p>DraggableComponentBoxListener interface.</p>
+ *
+ * @author trueh
+ * @version $Id: $Id
+ */
 public interface DraggableComponentBoxListener {
+  /**
+   * <p>componentDragged.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void componentDragged(DraggableComponentBoxEvent event);
 
+  /**
+   * <p>componentDropped.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void componentDropped(DraggableComponentBoxEvent event);
 
+  /**
+   * <p>componentDragAborted.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void componentDragAborted(DraggableComponentBoxEvent event);
 
+  /**
+   * <p>componentSelected.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void componentSelected(DraggableComponentBoxEvent event);
 
+  /**
+   * <p>componentRemoved.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void componentRemoved(DraggableComponentBoxEvent event);
 
+  /**
+   * <p>componentAdded.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void componentAdded(DraggableComponentBoxEvent event);
 
+  /**
+   * <p>changed.</p>
+   *
+   * @param event a {@link net.infonode.gui.draggable.DraggableComponentBoxEvent} object.
+   */
   public void changed(DraggableComponentBoxEvent event);
 }

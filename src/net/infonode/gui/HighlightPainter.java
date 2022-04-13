@@ -28,6 +28,8 @@ import net.infonode.util.ColorUtil;
 import java.awt.*;
 
 /**
+ * <p>HighlightPainter class.</p>
+ *
  * @author $Author: johan $
  * @version $Revision: 1.6 $
  */
@@ -35,6 +37,20 @@ public class HighlightPainter {
   private HighlightPainter() {
   }
 
+  /**
+   * <p>drawLine.</p>
+   *
+   * @param g a {@link java.awt.Graphics} object.
+   * @param x1 a int.
+   * @param y1 a int.
+   * @param x2 a int.
+   * @param y2 a int.
+   * @param clockWise a boolean.
+   * @param inside a boolean.
+   * @param highlightColor a {@link java.awt.Color} object.
+   * @param middleColor a {@link java.awt.Color} object.
+   * @param shadowColor a {@link java.awt.Color} object.
+   */
   public static void drawLine(Graphics g, int x1, int y1, int x2, int y2, boolean clockWise, boolean inside,
                               Color highlightColor, Color middleColor, Color shadowColor) {
     int mul = clockWise ? 1 : -1;
@@ -53,16 +69,37 @@ public class HighlightPainter {
 
   }
 
+  /**
+   * <p>getBlendFactor.</p>
+   *
+   * @param dx a int.
+   * @param dy a int.
+   * @return a float.
+   */
   public static float getBlendFactor(int dx, int dy) {
     int l2 = 2 * (dx * dx + dy * dy);
     int a = dx - dy;
     return 1 - (float) a * a / l2;
   }
 
+  /**
+   * <p>getHighlightOffsetX.</p>
+   *
+   * @param deltaX a int.
+   * @param deltaY a int.
+   * @return a int.
+   */
   protected static int getHighlightOffsetX(int deltaX, int deltaY) {
     return deltaY - deltaX > 0 ? (deltaX + deltaY > 0 ? -1 : 0) : (deltaX + deltaY > 0 ? 0 : 1); //-deltaY > deltaX ? 1 : 0;
   }
 
+  /**
+   * <p>getHighlightOffsetY.</p>
+   *
+   * @param deltaX a int.
+   * @param deltaY a int.
+   * @return a int.
+   */
   protected static int getHighlightOffsetY(int deltaX, int deltaY) {
     return deltaY - deltaX > 0 ? (deltaX + deltaY > 0 ? 0 : -1) : (deltaX + deltaY > 0 ? 1 : 0); //-deltaY > deltaX ? 1 : 0;
   }

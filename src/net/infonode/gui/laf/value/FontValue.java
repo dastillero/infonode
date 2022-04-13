@@ -27,6 +27,8 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 /**
+ * <p>FontValue class.</p>
+ *
  * @author $Author: jesper $
  * @version $Revision: 1.3 $
  */
@@ -36,26 +38,54 @@ public class FontValue {
   private FontUIResource font;
   private FontUIResource defaultFont;
 
+  /**
+   * <p>Constructor for FontValue.</p>
+   */
   public FontValue() {
     this(DEFAULT_FONT);
   }
 
+  /**
+   * <p>Constructor for FontValue.</p>
+   *
+   * @param defaultFont a {@link javax.swing.plaf.FontUIResource} object.
+   */
   public FontValue(FontUIResource defaultFont) {
     this.defaultFont = defaultFont;
   }
 
+  /**
+   * <p>Setter for the field <code>font</code>.</p>
+   *
+   * @param font a {@link java.awt.Font} object.
+   */
   public void setFont(Font font) {
     setFont(new FontUIResource(font));
   }
 
+  /**
+   * <p>Setter for the field <code>font</code>.</p>
+   *
+   * @param font a {@link javax.swing.plaf.FontUIResource} object.
+   */
   public void setFont(FontUIResource font) {
     this.font = font;
   }
 
+  /**
+   * <p>Setter for the field <code>defaultFont</code>.</p>
+   *
+   * @param defaultFont a {@link javax.swing.plaf.FontUIResource} object.
+   */
   public void setDefaultFont(FontUIResource defaultFont) {
     this.defaultFont = defaultFont;
   }
 
+  /**
+   * <p>Getter for the field <code>font</code>.</p>
+   *
+   * @return a {@link javax.swing.plaf.FontUIResource} object.
+   */
   public FontUIResource getFont() {
     return font == null ? defaultFont : font;
   }

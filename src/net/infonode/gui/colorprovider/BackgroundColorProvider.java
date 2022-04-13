@@ -46,11 +46,18 @@ public class BackgroundColorProvider extends AbstractColorProvider {
   private BackgroundColorProvider() {
   }
 
+  /** {@inheritDoc} */
   public Color getColor(Component component) {
     Color color = component.getBackground();
     return color == null ? UIManager.getColor("control") : color;
   }
 
+  /**
+   * <p>readResolve.</p>
+   *
+   * @return a {@link java.lang.Object} object.
+   * @throws java.io.ObjectStreamException if any.
+   */
   protected Object readResolve() throws ObjectStreamException {
     return INSTANCE;
   }

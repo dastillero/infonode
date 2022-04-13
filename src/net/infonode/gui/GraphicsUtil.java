@@ -28,9 +28,21 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * <p>GraphicsUtil class.</p>
+ *
  * @author johan
+ * @version $Id: $Id
  */
 public class GraphicsUtil {
+  /**
+   * <p>drawOptimizedLine.</p>
+   *
+   * @param g a {@link java.awt.Graphics} object.
+   * @param x1 a int.
+   * @param y1 a int.
+   * @param x2 a int.
+   * @param y2 a int.
+   */
   public static void drawOptimizedLine(Graphics g, int x1, int y1, int x2, int y2) {
     if (g.getColor().getAlpha() < 255 && (x1 == x2 || y1 == y2))
       g.fillRect(x1 < x2 ? x1 : x2, y1 < y2 ? y1 : y2, Math.abs(x2 - x1) + 1, Math.abs(y2 - y1) + 1);
@@ -38,6 +50,16 @@ public class GraphicsUtil {
       g.drawLine(x1, y1, x2, y2);
   }
 
+  /**
+   * <p>calculateIntersectionClip.</p>
+   *
+   * @param x a int.
+   * @param y a int.
+   * @param width a int.
+   * @param height a int.
+   * @param originalClip a {@link java.awt.Shape} object.
+   * @return a {@link java.awt.Rectangle} object.
+   */
   public static Rectangle calculateIntersectionClip(int x, int y, int width, int height, Shape originalClip) {
     Rectangle bounds = originalClip.getBounds();
     SwingUtilities.computeIntersection(x, y, width, height, bounds);
