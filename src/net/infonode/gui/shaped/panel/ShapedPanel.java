@@ -301,14 +301,18 @@ public class ShapedPanel extends BaseContainer implements BackgroundPainter {
       return false;
 
     Shape shape = getShape();
-    return shape == null ? super.contains(x, y) : shape.contains(x, y);
+    return shape == null ? super.inside(x, y) : shape.contains(x, y);
   }
 
   /** {@inheritDoc} */
   @Override
   @Deprecated
   public boolean inside(int x, int y) {
-      return contains(x, y);
+    if (x < 0 || y < 0 || x >= getWidth() || y >= getHeight())
+      return false;
+
+    Shape shape = getShape();
+    return shape == null ? super.contains(x, y) : shape.contains(x, y);
   }
   
   private boolean findShapedBorder(Border border, Insets i) {

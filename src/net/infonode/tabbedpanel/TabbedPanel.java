@@ -1579,7 +1579,7 @@ public class TabbedPanel extends JPanel {
     @Override
     @Deprecated
     public boolean inside(int x, int y) {
-      return contains(x, y);
+      return properties.getShadowEnabled() ? doContains(x, y) : super.inside(x, y);
     }
 
     private boolean doContains(int x, int y) {

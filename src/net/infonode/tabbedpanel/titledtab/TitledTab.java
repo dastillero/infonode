@@ -449,6 +449,7 @@ public class TitledTab extends Tab implements IconProvider {
       super(l);
     }
 
+    @Override
     public void hoverEnter() {
       if (hoverListener != null && getTabbedPanel() != null)
         hoverListener.mouseEntered(new HoverEvent(TitledTab.this));
@@ -476,7 +477,7 @@ public class TitledTab extends Tab implements IconProvider {
     @Override
     @Deprecated
     public boolean inside(int x, int y) {
-        return contains(x, y);
+      return getComponentCount() > 0 && getComponent(0).inside(x, y);
     }
 
   };
@@ -492,7 +493,8 @@ public class TitledTab extends Tab implements IconProvider {
   @Override
   @Deprecated
   public boolean inside(int x, int y) {
-      return contains(x, y);
+    Point p = SwingUtilities.convertPoint(this, new Point(x, y), eventPanel);
+    return eventPanel.inside(p.x, p.y);
   }
 
   private final StatePanel normalStatePanel;
