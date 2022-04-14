@@ -38,7 +38,7 @@ public class TabbedPanelReleaseInfo {
       new ReleaseInfo("InfoNode Tabbed Panel GPL",
                       "NNL Technology AB",
                       AntUtils.getBuildTime(1235486906703L),
-                      AntUtils.createProductVersion(1, 6, 1),
+                      AntUtils.createProductVersion(1, 8, 0),
                       "GNU General Public License, Version 2",
                       "http://www.infonode.net");
 
