@@ -72,7 +72,7 @@ import java.util.Map;
  * @version $Revision: 1.120 $
  */
 abstract public class DockingWindow extends BasePanel {
-  private static int DROP_FLOATING_YOFFSET = 10;
+  private static final int DROP_FLOATING_YOFFSET = 10;
 
   /**
    * Returns the icon for this window.
@@ -127,7 +127,8 @@ abstract public class DockingWindow extends BasePanel {
   private ArrayList mouseButtonListeners;
   private ArrayList listeners;
 
-  private PropertyMapListener propertiesListener = new PropertyMapListener() {
+  private final PropertyMapListener propertiesListener = new PropertyMapListener() {
+    @Override
     public void propertyValuesChanged(PropertyMap propertyMap, Map changes) {
       doUpdate();
 
@@ -135,7 +136,8 @@ abstract public class DockingWindow extends BasePanel {
     }
   };
 
-  private PropertyMapTreeListener propertyObjectTreeListener = new PropertyMapTreeListener() {
+  private final PropertyMapTreeListener propertyObjectTreeListener = new PropertyMapTreeListener() {
+    @Override
     public void propertyValuesChanged(Map changes) {
       doUpdate();
     }
@@ -164,12 +166,14 @@ abstract public class DockingWindow extends BasePanel {
     this.windowItem.setConnectedWindow(this);
 
     addMouseListener(new MouseAdapter() {
+      @Override
       public void mousePressed(MouseEvent e) {
         if (e.isPopupTrigger()) {
           showPopupMenu(e);
         }
       }
 
+      @Override
       public void mouseReleased(MouseEvent e) {
         mousePressed(e);
       }
@@ -409,6 +413,7 @@ abstract public class DockingWindow extends BasePanel {
     final SplitWindow w = new SplitWindow(direction == Direction.RIGHT || direction == Direction.LEFT);
 
     optimizeAfter(splitWithWindow.getWindowParent(), new Runnable() {
+      @Override
       public void run() {
         getWindowParent().replaceChildWindow(DockingWindow.this, w);
         w.setWindows(
@@ -547,6 +552,7 @@ abstract public class DockingWindow extends BasePanel {
     if (windowParent != null) {
       DockingWindow[] ancestors = getAncestors();
       optimizeAfter(windowParent, new Runnable() {
+        @Override
         public void run() {
           windowParent.removeChildWindow(DockingWindow.this);
         }
@@ -837,12 +843,9 @@ abstract public class DockingWindow extends BasePanel {
 
   private void doMinimize() {
     doMinimize(windowItem.getLastMinimizedDirection() != null &&
-               getRootWindow().getWindowBar(windowItem.getLastMinimizedDirection()).isEnabled() ?
-                                                                                                windowItem
-                                                                                                    .getLastMinimizedDirection() :
-                                                                                                                                 getRootWindow()
-                                                                                                                                     .getClosestWindowBar(
-                                                                                                                                         this));
+        getRootWindow().getWindowBar(windowItem.getLastMinimizedDirection()).isEnabled() ?
+            windowItem.getLastMinimizedDirection() :
+            getRootWindow().getClosestWindowBar(this));
   }
 
   private void doMinimize(Direction direction) {
@@ -967,6 +970,7 @@ abstract public class DockingWindow extends BasePanel {
     final DockingWindow nw = newWindow.getContentWindow(DockingWindow.this);
 
     optimizeAfter(newWindow, new Runnable() {
+      @Override
       public void run() {
         if (nw == oldWindow)
           return;
@@ -1017,6 +1021,7 @@ abstract public class DockingWindow extends BasePanel {
    *
    * @return a {@link java.lang.String} object.
    */
+  @Override
   public String toString() {
     return getTitle();
   }
@@ -1128,6 +1133,7 @@ abstract public class DockingWindow extends BasePanel {
    */
   protected void internalClose() {
     optimizeAfter(windowParent, new Runnable() {
+      @Override
       public void run() {
         windowParent.removeChildWindow(DockingWindow.this);
       }
@@ -1589,6 +1595,7 @@ abstract public class DockingWindow extends BasePanel {
    */
   protected static void optimizeAfter(final DockingWindow window, final Runnable runnable) {
     FocusManager.getInstance().pinFocus(new Runnable() {
+      @Override
       public void run() {
         beginOptimize(window);
 
@@ -1663,6 +1670,7 @@ abstract public class DockingWindow extends BasePanel {
    */
   protected final void removeChildWindow(final DockingWindow window) {
     optimizeAfter(window.getWindowParent(), new Runnable() {
+      @Override
       public void run() {
         if (window.isShowingInRootWindow())
           window.fireWindowHidden(window);
@@ -1825,6 +1833,7 @@ abstract public class DockingWindow extends BasePanel {
 
   DropAction getDefaultDropAction() {
     return new DropAction() {
+      @Override
       public void execute(DockingWindow window, MouseEvent mouseEvent) {
         if (getWindowProperties().getUndockEnabled() && getWindowProperties().getUndockOnDropEnabled()) {
           Point p = mouseEvent.getPoint();
@@ -1927,6 +1936,7 @@ abstract public class DockingWindow extends BasePanel {
     getRootWindow().setDragRectangle(SwingUtilities.convertRectangle(this, rect, getRootWindow()));
 
     return new DropAction() {
+      @Override
       public void execute(DockingWindow window, MouseEvent mouseEvent) {
         try {
           window.beforeDrop(DockingWindow.this);
@@ -1964,8 +1974,10 @@ abstract public class DockingWindow extends BasePanel {
     getRootWindow().setDragRectangle(SwingUtilities.convertRectangle(getParent(), getBounds(), getRootWindow()));
 
     return new DropAction() {
+      @Override
       public void execute(final DockingWindow window, MouseEvent mouseEvent) {
         optimizeAfter(window.getWindowParent(), new Runnable() {
+          @Override
           public void run() {
             try {
               window.beforeDrop(DockingWindow.this);
@@ -2189,6 +2201,7 @@ abstract public class DockingWindow extends BasePanel {
               final WindowItem fitem = item;
 
               optimizeAfter(w.getWindowParent(), new Runnable() {
+                @Override
                 public void run() {
                   if (fitem.getParent() instanceof SplitWindowItem) {
                     SplitWindowItem splitWindowItem = (SplitWindowItem) fitem.getParent();
@@ -2227,6 +2240,7 @@ abstract public class DockingWindow extends BasePanel {
         final WindowItem topItem = getWindowItem().getTopItem();
 
         optimizeAfter(null, new Runnable() {
+          @Override
           public void run() {
             DockingWindow w = rootWindow.getWindow();
 

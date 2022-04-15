@@ -114,6 +114,7 @@ public class FloatingWindow extends DockingWindow {
   private AWTEventListener awtMouseEventListener;
 
   private PropertyMapTreeListener propertiesListener = new PropertyMapTreeListener() {
+    @Override
     public void propertyValuesChanged(Map changes) {
       updateFloatingWindow(changes);
     }
@@ -149,6 +150,7 @@ public class FloatingWindow extends DockingWindow {
     ((RootPaneContainer) dialog).getContentPane().add(this, BorderLayout.CENTER);
     
     dialog.addWindowListener(new WindowAdapter() {
+      @Override
       public void windowClosing(WindowEvent e) {
         try {
           if (getWindowProperties().getCloseEnabled())
@@ -166,10 +168,12 @@ public class FloatingWindow extends DockingWindow {
     dragPanel.setVisible(false);
 
     dragPanel.addMouseListener(new MouseAdapter() {
+      @Override
       public void mouseEntered(MouseEvent e) {
         getRootWindow().setCurrentDragRootPane(getRootPane());
       }
 
+      @Override
       public void mouseExited(MouseEvent e) {
         if (!dragPanel.contains(e.getPoint()) && getRootWindow().getCurrentDragRootPane() == getRootPane())
           getRootWindow().setCurrentDragRootPane(null);
@@ -179,6 +183,7 @@ public class FloatingWindow extends DockingWindow {
     if (rootWindow.isHeavyweightSupported()) {
       try {
         awtMouseEventListener = new AWTEventListener() {
+          @Override
           public void eventDispatched(AWTEvent event) {
             if (event.getID() == MouseEvent.MOUSE_ENTERED) {
               Component c = (Component) event.getSource();
@@ -292,6 +297,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return the properties for this window
    */
+  @Override
   public DockingWindowProperties getWindowProperties() {
     return super.getWindowProperties();
   }
@@ -307,6 +313,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * Floating window cannot be minimized
    */
+  @Override
   public void minimize(Direction direction) {
   }
 
@@ -315,6 +322,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a boolean.
    */
+  @Override
   public boolean isDockable() {
     return false;
   }
@@ -324,6 +332,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a boolean.
    */
+  @Override
   public boolean isMaximizable() {
     return false;
   }
@@ -333,6 +342,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a boolean.
    */
+  @Override
   public boolean isMinimizable() {
     return false;
   }
@@ -342,6 +352,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a boolean.
    */
+  @Override
   public boolean isRestorable() {
     return false;
   }
@@ -351,6 +362,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a boolean.
    */
+  @Override
   public boolean isUndockable() {
     return false;
   }
@@ -358,6 +370,7 @@ public class FloatingWindow extends DockingWindow {
   /**
    * <p>close.</p>
    */
+  @Override
   public void close() {
     PropertyMapWeakListenerManager.removeWeakTreeListener(getFloatingWindowProperties().getMap(), propertiesListener);
     RootWindow rw = getRootWindow();
@@ -382,11 +395,13 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a {@link javax.swing.Icon} object.
    */
+  @Override
   public Icon getIcon() {
     return window == null ? null : window.getIcon();
   }
 
   /** {@inheritDoc} */
+  @Override
   public DockingWindow getChildWindow(int index) {
     return window;
   }
@@ -396,6 +411,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a int.
    */
+  @Override
   public int getChildWindowCount() {
     return window == null ? 0 : 1;
   }
@@ -405,6 +421,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a boolean.
    */
+  @Override
   public boolean isUndocked() {
     return true;
   }
@@ -478,6 +495,7 @@ public class FloatingWindow extends DockingWindow {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void doReplace(DockingWindow oldWindow, DockingWindow newWindow) {
     if (oldWindow == window) {
       if (window != null) {
@@ -547,11 +565,13 @@ public class FloatingWindow extends DockingWindow {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected boolean acceptsSplitWith(DockingWindow window) {
     return false;
   }
 
   /** {@inheritDoc} */
+  @Override
   protected DropAction doAcceptDrop(Point p, DockingWindow window) {
     DockingWindow dropWindow = maximizedWindow != null ? maximizedWindow : this.window;
 
@@ -569,6 +589,7 @@ public class FloatingWindow extends DockingWindow {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected DropAction acceptInteriorDrop(Point p, DockingWindow window) {
     if (this.window != null)
       return null;
@@ -577,6 +598,7 @@ public class FloatingWindow extends DockingWindow {
 
     if (getInteriorDropFilter().acceptDrop(new InteriorDropInfo(window, this, p)))
       return new DropAction() {
+        @Override
         public void execute(DockingWindow window, MouseEvent mouseEvent) {
           setWindow(window);
         }
@@ -588,18 +610,22 @@ public class FloatingWindow extends DockingWindow {
   /**
    * <p>update.</p>
    */
+  @Override
   protected void update() {
   }
 
+  @Override
   void removeWindowComponent(DockingWindow window) {
     // Do nothing
   }
 
+  @Override
   void restoreWindowComponent(DockingWindow window) {
     // Do nothing
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void showChildWindow(DockingWindow window) {
     if (maximizedWindow != null && window == this.window)
       setMaximizedWindow(null);
@@ -612,6 +638,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
    */
+  @Override
   protected PropertyMap getPropertyObject() {
     return new SplitWindowProperties().getMap();
   }
@@ -621,6 +648,7 @@ public class FloatingWindow extends DockingWindow {
    *
    * @return a {@link net.infonode.properties.propertymap.PropertyMap} object.
    */
+  @Override
   protected PropertyMap createPropertyObject() {
     return new SplitWindowProperties().getMap();
   }
@@ -648,6 +676,7 @@ public class FloatingWindow extends DockingWindow {
   /**
    * <p>fireTitleChanged.</p>
    */
+  @Override
   protected void fireTitleChanged() {
     super.fireTitleChanged();
 
@@ -683,6 +712,7 @@ public class FloatingWindow extends DockingWindow {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void write(ObjectOutputStream out, WriteContext context, ViewWriter viewWriter) throws IOException {
     out.writeInt(dialog.getWidth());
     out.writeInt(dialog.getHeight());
