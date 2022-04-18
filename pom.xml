@@ -55,25 +55,4 @@
             </plugin>
         </plugins>
     </build>
-	
-    <scm>
-        <connection>scm:git:git://github.com/dastillero/infonode.git</connection>
-        <developerConnection>scm:git:git://github.com/dastillero/infonode.git</developerConnection>
-        <tag>1.8.0-beta3</tag>
-    </scm>
-	
-    <distributionManagement>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <uniqueVersion>false</uniqueVersion>
-            <name>Snapshot Repository</name>
-            <url>http://nexus.nic.etu:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-
-        <repository>
-            <id>releases</id>
-            <name>Release Repository</name>
-            <url>http://nexus.nic.etu:8081/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 </project>
