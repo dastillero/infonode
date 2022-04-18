@@ -59,7 +59,7 @@
     <scm>
         <connection>scm:git:git://github.com/dastillero/infonode.git</connection>
         <developerConnection>scm:git:git://github.com/dastillero/infonode.git</developerConnection>
-        <tag>1.8.0-beta1</tag>
+        <tag>1.8.0-beta3</tag>
     </scm>
 	
     <distributionManagement>
