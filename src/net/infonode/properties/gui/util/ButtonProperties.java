@@ -56,13 +56,27 @@ public class ButtonProperties extends PropertyMapContainer {
                                                                     "Icon for the disabled button state.",
                                                                     PropertyMapValueHandler.INSTANCE);
 
-  /**
-   * The enabled button tool tip text.
-   */
-  public static final StringProperty TOOL_TIP_TEXT = new StringProperty(PROPERTIES,
-                                                                        "Tool Tip Text",
-                                                                        "The button tool tip text.",
-                                                                        PropertyMapValueHandler.INSTANCE);
+    /**
+     * The rollover button icon.
+     */
+    public static final IconProperty ROLLOVER_ICON = new IconProperty(PROPERTIES, "Rollover Icon",
+            "Icon to be shown when the mouse hovers the icon.",
+            PropertyMapValueHandler.INSTANCE);
+
+    /**
+     * The pressed button icon.
+     */
+    public static final IconProperty PRESSED_ICON = new IconProperty(PROPERTIES, "Pressed Icon",
+            "Icon to be shown when the button is clicked.",
+            PropertyMapValueHandler.INSTANCE);
+
+    /**
+     * The enabled button tool tip text.
+     */
+    public static final StringProperty TOOL_TIP_TEXT = new StringProperty(PROPERTIES,
+            "Tool Tip Text",
+            "The button tool tip text.",
+            PropertyMapValueHandler.INSTANCE);
 
   /**
    * <p>The button factory.</p>
@@ -83,10 +97,14 @@ public class ButtonProperties extends PropertyMapContainer {
                                                                                 "property. An action listener is also added to the button.",
                                                                                 PropertyMapValueHandler.INSTANCE);
 
-  static {
-    ButtonProperties properties = new ButtonProperties(PROPERTIES.getDefaultMap());
-    properties.setIcon(null).setDisabledIcon(null).setToolTipText(null);
-  }
+    static {
+        ButtonProperties properties = new ButtonProperties(PROPERTIES.getDefaultMap());
+        properties.setIcon(null)
+                .setDisabledIcon(null)
+                .setRolloverIcon(null)
+                .setPressedIcon(null)
+                .setToolTipText(null);
+    }
 
   /**
    * Creates an empty property object.
@@ -186,14 +204,54 @@ public class ButtonProperties extends PropertyMapContainer {
     return DISABLED_ICON.get(getMap());
   }
 
-  /**
-   * Returns the button tool tip text.
-   *
-   * @return the button tool tip text
-   */
-  public String getToolTipText() {
-    return TOOL_TIP_TEXT.get(getMap());
-  }
+    /**
+     * Sets the rollover icon.
+     *
+     * @param icon the rollover icon.
+     * @return this
+     */
+    public ButtonProperties setRolloverIcon(Icon icon) {
+        ROLLOVER_ICON.set(getMap(), icon);
+        return this;
+    }
+
+    /**
+     * Returns the rollover icon.
+     *
+     * @return the rollover icon.
+     */
+    public Icon getRolloverIcon() {
+        return ROLLOVER_ICON.get(getMap());
+    }
+
+    /**
+     * Sets the pressed icon.
+     *
+     * @param icon the pressed icon.
+     * @return this
+     */
+    public ButtonProperties setPressedIcon(Icon icon) {
+        PRESSED_ICON.set(getMap(), icon);
+        return this;
+    }
+
+    /**
+     * Returns the pressed icon.
+     *
+     * @return the pressed icon.
+     */
+    public Icon getPressedIcon() {
+        return PRESSED_ICON.get(getMap());
+    }
+
+    /**
+     * Returns the button tool tip text.
+     *
+     * @return the button tool tip text
+     */
+    public String getToolTipText() {
+        return TOOL_TIP_TEXT.get(getMap());
+    }
 
   /**
    * Sets the button tool tip text.
@@ -236,16 +294,20 @@ public class ButtonProperties extends PropertyMapContainer {
     return this;
   }
 
-  /**
-   * Applies the icon, disabled icon and tool tip to the given button
-   *
-   * @param button botton
-   * @return the button
-   */
-  public AbstractButton applyTo(AbstractButton button) {
-    button.setIcon(getIcon());
-    button.setDisabledIcon(getDisabledIcon());
-    button.setToolTipText(getToolTipText());
+    /**
+     * Applies the icon, disabled icon and tool tip to the given button
+     *
+     * @param button botton
+     * @return the button
+     */
+    public AbstractButton applyTo(AbstractButton button) {
+        button.setIcon(getIcon());
+        button.setDisabledIcon(getDisabledIcon());
+        button.setRolloverIcon(getRolloverIcon());
+        button.setPressedIcon(getPressedIcon());
+        button.setToolTipText(getToolTipText());
+        button.setFocusable(false);
+        button.setBorderPainted(false);
 
     return button;
   }
